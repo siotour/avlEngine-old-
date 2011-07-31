@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\utility Tests">
+      <UniqueIdentifier>{d232e52d-4d01-4586-8828-ff693967580b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\view Tests">
+      <UniqueIdentifier>{3aab0fa1-c5f0-49be-be02-93bc4ff12379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sound Tests">
+      <UniqueIdentifier>{f4fd89fc-b1bd-4aa0-8561-50af2b3976cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\input Tests">
+      <UniqueIdentifier>{d8f0bb57-7654-4ecb-8e86-168e28258fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model Tests">
+      <UniqueIdentifier>{69518470-33cd-41ca-acd5-9144702ccd8d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\assert\assert.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\exception\exception.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\log file\log file.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\read write error\read write error.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\settings file\settings file.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\win32 timer\win32 timer.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\basic window\basic window.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d renderer base\d3d renderer base.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\win32 window base\win32 window base.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\sprite\sprite.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\basic renderer\basic renderer.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\image\image.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\sprite\sprite.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
