@@ -80,6 +80,48 @@ namespace utility
 	{
 		y = new_y;
 	}
+
+
+
+
+	// Adds two vertices together. Simply combines their respective components and returns the result.
+	Vertex2D Vertex2D::operator+(const Vertex2D& rhs)
+	{
+		return Vertex2D(x + rhs.GetX(), y + rhs.GetY());
+	}
+
+
+
+
+	// Subtracts one vertex from another. Simply subtracts their respective components and returns the result.
+	Vertex2D Vertex2D::operator-(const Vertex2D& rhs)
+	{
+		return Vertex2D(x - rhs.GetX(), y - rhs.GetY());
+	}
+
+
+
+
+	// Compound += operator.
+	Vertex2D& Vertex2D::operator+=(const Vertex2D& rhs)
+	{
+		x += rhs.GetX();
+		y += rhs.GetY();
+
+		return *this;
+	}
+
+
+
+
+	// Compound -= operator.
+	Vertex2D& Vertex2D::operator-=(const Vertex2D& rhs)
+	{
+		x -= rhs.GetX();
+		y -= rhs.GetY();
+
+		return *this;
+	}
 	
 	
 	

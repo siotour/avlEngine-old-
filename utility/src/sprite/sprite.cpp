@@ -1,13 +1,14 @@
 /**********
  * Author: Sheldon Bachstein
  * Date: Jan 21, 2011
- * Description: See textured quad.h for details.
+ * Description: See sprite.h for details.
  **********/
 
-#include"textured quad.h"
-#include"..\textured vertex\textured vertex.h"
+#include"sprite.h"
+#include"..\vertex 2d\vertex 2d.h"
 #include"..\assert\assert.h"
 #include<cmath>
+#include<limits>
 
 
 
@@ -17,27 +18,53 @@ namespace utility
 {
 
 
-	// Basic constructor.
-	TexturedQuad::TexturedQuad()
-		: p1(0, 0, 0, 0, 0), p2(0, 0, 0, 0, 0), p3(0, 0, 0, 0, 0), p4(0, 0, 0, 0, 0)
+	// Basic constructor. Each vertice (both spatial and texture) is initialized to (0, 0),
+	// and z-depth is set to 0. The scale is initialized to 1.0.
+	Sprite::Sprite()
+		: p1(0, 0), p2(0, 0), p3(0, 0), p4(0, 0), q1(0, 0), q2(0, 0), q3(0, 0), q4(0, 0),
+		  untransformed_p1(0, 0), untransformed_p2(0, 0), untransformed_p3(0, 0), untransformed_p4(0, 0),
+		  center(0, 0), rotation(0.0f), scale(1.0f), z(0.0f)
 	{
 	}
 
 
 
 
-	// Takes four vertices which will form the resultant quad. Vertices are copied in a clockwise direction.
-	TexturedQuad::TexturedQuad(const TexturedVertex& p1, const TexturedVertex& p2, const TexturedVertex& p3, const TexturedVertex& p4)
-		: p1(p1), p2(p2), p3(p3), p4(p4)
+	// Initializes each of the vertices to those supplied by the user. Winding order is clockwise.
+	// p1-p4 are the spatial coordinates, and q1-q4 are the texture coordinates. z is the z-depth
+	// of the sprite.
+	Sprite::Sprite(const Vertex2D& p1, const Vertex2D& p2, const Vertex2D& p3, const Vertex2D& p4,
+				   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4, const float& z)
+	: p1(p1), p2(p2), p3(p3), p4(p4), q1(q1), q2(q2), q3(q3), q4(q4),
+	  untransformed_p1(p1), untransformed_p2(p2), untransformed_p3(p3), untransformed_p4(p4),
+	  rotation(0.0f), scale(1.0f), z(z)
 	{
+		// Figure out the center.
+		FindCenter();
+	}
+
+
+
+
+	// Creates an axis-aligned bounding box with texture coordinates ranging from (0, 0) in the
+	// bottom-left to (1, 1) in the top-right and with z-depth z.
+	Sprite::Sprite(const float& left, const float& top, const float& right, const float& bottom, const float& z)
+		: p1(left, bottom), p2(left, top), p3(top, right), p4(right, bottom), q1(0.0f, 0.0f), q2(0.0f, 1.0f), q3(1.0f, 1.0f), q4(1.0f, 0.0f),
+		  untransformed_p1(p1), untransformed_p2(p2), untransformed_p3(p3), untransformed_p4(p4),
+		  rotation(0.0f), scale(1.0f), z(z)
+	{
+		// Figure out the center.
+		FindCenter();
 	}
 
 
 
 
 	// Copy constructor.
-	TexturedQuad::TexturedQuad(const TexturedQuad& original)
-		: p1(original.GetP1()), p2(original.GetP2()), p3(original.GetP3()), p4(original.GetP4())
+	Sprite::Sprite(const Sprite& original)
+		: untransformed_p1(original.GetUntransformedP1()), untransformed_p2(original.GetUntransformedP2()), untransformed_p3(original.GetUntransformedP3()), untransformed_p4(original.GetUntransformedP4()),
+		  q1(original.GetQ1()), q2(original.GetQ2()), q3(original.GetQ3()), q4(original.GetQ4()),
+		  center(original.GetCenter()), rotation(original.GetRotation()), scale(original.GetScale()), z(original.GetZ())
 	{
 	}
 
@@ -45,15 +72,51 @@ namespace utility
 
 
 	// Basic desctructor.
-	TexturedQuad::~TexturedQuad()
+	Sprite::~Sprite()
 	{
 	}
 
 
 
 
-	// Returns vertex p1.
-	const TexturedVertex& TexturedQuad::GetP1() const
+	// Returns transformed vertex p1.
+	const Vertex2D& Sprite::GetUntransformedP1() const
+	{
+		return untransformed_p1;
+	}
+
+
+
+
+	// Returns transformed vertex p2.
+	const Vertex2D& Sprite::GetUntransformedP2() const
+	{
+		return untransformed_p2;
+	}
+
+
+
+
+	// Returns transformed vertex p3.
+	const Vertex2D& Sprite::GetUntransformedP3() const
+	{
+		return untransformed_p3;
+	}
+
+
+
+
+	// Returns transformed vertex p4.
+	const Vertex2D& Sprite::GetUntransformedP4() const
+	{
+		return untransformed_p4;
+	}
+
+
+
+
+	// Returns transformed vertex p1.
+	const Vertex2D& Sprite::GetP1() const
 	{
 		return p1;
 	}
@@ -61,8 +124,8 @@ namespace utility
 
 
 
-	// Returns vertex p2.
-	const TexturedVertex& TexturedQuad::GetP2() const
+	// Returns transformed vertex p2.
+	const Vertex2D& Sprite::GetP2() const
 	{
 		return p2;
 	}
@@ -70,8 +133,8 @@ namespace utility
 
 
 
-	// Returns vertex p3.
-	const TexturedVertex& TexturedQuad::GetP3() const
+	// Returns transformed vertex p3.
+	const Vertex2D& Sprite::GetP3() const
 	{
 		return p3;
 	}
@@ -79,8 +142,8 @@ namespace utility
 
 
 
-	// Returns vertex p4.
-	const TexturedVertex& TexturedQuad::GetP4() const
+	// Returns transformed vertex p4.
+	const Vertex2D& Sprite::GetP4() const
 	{
 		return p4;
 	}
@@ -88,203 +151,313 @@ namespace utility
 
 
 
-	// Assignment operator.
-	const TexturedQuad& TexturedQuad::operator=(const TexturedQuad& rhs)
+	// Returns the center of the sprite.
+	const Vertex2D& Sprite::GetCenter() const
 	{
-		p1 = rhs.GetP1();
-		p2 = rhs.GetP2();
-		p3 = rhs.GetP3();
-		p4 = rhs.GetP4();
-		return *this;
+		return center;
 	}
 
 
 
 
-	// Moves each vertex along each axis by the amounts specified.
-	void TexturedQuad::Move(const float& delta_x, const float& delta_y, const float& delta_z)
+	// Returns the current rotation of the sprite.
+	const float& Sprite::GetRotation() const
 	{
-		ASSERT(p1 != p2 && p2 != p3 && p3 != p4 && p4 != p1);
-		// Move each vertex along each of the three axes by the amounts specified.
-		p1.SetX(p1.GetX() + delta_x);
-		p1.SetY(p1.GetY() + delta_y);
-		p1.SetZ(p1.GetZ() + delta_z);
-
-		p2.SetX(p2.GetX() + delta_x);
-		p2.SetY(p2.GetY() + delta_y);
-		p2.SetZ(p2.GetZ() + delta_z);
-
-		p3.SetX(p3.GetX() + delta_x);
-		p3.SetY(p3.GetY() + delta_y);
-		p3.SetZ(p3.GetZ() + delta_z);
-
-		p4.SetX(p4.GetX() + delta_x);
-		p4.SetY(p4.GetY() + delta_y);
-		p4.SetZ(p4.GetZ() + delta_z);
+		return rotation;
 	}
 
 
 
 
-	// TODO: This function inadvertantly scales the quad down in addition to rotating it! The quad continually
-	// shrinks in on itself until the first assertion fails.
-	// Rotates the quad clockwise by the degrees specified.
-	void TexturedQuad::Rotate(const float& delta_theta)
+	// Returns the current scale factor for the sprite.
+	const float& Sprite::GetScale() const
 	{
-		ASSERT(p1 != p2 && p2 != p3 && p3 != p4 && p4 != p1);
-		// If delta_theta is either 0 or a multiple of 360, then simply return.
-		if(fmod(delta_theta, 360.0f) == 0.0f)
+		return scale;
+	}
+
+
+
+
+	// Returns vertex q1.
+	const Vertex2D& Sprite::GetQ1() const
+	{
+		return q1;
+	}
+
+
+
+
+	// Returns vertex q2.
+	const Vertex2D& Sprite::GetQ2() const
+	{
+		return q2;
+	}
+
+
+
+
+	// Returns vertex q3.
+	const Vertex2D& Sprite::GetQ3() const
+	{
+		return q3;
+	}
+
+
+
+
+	// Returns vertex q4.
+	const Vertex2D& Sprite::GetQ4() const
+	{
+		return q4;
+	}
+
+
+
+
+	// Returns the z-depth of the sprite.
+	const float& Sprite::GetZ() const
+	{
+		return z;
+	}
+
+
+
+
+	// Translates the sprite such that its center is at the specified vertex.
+	void Sprite::SetCenter(const Vertex2D& new_center)
+	{
+		// Figure out the difference between the old and new centers.
+		Vertex2D difference = new_center - center;
+
+		// Now set the new center.
+		center = new_center;
+
+		// Adjust each vertice, including the untransformed ones.
+		untransformed_p1 += difference;
+		untransformed_p2 += difference;
+		untransformed_p3 += difference;
+		untransformed_p4 += difference;
+		p1 += difference;
+		p2 += difference;
+		p3 += difference;
+		p4 += difference;
+	}
+
+
+
+
+	// Moves the sprite's spatial coordinates along the delta vector.
+	void Sprite::Move(const Vertex2D& delta)
+	{
+		untransformed_p1 += delta;
+		untransformed_p2 += delta;
+		untransformed_p3 += delta;
+		untransformed_p4 += delta;
+
+		p1 += delta;
+		p2 += delta;
+		p3 += delta;
+		p4 += delta;
+
+		center += delta;
+	}
+
+
+
+
+	// Sets the rotation to the rotation specified. Rotation is counter-clockwise.
+	void Sprite::SetRotation(const float& new_rotation)
+	{
+		// Simplify theta down to between 0 and 360.
+		float theta = fmod(new_rotation, 360.0f);
+
+		// If theta is the same as the old rotation, simply return.
+		if(theta == rotation)
 		{
 			return;
 		}
 
+		// Save the new rotation.
+		rotation = theta;
 
-		// First of all, the centroid of the quad lies in the same plane as the
-		// midpoints along each edge of the quad. That is, the centroid lies in
-		// the same plane as the midpoint between p1 and p2, p2 and p3, and p3
-		// p4. From there, find the vector perpendicular to that plane by taking
-		// the cross product of two vectors within the plane (namely, vectors
-		// the centroid to one of the midpoints along the quad edges). And then
-		// use a rotation matrix on each vertex.
-
-		// Calculate the centroid for the quad (which is basically the average of the
-		// of each dimensions).
-		float centroid_x = (p1.GetX() + p2.GetX() + p3.GetX() + p4.GetX())/4.0f;
-		float centroid_y = (p1.GetY() + p2.GetY() + p3.GetY() + p4.GetY())/4.0f;
-		float centroid_z = (p1.GetZ() + p2.GetZ() + p3.GetZ() + p4.GetZ())/4.0f;
-
-		// Calculate the midpoint between p1 and p2.
-		float m12_x = (p1.GetX() + p2.GetX())/2.0f;
-		float m12_y = (p1.GetY() + p2.GetY())/2.0f;
-		float m12_z = (p1.GetZ() + p2.GetZ())/2.0f;
-		// Calculate the midpoint between p2 and p3.
-		float m23_x = (p2.GetX() + p3.GetX())/2.0f;
-		float m23_y = (p2.GetY() + p3.GetY())/2.0f;
-		float m23_z = (p2.GetZ() + p3.GetZ())/2.0f;
-
-		// Find the vector from the centroid to the midpoint between p1 and p2.
-		float c_to_m12_x = m12_x - centroid_x;
-		float c_to_m12_y = m12_y - centroid_y;
-		float c_to_m12_z = m12_z - centroid_z;
-
-		// Find the vector from the centroid to the midpoint between p2 and p3.
-		float c_to_m23_x = m23_x - centroid_x;
-		float c_to_m23_y = m23_y - centroid_y;
-		float c_to_m23_z = m23_z - centroid_z;
+		// Set each transformed vertice equal to the untransformed version rotated by theta.
+		p1 = RotateVertice(center, untransformed_p1, theta);
+		p2 = RotateVertice(center, untransformed_p2, theta);
+		p3 = RotateVertice(center, untransformed_p3, theta);
+		p4 = RotateVertice(center, untransformed_p4, theta);
+	}
 
 
-		// Now that we have two vectors in the center plane, find a vector
-		// perpendicular to both. This vector will be used to rotate each
-		// vertex around.
-		float rot_vector_x = (c_to_m12_y * c_to_m23_z) - (c_to_m12_z * c_to_m23_y);
-		float rot_vector_y = (c_to_m12_z * c_to_m23_x) - (c_to_m12_x * c_to_m23_z);
-		float rot_vector_z = (c_to_m12_x * c_to_m23_y) - (c_to_m12_y * c_to_m23_x);
 
 
-		// Now construct a rotation matrix from the rotation vector.
-		float rot_matrix[3][3];
-		const float PI = 3.14159265f;
-		float c = cos(delta_theta * PI / 180.0f);
-		float s = sin(delta_theta * PI / 180.0f);
-		float t = 1.0f - c;
-		rot_matrix[0][0] = 1 + t * (rot_vector_x * rot_vector_x - 1);
-		rot_matrix[0][1] = (-rot_vector_z * s) + (t * rot_vector_x * rot_vector_y);
-		rot_matrix[0][2] = (rot_vector_y * s) + (t * rot_vector_x * rot_vector_z);
-		rot_matrix[1][0] = (rot_vector_z * s) + (t * rot_vector_x * rot_vector_y);
-		rot_matrix[1][1] = 1 + t * (rot_vector_y * rot_vector_y - 1);
-		rot_matrix[1][2] = (-rot_vector_x * s) + (t * rot_vector_y * rot_vector_z);
-		rot_matrix[2][0] = (-rot_vector_y * s) + (t * rot_vector_x * rot_vector_z);
-		rot_matrix[2][1] = (rot_vector_x * s) + (t * rot_vector_y * rot_vector_z);
-		rot_matrix[2][2] = 1 + t * (rot_vector_z * rot_vector_z - 1);
+	// Rotates the quad counter-clockwise by the degrees specified.
+	void Sprite::Rotate(const float& delta_theta)
+	{
+		SetRotation(rotation + delta_theta);
+	}
 
 
-		// Now, for each vertex of the quad, rotate it by multiplaying it by the
-		// rotation matrix.
-		float old_x, old_y, old_z, new_x, new_y, new_z;
 
-		// Rotate p1.
-		old_x = p1.GetX() - centroid_x;
-		old_y = p1.GetY() - centroid_y;
-		old_z = p1.GetZ() - centroid_z;
-		new_x = (old_x * rot_matrix[0][0]) + (old_y * rot_matrix[1][0]) + (old_z * rot_matrix[2][0]) + centroid_x;
-		new_y = (old_x * rot_matrix[0][1]) + (old_y * rot_matrix[1][1]) + (old_z * rot_matrix[2][1]) + centroid_y;
-		new_z = (old_x * rot_matrix[0][2]) + (old_y * rot_matrix[1][2]) + (old_z * rot_matrix[2][2]) + centroid_z;
-		p1.SetX(new_x);
-		p1.SetY(new_y);
-		p1.SetZ(new_z);
 
-		// Rotate p2.
-		old_x = p2.GetX() - centroid_x;
-		old_y = p2.GetY() - centroid_y;
-		old_z = p2.GetZ() - centroid_z;
-		new_x = (old_x * rot_matrix[0][0]) + (old_y * rot_matrix[1][0]) + (old_z * rot_matrix[2][0]) + centroid_x;
-		new_y = (old_x * rot_matrix[0][1]) + (old_y * rot_matrix[1][1]) + (old_z * rot_matrix[2][1]) + centroid_y;
-		new_z = (old_x * rot_matrix[0][2]) + (old_y * rot_matrix[1][2]) + (old_z * rot_matrix[2][2]) + centroid_z;
-		p2.SetX(new_x);
-		p2.SetY(new_y);
-		p2.SetZ(new_z);
+	//Sets the scale to the specified scale.
+	void Sprite::SetScale(float new_scale)
+	{
+		// The minimum scale is numeric_limits<float>::epsilon().
+		if(new_scale < std::numeric_limits<float>::epsilon())
+		{
+			new_scale = std::numeric_limits<float>::epsilon();
+		}
 
-		// Rotate p3.
-		old_x = p3.GetX() - centroid_x;
-		old_y = p3.GetY() - centroid_y;
-		old_z = p3.GetZ() - centroid_z;
-		new_x = (old_x * rot_matrix[0][0]) + (old_y * rot_matrix[1][0]) + (old_z * rot_matrix[2][0]) + centroid_x;
-		new_y = (old_x * rot_matrix[0][1]) + (old_y * rot_matrix[1][1]) + (old_z * rot_matrix[2][1]) + centroid_y;
-		new_z = (old_x * rot_matrix[0][2]) + (old_y * rot_matrix[1][2]) + (old_z * rot_matrix[2][2]) + centroid_z;
-		p3.SetX(new_x);
-		p3.SetY(new_y);
-		p3.SetZ(new_z);
+		// If new_scale is the same as the current scale, return.
+		if(new_scale == scale)
+		{
+			return;
+		}
 
-		// Rotate p4.
-		old_x = p4.GetX() - centroid_x;
-		old_y = p4.GetY() - centroid_y;
-		old_z = p4.GetZ() - centroid_z;
-		new_x = (old_x * rot_matrix[0][0]) + (old_y * rot_matrix[1][0]) + (old_z * rot_matrix[2][0]) + centroid_x;
-		new_y = (old_x * rot_matrix[0][1]) + (old_y * rot_matrix[1][1]) + (old_z * rot_matrix[2][1]) + centroid_y;
-		new_z = (old_x * rot_matrix[0][2]) + (old_y * rot_matrix[1][2]) + (old_z * rot_matrix[2][2]) + centroid_z;
-		p4.SetX(new_x);
-		p4.SetY(new_y);
-		p4.SetZ(new_z);
+		// Save the new scale factor.
+		scale = new_scale;
+
+		// Set each transformed vertice equal to the scaled equivalent of its untransformed counterpart.
+		p1 = ScaleVertice(center, untransformed_p1, scale);
+		p2 = ScaleVertice(center, untransformed_p2, scale);
+		p3 = ScaleVertice(center, untransformed_p3, scale);
+		p4 = ScaleVertice(center, untransformed_p4, scale);
 	}
 
 
 
 
 	// Scales the quad by the scaling factor specified.
-	void TexturedQuad::Scale(const float& scaling_factor)
+	void Sprite::Scale(const float& delta_scale)
 	{
-		ASSERT(p1 != p2 && p2 != p3 && p3 != p4 && p4 != p1);
-		ASSERT(scaling_factor != 0.0f);
-		// If the scaling factor is 1.0f, then simply return.
-		if(scaling_factor == 1.0f)
-		{
-			return;
-		}
-
-		// Calculate the centroid for the quad (which is basically the average
-		// of each dimension).
-		float centroid_x = (p1.GetX() + p2.GetX() + p3.GetX() + p4.GetX())/4.0f;
-		float centroid_y = (p1.GetY() + p2.GetY() + p3.GetY() + p4.GetY())/4.0f;
-		float centroid_z = (p1.GetZ() + p2.GetZ() + p3.GetZ() + p4.GetZ())/4.0f;
-
-		// Scale each vertice's disance from the centroid by the scaling factor.
-		p1.SetX(scaling_factor * (p1.GetX() - centroid_x) + centroid_x);
-		p1.SetY(scaling_factor * (p1.GetY() - centroid_y) + centroid_y);
-		p1.SetZ(scaling_factor * (p1.GetZ() - centroid_z) + centroid_z);
-
-		p2.SetX(scaling_factor * (p2.GetX() - centroid_x) + centroid_x);
-		p2.SetY(scaling_factor * (p2.GetY() - centroid_y) + centroid_y);
-		p2.SetZ(scaling_factor * (p2.GetZ() - centroid_z) + centroid_z);
-
-		p3.SetX(scaling_factor * (p3.GetX() - centroid_x) + centroid_x);
-		p3.SetY(scaling_factor * (p3.GetY() - centroid_y) + centroid_y);
-		p3.SetZ(scaling_factor * (p3.GetZ() - centroid_z) + centroid_z);
-
-		p4.SetX(scaling_factor * (p4.GetX() - centroid_x) + centroid_x);
-		p4.SetY(scaling_factor * (p4.GetY() - centroid_y) + centroid_y);
-		p4.SetZ(scaling_factor * (p4.GetZ() - centroid_z) + centroid_z);
+		SetScale(scale + delta_scale);
 	}
 
+
+
+
+	// Sets the texture coordinate for the vertice p1.
+	void Sprite::SetQ1(const Vertex2D& q)
+	{
+		q1 = q;
+	}
+
+
+
+
+	// Sets the texture coordinate for the vertice p1.
+	void Sprite::SetQ2(const Vertex2D& q)
+	{
+		q2 = q;
+	}
+
+
+
+
+	// Sets the texture coordinate for the vertice p1.
+	void Sprite::SetQ3(const Vertex2D& q)
+	{
+		q3 = q;
+	}
+
+
+
+
+	// Sets the texture coordinate for the vertice p1.
+	void Sprite::SetQ4(const Vertex2D& q)
+	{
+		q4 = q;
+	}
+
+
+
+
+	// Moves the texture coordinates along the vector delta.
+	void Sprite::MoveTexture(const Vertex2D& delta)
+	{
+		q1 += delta;
+		q2 += delta;
+		q3 += delta;
+		q4 += delta;
+	}
+
+
+
+
+	// Sets the z-depth of this sprite.
+	void Sprite::SetZ(const float& new_z)
+	{
+		z = new_z;
+	}
+
+
+
+
+	// Assignment operator.
+	const Sprite& Sprite::operator=(const Sprite& rhs)
+	{
+		// Untransformed vertices.
+		untransformed_p1 = rhs.GetUntransformedP1();
+		untransformed_p2 = rhs.GetUntransformedP2();
+		untransformed_p3 = rhs.GetUntransformedP3();
+		untransformed_p4 = rhs.GetUntransformedP4();
+
+		// Transformed vertices.
+		p1 = rhs.GetP1();
+		p2 = rhs.GetP2();
+		p3 = rhs.GetP3();
+		p4 = rhs.GetP4();
+
+		// Center, rotation, scale, and z-depth.
+		center = rhs.GetCenter();
+		rotation = rhs.GetRotation();
+		scale = rhs.GetScale();
+		z = rhs.GetZ();
+		return *this;
+	}
+
+
+
+
+	// Rotates untransformed_point about the center_point by theta degrees counter-clockwise.
+	Vertex2D Sprite::RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& theta)
+	{
+		// Translate untransformed_point such that it relates to the origin as it
+		// currently relates to center_point.
+		Vertex2D translated_point = untransformed_point - center_point;
+
+		// Now rotate the translated point by theta degrees counter-clockwise.
+		// Set the X component to X*cos(theta) and Y to Y*sin(theta).
+		translated_point.SetX(translated_point.GetX() * cos(theta));
+		translated_point.SetY(translated_point.GetY() * sin(theta));
+
+		// Now translate back to be relative to center_point.
+		translated_point += center_point;
+
+		// Return the rotated vertice.
+		return translated_point;
+	}
+
+
+
+
+	// Scales untransformed_point in relation to center_point by scaling_factor.
+	Vertex2D Sprite::ScaleVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& scale_factor)
+	{
+		// Translate untransformed_point such that it relates to the origin as it
+		// currently relates to center_point.
+		Vertex2D translated_point = untransformed_point - center_point;
+
+		// Scale each component of translated_point by scale_factor.
+		translated_point.SetX(translated_point.GetX() * scale_factor);
+		translated_point.SetY(translated_point.GetY() * scale_factor);
+
+		// Translate the vertice back so that it's relative to center_point.
+		translated_point += center_point;
+
+		// Return the scaled vertice.
+		return translated_point;
+	}
 
 
 }

@@ -27,14 +27,23 @@ namespace utility
 		// p1-p4 are the spatial coordinates, and q1-q4 are the texture coordinates. z is the z-depth
 		// of the sprite.
 		Sprite(const Vertex2D& p1, const Vertex2D& p2, const Vertex2D& p3, const Vertex2D& p4,
-			   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4 const float& z);
+			   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4, const float& z);
+		// Creates an axis-aligned bounding box with texture coordinates ranging from (0, 0) in the
+		// bottom-left to (1, 1) in the top-right and with z-depth z.
+		Sprite(const float& left, const float& top, const float& right, const float& bottom, const float& z);
 		// Copy constructor.
 		Sprite(const Sprite& original);
 		// Destructor.
 		~Sprite();
 
 		// Accessors:
-		// Getters for each of the spatial coordinates.
+		// Getters for each of the untransformed spatial vertices.
+		const Vertex2D& GetUntransformedP1() const;
+		const Vertex2D& GetUntransformedP2() const;
+		const Vertex2D& GetUntransformedP3() const;
+		const Vertex2D& GetUntransformedP4() const;
+
+		// Getters for each of the spatial vertices.
 		const Vertex2D& GetP1() const;
 		const Vertex2D& GetP2() const;
 		const Vertex2D& GetP3() const;
@@ -58,22 +67,16 @@ namespace utility
 
 
 		// Mutators:
-		// Setters for each of the spatial coordinates.
-		void SetP1(const Vertex2D& p);
-		void SetP2(const Vertex2D& p);
-		void SetP3(const Vertex2D& p);
-		void SetP4(const Vertex2D& p);
-
-		// Sets the center of the sprite to the new position.
+		// Translates the sprite such that its center is at the specified vertex.
 		void SetCenter(const Vertex2D& new_center);
 		// Moves the spatial coordinates along the vector delta.
 		void Move(const Vertex2D& delta);
-		// Sets the rotation to the rotation specified.
-		void SetRotation(const float& theta);
-		// Rotates the quad clockwise by the degrees specified.
+		// Sets the rotation to the rotation specified. Rotation is counter-clockwise.
+		void SetRotation(const float& new_rotation);
+		// Rotates the quad counter-clockwise by the degrees specified.
 		void Rotate(const float& delta_theta);
 		// Sets the scale to the specified scale.
-		void SetScale(const float& new_scale);
+		void SetScale(float new_scale);
 		// Scales the quad by the scaling factor specified.
 		void Scale(const float& delta_scale);
 
@@ -93,10 +96,19 @@ namespace utility
 		const Sprite& operator=(const Sprite& rhs);
 
 	private:
-		// The original four spatial vertices
+		// Utility functions:
+		// Finds the center of the sprite and assigns those coordinates to the member center.
+		void FindCenter();
+		// Rotates untransformed_point about the center_point by theta degrees counter-clockwise.
+		Vertex2D RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& theta);
+		// Scales untransformed_point in relation to center_point by scaling_factor.
+		Vertex2D ScaleVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& scale_factor);
+
+
+		// The untransformed spatial vertices.
+		Vertex2D untransformed_p1, untransformed_p2, untransformed_p3, untransformed_p4;
+		// The transformed spatial vertices
 		Vertex2D p1, p2, p3, p4;
-		// The transformed spatial coordinates.
-		Vertex2D transformed_p1, transformed_p2, transformed_p3, transformed_p4;
 
 		// The center of the sprite.
 		Vertex2D center;

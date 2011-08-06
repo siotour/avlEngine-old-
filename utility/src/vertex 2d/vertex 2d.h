@@ -34,6 +34,12 @@ namespace utility
 		// Setters.
 		void SetX(const float& new_x);
 		void SetY(const float& new_y);
+		// Arithmetic operators.
+		Vertex2D operator+(const Vertex2D& rhs) const;
+		Vertex2D operator-(const Vertex2D& rhs) const;
+		// Compound operators.
+		Vertex2D& operator+=(const Vertex2D& rhs);
+		Vertex2D& operator-=(const Vertex2D& rhs);
 		// Assignment operator.
 		const Vertex2D& operator=(const Vertex2D& rhs);
 
