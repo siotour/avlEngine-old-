@@ -85,7 +85,7 @@ namespace utility
 
 
 	// Adds two vertices together. Simply combines their respective components and returns the result.
-	Vertex2D Vertex2D::operator+(const Vertex2D& rhs)
+	Vertex2D Vertex2D::operator+(const Vertex2D& rhs) const
 	{
 		return Vertex2D(x + rhs.GetX(), y + rhs.GetY());
 	}
@@ -94,7 +94,7 @@ namespace utility
 
 
 	// Subtracts one vertex from another. Simply subtracts their respective components and returns the result.
-	Vertex2D Vertex2D::operator-(const Vertex2D& rhs)
+	Vertex2D Vertex2D::operator-(const Vertex2D& rhs) const
 	{
 		return Vertex2D(x - rhs.GetX(), y - rhs.GetY());
 	}

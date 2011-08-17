@@ -10,14 +10,14 @@
 
 #include"..\d3d renderer base\d3d renderer base.h"
 #include<map>
-#include<vector>
-#include<queue>
+#include<list>
+#include<utility>
 #include<d3d9.h>
 
 namespace avl
 {
 // Forward declaration.
-namespace utility{class TexturedQuad;}
+namespace utility{class Sprite; class Image;}
 
 namespace view
 {
@@ -25,12 +25,10 @@ namespace view
 	class BasicRenderer: public D3DRendererBase
 	{
 	public:
-		// Vector of pointers to TexturedQuads. Each set of TexturedQuads with a common texture should be
-		// grouped into one of these.
-		typedef std::vector<const utility::TexturedQuad* const> VectorOfTexQuads;
-		// VectorOfTexQuads should be grouped with their corresponding texture IDs in these.
-		typedef std::map<unsigned int, VectorOfTexQuads> TexIDToVectorOfTexQuads;
-
+		// A utility::Sprite and its corresponding TextureID.
+		typedef std::pair<utility::Sprite, const unsigned int> SpriteAndTexture;
+		// A list of SpriteAndTexture pairs. Rendering is done through these structures.
+		typedef std::list<SpriteAndTexture> SpriteAndTextureList;
 
 
 		// Constructors:
@@ -43,14 +41,20 @@ namespace view
 		// Mutators:
 		// Attempts to create a texture with the specified data. Returns the texture handle, which can be used
 		// to specify which texture to use when rendering primitives.
-		const unsigned int AddTexture(const unsigned int& width, const unsigned int& height, const BYTE* const pixel_data);
+		const unsigned int AddTexture(const utility::Image& image);
 		// Releases the texture associated with the specified handle and renders the handle useless. Don't try to
 		// draw with textures that have been deleted or else <TODO>.
 		void DeleteTexture(const unsigned int& texture_handle);
-		// Renders a series of textured quads.
-		void RenderTexturedQuads(TexIDToVectorOfTexQuads& quad_vectors);
+		// Renders a series of sprites.
+		void RenderSprites(SpriteAndTextureList sprites_and_textures);
 
 	private:
+		// Utility functions:
+		// Iterates through the pixel data for an image with an alpha channel, checking for semi-transparency.
+		// If semi-transparency is found, true is returned. Otherwise false. The image data is assumed to be
+		// 32-bits per pixel in RGBA format. size is the number of pixels in the image, and pixel_data is a
+		// pointer to the pixel data.
+		bool IsImagePartiallyTransparent(const unsigned int size, const BYTE* const pixel_data);
 		// Initializes the Direct3D device's state to what is required for this object to render with it. This
 		// includes creating the vertex and index buffers, turning lighting off, and configuring the device
 		// to use a fixed function vertex shader.
@@ -89,6 +93,7 @@ namespace view
 		BasicRenderer(const BasicRenderer&);
 		const BasicRenderer& operator=(const BasicRenderer&);
 	};
+
 
 
 } //avl

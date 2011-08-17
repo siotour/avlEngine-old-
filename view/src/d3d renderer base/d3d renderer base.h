@@ -118,14 +118,10 @@ namespace view
 		// index format. If this fails, will throw a D3DError with the error code and a description of the problem.
 		// The created buffer is dynamic and write-only and in the default pool.
 		IDirect3DIndexBuffer9* CreateIndexBuffer(const unsigned int& buffer_length);
-		// Attempts to write the supplied vertices to the supplied vertex buffer. If an error occurs, will throw a D3DError
-		// with the error code and a description of the problem. The previous information is discarded. The queue will
-		// be left unmodified.
-		void FillVertexBuffer(IDirect3DVertexBuffer9& vertex_buffer, std::queue<const utility::TexturedVertex* const> vertices);
-		// Attempts to write the supplied indices to the supplied index buffer. If an error occurs, will throw a D3DError
-		// with the error code and a description of the problem. The previous information is discarded. The queue will
-		// be left unmodified.
-		void FillIndexBuffer(IDirect3DIndexBuffer9& index_buffer, std::queue<const unsigned short> indices);
+		// Attempts to lock vertex_buffer and then copy size bytes from source to vertex_buffer.
+		void FillVertexBuffer(IDirect3DVertexBuffer9& vertex_buffer, const unsigned char* const source, const unsigned int size);
+		// Attempts to lock index_buffer and then copy size bytes from source to vertex_buffer.
+		void FillIndexBuffer(IDirect3DIndexBuffer9& index_buffer, const unsigned char* const source, const unsigned int size);
 
 
 

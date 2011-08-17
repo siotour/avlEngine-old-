@@ -3,10 +3,11 @@
 void TestAssertComponent();
 void TestBasicRendererComponent(HINSTANCE);
 void TestD3DRendererBaseComponent(HINSTANCE);
+void TestVertex2DComponent();
+void TestSpriteComponent();
 
 int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
 {
-	// Introduce this component test.
 	TestBasicRendererComponent(instance);
 	//TestD3DRendererBaseComponent(instance);
 
@@ -16,13 +17,13 @@ int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line
 }
 
 
-/*
-#include<iostream>
-void TestTexturedQuadComponent();
 
-int main()
-{
-	TestTexturedQuadComponent();
-	 return 0;
-}
-*/
+//#include<iostream>
+//void TestTexturedQuadComponent();
+//
+//int main()
+//{
+//	//TestVertex2DComponent();
+//	TestSpriteComponent();
+//	return 0;
+//}

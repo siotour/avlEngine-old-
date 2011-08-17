@@ -5,8 +5,8 @@
  **********/
 
 #include"d3d renderer base.h"
-#include"..\..\..\utility\src\textured quad\textured quad.h"
-#include"..\..\..\utility\src\textured vertex\textured vertex.h"
+#include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include"..\..\..\utility\src\assert\assert.h"
 #include"..\d3d display profile\d3d display profile.h"
 #include<queue>
@@ -287,7 +287,7 @@ namespace view
 
 		// Clear the viewport to solid black. If this fails, throw a D3DError with the error
 		// code and description.
-		HRESULT result = device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(255, 255, 255, 0), 1.0f, 0);
+		HRESULT result = device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
 		if(FAILED(result))
 		{
 			throw D3DError("avl::view::D3DRendererBase::ClearViewport() -- Unable to clear the viewport.", result);
@@ -521,7 +521,7 @@ namespace view
 		// Attempt to create the vertex buffer. If this fails, throw a D3DError with the error code and a description
 		// of the problem.
 		IDirect3DVertexBuffer9* vertex_buffer = NULL;
-		HRESULT result = device->CreateVertexBuffer(buffer_length * sizeof(utility::TexturedVertex), D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
+		HRESULT result = device->CreateVertexBuffer(5 * buffer_length * sizeof(float), D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
 																					D3DFVF_XYZ | D3DFVF_TEX1, D3DPOOL_DEFAULT, &vertex_buffer, NULL);
 		if(FAILED(result))
 		{
@@ -566,13 +566,11 @@ namespace view
 
 
 
-	// Attempts to write the supplied vertices to the supplied vertex buffer. If an error occurs, will throw a D3DError
-	// with the error code and a description of the problem. The previous information is discarded. The queue will
-	// be left unmodified.
-	void D3DRendererBase::FillVertexBuffer(IDirect3DVertexBuffer9& vertex_buffer, std::queue<const utility::TexturedVertex* const> vertices)
+	// Attempts to lock vertex_buffer and then copy size bytes from source to vertex_buffer.
+	void D3DRendererBase::FillVertexBuffer(IDirect3DVertexBuffer9& vertex_buffer, const unsigned char* const source, const unsigned int size)
 	{
-		// If vertices is empty, return.
-		if(vertices.empty() == true)
+		// If size is 0, return.
+		if(size == 0)
 		{
 			return;
 		}
@@ -580,9 +578,9 @@ namespace view
 		// If vertex_buffer can't hold all of the vertices, throw a RendererException with a description of the problem.
 		D3DVERTEXBUFFER_DESC description;
 		vertex_buffer.GetDesc(&description);
-		if(description.Size < vertices.size() * sizeof(utility::TexturedVertex))
+		if(description.Size < size)
 		{
-			throw RendererException("avl::view::D3DRenderer::FillVertexBuffer() -- The vertex buffer can't hold this many vertices!");
+			throw RendererException("avl::view::D3DRenderer::FillVertexBuffer() -- The vertex buffer can't hold this much information!");
 		}
 
 
@@ -590,24 +588,15 @@ namespace view
 		// Attempt to lock the vertex buffer. If this fails, throw a D3DError with the error code and a description
 		// of the problem.
 		BYTE* data = NULL;
-		HRESULT result = vertex_buffer.Lock(0, vertices.size() * sizeof(utility::TexturedVertex), (void**)&data, D3DLOCK_DISCARD);
+		HRESULT result = vertex_buffer.Lock(0, size, (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
 			throw D3DError("avl::view::D3DRendererBase::FillVertexBuffer() -- Unable to lock the vertex buffer.", result);
 		}
 
-		// Copy each vertex in vertices to the vertex buffer.
-		while(vertices.empty() == false)
-		{
-			// Copy the current vertex to the vertex buffer.
-			memcpy(data, vertices.front(), sizeof(utility::TexturedVertex));
 
-			// Pop the current vertex off the queue.
-			vertices.pop();
-
-			// Increase data to point to the location for the next vertice.
-			data += sizeof(utility::TexturedVertex);
-		}
+		// Copy the vertex information to the vertex buffer.
+		memcpy(data, source, size);
 
 
 		// Unlock the vertex buffer.
@@ -618,13 +607,11 @@ namespace view
 
 
 
-	// Attempts to write the supplied indices to the supplied index buffer. If an error occurs, will throw a D3DError
-	// with the error code and a description of the problem. The previous information is discarded. The queue will
-	// be left unmodified.
-	void D3DRendererBase::FillIndexBuffer(IDirect3DIndexBuffer9& index_buffer, std::queue<const unsigned short> indices)
+	// Attempts to lock index_buffer and then copy size bytes from source to vertex_buffer.
+	void D3DRendererBase::FillIndexBuffer(IDirect3DIndexBuffer9& index_buffer, const unsigned char* const source, const unsigned int size)
 	{
-		// If indices is empty, return.
-		if(indices.empty() == true)
+		// If size is 0, return.
+		if(size == 0)
 		{
 			return;
 		}
@@ -632,32 +619,23 @@ namespace view
 		// If index_buffer can't hold all of the indices, throw a RendererException with a description of the problem.
 		D3DINDEXBUFFER_DESC description;
 		index_buffer.GetDesc(&description);
-		if(description.Size < indices.size() * sizeof(unsigned short))
+		if(description.Size < size)
 		{
-			throw RendererException("avl::view::D3DRenderer::FillIndexBuffer() -- The index buffer can't hold this many indices!");
+			throw RendererException("avl::view::D3DRenderer::FillIndexBuffer() -- The index buffer can't hold this much information!");
 		}
 
 		// Attempt to lock the index buffer. If this fails, throw a D3DError with the error code and a description
 		// of the problem.
 		BYTE* data = NULL;
-		HRESULT result = index_buffer.Lock(0, 0, (void**)&data, D3DLOCK_DISCARD);
+		HRESULT result = index_buffer.Lock(0, size, (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
 			throw D3DError("avl::view::BasicRenderer::WriteIndicesToBuffer() -- Unable to lock the index buffer.", result);
 		}
 
-		// Copy each index in indices to the index buffer.
-		while(indices.empty() == false)
-		{
-			// Copy the current index to the index buffer.
-			memcpy(data, &indices.front(), sizeof(unsigned short));
 
-			// Pop the current vertex off the queue.
-			indices.pop();
-
-			// Increase data to point to the location for the next index.
-			data += sizeof(unsigned short);
-		}
+		// Copy the index information to the index buffer.
+		memcpy(data, source, size);
 
 
 		// Unlock the index buffer.

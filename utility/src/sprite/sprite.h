@@ -100,7 +100,7 @@ namespace utility
 		// Finds the center of the sprite and assigns those coordinates to the member center.
 		void FindCenter();
 		// Rotates untransformed_point about the center_point by theta degrees counter-clockwise.
-		Vertex2D RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& theta);
+		Vertex2D RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, float theta);
 		// Scales untransformed_point in relation to center_point by scaling_factor.
 		Vertex2D ScaleVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& scale_factor);
 

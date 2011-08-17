@@ -9,18 +9,21 @@
 #include"..\basic window\basic window.h"
 #include"..\d3d renderer base\d3d renderer base.h"
 #include"..\d3d display profile\d3d display profile.h"
-#include"..\..\..\utility\src\textured quad\textured quad.h"
+#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\assert\assert.h"
 #include"..\..\..\utility\src\image\image.h"
 #include<fstream>
+#include<list>
+#include<utility>
 
 
 void TestBasicRendererComponent(HINSTANCE instance)
 {
 	using avl::view::BasicWindow;
 	using avl::view::BasicRenderer;
-	using avl::utility::TexturedVertex;
-	using avl::utility::TexturedQuad;
+	using avl::utility::Vertex2D;
+	using avl::utility::Sprite;
 	using avl::utility::Image;
 	
 	try
@@ -41,26 +44,20 @@ void TestBasicRendererComponent(HINSTANCE instance)
 		}
 
 		// Add the newly-created texture to the renderer.
-		unsigned int texture_id = renderer.AddTexture(image.GetWidth(), image.GetHeight(), image.GetPixelData());
+		unsigned int texture_id = renderer.AddTexture(image);
 
 		// Done with the texture; safe to delete it now.
 
 
 		// Create textured quad.
-		TexturedVertex p1(-0.5f, -0.5f, 0.5f, 0.0f, 0.0f);
-		TexturedVertex p2(-0.5f, 0.5f, 0.5f, 0.0f, 1.0f);
-		TexturedVertex p3(0.5f, 0.5f, 0.5f, 1.0f, 1.0f);
-		TexturedVertex p4(0.5f, -0.5f, 0.5f, 1.0f, 0.0f);
-		TexturedQuad quad1(p1, p2, p3, p4);
+		Sprite sprite1(-0.5, 0.5, 0.5, -0.5, 0.5);
 
 
 
 
 		// Put quads into the appropriate container.
-		BasicRenderer::VectorOfTexQuads quad_vector;
-		quad_vector.insert(quad_vector.begin(), &quad1);
-		BasicRenderer::TexIDToVectorOfTexQuads quad_map;
-		quad_map.insert(quad_map.begin(), BasicRenderer::TexIDToVectorOfTexQuads::value_type(texture_id, quad_vector));
+		BasicRenderer::SpriteAndTextureList sprites_and_textures;
+		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(sprite1, texture_id));
 
 		
 
@@ -71,7 +68,7 @@ void TestBasicRendererComponent(HINSTANCE instance)
 			if(window.IsActive() == true)
 			{
 				// Draw quad.
-				renderer.RenderTexturedQuads(quad_map);
+				renderer.RenderSprites(sprites_and_textures);
 
 				// Transform quad.
 				//quad1.Rotate(1.5f);

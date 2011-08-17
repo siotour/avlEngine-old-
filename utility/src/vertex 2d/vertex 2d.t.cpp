@@ -6,27 +6,50 @@
  **********/
 
 #include"vertex 2d.h"
+#include"..\..\..\utility\src\assert\assert.h"
 #include<iostream>
 
 
-void TestVertex2D()
+// Anonymous namespace.
+namespace
 {
-	// Create a vertex component.
-	avl::utility::Vertex2D v1(1.0f, 1.0f);
+	// Output operator.
+	std::ostream& operator<<(std::ostream& output, const avl::utility::Vertex2D& vertex)
+	{
+		output << "(" << vertex.GetX() << ", " << vertex.GetY() << ")";
+		return output;
+	}
+}
 
-	std::cout<< v1.GetX() << v1.GetY() << "\n";
+void TestVertex2DComponent()
+{
+	using avl::utility::Vertex2D;
+	using std::cout;
 
-	v1.SetX(2.0f);
-	v1.SetY(2.0f);
+	// Test constructors.
+	Vertex2D v1;
+	ASSERT(v1.GetX() == 0.0f && v1.GetY() == 0.0f);
+	Vertex2D v2(1.0f, 1.0f);
+	ASSERT(v2.GetX() == 1.0f && v2.GetY() == 1.0f);
+	Vertex2D v3(v2);
+	ASSERT(v3.GetX() == 1.0f && v3.GetY() == 1.0f);
 
-	std::cout<< v1.GetX() << v1.GetY() << "\n";
+	// Test mutators.
+	v1.SetX(5.0f);
+	v1.SetY(10.5f);
+	ASSERT(v1.GetX() == 5.0f && v1.GetY() == 10.5f);
 
-	avl::utility::Vertex2D v2;
+	// Test arithmetic operators and assignment.
+	v1 = v2 + v3;
+	ASSERT(v1.GetX() == 2.0f && v1.GetY() == 2.0f);
+	v1 = v2 - v3;
+	ASSERT(v1.GetX() == 0.0f && v1.GetY() == 0.0f);
+	v1 += v2;
+	ASSERT(v1.GetX() == 1.0f && v1.GetY() == 1.0f);
+	v1 -= v3;
+	ASSERT(v1.GetX() == 0.0f && v1.GetY() == 0.0f);
 
-	std::cout<< (v1 == v2);
-	v2 = v1;
-	std::cout<< (v1 == v2);
-	std::cout<<"\n\n";
-	system("pause");
-
+	// Test comparison operators.
+	ASSERT(v2 == v3);
+	ASSERT(v1 != v2);
 }

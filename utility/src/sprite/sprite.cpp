@@ -16,6 +16,12 @@ namespace avl
 {
 namespace utility
 {
+	// Unnamed namespace for utility stuff.
+	namespace
+	{
+		// Pi.
+		const float PI = 4.0f * std::atan(1.0f);
+	}
 
 
 	// Basic constructor. Each vertice (both spatial and texture) is initialized to (0, 0),
@@ -50,7 +56,7 @@ namespace utility
 	// bottom-left to (1, 1) in the top-right and with z-depth z.
 	Sprite::Sprite(const float& left, const float& top, const float& right, const float& bottom, const float& z)
 		: p1(left, bottom), p2(left, top), p3(top, right), p4(right, bottom), q1(0.0f, 0.0f), q2(0.0f, 1.0f), q3(1.0f, 1.0f), q4(1.0f, 0.0f),
-		  untransformed_p1(p1), untransformed_p2(p2), untransformed_p3(p3), untransformed_p4(p4),
+		  untransformed_p1(left, bottom), untransformed_p2(left, top), untransformed_p3(top, right), untransformed_p4(right, bottom),
 		  rotation(0.0f), scale(1.0f), z(z)
 	{
 		// Figure out the center.
@@ -63,6 +69,7 @@ namespace utility
 	// Copy constructor.
 	Sprite::Sprite(const Sprite& original)
 		: untransformed_p1(original.GetUntransformedP1()), untransformed_p2(original.GetUntransformedP2()), untransformed_p3(original.GetUntransformedP3()), untransformed_p4(original.GetUntransformedP4()),
+		p1(original.GetP1()), p2(original.GetP2()), p3(original.GetP3()), p4(original.GetP4()), 
 		  q1(original.GetQ1()), q2(original.GetQ2()), q3(original.GetQ3()), q4(original.GetQ4()),
 		  center(original.GetCenter()), rotation(original.GetRotation()), scale(original.GetScale()), z(original.GetZ())
 	{
@@ -330,7 +337,7 @@ namespace utility
 	// Scales the quad by the scaling factor specified.
 	void Sprite::Scale(const float& delta_scale)
 	{
-		SetScale(scale + delta_scale);
+		SetScale(scale * delta_scale);
 	}
 
 
@@ -419,17 +426,35 @@ namespace utility
 
 
 
-	// Rotates untransformed_point about the center_point by theta degrees counter-clockwise.
-	Vertex2D Sprite::RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& theta)
+	// Finds the center of the sprite and assigns those coordinates to the member center.
+	void Sprite::FindCenter()
 	{
+		// The x-coordinate of the center will be the average of the x-coordinates of all
+		// vertices.
+		center.SetX((p1.GetX() + p2.GetX() + p3.GetX() + p4.GetX()) / 4);
+		// The y-coordinate of the center will be the average of the y-coordinates of all
+		// vertices.
+		center.SetY((p1.GetY() + p2.GetY() + p3.GetY() + p4.GetY()) / 4);
+	}
+
+
+
+	// Rotates untransformed_point about the center_point by theta degrees counter-clockwise.
+	Vertex2D Sprite::RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, float theta)
+	{
+		// Convert theta from degrees to radians.
+		theta = (theta / 180.0f) * PI;
+
 		// Translate untransformed_point such that it relates to the origin as it
 		// currently relates to center_point.
 		Vertex2D translated_point = untransformed_point - center_point;
 
 		// Now rotate the translated point by theta degrees counter-clockwise.
-		// Set the X component to X*cos(theta) and Y to Y*sin(theta).
-		translated_point.SetX(translated_point.GetX() * cos(theta));
-		translated_point.SetY(translated_point.GetY() * sin(theta));
+		const float x_prime = cos(theta) * translated_point.GetX() - sin(theta) * translated_point.GetY();
+		const float y_prime = sin(theta) * translated_point.GetX() + cos(theta) * translated_point.GetY();
+		translated_point.SetX(x_prime);
+		translated_point.SetY(y_prime);
+
 
 		// Now translate back to be relative to center_point.
 		translated_point += center_point;
@@ -449,8 +474,10 @@ namespace utility
 		Vertex2D translated_point = untransformed_point - center_point;
 
 		// Scale each component of translated_point by scale_factor.
-		translated_point.SetX(translated_point.GetX() * scale_factor);
-		translated_point.SetY(translated_point.GetY() * scale_factor);
+		const float x_prime = translated_point.GetX() * scale_factor;
+		const float y_prime = translated_point.GetY() * scale_factor;
+		translated_point.SetX(x_prime);
+		translated_point.SetY(y_prime);
 
 		// Translate the vertice back so that it's relative to center_point.
 		translated_point += center_point;
