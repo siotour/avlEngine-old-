@@ -41,64 +41,43 @@ namespace view
 	// The lowest bit in a TextureID is set if the texture is transparent and not set if
 	// it's opaque.
 	bool SortSprites(const BasicRenderer::SpriteAndTexture& a, const BasicRenderer::SpriteAndTexture& b)
-
 	{
-		// Is B opaque?
-		if((b.second & 0x01) == false)
+		// Is a opaque?
+		if((a.second & 0x01) == false)
 		{
-			// Is A also opaque?
-			if((a.second & 0x01) == false)
-			{
-				// Is B in front of A?
-				if(b.first.GetZ() < a.first.GetZ())
-				{
-					return false;
-				}
-				// Is A in front of B?
-				else if(a.first.GetZ() < b.first.GetZ())
-				{
-					return true;
-				}
-				// Otherwise they're in the same z-plane.
-				else
-				{
-					// Now it comes down to their texture IDs.
-					return (a.first.GetZ() < b.first.GetZ()) ? true : false;
-				}
-			}
-			// Is A transparent?
-			else
+			// Is b translucent? If so, return true.
+			if((b.second & 0x01) == true)
 			{
 				return true;
 			}
-		}
-		// Is B transparent?
-		else
-		{
-			// Is A also transparent?
-			if((a.second & 0x01) == true)
+			// If both are opaque, does one have a lesser z-depth? If so, return that one.
+			else if(a.first->GetZ() != b.first->GetZ())
 			{
-				// Is B behind A?
-				if(b.first.GetZ() > a.first.GetZ())
-				{
-					return false;
-				}
-				// Is A behind B?
-				else if(a.first.GetZ() > b.first.GetZ())
-				{
-					return true;
-				}
-				// Otherwise they're in the same z-plane.
-				else
-				{
-					// Now it comes down to their texture IDs.
-					return (a.first.GetZ() < b.first.GetZ()) ? true : false;
-				}
+				return (a.first->GetZ() < b.first->GetZ()) ? true : false;
 			}
-			// Is A opaque?
+			// If the z-depths are the same, return the one with a lesser texture ID.
 			else
 			{
+				return (a.second <= b.second) ? true : false;
+			}
+		}
+		// Is a translucent?
+		else
+		{
+			// Is b opaque? If so, return false.
+			if((b.second & 0x01) == false)
+			{
 				return false;
+			}
+			// If both are translucent, does one have a greater z-depth? If so, return that one.
+			else if(a.first->GetZ() != b.first->GetZ())
+			{
+				return (a.first->GetZ() > b.first->GetZ()) ? true : false;
+			}
+			// If the z-depths are the same, return the one with a lesser texture ID.
+			else
+			{
+				return (a.second <= b.second) ? true : false;
 			}
 		}
 	}
@@ -262,7 +241,7 @@ namespace view
 		// The vertex information to be written to the vertex buffer. Each vertex has an x, y, and z
 		// coordinate, and u and v texture coordinates; each sprite has 4 vertices.
 		float* vertex_data = new float[number_of_sprites * 5 * 4];
-		const unsigned int vertex_data_size = sizeof(float) * number_of_sprites * 5;
+		const unsigned int vertex_data_size = sizeof(float) * number_of_sprites * 5 * 4;
 		// The index information to be written to the index buffer. Each sprite consists of two
 		// triangles, or 6 indices.
 		UINT16* index_data = new UINT16[number_of_sprites * 6];
@@ -281,6 +260,7 @@ namespace view
 		
 		// Temp variables.
 		unsigned int current_vertex = 0;
+		unsigned int current_sprite = 0;
 		unsigned int sprites_using_texture_id = 0;
 		unsigned int previous_texture_id = sprites_and_textures.begin()->second;
 
@@ -296,43 +276,49 @@ namespace view
 			// 1)
 			// Store the index data for the current sprite.
 			// First triangle.
-			index_data[current_vertex * 6] = current_vertex;
-			index_data[current_vertex * 6 + 1] = current_vertex + 1;
-			index_data[current_vertex * 6 + 2] = current_vertex + 2;
+			index_data[current_sprite * 6] = current_vertex;
+			index_data[current_sprite * 6 + 1] = current_vertex + 1;
+			index_data[current_sprite * 6 + 2] = current_vertex + 2;
 			// Second triangle.
-			index_data[current_vertex * 6 + 3] = current_vertex + 2;
-			index_data[current_vertex * 6 + 4] = current_vertex + 3;
-			index_data[current_vertex * 6 + 5] = current_vertex;
+			index_data[current_sprite * 6 + 3] = current_vertex + 2;
+			index_data[current_sprite * 6 + 4] = current_vertex + 3;
+			index_data[current_sprite * 6 + 5] = current_vertex;
+			++current_sprite;
+
+
 
 			// 2)
 			// Store the vertices for the current sprite.
 			// P1
-			vertex_data[current_vertex * 5] = i->first.GetP1().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first.GetP1().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first.GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first.GetQ1().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first.GetQ1().GetY();
+			vertex_data[current_vertex * 5] = i->first->GetP1().GetX();
+			vertex_data[current_vertex * 5 + 1] = i->first->GetP1().GetY();
+			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
+			vertex_data[current_vertex * 5 + 3] = i->first->GetQ1().GetX();
+			vertex_data[current_vertex * 5 + 4] = i->first->GetQ1().GetY();
 			// P2
 			++current_vertex;
-			vertex_data[current_vertex * 5] = i->first.GetP2().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first.GetP2().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first.GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first.GetQ2().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first.GetQ2().GetY();
+			vertex_data[current_vertex * 5] = i->first->GetP2().GetX();
+			vertex_data[current_vertex * 5 + 1] = i->first->GetP2().GetY();
+			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
+			vertex_data[current_vertex * 5 + 3] = i->first->GetQ2().GetX();
+			vertex_data[current_vertex * 5 + 4] = i->first->GetQ2().GetY();
 			// P3
 			++current_vertex;
-			vertex_data[current_vertex * 5] = i->first.GetP3().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first.GetP3().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first.GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first.GetQ3().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first.GetQ3().GetY();
+			vertex_data[current_vertex * 5] = i->first->GetP3().GetX();
+			vertex_data[current_vertex * 5 + 1] = i->first->GetP3().GetY();
+			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
+			vertex_data[current_vertex * 5 + 3] = i->first->GetQ3().GetX();
+			vertex_data[current_vertex * 5 + 4] = i->first->GetQ3().GetY();
 			// P4
 			++current_vertex;
-			vertex_data[current_vertex * 5] = i->first.GetP4().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first.GetP4().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first.GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first.GetQ4().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first.GetQ4().GetY();
+			vertex_data[current_vertex * 5] = i->first->GetP4().GetX();
+			vertex_data[current_vertex * 5 + 1] = i->first->GetP4().GetY();
+			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
+			vertex_data[current_vertex * 5 + 3] = i->first->GetQ4().GetX();
+			vertex_data[current_vertex * 5 + 4] = i->first->GetQ4().GetY();
+			++current_vertex;
+
+
 
 
 			// If this sprite has the same texture ID as the last one, just increment the
@@ -344,19 +330,23 @@ namespace view
 			// 3)
 			// Stores the order of texture IDs for opaque sprites, and the number of sprites
 			// using them.
-			else if((i->second & 0x01) == false)
+			else if((previous_texture_id & 0x01) == false)
 			{
-				opaque_texture_ids.push(std::make_pair(i->second, sprites_using_texture_id));
+				opaque_texture_ids.push(std::make_pair(previous_texture_id, sprites_using_texture_id));
 				sprites_using_texture_id = 1;
+				previous_texture_id = i->second;
 			}
 			// 4)
 			// Stores the order of texture IDs for transparent sprites, and the number of
 			// sprites using them.
 			else
 			{
-				transparent_texture_ids.push(std::make_pair(i->second, sprites_using_texture_id));
+				transparent_texture_ids.push(std::make_pair(previous_texture_id, sprites_using_texture_id));
 				sprites_using_texture_id = 1;
+				previous_texture_id = i->second;
 			}
+
+
 
 			// The last sprite in the list of sprites is a special case. Normally this loop would
 			// skip writing its texture ID to the proper queue, so I do it manually here.
@@ -382,12 +372,12 @@ namespace view
 
 
 		// Now write the vertex data to the vertex buffer.
-		FillVertexBuffer(*vertex_buffer, reinterpret_cast<const unsigned char* const>(vertex_data), number_of_sprites * 5 * sizeof(float));
+		FillVertexBuffer(*vertex_buffer, reinterpret_cast<const unsigned char* const>(vertex_data), vertex_data_size);
 		delete[] vertex_data;
 
 
 		// Now write the index data to the index buffer.
-		FillIndexBuffer(*index_buffer, reinterpret_cast<const unsigned char* const>(index_data), number_of_sprites * 6 * sizeof(UINT16));
+		FillIndexBuffer(*index_buffer, reinterpret_cast<const unsigned char* const>(index_data), index_data_size);
 		delete[] index_data;
 	
 
@@ -420,28 +410,6 @@ namespace view
 		// Turn z-buffering on and alpha blending off.
 		device->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
 		device->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
-
-
-		//// Turn lighting off.
-		//device->SetRenderState(D3DRS_LIGHTING, false);
-		//// Set the flexible vertex format to position and texture coordinates only.
-		//device->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
-		//// Set the device to use a fixed function vertex shader.
-		//device->SetVertexShader(NULL);
-		//// Turn alpha testing on.
-		//device->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
-		//// Set the alpha test reference to zero. TODO: Does this HAVE to be 0001 etc.? 0.0 makes more sense.
-		//device->SetRenderState(D3DRS_ALPHAREF, (DWORD)0x00000001);
-		//// Set the alpha test comparison function to GREATER so that pixels with 0 alpha aren't drawn.
-		//device->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL);
-		//// Set the source blending to the source's alpha.
-		//device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-		//// Set the destination blending to the destination's alpha.
-		//device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-		//// Set the alpha blending operation to addition.
-		//device->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
-		//device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-		//device->SetRenderState(D3DRS_ZFUNC, D3DCMP_GREATER);
 
 		// Render all opaque sprites.
 		while(opaque_texture_ids.empty() == false)
@@ -517,7 +485,7 @@ namespace view
 		// in little-endian order, the alpha component will be the first component.
 		for(unsigned int i = 0; i < size; ++i)
 		{
-			if(pixel_data[i * 4] != 0x00 && pixel_data[i * 4] != 0xFF)
+			if(pixel_data[i * 4 + 3] != 0x00 && pixel_data[i * 4 + 3] != 0xFF)
 			{
 				return true;
 			}

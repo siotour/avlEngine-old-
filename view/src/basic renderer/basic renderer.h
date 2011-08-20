@@ -26,7 +26,7 @@ namespace view
 	{
 	public:
 		// A utility::Sprite and its corresponding TextureID.
-		typedef std::pair<utility::Sprite, const unsigned int> SpriteAndTexture;
+		typedef std::pair<const utility::Sprite* const, const unsigned int> SpriteAndTexture;
 		// A list of SpriteAndTexture pairs. Rendering is done through these structures.
 		typedef std::list<SpriteAndTexture> SpriteAndTextureList;
 

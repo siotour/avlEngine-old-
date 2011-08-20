@@ -55,8 +55,8 @@ namespace utility
 	// Creates an axis-aligned bounding box with texture coordinates ranging from (0, 0) in the
 	// bottom-left to (1, 1) in the top-right and with z-depth z.
 	Sprite::Sprite(const float& left, const float& top, const float& right, const float& bottom, const float& z)
-		: p1(left, bottom), p2(left, top), p3(top, right), p4(right, bottom), q1(0.0f, 0.0f), q2(0.0f, 1.0f), q3(1.0f, 1.0f), q4(1.0f, 0.0f),
-		  untransformed_p1(left, bottom), untransformed_p2(left, top), untransformed_p3(top, right), untransformed_p4(right, bottom),
+		: p1(left, bottom), p2(left, top), p3(right, top), p4(right, bottom), q1(0.0f, 0.0f), q2(0.0f, 1.0f), q3(1.0f, 1.0f), q4(1.0f, 0.0f),
+		  untransformed_p1(left, bottom), untransformed_p2(left, top), untransformed_p3(right, top), untransformed_p4(right, bottom),
 		  rotation(0.0f), scale(1.0f), z(z)
 	{
 		// Figure out the center.
@@ -289,9 +289,13 @@ namespace utility
 
 		// Set each transformed vertice equal to the untransformed version rotated by theta.
 		p1 = RotateVertice(center, untransformed_p1, theta);
+		p1 = ScaleVertice(center, p1, scale);
 		p2 = RotateVertice(center, untransformed_p2, theta);
+		p2 = ScaleVertice(center, p2, scale);
 		p3 = RotateVertice(center, untransformed_p3, theta);
+		p3 = ScaleVertice(center, p3, scale);
 		p4 = RotateVertice(center, untransformed_p4, theta);
+		p4 = ScaleVertice(center, p4, scale);
 	}
 
 
@@ -326,9 +330,13 @@ namespace utility
 
 		// Set each transformed vertice equal to the scaled equivalent of its untransformed counterpart.
 		p1 = ScaleVertice(center, untransformed_p1, scale);
+		p1 = RotateVertice(center, p1, rotation);
 		p2 = ScaleVertice(center, untransformed_p2, scale);
+		p2 = RotateVertice(center, p2, rotation);
 		p3 = ScaleVertice(center, untransformed_p3, scale);
+		p3 = RotateVertice(center, p3, rotation);
 		p4 = ScaleVertice(center, untransformed_p4, scale);
+		p4 = RotateVertice(center, p4, rotation);
 	}
 
 

@@ -34,31 +34,40 @@ void TestBasicRendererComponent(HINSTANCE instance)
 		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
 
 
-		// Load a texture from the disc.
-		Image image("tga file.tga");
 
-		// Make sure that the image was successfully loaded.
-		if(image.GetHeight() == 0)
+		// Load the textures from the disk.
+		Image spiral_image("spiral.tga");
+		Image background_image("background.tga");
+
+		// Make sure that the images were successfully loaded.
+		if(spiral_image.GetHeight() == 0 || background_image.GetHeight() == 0)
 		{
 			throw false;
 		}
 
 		// Add the newly-created texture to the renderer.
-		unsigned int texture_id = renderer.AddTexture(image);
+		unsigned int spiral_id = renderer.AddTexture(spiral_image);
+		unsigned int background_id = renderer.AddTexture(background_image);
 
-		// Done with the texture; safe to delete it now.
+		// Done with the texture; safe to delete now.
 
 
-		// Create textured quad.
-		Sprite sprite1(-0.5, 0.5, 0.5, -0.5, 0.5);
-
+		// Create a few sprites.
+		Sprite background(-1, 1, 1, -1, 0.5);
+		Sprite spiral(-0.15, -0.6, 0.15, -0.9, 0.4);
 
 
 
 		// Put quads into the appropriate container.
 		BasicRenderer::SpriteAndTextureList sprites_and_textures;
-		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(sprite1, texture_id));
+		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(&spiral, spiral_id));
+		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(&background, background_id));
 
+
+
+		Vertex2D movement(0.003, 0.003);
+		float rotation = 0.5;
+		float scale = 1.002;
 		
 
 		// While the user keeps the window open...
@@ -70,8 +79,23 @@ void TestBasicRendererComponent(HINSTANCE instance)
 				// Draw quad.
 				renderer.RenderSprites(sprites_and_textures);
 
-				// Transform quad.
-				//quad1.Rotate(1.5f);
+				// Transform sprites.
+				spiral.Move(movement);
+				spiral.Rotate(rotation);
+				spiral.Scale(scale);
+
+				if(spiral.GetCenter().GetX() < -0.8 || spiral.GetCenter().GetX() > 0.8)
+				{
+					movement.SetX(-1.0f * movement.GetX());
+					rotation *= -1.0f;
+					scale -= 0.004f;
+				}
+				if(spiral.GetCenter().GetY() < -0.8 || spiral.GetCenter().GetY() > 0.8)
+				{
+					movement.SetY(-1.0f * movement.GetY());
+					rotation *= -1.0f;
+					scale += 0.004f;
+				}
 			}
 		}
 	}
