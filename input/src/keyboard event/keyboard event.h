@@ -28,7 +28,7 @@ namespace input
 		// Constructors:
 		// Takes a key which this event concerns, and a bool indicated whether it was
 		// pressed or released.
-		KeyboardEvent(const key_codes::KeyboardKey& initial_key, const bool pressed);
+		KeyboardEvent(const key_codes::KeyboardKey::KeyboardKeyCodes& initial_key, const bool pressed);
 		// Copy constructor.
 		KeyboardEvent(const KeyboardEvent& original);
 		// Destructor.
@@ -37,14 +37,14 @@ namespace input
 
 		// Accessors:
 		// Returns the key which was pressed.
-		const key_codes::KeyboardKey& GetKey() const;
+		const key_codes::KeyboardKey::KeyboardKeyCodes& GetKey() const;
 		// Returns true if the key was pressed, and false if it was released.
 		const bool IsPressed() const;
 
 
 	private:
 		// The key which was pressed/released.
-		const key_codes::KeyboardKey key;
+		const key_codes::KeyboardKey::KeyboardKeyCodes key;
 		// Was it pressed or released?
 		const bool is_pressed;
 

@@ -48,6 +48,10 @@ namespace input
 
 	private:
 
+		// Goes through the keyboard_state and mouse_button_state arrays and, for
+		// each true value, adds to queue a key- or button-up event for the appropriate
+		// key or button and then sets that value to false.
+		void ResetDeviceStates(EventQueue& queue);
 		// Attempts to poll the keyboard for new input data. Any new input events
 		// are appended to queue.
 		void PollKeyboard(EventQueue& queue);
@@ -67,9 +71,11 @@ namespace input
 
 		// Keyboard state. This is needed to keep track of which buttons are down
 		// when the device is lost, so that key-up messages can be sent.
-		char keyboard_state[256];
-		// Mouse button states.
-		char mouse_button_state[3];
+		bool keyboard_state[256];
+		// Mouse button states. This is needed to keep track of which buttons are
+		// down whent he device is lost so that button-release messages can be
+		// sent.
+		bool mouse_button_state[8];
 
 
 		// Not implemented:

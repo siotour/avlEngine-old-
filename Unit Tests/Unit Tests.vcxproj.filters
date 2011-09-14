@@ -78,5 +78,8 @@
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\input\src\direct input input device\direct input input device.t.cpp">
+      <Filter>Source Files\input Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

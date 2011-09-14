@@ -21,7 +21,7 @@ namespace input
 	// Constructors:
 	// Takes a 2-dimensional vector representing the change in x and y
 	// coordinates.
-	MouseMoveEvent::MouseMoveEvent(const unsigned short& x, const unsigned short& y)
+	MouseMoveEvent::MouseMoveEvent(const short& x, const short& y)
 		: InputEvent(MOUSE_MOVE_TYPE), delta_x(x), delta_y(y)
 	{
 	}
@@ -47,7 +47,7 @@ namespace input
 
 
 	// Returns the change in x coordinates.
-	const unsigned int MouseMoveEvent::GetDeltaX() const
+	const short MouseMoveEvent::GetDeltaX() const
 	{
 		return delta_x;
 	}
@@ -56,7 +56,7 @@ namespace input
 
 
 	// Returns the change in y coordinates.
-	const unsigned int MouseMoveEvent::GetDeltaY() const
+	const short MouseMoveEvent::GetDeltaY() const
 	{
 		return delta_y;
 	}

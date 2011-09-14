@@ -28,7 +28,7 @@ namespace input
 		// Constructors:
 		// Takes a 2-dimensional vector representing the change in x and y
 		// coordinates.
-		MouseMoveEvent(const unsigned short& x, const unsigned short& y);
+		MouseMoveEvent(const short& x, const short& y);
 		// Copy constructor.
 		MouseMoveEvent(const MouseMoveEvent& original);
 		// Destructor.
@@ -38,15 +38,15 @@ namespace input
 		// Returns the mouse delta coordinates.
 		const utility::Vertex2D& GetDelta() const;
 		// Returns the change in x coordinates.
-		const unsigned int GetDeltaX() const;
+		const short GetDeltaX() const;
 		// Returns the change in y coordinates.
-		const unsigned int GetDeltaY() const;
+		const short GetDeltaY() const;
 
 
 	private:
 		// The delta coordinates.
-		const unsigned short delta_x;
-		const unsigned short delta_y;
+		const short delta_x;
+		const short delta_y;
 
 
 	};

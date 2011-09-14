@@ -20,17 +20,22 @@ namespace key_codes
 
 
 	// Mouse button codes.
-	enum MouseButton
+	struct MouseButton
+	{
+	enum MouseButtonCodes
 	{
 		mb_null				= 0,
 		mb_left				= 1,
 		mb_right			= 2,
 		mb_middle			= 3,
 	};
+	};
 
 
 	// Keyboard modifier codes.
-	enum KeyboardModifier
+	struct KeyboardModifier
+	{
+	enum KeyboardModifierCodes
 	{
 		km_none				= 0,
 		km_leftshift		= 1,
@@ -42,10 +47,13 @@ namespace key_codes
 		km_numlock			= 64,
 		km_capslock			= 128
 	};
+	};
 
 
 	// Keyboard key codes.
-	enum KeyboardKey
+	struct KeyboardKey
+	{
+	enum KeyboardKeyCodes
 	{
 		kk_null				= 0,
 
@@ -172,6 +180,7 @@ namespace key_codes
 
 		// Misc.:
 		kk_menu				= 105
+	};
 	};
 
 

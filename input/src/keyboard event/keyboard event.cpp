@@ -22,7 +22,7 @@ namespace input
 
 	// Takes a key which this event concerns, and a bool indicated whether it was
 	// pressed or released.
-	KeyboardEvent::KeyboardEvent(const key_codes::KeyboardKey& initial_key, const bool pressed)
+	KeyboardEvent::KeyboardEvent(const key_codes::KeyboardKey::KeyboardKeyCodes& initial_key, const bool pressed)
 		: InputEvent(KEYBOARD_TYPE), key(initial_key), is_pressed(pressed)
 	{
 	}
@@ -48,7 +48,7 @@ namespace input
 
 
 	// Returns the key which was pressed.
-	const key_codes::KeyboardKey& KeyboardEvent::GetKey() const
+	const key_codes::KeyboardKey::KeyboardKeyCodes& KeyboardEvent::GetKey() const
 	{
 		return key;
 	}

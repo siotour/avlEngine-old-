@@ -35,8 +35,8 @@ namespace input
 	namespace
 	{
 		// See definitions for details.
-		key_codes::MouseButton DIKToMB(const DWORD& vkey);
-		key_codes::KeyboardKey DIKToKK(const DWORD& vkey);
+		key_codes::MouseButton::MouseButtonCodes DIKToMB(const DWORD& vkey);
+		key_codes::KeyboardKey::KeyboardKeyCodes DIKToKK(const DWORD& vkey);
 	}
 
 
@@ -59,7 +59,7 @@ namespace input
 
 
 		// Attempt to create the DirectInput interface. If this fails, throw a utility::Exception.
-		result = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&direct_input_interface, NULL);
+		result = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_HEADER_VERSION, IID_IDirectInput8, (void**)&direct_input_interface, NULL);
 		if (FAILED(result))
 		{
 			utility::Exception("avl::input::DirectInputInputDevice::DirectInputInputDevice() -- Unable to create the DirectInput8 interface.");
@@ -307,7 +307,7 @@ namespace input
 		mouse_device->GetDeviceState(sizeof(DIMOUSESTATE), &mouse);
 		for (int i = 0; i < 3; i++)
 		{
-			mouse_button_state[i] = mouse.rgbButtons[i];
+			mouse_button_state[i] = (mouse.rgbButtons[i] != 0) ? true : false;
 		}
 
 		// Set the initial keyboard state.
@@ -367,9 +367,59 @@ namespace input
 
 
 
+	// Goes through the keyboard_state and mouse_button_state arrays and, for
+	// each true value, adds to queue a key- or button-up event for the appropriate
+	// key or button and then sets that value to false.
+	void DirectInputInputDevice::ResetDeviceStates(EventQueue& queue)
+	{
+		// Reset the mouse state.
+		for(DWORD i = 0; i < 8; ++i)
+		{
+			// Is this button pressed?
+			if(mouse_button_state[i] == true)
+			{
+				// If this button is pressed, add a button released event to the queue.
+				// If unable to allocate memory for the event, throw a utility::Exception.
+				const MouseButtonEvent* const button = new MouseButtonEvent(DIKToMB(i), false);
+				if(button == NULL)
+				{
+					throw utility::Exception("avl::input::DirectInputInputDevice::ResetDeviceStates() -- Unable to allocate memory for a new MouseButtonEvent.");
+				}
+				queue.push(button);
+
+				// Set the button to released.
+				mouse_button_state[i] = false;
+			}
+		}
+
+
+		// Reset the keyboard state.
+		for(DWORD i = 0; i < 256; ++i)
+		{
+			// Is this key pressed?
+			if(keyboard_state[i] == true)
+			{
+				// If this key is pressed, add a key released event to the queue.
+				// If unable to allocate memory for the event, throw a utility::Exception.
+				const KeyboardEvent* const key = new KeyboardEvent(DIKToKK(i), false);
+				if(key == NULL)
+				{
+					throw utility::Exception("avl::input::DirectInputInputDevice::ResetDeviceStates() -- Unable to allocate memory for a new KeyboardEvent.");
+				}
+				queue.push(key);
+
+				// Set the key to released.
+				keyboard_state[i] = false;
+			}
+		}
+	}
+
+
+
+
 	// Attempts to poll the keyboard for new input data. Any new input events
 	// are appended to queue.
-	void DirectInputInputDevice::PollKeyboard(DirectInputInputDevice::EventQueue& queue)
+	void DirectInputInputDevice::PollKeyboard(EventQueue& queue)
 	{
 		// Structure to hold input data from the keyboard.
 		DIDEVICEOBJECTDATA data;
@@ -377,13 +427,9 @@ namespace input
 		DWORD number_of_elements = 1;
 		// Temporary storage of system calls.
 		HRESULT result;
-		bool done = false;
 
-		while (done == false)
+		for(result = keyboard_device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &data, &number_of_elements, 0); number_of_elements > 0; result = keyboard_device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &data, &number_of_elements, 0))
 		{
-			// Attempt to get data from the keyboard device.
-			result = keyboard_device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &data, &number_of_elements, 0);
-
 			// If the data failed (and a buffer overflow is not a failure), reset the
 			// devices.
 			if (FAILED(result) && result != DI_BUFFEROVERFLOW)
@@ -394,16 +440,11 @@ namespace input
 				if (FAILED(result))
 				{
 					// Reset the devices and return.
-					ResetDeviceStates();
+					ResetDeviceStates(queue);
 					return;
 				}
 			}
-			// If there's no data in the buffer, return.
-			else if (number_of_elements < 1)
-			{
-				return;
-			}
-			// If there is data in the buffer, process it.
+			// There is data in the buffer; process it.
 			else
 			{
 				// Reset number_of_elements to 1 for the next iteration.
@@ -420,6 +461,9 @@ namespace input
 					throw utility::Exception("avl::input::DirectInputInputDevice::PollKeyboard() -- Unable to allocate memory for new KeyboardEvent.");
 				}
 				queue.push(key);
+
+				// Save the internal key state.
+				keyboard_state[data.dwOfs] = pressed;
 			}
 		}
 	}
@@ -435,8 +479,6 @@ namespace input
 		DIDEVICEOBJECTDATA data;
 		// Number of events to extract from the buffer per iteration.
 		DWORD number_of_elements = 1;
-		// Loop control.
-		bool done = false;
 		// Result of system calls.
 		HRESULT result;
 
@@ -452,14 +494,11 @@ namespace input
 		bool storing_data = false;
 
 
-		while (done == false)
+		for(result = mouse_device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &data, &number_of_elements, 0); number_of_elements > 0; result = mouse_device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &data, &number_of_elements, 0))
 		{
-			// Attempt to access the device buffer.
-			result = mouse_device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &data, &number_of_elements, 0);
-
 			// Check if the data request failed. Note that a buffer overflow is not a
 			// failure.
-			if (FAILED(result))
+			if (FAILED(result) && result != DI_BUFFEROVERFLOW)
 			{
 				// Attempt to aquire the mouse device.
 				result = mouse_device->Acquire();
@@ -467,21 +506,18 @@ namespace input
 				// If the aquisition failed, reset the devices and exit the loop.
 				if (FAILED(result))
 				{
-					ResetDeviceStates();
-					done = true;
+					ResetDeviceStates(queue);
+					return;
 				}
 			}
-			// Check to see if any data was received. If not, return.
-			else if(number_of_elements < 1)
-			{
-				// No data in the buffer.
-				return;
-			}
-			// Otherwise there is new data in the buffer. Process it.
+			// There is new data in the buffer. Process it.
 			else
 			{
 				// Reset the number_of_elements for the next loop.
 				number_of_elements = 1;
+
+				// Simply to stop compiler error C2361:
+				const MouseScrollEvent* wheel = NULL;
 
 
 				// Switch depending on the type of event data.
@@ -527,7 +563,7 @@ namespace input
 
 							// Pack the data into a MouseMoveEvent. If unable to allocate the memory,
 							// then throw a utility::Exception.
-							const MouseMoveEvent* const move = new MouseMoveEvent(delta_x, delta_y);
+							const MouseMoveEvent* const move = new MouseMoveEvent((short)delta_x, (short)delta_y);
 							if(move == NULL)
 							{
 								throw utility::Exception("avl::input::DirectInputInputDevice::PollMouse() -- Unable to allocate memory for a new MouseMoveEvent.(1)");
@@ -545,7 +581,7 @@ namespace input
 						{
 							// Pack the old data into a MouseMoveEvent. If unable to allocate the memory,
 							// then throw a utility::Exception.
-							const MouseMoveEvent* const move = new MouseMoveEvent(delta_x, delta_y);
+							const MouseMoveEvent* const move = new MouseMoveEvent((short)delta_x, (short)delta_y);
 							if(move == NULL)
 							{
 								throw utility::Exception("avl::input::DirectInputInputDevice::PollMouse() -- Unable to allocate memory for a new MouseMoveEvent.(2)");
@@ -569,7 +605,7 @@ namespace input
 				case DIMOFS_Z:
 					// Mouse wheel scroll. Add a MouseScrollEvent to the queue. If unable to allocate
 					// memory for the event, throw a utility::Exception.
-					const MouseScrollEvent* wheel = new MouseScrollEvent(data.dwOfs);
+					wheel = new MouseScrollEvent((short)data.dwOfs);
 					if(wheel == NULL)
 					{
 						throw utility::Exception("avl::input::DirectInputInputDevice::PollMouse() -- Unable to allocate memory for a new MouseScrollEvent.");
@@ -580,12 +616,16 @@ namespace input
 					// A mouse button was pressed. Add a MouseButtonEvent to the queue for this
 					// button. If unable to allocate memory for the event, throw a
 					// utility::Exception.
-					const MouseButtonEvent* button = new MouseButtonEvent(DIKToMB(data.dwOfs));
+					const bool pressed = (data.dwData & 0x80) ? true : false;
+					const MouseButtonEvent* button = new MouseButtonEvent(DIKToMB(data.dwOfs), pressed);
 					if(button == NULL)
 					{
 						throw utility::Exception("avl::input::DirectInputInputDevice::PollMouse() -- Unable to allocate memory for a new MouseButtonEvent.");
 					}
 					queue.push(button);
+
+					// Save the internal button state.
+					mouse_button_state[data.dwOfs] = pressed;
 					break;
 				}
 			}
@@ -594,7 +634,7 @@ namespace input
 		// If there is still any mouse movement data being stored, then put it into an event now.
 		// Pack the old data into a MouseMoveEvent. If unable to allocate the memory,
 		// then throw a utility::Exception.
-		const MouseMoveEvent* const move = new MouseMoveEvent(delta_x, delta_y);
+		const MouseMoveEvent* const move = new MouseMoveEvent((short)delta_x, (short)delta_y);
 		if(move == NULL)
 		{
 			throw utility::Exception("avl::input::DirectInputInputDevice::PollMouse() -- Unable to allocate memory for a new MouseMoveEvent.(3)");
@@ -613,7 +653,7 @@ namespace input
 	{
 		// Given a DirectInput mouse button code, returns the equivalent avl mouse button code,
 		// if one exists.
-		key_codes::MouseButton DIKToMB(const DWORD& button)
+		key_codes::MouseButton::MouseButtonCodes DIKToMB(const DWORD& button)
 		{
 			using key_codes::MouseButton;
 			switch(button)
@@ -636,7 +676,7 @@ namespace input
 
 
 		// Given a DirectInput DIK key code, returns the equivalent avl key code, if one exists.
-		key_codes::KeyboardKey DIKToKK(const DWORD& key)
+		key_codes::KeyboardKey::KeyboardKeyCodes DIKToKK(const DWORD& key)
 		{
 			using key_codes::KeyboardKey;
 			switch(key)

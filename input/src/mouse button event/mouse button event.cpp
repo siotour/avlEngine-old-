@@ -23,7 +23,7 @@ namespace input
 
 	// Constructors:
 	// Takes a button and whether the button was pressed or released.
-	MouseButtonEvent::MouseButtonEvent(const key_codes::MouseButton& initial_button, const bool is_pressed)
+	MouseButtonEvent::MouseButtonEvent(const key_codes::MouseButton::MouseButtonCodes& initial_button, const bool is_pressed)
 		: InputEvent(MOUSE_BUTTON_TYPE), button(initial_button), pressed(is_pressed)
 	{
 	}
@@ -49,7 +49,7 @@ namespace input
 
 
 	// Returns the button which was pressed.
-	const key_codes::MouseButton& MouseButtonEvent::GetButton() const
+	const key_codes::MouseButton::MouseButtonCodes& MouseButtonEvent::GetButton() const
 	{
 		return button;
 	}

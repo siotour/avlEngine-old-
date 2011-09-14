@@ -28,7 +28,7 @@ namespace input
 
 		// Constructors:
 		// Takes a button and whether the button was pressed or released.
-		MouseButtonEvent(const key_codes::MouseButton& initial_button, const bool is_pressed);
+		MouseButtonEvent(const key_codes::MouseButton::MouseButtonCodes& initial_button, const bool is_pressed);
 		// Copy constructor.
 		MouseButtonEvent(const MouseButtonEvent& original);
 		// Destructor.
@@ -37,14 +37,14 @@ namespace input
 
 		// Accessors:
 		// Returns the button which was pressed.
-		const key_codes::MouseButton& GetButton() const;
+		const key_codes::MouseButton::MouseButtonCodes& GetButton() const;
 		// Returns true if the button was pressed, and false if it was released.
 		const bool IsPressed() const;
 
 
 	private:
 		// The button which was pressed/released.
-		const key_codes::MouseButton button;
+		const key_codes::MouseButton::MouseButtonCodes button;
 		// Was it pressed or released?
 		const bool pressed;
 
