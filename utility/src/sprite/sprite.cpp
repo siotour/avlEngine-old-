@@ -423,6 +423,12 @@ namespace utility
 		p3 = rhs.GetP3();
 		p4 = rhs.GetP4();
 
+		// Texture coordinates.
+		q1 = rhs.GetQ1();
+		q2 = rhs.GetQ2();
+		q3 = rhs.GetQ3();
+		q4 = rhs.GetQ4();
+
 		// Center, rotation, scale, and z-depth.
 		center = rhs.GetCenter();
 		rotation = rhs.GetRotation();

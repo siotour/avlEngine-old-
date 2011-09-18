@@ -5,7 +5,7 @@
  * Expected output: 
  **********/
 
-#include"direct input input device.cpp"
+#include"direct input input device.h"
 #include"..\input event\input event.h"
 #include"..\keyboard event\keyboard event.h"
 #include"..\mouse move event\mouse move event.h"
@@ -142,7 +142,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 							}
 							else
 							{
-								movement.SetX(-0.0f);
+								movement.SetX(0.0f);
 							}
 						}
 					}

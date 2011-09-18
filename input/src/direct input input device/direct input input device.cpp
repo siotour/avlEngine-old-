@@ -163,7 +163,7 @@ namespace input
 
 
 		// Set the keyboard device cooperative level. If this fails, throw a utility::Exception.
-		result = keyboard_device->SetCooperativeLevel(window_handle, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+		result = keyboard_device->SetCooperativeLevel(window_handle, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 		if (FAILED(result))
 		{
 			// Release the keyboard device.
@@ -192,7 +192,7 @@ namespace input
 		}
 
 		// Set the mouse device cooperative level. If this fails, throw a utility::Exception.
-		result = mouse_device->SetCooperativeLevel(window_handle, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+		result = mouse_device->SetCooperativeLevel(window_handle, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 		if (FAILED(result))
 		{
 			// Release the keyboard device.
