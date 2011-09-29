@@ -129,6 +129,10 @@ namespace utility
 		void DecreaseDimensions();
 
 		// Based on the text box's behavior, characters per row, and number of rows,
+		// will return how many sprites are required to display the appropriate
+		// text characters.
+		const unsigned int FindRequiredSprites();
+		// Based on the text box's behavior, characters per row, and number of rows,
 		// will return the position in the member text which is to be displayed by
 		// the top-left sprite composing the text box.
 		std::string::const_iterator FindFirstCharacter();

@@ -391,6 +391,67 @@ namespace utility
 
 
 
+	// Resets rotation and scale, and then sets the Sprite's vertices and z-depth
+	// to chose specified.
+	void Sprite::ResetPosition(const Vertex2D& new_p1, const Vertex2D& new_p2, const Vertex2D& new_p3, const Vertex2D& new_p4, const float& new_z)
+	{
+		// Reset scale and rotation.
+		rotation = 0.0f;
+		scale = 1.0f;
+
+		// Save the new z-depth.
+		z = new_z;
+
+		// Store the new vertices.
+		p1 = untransformed_p1 = new_p1;
+		p2 = untransformed_p2 = new_p2;
+		p3 = untransformed_p3 = new_p3;
+		p4 = untransformed_p4 = new_p4;
+
+		// Find the new center.
+		FindCenter();
+	}
+
+
+
+
+	// Resets the rotation and scale, and then aligns the Sprite's positions to
+	// the boundaries and z-depth specified.
+	void Sprite::ResetPosition(const float& left, const float& top, const float& right, const float& bottom, const float& new_z)
+	{
+		// Reset scale and rotation.
+		rotation = 0.0f;
+		scale = 1.0f;
+
+		// Save the new z-depth.
+		z = new_z;
+
+		// Set up the new vertex values.
+		p1.SetX(left);
+		p1.SetY(bottom);
+		p2.SetX(left);
+		p2.SetY(top);
+		p3.SetX(right);
+		p3.SetY(top);
+		p4.SetX(right);
+		p4.SetY(bottom);
+
+		untransformed_p1.SetX(left);
+		untransformed_p1.SetY(bottom);
+		untransformed_p2.SetX(left);
+		untransformed_p2.SetY(top);
+		untransformed_p3.SetX(right);
+		untransformed_p3.SetY(top);
+		untransformed_p4.SetX(right);
+		untransformed_p4.SetY(bottom);
+
+		// Find the new center.
+		FindCenter();
+	}
+
+
+
+
 	// Sets the texture coordinate for the vertice p1.
 	void Sprite::SetQ1(const Vertex2D& q)
 	{

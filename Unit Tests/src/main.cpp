@@ -6,12 +6,14 @@ void TestD3DRendererBaseComponent(HINSTANCE);
 void TestVertex2DComponent();
 void TestSpriteComponent();
 void TestDirectInputInputDeviceComponent(HINSTANCE);
+void TestTextBoxComponent(HINSTANCE);
 
 int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
 {
 	//TestBasicRendererComponent(instance);
 	//TestD3DRendererBaseComponent(instance);
-	TestDirectInputInputDeviceComponent(instance);
+	//TestDirectInputInputDeviceComponent(instance);
+	TestTextBoxComponent(instance);
 
 	
 

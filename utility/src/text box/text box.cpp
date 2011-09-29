@@ -26,7 +26,10 @@ namespace utility
 			const unsigned int& chars_per_row, const unsigned int& rows,
 			const OverwriteBehavior& behavior, const utility::Sprite::TextureHandle& texture_handle,
 			const unsigned int& chars_per_texture_row)
+			: left(left), top(top), right(right), bottom(bottom), z(z), chars_per_row(chars_per_row), rows(rows), behavior(behavior), texture_handle(texture_handle), chars_per_texture_row(chars_per_texture_row)
 	{
+		// Set up the initial proportion.
+		width_to_height_proportion = (float)chars_per_row / (float)rows;
 	}
 
 
@@ -175,33 +178,31 @@ namespace utility
 			Resize(text.size());
 		}
 
+		
+
 		// If necessary, resize the sprites vector so that we have exactly the number
 		// of characters that we need.
+		const unsigned int required_sprites = FindRequiredSprites();
 
 		// Do we need more sprites?
-		if(text.size() > sprites.size())
+		while(sprites.size() < required_sprites)
 		{
-			while(text.size() > sprites.size())
+			// If we don't have the memory to make a new sprite, throw a
+			// utility::Exception.
+			utility::Sprite* const new_sprite = new utility::Sprite();
+			if(new_sprite == NULL)
 			{
-				// If we don't have the memory to make a new sprite, throw a
-				// utility::Exception.
-				utility::Sprite* const new_sprite = new utility::Sprite();
-				if(new_sprite == NULL)
-				{
-					throw utility::Exception("avl::utility::TextBox::SetText() -- Unable to allocate memory for a new utility::Sprite.");
-				}
-				sprites.push_back(new_sprite);
+				throw utility::Exception("avl::utility::TextBox::SetText() -- Unable to allocate memory for a new utility::Sprite.");
 			}
+			sprites.push_back(new_sprite);
 		}
+
 		// Do we need to get rid of some sprites?
-		else if(sprites.size() > text.size())
+		// Delete the last sprite in the vector until we have trimmed off all unnecessary sprites.
+		while(sprites.size() > required_sprites)
 		{
-			// Delete the last sprite in the vector until we have trimmed off all unnecessary sprites.
-			while(sprites.size() > text.size())
-			{
-				delete sprites.back();
-				sprites.pop_back();
-			}
+			delete sprites.back();
+			sprites.pop_back();
 		}
 
 
@@ -215,9 +216,9 @@ namespace utility
 		// The height of each sprite.
 		const float sprite_height = (top - bottom) / (float)rows;
 		// The width of each character in the texture.
-		const float character_width = 1.0f / (float)chars_per_row;
+		const float character_width = 1.0f / (float)chars_per_texture_row;
 		// The height of each character in the texture.
-		const float character_height = 1.0f / (float)rows;
+		const float character_height = 1.0f / (float)(256 / chars_per_texture_row);
 		
 		// Temp storage:
 		float sprite_left;
@@ -230,18 +231,19 @@ namespace utility
 		float tex_bottom;
 
 		// Set up each sprite. Stop once all the sprites have been set.
-		for(unsigned int current_sprite = 1; current_sprite <= sprites.size(); ++current_sprite, ++current_char)
+		for(unsigned int current_sprite = 0; current_sprite < sprites.size(); ++current_sprite, ++current_char)
 		{
 			ASSERT(current_char != text.end());
 
-			utility::Sprite& sprite = *sprites.at(current_sprite - 1);
+			utility::Sprite& sprite = *sprites.at(current_sprite);
+
 			// Calculate this sprite's position.
 			sprite_left = left + sprite_width * (current_sprite % chars_per_row);
 			sprite_top = top - sprite_height * (current_sprite / chars_per_row);
-			sprite_right = left + sprite_width;
-			sprite_bottom = top - sprite_height;
+			sprite_right = sprite_left + sprite_width;
+			sprite_bottom = sprite_top - sprite_height;
 
-			sprite.SetPosition(sprite_left, sprite_top, sprite_right, sprite_bottom, z);
+			sprite.ResetPosition(sprite_left, sprite_top, sprite_right, sprite_bottom, z);
 
 			// Calculate this sprite's texture coordinates.
 			tex_left = character_width * (*current_char % chars_per_texture_row);
@@ -416,6 +418,42 @@ namespace utility
 
 
 	// Based on the text box's behavior, characters per row, and number of rows,
+	// will return how many sprites are required to display the appropriate
+	// text characters.
+	const unsigned int TextBox::FindRequiredSprites()
+	{
+		// If behavior is AUTO_ADJUST_SIZE, then we need enough sprites to fit all
+		// the characters of the user's text.
+		if(behavior == AUTO_ADJUST_SIZE)
+		{
+			return text.size();
+		}
+		// If the behavior is OVERWRITE_ROWS, then we need enough sprites to fill
+		// all the rows but the bottom, and then enough sprites for each character
+		// on the bottom row (which could have any number of characters).
+		else if(behavior == OVERWRITE_ROWS)
+		{
+			// Is the bottom row full?
+			if(text.size() % chars_per_row == 0)
+			{
+				return chars_per_row * rows;
+			}
+			// Or is it not full?
+			{
+				return chars_per_row * (rows - 1) + text.size() % chars_per_row;
+			}
+		}
+		// For OVERWRITE_CHARS and NO_OVERWRITE, return the maximum size.
+		else
+		{
+			return chars_per_row * rows;
+		}
+	}
+	
+	
+	
+	
+	// Based on the text box's behavior, characters per row, and number of rows,
 	// will return the position in the member text which is to be displayed by
 	// the top-left sprite composing the text box.
 	std::string::const_iterator TextBox::FindFirstCharacter()
@@ -429,7 +467,7 @@ namespace utility
 		// If the behavior is OVERWRITE_ROWS, things are a little complex. If
 		// the last row should be full, then simply return the last (max size)
 		// positions in text. Otherwise
-		else if
+		else if(behavior == OVERWRITE_ROWS)
 		{
 			unsigned int last_row_length = text.size() % chars_per_row;
 			// If the last row is going to be full, then just return the max size.

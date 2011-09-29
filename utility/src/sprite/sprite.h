@@ -102,6 +102,13 @@ namespace utility
 		// Scales the quad by the scaling factor specified.
 		void Scale(const float& delta_scale);
 
+		// Resets rotation and scale, and then sets the Sprite's vertices and z-depth
+		// to chose specified.
+		void ResetPosition(const Vertex2D& new_p1, const Vertex2D& new_p2, const Vertex2D& new_p3, const Vertex2D& new_p4, const float& new_z);
+		// Resets the rotation and scale, and then aligns the Sprite's positions to
+		// the boundaries and z-depth specified.
+		void ResetPosition(const float& left, const float& top, const float& right, const float& bottom, const float& new_z);
+
 		// Setters for each of the texture coordinates.
 		void SetQ1(const Vertex2D& q);
 		void SetQ2(const Vertex2D& q);
