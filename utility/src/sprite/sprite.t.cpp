@@ -103,110 +103,110 @@ namespace
 
 void TestSpriteComponent()
 {
-	// Stores the user's menu choices.
-	unsigned int menu_choice;
-	// Stores the user's float input values.
-	float user_float;
+	//// Stores the user's menu choices.
+	//unsigned int menu_choice;
+	//// Stores the user's float input values.
+	//float user_float;
 
-	// Set floating point precision to a fixed 3 decimals.
-	cout.setf(std::ios::fixed, std::ios::floatfield);
-	cout.precision(3);
+	//// Set floating point precision to a fixed 3 decimals.
+	//cout.setf(std::ios::fixed, std::ios::floatfield);
+	//cout.precision(3);
 
-	// Create the sprite.
-	Sprite sprite(0.0f, 100.0f, 100.0f, 0.0f, 1.0f);
-
-
-	// Main program loop. Gets the user's menu choice and then performs the requested action.
-	do
-	{
-		// Clear the screen.
-		cout << "\n\n\n";
-
-		// Display the sprite.
-		cout << sprite;
-
-		cout << "\n";
-
-		// Display the menu.
-		DisplayMenu();
+	//// Create the sprite.
+	//Sprite sprite(0.0f, 100.0f, 100.0f, 0.0f, 1.0f, 0);
 
 
-		// Get the user's menu choice.
-		menu_choice = GetMenuChoice();
+	//// Main program loop. Gets the user's menu choice and then performs the requested action.
+	//do
+	//{
+	//	// Clear the screen.
+	//	cout << "\n\n\n";
+
+	//	// Display the sprite.
+	//	cout << sprite;
+
+	//	cout << "\n";
+
+	//	// Display the menu.
+	//	DisplayMenu();
 
 
-		// Process the user's menu choice.
-		switch(menu_choice)
-		{
-		case 1:
-			// Move.
-			cout << "Specify the movement vector:\n";
-			sprite.Move(GetVertex());
-			break;
-		case 2:
-			// Set Center.
-			cout << "Specify the new center:\n";
-			sprite.SetCenter(GetVertex());
-			break;
-		case 3:
-			// Move Texture.
-			cout << "Specify the movement vector:\n";
-			sprite.MoveTexture(GetVertex());
-			break;
-		case 4:
-			// Set Texture.
-			cout << "Specify Q1:\n";
-			sprite.SetQ1(GetVertex());
-			cout << "Specify Q2:\n";
-			sprite.SetQ2(GetVertex());
-			cout << "Specify Q3:\n";
-			sprite.SetQ3(GetVertex());
-			cout << "Specify Q4:\n";
-			sprite.SetQ4(GetVertex());
-			break;
-		case 5:
-			// Rotate.
-			cout << "Specify theta:\n> ";
-			cin >> user_float;
-			sprite.Rotate(user_float);
-			break;
-		case 6:
-			// Set Rotation.
-			cout << "Specify theta:\n> ";
-			cin >> user_float;
-			sprite.SetRotation(user_float);
-			break;
-		case 7:
-			// Scale.
-			cout << "Specify scale:\n> ";
-			cin >> user_float;
-			sprite.Scale(user_float);
-			break;
-		case 8:
-			// Set Scale.
-			cout << "Specify scale:\n> ";
-			cin >> user_float;
-			sprite.SetScale(user_float);
-			break;
-		case 9:
-			// Set Z.
-			cout << "Specify Z:\n> ";
-			cin >> user_float;
-			sprite.SetZ(user_float);
-			break;
-		}
+	//	// Get the user's menu choice.
+	//	menu_choice = GetMenuChoice();
 
-	
-	
-	
-	
-	
-	
-	
-	
-	} while(menu_choice != 0);
-	
-	
-	
-	system("pause");
+
+	//	// Process the user's menu choice.
+	//	switch(menu_choice)
+	//	{
+	//	case 1:
+	//		// Move.
+	//		cout << "Specify the movement vector:\n";
+	//		sprite.Move(GetVertex());
+	//		break;
+	//	case 2:
+	//		// Set Center.
+	//		cout << "Specify the new center:\n";
+	//		sprite.SetCenter(GetVertex());
+	//		break;
+	//	case 3:
+	//		// Move Texture.
+	//		cout << "Specify the movement vector:\n";
+	//		sprite.MoveTexture(GetVertex());
+	//		break;
+	//	case 4:
+	//		// Set Texture.
+	//		cout << "Specify Q1:\n";
+	//		sprite.SetQ1(GetVertex());
+	//		cout << "Specify Q2:\n";
+	//		sprite.SetQ2(GetVertex());
+	//		cout << "Specify Q3:\n";
+	//		sprite.SetQ3(GetVertex());
+	//		cout << "Specify Q4:\n";
+	//		sprite.SetQ4(GetVertex());
+	//		break;
+	//	case 5:
+	//		// Rotate.
+	//		cout << "Specify theta:\n> ";
+	//		cin >> user_float;
+	//		sprite.Rotate(user_float);
+	//		break;
+	//	case 6:
+	//		// Set Rotation.
+	//		cout << "Specify theta:\n> ";
+	//		cin >> user_float;
+	//		sprite.SetRotation(user_float);
+	//		break;
+	//	case 7:
+	//		// Scale.
+	//		cout << "Specify scale:\n> ";
+	//		cin >> user_float;
+	//		sprite.Scale(user_float);
+	//		break;
+	//	case 8:
+	//		// Set Scale.
+	//		cout << "Specify scale:\n> ";
+	//		cin >> user_float;
+	//		sprite.SetScale(user_float);
+	//		break;
+	//	case 9:
+	//		// Set Z.
+	//		cout << "Specify Z:\n> ";
+	//		cin >> user_float;
+	//		sprite.SetZ(user_float);
+	//		break;
+	//	}
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//} while(menu_choice != 0);
+	//
+	//
+	//
+	//system("pause");
 }

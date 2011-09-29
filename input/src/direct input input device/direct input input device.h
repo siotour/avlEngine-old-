@@ -9,6 +9,10 @@
 
 #include<queue>
 #include<windows.h>
+// Define the direct input version to avoid a compiler warning.
+#ifndef DIRECTINPUT_VERSION
+#define DIRECTINPUT_VERSION 0x800
+#endif
 #include<dinput.h>
 
 

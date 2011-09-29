@@ -10,6 +10,7 @@
 #include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\image\image.h"
+// Makes d3d9 activate additional debug information and checking.
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
 #endif
@@ -18,7 +19,7 @@
 #include<map>
 #include<list>
 #include<queue>
-#include<utility>
+#include<algorithm>
 
 
 
@@ -30,54 +31,55 @@ namespace view
 	// Anonymous namespace.
 	namespace
 	{
-	// This function is used to compare two Sprites. Returns true if the sprite
-	// corresponding to texture_id_a and z_depth_a is less than the sprite
-	// corresponding to texture_id_b and z_depth_b.
+	// This function is used to compare two Sprites. Returns true if sprite a
+	// is less than or equal to sprite b.
 	// Sorting criteria, from most important to least:
-	//		1) Opaque or Transparent?
-	//		2) If Opaque, z-depth from nearest to furthest.
-	//		3) If Transparent, z-depth from furthest to nearest.
+	//		1) Opaque > transparent
+	//		2) If Opaque, z-depth from nearest to farthest.
+	//		3) If Transparent, z-depth from farthest to nearest.
 	//		4) TextureID, from lowest to highest.
-	// The lowest bit in a TextureID is set if the texture is transparent and not set if
-	// it's opaque.
-	bool SortSprites(const BasicRenderer::SpriteAndTexture& a, const BasicRenderer::SpriteAndTexture& b)
+	// The lowest bit in a utility::Sprite::TextureHandle is set if the texture
+	// is transparent and not set if it's opaque.
+	bool SortSprites(const utility::Sprite* const a, const utility::Sprite* const b)
 	{
+		ASSERT(a != NULL && b != NULL);
+
 		// Is a opaque?
-		if((a.second & 0x01) == false)
+		if((a->GetTextureHandle() & 0x01) == false)
 		{
 			// Is b translucent? If so, return true.
-			if((b.second & 0x01) == true)
+			if((b->GetTextureHandle() & 0x01) == true)
 			{
 				return true;
 			}
 			// If both are opaque, does one have a lesser z-depth? If so, return that one.
-			else if(a.first->GetZ() != b.first->GetZ())
+			else if(a->GetZ() != b->GetZ())
 			{
-				return (a.first->GetZ() < b.first->GetZ()) ? true : false;
+				return (a->GetZ() < b->GetZ()) ? true : false;
 			}
 			// If the z-depths are the same, return the one with a lesser texture ID.
 			else
 			{
-				return (a.second <= b.second) ? true : false;
+				return (a->GetTextureHandle() < b->GetTextureHandle()) ? true : false;
 			}
 		}
 		// Is a translucent?
 		else
 		{
 			// Is b opaque? If so, return false.
-			if((b.second & 0x01) == false)
+			if((b->GetTextureHandle() & 0x01) == false)
 			{
 				return false;
 			}
 			// If both are translucent, does one have a greater z-depth? If so, return that one.
-			else if(a.first->GetZ() != b.first->GetZ())
+			else if(a->GetZ() != b->GetZ())
 			{
-				return (a.first->GetZ() > b.first->GetZ()) ? true : false;
+				return (a->GetZ() > b->GetZ()) ? true : false;
 			}
 			// If the z-depths are the same, return the one with a lesser texture ID.
 			else
 			{
-				return (a.second <= b.second) ? true : false;
+				return (a->GetTextureHandle() < b->GetTextureHandle()) ? true : false;
 			}
 		}
 	}
@@ -122,8 +124,8 @@ namespace view
 	BasicRenderer::~BasicRenderer()
 	{
 		// Go through and release each of the textures in the texture map.
-		TexIDToTex::iterator end = textures.end();
-		for(TexIDToTex::iterator i = textures.begin(); i != end; ++i)
+		TexHandleToTex::iterator end = textures.end();
+		for(TexHandleToTex::iterator i = textures.begin(); i != end; ++i)
 		{
 			i->second->Release();
 		}
@@ -168,8 +170,8 @@ namespace view
 		}
 
 		// Add the newly-created texture to the map of textures with the key value of next_texture_handle.
-		std::pair<TexIDToTex::iterator, bool> result2 =
-			textures.insert(TexIDToTex::value_type(texture_handle, texture));
+		std::pair<TexHandleToTex::iterator, bool> result2 =
+			textures.insert(TexHandleToTex::value_type(texture_handle, texture));
 
 		ASSERT(result2.second == true);
 
@@ -189,7 +191,7 @@ namespace view
 	void BasicRenderer::DeleteTexture(const unsigned int& texture_handle)
 	{
 		// Find the texture within the texture map.
-		TexIDToTex::iterator i = textures.find(texture_handle);
+		TexHandleToTex::iterator i = textures.find(texture_handle);
 		ASSERT(i != textures.end());
 
 		// If the specified texture handle doesn't exist, throw utility::Exception describing the problem.
@@ -210,10 +212,11 @@ namespace view
 
 
 	// Renders a series of sprites...
-	void BasicRenderer::RenderSprites(SpriteAndTextureList sprites_and_textures)
+	void BasicRenderer::RenderSprites(utility::Sprite::SpriteList sprites)
 	{
 		ASSERT(D3DRendererBase::d3d != false);
 		ASSERT(D3DRendererBase::device != false);
+
 
 		// If the device is not ready for rendering, return.
 		if(Reset() == false)
@@ -222,7 +225,7 @@ namespace view
 		}
 
 		// If there are no sprites to render, simply clear the viewport, present the scene and return.
-		if(sprites_and_textures.size() < 1)
+		if(sprites.size() < 1)
 		{
 			ClearViewport();
 			device->Present(NULL, NULL, NULL, NULL);
@@ -231,13 +234,35 @@ namespace view
 
 
 
-		// Sort sprites_and_textures for rendering purposes.
-		sprites_and_textures.sort(SortSprites);
+		// Used throughout this function.
+		const utility::Sprite::SpriteList::iterator end = sprites.end();
+
+		// Count the number of visible sprites to be drawn. Additionally, make sure that all
+		// of the pointers in sprites are not NULL. If a pointer is NULL, throw a
+		// utility::Exception describing the problem.
+		unsigned int number_of_sprites = 0;
+		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		{
+			// Make sure this pointer is not NULL.
+			if((*i) == NULL)
+			{
+				throw utility::Exception("avl::view::BasicRenderer::RenderSprites() -- The supplied SpriteList contains one or more NULL pointers.");
+			}
+			// Is this sprite visible?
+			else if((*i)->IsVisible() == true)
+			{
+				// Count this sprite.
+				++number_of_sprites;
+			}
+		}
 
 
 
-		// The number of sprites to render.
-		unsigned int number_of_sprites = sprites_and_textures.size();
+		// Sort sprites for rendering purposes.
+		sprites.sort(SortSprites);
+
+
+
 		// The vertex information to be written to the vertex buffer. Each vertex has an x, y, and z
 		// coordinate, and u and v texture coordinates; each sprite has 4 vertices.
 		float* vertex_data = new float[number_of_sprites * 5 * 4];
@@ -261,110 +286,113 @@ namespace view
 		// Temp variables.
 		unsigned int current_vertex = 0;
 		unsigned int current_sprite = 0;
-		unsigned int sprites_using_texture_id = 0;
-		unsigned int previous_texture_id = sprites_and_textures.begin()->second;
+		unsigned int sprites_using_texture_handle = 0;
+		utility::Sprite::TextureHandle previous_texture_handle = (*(sprites.begin()))->GetTextureHandle();
 
-		// These queues contains pairs corresonding to (texture id, number of sprites using it).
+		// These queues contain pairs corresonding to (texture id, number of sprites using it).
 		// There's one for opaque sprites, and one for transparent.
-		typedef std::queue<std::pair<const unsigned int, const unsigned int>> TextureIDUseQueue;
-		TextureIDUseQueue opaque_texture_ids;
-		TextureIDUseQueue transparent_texture_ids;
+		typedef std::queue<std::pair<const utility::Sprite::TextureHandle, const unsigned int>> TextureHandleUseQueue;
+		TextureHandleUseQueue opaque_texture_ids;
+		TextureHandleUseQueue transparent_texture_ids;
 		
-		SpriteAndTextureList::iterator i = sprites_and_textures.begin();
-		for(SpriteAndTextureList::iterator end = sprites_and_textures.end(); i != end; ++i)
+		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
 		{
-			// 1)
-			// Store the index data for the current sprite.
-			// First triangle.
-			index_data[current_sprite * 6] = current_vertex;
-			index_data[current_sprite * 6 + 1] = current_vertex + 1;
-			index_data[current_sprite * 6 + 2] = current_vertex + 2;
-			// Second triangle.
-			index_data[current_sprite * 6 + 3] = current_vertex + 2;
-			index_data[current_sprite * 6 + 4] = current_vertex + 3;
-			index_data[current_sprite * 6 + 5] = current_vertex;
-			++current_sprite;
-
-
-
-			// 2)
-			// Store the vertices for the current sprite.
-			// P1
-			vertex_data[current_vertex * 5] = i->first->GetP1().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first->GetP1().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first->GetQ1().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first->GetQ1().GetY();
-			// P2
-			++current_vertex;
-			vertex_data[current_vertex * 5] = i->first->GetP2().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first->GetP2().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first->GetQ2().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first->GetQ2().GetY();
-			// P3
-			++current_vertex;
-			vertex_data[current_vertex * 5] = i->first->GetP3().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first->GetP3().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first->GetQ3().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first->GetQ3().GetY();
-			// P4
-			++current_vertex;
-			vertex_data[current_vertex * 5] = i->first->GetP4().GetX();
-			vertex_data[current_vertex * 5 + 1] = i->first->GetP4().GetY();
-			vertex_data[current_vertex * 5 + 2] = i->first->GetZ();
-			vertex_data[current_vertex * 5 + 3] = i->first->GetQ4().GetX();
-			vertex_data[current_vertex * 5 + 4] = i->first->GetQ4().GetY();
-			++current_vertex;
-
-
-
-
-			// If this sprite has the same texture ID as the last one, just increment the
-			// accumulator.
-			if(i->second == previous_texture_id)
+			// Only process visible sprites.
+			if((*i)->IsVisible() == true)
 			{
-				++sprites_using_texture_id;
-			}
-			// 3)
-			// Stores the order of texture IDs for opaque sprites, and the number of sprites
-			// using them.
-			else if((previous_texture_id & 0x01) == false)
-			{
-				opaque_texture_ids.push(std::make_pair(previous_texture_id, sprites_using_texture_id));
-				sprites_using_texture_id = 1;
-				previous_texture_id = i->second;
-			}
-			// 4)
-			// Stores the order of texture IDs for transparent sprites, and the number of
-			// sprites using them.
-			else
-			{
-				transparent_texture_ids.push(std::make_pair(previous_texture_id, sprites_using_texture_id));
-				sprites_using_texture_id = 1;
-				previous_texture_id = i->second;
-			}
+				// 1)
+				// Store the index data for the current sprite.
+				// First triangle.
+				index_data[current_sprite * 6] = current_vertex;
+				index_data[current_sprite * 6 + 1] = current_vertex + 1;
+				index_data[current_sprite * 6 + 2] = current_vertex + 2;
+				// Second triangle.
+				index_data[current_sprite * 6 + 3] = current_vertex + 2;
+				index_data[current_sprite * 6 + 4] = current_vertex + 3;
+				index_data[current_sprite * 6 + 5] = current_vertex;
+				++current_sprite;
 
 
 
-			// The last sprite in the list of sprites is a special case. Normally this loop would
-			// skip writing its texture ID to the proper queue, so I do it manually here.
-			if(std::distance(i, end) == 1)
-			{
+				// 2)
+				// Store the vertices for the current sprite.
+				// P1
+				vertex_data[current_vertex * 5] = (*i)->GetP1().GetX();
+				vertex_data[current_vertex * 5 + 1] = (*i)->GetP1().GetY();
+				vertex_data[current_vertex * 5 + 2] = (*i)->GetZ();
+				vertex_data[current_vertex * 5 + 3] = (*i)->GetQ1().GetX();
+				vertex_data[current_vertex * 5 + 4] = (*i)->GetQ1().GetY();
+				// P2
+				++current_vertex;
+				vertex_data[current_vertex * 5] = (*i)->GetP2().GetX();
+				vertex_data[current_vertex * 5 + 1] = (*i)->GetP2().GetY();
+				vertex_data[current_vertex * 5 + 2] = (*i)->GetZ();
+				vertex_data[current_vertex * 5 + 3] = (*i)->GetQ2().GetX();
+				vertex_data[current_vertex * 5 + 4] = (*i)->GetQ2().GetY();
+				// P3
+				++current_vertex;
+				vertex_data[current_vertex * 5] = (*i)->GetP3().GetX();
+				vertex_data[current_vertex * 5 + 1] = (*i)->GetP3().GetY();
+				vertex_data[current_vertex * 5 + 2] = (*i)->GetZ();
+				vertex_data[current_vertex * 5 + 3] = (*i)->GetQ3().GetX();
+				vertex_data[current_vertex * 5 + 4] = (*i)->GetQ3().GetY();
+				// P4
+				++current_vertex;
+				vertex_data[current_vertex * 5] = (*i)->GetP4().GetX();
+				vertex_data[current_vertex * 5 + 1] = (*i)->GetP4().GetY();
+				vertex_data[current_vertex * 5 + 2] = (*i)->GetZ();
+				vertex_data[current_vertex * 5 + 3] = (*i)->GetQ4().GetX();
+				vertex_data[current_vertex * 5 + 4] = (*i)->GetQ4().GetY();
+				++current_vertex;
+
+
+
+
+				// If this sprite has the same texture ID as the last one, just increment the
+				// accumulator.
+				if((*i)->GetTextureHandle() == previous_texture_handle)
+				{
+					++sprites_using_texture_handle;
+				}
 				// 3)
 				// Stores the order of texture IDs for opaque sprites, and the number of sprites
 				// using them.
-				if((i->second & 0x01) == false)
+				else if((previous_texture_handle & 0x01) == false)
 				{
-					opaque_texture_ids.push(std::make_pair(i->second, sprites_using_texture_id));
+					opaque_texture_ids.push(std::make_pair(previous_texture_handle, sprites_using_texture_handle));
+					sprites_using_texture_handle = 1;
+					previous_texture_handle = (*i)->GetTextureHandle();
 				}
 				// 4)
 				// Stores the order of texture IDs for transparent sprites, and the number of
 				// sprites using them.
 				else
 				{
-					transparent_texture_ids.push(std::make_pair(i->second, sprites_using_texture_id));
+					transparent_texture_ids.push(std::make_pair(previous_texture_handle, sprites_using_texture_handle));
+					sprites_using_texture_handle = 1;
+					previous_texture_handle = (*i)->GetTextureHandle();
+				}
+
+
+
+				// The last sprite in the list of sprites is a special case. Normally this loop would
+				// skip writing its texture ID to the proper queue, so I do it manually here.
+				if(std::distance(i, end) == 1)
+				{
+					// 3)
+					// Stores the order of texture IDs for opaque sprites, and the number of sprites
+					// using them.
+					if(((*i)->GetTextureHandle() & 0x01) == false)
+					{
+						opaque_texture_ids.push(std::make_pair((*i)->GetTextureHandle(), sprites_using_texture_handle));
+					}
+					// 4)
+					// Stores the order of texture IDs for transparent sprites, and the number of
+					// sprites using them.
+					else
+					{
+						transparent_texture_ids.push(std::make_pair((*i)->GetTextureHandle(), sprites_using_texture_handle));
+					}
 				}
 			}
 		}

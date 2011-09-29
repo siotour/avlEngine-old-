@@ -20,7 +20,7 @@ namespace utility
 	namespace
 	{
 		// Pi.
-		const float PI = 4.0f * std::atan(1.0f);
+		const double PI = 4.0 * std::atan(1.0);
 	}
 
 
@@ -29,7 +29,7 @@ namespace utility
 	Sprite::Sprite()
 		: p1(0, 0), p2(0, 0), p3(0, 0), p4(0, 0), q1(0, 0), q2(0, 0), q3(0, 0), q4(0, 0),
 		  untransformed_p1(0, 0), untransformed_p2(0, 0), untransformed_p3(0, 0), untransformed_p4(0, 0),
-		  center(0, 0), rotation(0.0f), scale(1.0f), z(0.0f)
+		  center(0, 0), rotation(0.0f), scale(1.0f), z(0.0f), texture_handle(0), is_visible(true)
 	{
 	}
 
@@ -38,12 +38,13 @@ namespace utility
 
 	// Initializes each of the vertices to those supplied by the user. Winding order is clockwise.
 	// p1-p4 are the spatial coordinates, and q1-q4 are the texture coordinates. z is the z-depth
-	// of the sprite.
+	// of the sprite. texture_handle is the texture handle for the sprite.
 	Sprite::Sprite(const Vertex2D& p1, const Vertex2D& p2, const Vertex2D& p3, const Vertex2D& p4,
-				   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4, const float& z)
+				   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4,
+				   const float& z, const TextureHandle texture_handle)
 	: p1(p1), p2(p2), p3(p3), p4(p4), q1(q1), q2(q2), q3(q3), q4(q4),
 	  untransformed_p1(p1), untransformed_p2(p2), untransformed_p3(p3), untransformed_p4(p4),
-	  rotation(0.0f), scale(1.0f), z(z)
+	  rotation(0.0f), scale(1.0f), z(z), texture_handle(texture_handle), is_visible(true)
 	{
 		// Figure out the center.
 		FindCenter();
@@ -53,11 +54,13 @@ namespace utility
 
 
 	// Creates an axis-aligned bounding box with texture coordinates ranging from (0, 0) in the
-	// bottom-left to (1, 1) in the top-right and with z-depth z.
-	Sprite::Sprite(const float& left, const float& top, const float& right, const float& bottom, const float& z)
+	// bottom-left to (1, 1) in the top-right and with z-depth z. texture_handle is the texture
+	// handle of the sprite.
+	Sprite::Sprite(const float& left, const float& top, const float& right, const float& bottom,
+				   const float& z, const TextureHandle texture_handle)
 		: p1(left, bottom), p2(left, top), p3(right, top), p4(right, bottom), q1(0.0f, 0.0f), q2(0.0f, 1.0f), q3(1.0f, 1.0f), q4(1.0f, 0.0f),
 		  untransformed_p1(left, bottom), untransformed_p2(left, top), untransformed_p3(right, top), untransformed_p4(right, bottom),
-		  rotation(0.0f), scale(1.0f), z(z)
+		  rotation(0.0f), scale(1.0f), z(z), texture_handle(texture_handle), is_visible(true)
 	{
 		// Figure out the center.
 		FindCenter();
@@ -71,7 +74,8 @@ namespace utility
 		: untransformed_p1(original.GetUntransformedP1()), untransformed_p2(original.GetUntransformedP2()), untransformed_p3(original.GetUntransformedP3()), untransformed_p4(original.GetUntransformedP4()),
 		p1(original.GetP1()), p2(original.GetP2()), p3(original.GetP3()), p4(original.GetP4()), 
 		  q1(original.GetQ1()), q2(original.GetQ2()), q3(original.GetQ3()), q4(original.GetQ4()),
-		  center(original.GetCenter()), rotation(original.GetRotation()), scale(original.GetScale()), z(original.GetZ())
+		  center(original.GetCenter()), rotation(original.GetRotation()), scale(original.GetScale()),
+		  z(original.GetZ()), texture_handle(original.GetTextureHandle()), is_visible(original.IsVisible())
 	{
 	}
 
@@ -81,6 +85,24 @@ namespace utility
 	// Basic desctructor.
 	Sprite::~Sprite()
 	{
+	}
+
+
+
+
+	// Returns the visibility of the sprite.
+		const bool Sprite::IsVisible() const
+	{
+		return is_visible;
+	}
+
+
+
+
+	// Returns the texture handle for this sprite.
+	const Sprite::TextureHandle Sprite::GetTextureHandle() const
+	{
+		return texture_handle;
 	}
 
 
@@ -225,6 +247,24 @@ namespace utility
 	const float& Sprite::GetZ() const
 	{
 		return z;
+	}
+
+
+
+
+	// Sets the texture handle for this sprite.
+	void Sprite::SetTextureHandle(const Sprite::TextureHandle new_texture_handle)
+	{
+		texture_handle = new_texture_handle;
+	}
+
+
+
+
+	// Sets the sprite's visibility.
+	void Sprite::SetVisibility(const bool new_visibility)
+	{
+		is_visible = new_visibility;
 	}
 
 
@@ -429,11 +469,12 @@ namespace utility
 		q3 = rhs.GetQ3();
 		q4 = rhs.GetQ4();
 
-		// Center, rotation, scale, and z-depth.
+		// Center, rotation, scale, z-depth, and texture handle.
 		center = rhs.GetCenter();
 		rotation = rhs.GetRotation();
 		scale = rhs.GetScale();
 		z = rhs.GetZ();
+		texture_handle = rhs.GetTextureHandle();
 		return *this;
 	}
 
@@ -457,7 +498,7 @@ namespace utility
 	Vertex2D Sprite::RotateVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, float theta)
 	{
 		// Convert theta from degrees to radians.
-		theta = (theta / 180.0f) * PI;
+		theta = (theta / 180.0f) * (float)PI;
 
 		// Translate untransformed_point such that it relates to the origin as it
 		// currently relates to center_point.

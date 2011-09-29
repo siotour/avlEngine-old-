@@ -53,21 +53,21 @@ void TestBasicRendererComponent(HINSTANCE instance)
 
 
 		// Create a few sprites.
-		Sprite background(-1, 1, 1, -1, 0.5);
-		Sprite spiral(-0.15, -0.6, 0.15, -0.9, 0.4);
+		Sprite background(-1.0f, 1.0f, 1.0f, -1.0f, 0.5f, background_id);
+		Sprite spiral(-0.15f, -0.6f, 0.15f, -0.9f, 0.4f, spiral_id);
 
 
 
 		// Put quads into the appropriate container.
-		BasicRenderer::SpriteAndTextureList sprites_and_textures;
-		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(&spiral, spiral_id));
-		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(&background, background_id));
+		Sprite::SpriteList sprites;
+		sprites.insert(sprites.begin(), &spiral);
+		sprites.insert(sprites.begin(), &background);
 
 
 
-		Vertex2D movement(0.003, 0.003);
-		float rotation = 0.5;
-		float scale = 1.002;
+		Vertex2D movement(0.003f, 0.003f);
+		float rotation = 0.5f;
+		float scale = 1.002f;
 		
 
 		// While the user keeps the window open...
@@ -77,20 +77,20 @@ void TestBasicRendererComponent(HINSTANCE instance)
 			if(window.IsActive() == true)
 			{
 				// Draw quad.
-				renderer.RenderSprites(sprites_and_textures);
+				renderer.RenderSprites(sprites);
 
 				// Transform sprites.
 				spiral.Move(movement);
 				spiral.Rotate(rotation);
 				spiral.Scale(scale);
 
-				if(spiral.GetCenter().GetX() < -0.8 || spiral.GetCenter().GetX() > 0.8)
+				if(spiral.GetCenter().GetX() < -0.8f || spiral.GetCenter().GetX() > 0.8f)
 				{
 					movement.SetX(-1.0f * movement.GetX());
 					rotation *= -1.0f;
 					scale -= 0.004f;
 				}
-				if(spiral.GetCenter().GetY() < -0.8 || spiral.GetCenter().GetY() > 0.8)
+				if(spiral.GetCenter().GetY() < -0.8f || spiral.GetCenter().GetY() > 0.8f)
 				{
 					movement.SetY(-1.0f * movement.GetY());
 					rotation *= -1.0f;

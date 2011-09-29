@@ -15,38 +15,22 @@ namespace avl
 namespace utility
 {
 
-	// Takes a bool specifying whether or not performance counters should be used. If performance
-	// counters aren't supported but are requested, will throw a
-	// PerformanceTimerUnsupported.
-	Win32Timer::Win32Timer(const bool& use_performance_counter)
-	: use_performance_counter(use_performance_counter)
+	// Attempts to use performance counters if available. Use of performance counters
+	// can be checked using IsPerformanceTimer().
+	Win32Timer::Win32Timer()
 	{
-		// If the user specified the use of performance timers, attempt to query the
-		// frequency now and poll the initial count.
-		if (use_performance_counter == true)
+
+		// Are performance counters supported?
+		use_performance_counter = (QueryPerformanceFrequency(reinterpret_cast<LARGE_INTEGER*>(&frequency)) != 0);
+
+		// Synchronize this timer with the current system time.
+		if(use_performance_counter == true)
 		{
-			// QueryPerformanceTimer returns a BOOL typedef, so comparing the result to 0 effectively
-			// converts it to a bool and gets rid of a compiler warning about data-loss.
-			bool performance_timer_supported = (QueryPerformanceFrequency(reinterpret_cast<LARGE_INTEGER*>(&frequency)) != 0);
-
-			// If performance timers aren't supported, then throw a
-			// PerformanceTimerUnsupported.
-			if (performance_timer_supported != true)
-			{
-				throw PerformanceCounterUnsupported();
-			}
-
-			// Initialize last_count to the current count.
 			VERIFY(QueryPerformanceCounter(reinterpret_cast<LARGE_INTEGER*>(&last_count)));
 		}
-		// If the user specified not to use performance timers, set up the frequency and poll the
-		// initial count using timeGetTime().
 		else
 		{
-			// The frequency for timeGetTime() is 1000.
 			frequency = 1000;
-
-			// Poll for the initial count and assign it to last_count.
 			last_count = static_cast<__int64>(timeGetTime());
 		}
 	}
@@ -57,6 +41,15 @@ namespace utility
 	// Basic destructor.
 	Win32Timer::~Win32Timer()
 	{
+	}
+
+
+
+
+	// Returns true if the timer is using a performance counter, and false if not.
+	const bool Win32Timer::IsPerformanceTimer() const
+	{
+		return use_performance_counter;
 	}
 
 
@@ -154,31 +147,6 @@ namespace utility
 		return (double)difference/(double)frequency;
 	}
 
-
-
-
-	// Basic constructor.
-	PerformanceCounterUnsupported::PerformanceCounterUnsupported()
-		: Exception("avl::utility::Win32Timer -- Performance counters were requested but aren't supported on this system.")
-	{
-	}
-
-
-
-
-	// Basic destructor.
-	PerformanceCounterUnsupported::~PerformanceCounterUnsupported()
-	{
-	}
-
-
-
-
-	// Basic copy constructor (allows for passing by value).
-	PerformanceCounterUnsupported::PerformanceCounterUnsupported(const PerformanceCounterUnsupported& original)
-		: Exception(original)
-	{
-	}
 
 
 }

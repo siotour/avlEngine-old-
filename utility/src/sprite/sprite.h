@@ -5,12 +5,13 @@
  * Date: Jan 21, 2011
  * Description: Encapsulates a basic textured quadrilateral in 3-D space, oriented to be parallel to
  * the XY plane. Includes accessors and mutators for the spatial coordinates as well as the texture
- * coordinates.
+ * coordinates. Additionally, defines and a TextureHandle type which is used to represent textures.
+ * Contains a TextureHandle member which can be modified and accessed as needed by a rendering system.
  **********/
 
 
 #include"..\vertex 2d\vertex 2d.h"
-
+#include<list>
 
 namespace avl
 {
@@ -20,23 +21,38 @@ namespace utility
 	class Sprite
 	{
 	public:
+		// Defines a type used to represent a handle to a texture used to cover this sprite.
+		typedef unsigned int TextureHandle;
+		// Defines a type for storing multiple Sprites in a light, sortable container.
+		typedef std::list<const Sprite* const> SpriteList;
+
+
 		// Constructors:
 		// Initializes each vertice to the origin with texture coordinates of (0, 0).
 		Sprite();
 		// Initializes each of the vertices to those supplied by the user. Winding order is clockwise.
 		// p1-p4 are the spatial coordinates, and q1-q4 are the texture coordinates. z is the z-depth
-		// of the sprite.
+		// of the sprite. texture_handle is the texture handle for the sprite.
 		Sprite(const Vertex2D& p1, const Vertex2D& p2, const Vertex2D& p3, const Vertex2D& p4,
-			   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4, const float& z);
+			   const Vertex2D& q1, const Vertex2D& q2, const Vertex2D& q3, const Vertex2D& q4,
+			   const float& z, const TextureHandle texture_handle);
 		// Creates an axis-aligned bounding box with texture coordinates ranging from (0, 0) in the
-		// bottom-left to (1, 1) in the top-right and with z-depth z.
-		Sprite(const float& left, const float& top, const float& right, const float& bottom, const float& z);
+		// bottom-left to (1, 1) in the top-right and with z-depth z. texture_handle is the texture
+		// handle of the sprite.
+		Sprite(const float& left, const float& top, const float& right, const float& bottom,
+			   const float& z, const TextureHandle texture_handle);
 		// Copy constructor.
 		Sprite(const Sprite& original);
 		// Destructor.
 		~Sprite();
 
 		// Accessors:
+		// Returns the visibility of the sprite.
+		const bool IsVisible() const;
+
+		// Returns the texture handle for this sprite.
+		const TextureHandle GetTextureHandle() const;
+
 		// Getters for each of the untransformed spatial vertices.
 		const Vertex2D& GetUntransformedP1() const;
 		const Vertex2D& GetUntransformedP2() const;
@@ -67,6 +83,12 @@ namespace utility
 
 
 		// Mutators:
+		// Sets the sprite's visibility.
+		void SetVisibility(const bool new_visibility);
+
+		// Sets the texture handle for this sprite.
+		void SetTextureHandle(const TextureHandle new_texture_handle);
+
 		// Translates the sprite such that its center is at the specified vertex.
 		void SetCenter(const Vertex2D& new_center);
 		// Moves the spatial coordinates along the vector delta.
@@ -104,6 +126,11 @@ namespace utility
 		// Scales untransformed_point in relation to center_point by scaling_factor.
 		Vertex2D ScaleVertice(const Vertex2D& center_point, const Vertex2D& untransformed_point, const float& scale_factor);
 
+		// Is this sprite currently visible or invisible?
+		bool is_visible;
+
+		// The handle of the texture for this sprite.
+		TextureHandle texture_handle;
 
 		// The untransformed spatial vertices.
 		Vertex2D untransformed_p1, untransformed_p2, untransformed_p3, untransformed_p4;

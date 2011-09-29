@@ -17,8 +17,12 @@
 #include"..\..\..\utility\src\exception\exception.h"
 #include"..\..\..\utility\src\assert\assert.h"
 
-#include<windows.h>
+// Define the direct input version to avoid a compiler warning.
+#ifndef DIRECTINPUT_VERSION
+#define DIRECTINPUT_VERSION 0x800
+#endif
 #include<dinput.h>
+#include<windows.h>
 
 #include<queue>
 

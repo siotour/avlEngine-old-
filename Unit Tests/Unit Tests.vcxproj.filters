@@ -81,5 +81,8 @@
     <ClCompile Include="..\input\src\direct input input device\direct input input device.t.cpp">
       <Filter>Source Files\input Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\utility\src\text box\text box.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

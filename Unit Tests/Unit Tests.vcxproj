@@ -70,7 +70,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>winmm.lib;avl-utility.lib;avl-view.lib;avl-input.lib;d3d9.lib;dinput8.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avl-utility.lib;avl-view.lib;avl-input.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,7 +91,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>avl-view.lib;avl-utility.lib;avl-input.lib;winmm.lib;d3d9.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avl-view.lib;avl-utility.lib;avl-input.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -104,6 +104,7 @@
     <ClCompile Include="..\utility\src\read write error\read write error.t.cpp" />
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp" />
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp" />
+    <ClCompile Include="..\utility\src\text box\text box.t.cpp" />
     <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp" />
     <ClCompile Include="..\utility\src\win32 timer\win32 timer.t.cpp" />
     <ClCompile Include="..\view\src\basic renderer\basic renderer.t.cpp" />

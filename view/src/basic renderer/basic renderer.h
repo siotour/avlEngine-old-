@@ -5,19 +5,19 @@
  * Date: Jan 13, 2011
  * Description: Builds on the functionality of D3DRendererBase to implement a basic 2-D renderer
  * capable of rendering basic textured rectangles.
- * TODO: Implement batch rendering using vertex and index buffers.
  **********/
 
 #include"..\d3d renderer base\d3d renderer base.h"
+// Necessary since the typedef utility::Sprite::TextureHandle is used.
+#include"..\..\..\utility\src\sprite\sprite.h"
 #include<map>
-#include<list>
 #include<utility>
 #include<d3d9.h>
 
 namespace avl
 {
 // Forward declaration.
-namespace utility{class Sprite; class Image;}
+namespace utility{class Image;}
 
 namespace view
 {
@@ -25,12 +25,6 @@ namespace view
 	class BasicRenderer: public D3DRendererBase
 	{
 	public:
-		// A utility::Sprite and its corresponding TextureID.
-		typedef std::pair<const utility::Sprite* const, const unsigned int> SpriteAndTexture;
-		// A list of SpriteAndTexture pairs. Rendering is done through these structures.
-		typedef std::list<SpriteAndTexture> SpriteAndTextureList;
-
-
 		// Constructors:
 		// Attempts to initialize a Direct3D device for the specified window and with the specified
 		// display profile.
@@ -40,13 +34,13 @@ namespace view
 
 		// Mutators:
 		// Attempts to create a texture with the specified data. Returns the texture handle, which can be used
-		// to specify which texture to use when rendering primitives.
-		const unsigned int AddTexture(const utility::Image& image);
+		// to specify which texture to use when rendering primitives. Note that all texture handles are > 0.
+		const utility::Sprite::TextureHandle AddTexture(const utility::Image& image);
 		// Releases the texture associated with the specified handle and renders the handle useless. Don't try to
 		// draw with textures that have been deleted or else <TODO>.
-		void DeleteTexture(const unsigned int& texture_handle);
+		void DeleteTexture(const utility::Sprite::TextureHandle& texture_handle);
 		// Renders a series of sprites.
-		void RenderSprites(SpriteAndTextureList sprites_and_textures);
+		void RenderSprites(utility::Sprite::SpriteList sprites);
 
 	private:
 		// Utility functions:
@@ -72,9 +66,9 @@ namespace view
 		const unsigned int bytes_per_pixel;
 
 		// Texture map.
-		typedef std::map<const unsigned int, IDirect3DTexture9*> TexIDToTex;
+		typedef std::map<const utility::Sprite::TextureHandle, IDirect3DTexture9*> TexHandleToTex;
 		// Maintains a map of valid texture handles and their associated textures.
-		TexIDToTex textures;
+		TexHandleToTex textures;
 
 		// Used to assign a unique texture handle to each created texture. This imposes the restriction that it
 		// is highly inadvisable to attempt to load more than UINT_MAX (defined in limits.h) textures throughout a program.

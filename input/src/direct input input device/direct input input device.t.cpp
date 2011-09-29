@@ -62,15 +62,15 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 
 
 		// Create a few sprites.
-		Sprite background(-1, 1, 1, -1, 0.5);
-		Sprite spiral(-0.15f, -0.6f, 0.15f, -0.9f, 0.4f);
+		Sprite background(-1, 1, 1, -1, 0.5, background_id);
+		Sprite spiral(-0.15f, -0.6f, 0.15f, -0.9f, 0.4f, spiral_id);
 
 
 
 		// Put quads into the appropriate container.
-		BasicRenderer::SpriteAndTextureList sprites_and_textures;
-		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(&spiral, spiral_id));
-		sprites_and_textures.insert(sprites_and_textures.begin(), std::make_pair(&background, background_id));
+		Sprite::SpriteList sprites;
+		sprites.insert(sprites.begin(), &spiral);
+		sprites.insert(sprites.begin(), &background);
 
 
 
@@ -85,7 +85,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 			if(window.IsActive() == true)
 			{
 				// Draw quad.
-				renderer.RenderSprites(sprites_and_textures);
+				renderer.RenderSprites(sprites);
 
 				// Get input.
 				DirectInputInputDevice::EventQueue queue = input.PollInput();
