@@ -89,7 +89,7 @@ namespace view
 
 	// Passes the arguments on to D3DRendererBase and then does some initialization.
 	BasicRenderer::BasicRenderer(HWND window_handle, const D3DDisplayProfile& profile)
-	: D3DRendererBase(window_handle, profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(0),
+	: D3DRendererBase(window_handle, profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(2),
 	  buffer_length(1000), vertex_buffer(NULL), index_buffer(NULL)
 	{
 		// Create the vertex and index buffers.
@@ -224,15 +224,6 @@ namespace view
 			return;
 		}
 
-		// If there are no sprites to render, simply clear the viewport, present the scene and return.
-		if(sprites.size() < 1)
-		{
-			ClearViewport();
-			device->Present(NULL, NULL, NULL, NULL);
-			return;
-		}
-
-
 
 		// Used throughout this function.
 		const utility::Sprite::SpriteList::iterator end = sprites.end();
@@ -241,19 +232,28 @@ namespace view
 		// of the pointers in sprites are not NULL. If a pointer is NULL, throw a
 		// utility::Exception describing the problem.
 		unsigned int number_of_sprites = 0;
-		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		for(utility::Sprite::SpriteList::iterator e = sprites.begin(); e != end; ++e)
 		{
 			// Make sure this pointer is not NULL.
-			if((*i) == NULL)
+			if((*e) == NULL)
 			{
-				throw utility::Exception("avl::view::BasicRenderer::RenderSprites() -- The supplied SpriteList contains one or more NULL pointers.");
+				throw utility::Exception("avl::view::BasicRenderer::RenderSprites() -- The supplied utility::Sprite::SpriteList contains one or more NULL pointers.");
 			}
 			// Is this sprite visible?
-			else if((*i)->IsVisible() == true)
+			else if((*e)->IsVisible() != false)
 			{
 				// Count this sprite.
 				++number_of_sprites;
 			}
+		}
+
+
+		// If there are no sprites to render, simply clear the viewport, present the scene, and return.
+		if(number_of_sprites < 1)
+		{
+			ClearViewport();
+			device->Present(NULL, NULL, NULL, NULL);
+			return;
 		}
 
 
@@ -298,7 +298,7 @@ namespace view
 		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
 		{
 			// Only process visible sprites.
-			if((*i)->IsVisible() == true)
+			if((*i)->IsVisible() != false)
 			{
 				// 1)
 				// Store the index data for the current sprite.

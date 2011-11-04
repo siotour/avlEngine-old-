@@ -14,7 +14,7 @@
 
 void TestD3DRendererBaseComponent(HINSTANCE instance)
 {
-	const std::vector<avl::view::D3DDisplayProfile> profiles = avl::view::EnumerateDisplayProfiles();
+	avl::view::DisplayProfiles profiles = avl::view::EnumerateDisplayProfiles();
 
 	int length = profiles.size();
 

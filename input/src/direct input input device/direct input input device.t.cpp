@@ -37,7 +37,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 	try
 	{	
 		// Create a window and renderer.
-		const std::vector<avl::view::D3DDisplayProfile> profiles = avl::view::EnumerateDisplayProfiles();
+		avl::view::DisplayProfiles profiles = avl::view::EnumerateDisplayProfiles();
 		BasicWindow window(instance, "BasicRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
 		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
 		DirectInputInputDevice input(window.GetWindowHandle());

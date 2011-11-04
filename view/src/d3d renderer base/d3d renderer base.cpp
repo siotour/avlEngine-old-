@@ -13,6 +13,8 @@
 #include<vector>
 #include<algorithm>
 #include<string>
+#include<limits.h>
+#include<cstdlib>
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
 #endif
@@ -27,12 +29,64 @@ namespace avl
 {
 namespace view
 {
+	// Attempts to find the closest fitting display profile matching the parameters.
+	// If fullscreen is true, the resulting display profile will be fullscreen. If unable to find a
+	// display profile that at least matches the user's fullscreen preference, will throw...<TODO>.
+	const D3DDisplayProfile& LeastSquaredDisplayProfile(const bool fullscreen, const int width, const int height)
+	{
+		// Retrieve all possible display profiles.
+		const DisplayProfiles profiles = EnumerateDisplayProfiles();
+		
+		// Search through all of the display profiles.
+		// Temp variables.
+		unsigned int width_difference;
+		unsigned int height_difference;
+		unsigned int difference_factor;
+		// Difference factor of the best matching profile.
+		unsigned int lowest_difference_factor = UINT_MAX;
+		// End of the profiles.
+		DisplayProfiles::const_iterator end = profiles.end();
+		// Points to the best-matching profile.
+		DisplayProfiles::const_iterator index = end;
+		for(DisplayProfiles::const_iterator i = profiles.begin(); i != end; ++i)
+		{
+			// We only care about display profiles matching the user's fullscreen preference.
+			if(i->IsFullscreen() == fullscreen)
+			{
+				// Find the width difference.
+				width_difference = abs((long)(i->GetWidth() - width));
+				// Find the height difference.
+				height_difference = abs((long)(i->GetHeight() - height));
+				// Find the difference factor for this profile.
+				difference_factor = width_difference * width_difference + height_difference * height_difference;
+				// Is this profile better than the previous best?
+				if(difference_factor < lowest_difference_factor)
+				{
+					// This is the new best profile.
+					index = i;
+					lowest_difference_factor = difference_factor;
+				}
+			}
+		}
+
+		// If index points to the end of display profiles, then no suitable display profile
+		// was found. Throw<TODO>.
+		if(index == end)
+		{
+			throw <todo>;
+		}
+		// Otherwise we found a good profile. Return it.
+		return *index;
+	}
+
+
+
 	// This function attempts to enumerate the default display adapter, using the HAL device, for all
 	// legal display profiles with multisampling disabled. Each display profile contains a width, height,
 	// backbuffer format, depth/stencil buffer format, and is either windowed or fullscreen. See the file
 	// direct3d display profile.h for details. The legal display profiles are returned in an std::set.
 	// Throws: 
-	const std::vector<D3DDisplayProfile> EnumerateDisplayProfiles()
+	DisplayProfiles EnumerateDisplayProfiles()
 	{
 		// The first step is to create the IDirect3D8 object.
 		IDirect3D9* d3d = Direct3DCreate9(D3D_SDK_VERSION);
@@ -46,7 +100,7 @@ namespace view
 
 
 		// Valid display profiles will be stored here.
-		std::vector<D3DDisplayProfile> profiles;
+		std::vector<const D3DDisplayProfile> profiles;
 
 
 		// Check to make sure that the HAL device on the default adapter has the required capabilities.
@@ -132,7 +186,7 @@ namespace view
 									if(SUCCEEDED(result))
 									{
 										// Only add the element if there isn't an equivalent one already.
-										D3DDisplayProfile element(is_fullscreen, width, height, display, backbuffer);
+										const D3DDisplayProfile element(is_fullscreen, width, height, display, backbuffer);
 										if(std::find(profiles.begin(), profiles.end(), element) == profiles.end())
 										{
 											profiles.insert(profiles.begin(), element);

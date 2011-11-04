@@ -1,7 +1,7 @@
 #ifndef __AVL_VIEW_D3D_RENDERER_BASE__
 #define __AVL_VIEW_D3D_RENDERER_BASE__
 /**********
- * Author: Sheldon Bachstein
+ * @author Sheldon Bachstein
  * Date: Dec 25, 2010
  * Description: Provides a partially implemented interface for a basic Direct3D renderer.
  * Implements the initialization of a Direct3D device and is meant to be used as a skeleton
@@ -13,7 +13,7 @@
  * wrapper functions over Direct3D, such as for creating vertex buffers.
  **********/
 
-  #include"..\..\..\utility\src\exception\exception.h"
+#include"..\..\..\utility\src\exception\exception.h"
 // For window handles.
 #include<Windows.h>
 #ifdef _DEBUG
@@ -34,7 +34,15 @@ namespace view
 	// Forward declaration.
 	class D3DDisplayProfile;
 
+	// Stores D3DDisplayProfiles.
+	typedef const std::vector<const D3DDisplayProfile> DisplayProfiles;
 
+
+
+	// Attempts to find the closest fitting display profile matching the parameters.
+	// If fullscreen is true, the resulting display profile will be fullscreen. If unable to find a
+	// display profile that at least matches the user's fullscreen preference, will throw...<TODO>.
+	const D3DDisplayProfile& LeastSquaredDisplayProfile(const bool fullscreen, const int width, const int height);
 
 
 	// This function attempts to enumerate the default display adapter, using the HAL device, for all
@@ -42,7 +50,7 @@ namespace view
 	// display format, backbuffer format and is either windowed or fullscreen. See the
 	// d3d display profile component for details. The legal display profiles are returned in an std::vector.
 	// Throws: 
-	const std::vector<D3DDisplayProfile> EnumerateDisplayProfiles();
+	DisplayProfiles EnumerateDisplayProfiles();
 
 
 	// Checks to make sure that the HAL Direct3D device on the default adaptersupports all of the
@@ -51,7 +59,9 @@ namespace view
 
 
 
-	// See the beginning of the file for details.
+	/** A test class.
+	more blah blah.
+	*/
 	class D3DRendererBase
 	{
 	public:

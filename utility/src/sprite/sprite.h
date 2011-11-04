@@ -24,7 +24,7 @@ namespace utility
 		// Defines a type used to represent a handle to a texture used to cover this sprite.
 		typedef unsigned int TextureHandle;
 		// Defines a type for storing multiple Sprites in a light, sortable container.
-		typedef std::list<const Sprite* const> SpriteList;
+		typedef std::list<Sprite* const> SpriteList;
 
 
 		// Constructors:

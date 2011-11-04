@@ -22,6 +22,8 @@ void TestBasicRendererComponent(HINSTANCE instance)
 {
 	using avl::view::BasicWindow;
 	using avl::view::BasicRenderer;
+	using avl::view::D3DDisplayProfile;
+	using avl::view::LeastSquaredDisplayProfile;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
 	using avl::utility::Image;
@@ -29,9 +31,9 @@ void TestBasicRendererComponent(HINSTANCE instance)
 	try
 	{	
 		// Create a window and renderer.
-		const std::vector<avl::view::D3DDisplayProfile> profiles = avl::view::EnumerateDisplayProfiles();
-		BasicWindow window(instance, "BasicRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
-		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
+		const D3DDisplayProfile profile = LeastSquaredDisplayProfile(false, 500, 500);
+		BasicWindow window(instance, "BasicRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
+		BasicRenderer renderer(window.GetWindowHandle(), profile);
 
 
 

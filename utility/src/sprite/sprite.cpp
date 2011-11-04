@@ -91,7 +91,7 @@ namespace utility
 
 
 	// Returns the visibility of the sprite.
-		const bool Sprite::IsVisible() const
+	const bool Sprite::IsVisible() const
 	{
 		return is_visible;
 	}

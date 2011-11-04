@@ -38,7 +38,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 	try
 	{	
 		// Create a window and renderer.
-		const std::vector<avl::view::D3DDisplayProfile> profiles = avl::view::EnumerateDisplayProfiles();
+		avl::view::DisplayProfiles profiles = avl::view::EnumerateDisplayProfiles();
 		BasicWindow window(instance, "BasicRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
 		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
 		DirectInputInputDevice input(window.GetWindowHandle());
@@ -64,10 +64,10 @@ void TestTextBoxComponent(HINSTANCE instance)
 
 		// Create a few sprites.
 		Sprite background(-1.0f, 1.0f, 1.0f, -1.0f, 0.5f, background_handle);
-		TextBox text(-0.8f, 0.8f, 0.8f, 0.4f, 0.1f, 16, 1, TextBox::AUTO_ADJUST_SIZE, font_handle, 256);
+		TextBox text(-0.6f, 0.8f, 0.0f, 0.4f, 0.1f, 16, 6, TextBox::OVERWRITE_ROWS, font_handle, 256);
 
 
-		text.SetText("\"A Wizard's greatest fear is losing his mind.\"\n\t-A Great Philosopher, 1877 BC.");
+		text.SetText("0123456789\nABCDEF\nGHIJKL\nMNOPQR\nSTUVWX\nYZ");
 
 		
 

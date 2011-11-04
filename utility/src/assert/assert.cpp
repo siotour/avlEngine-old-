@@ -16,8 +16,8 @@ namespace utility
 
 
 
-	AssertionFailure::AssertionFailure(const std::string& _file, const int& _line)
-		: Exception("avl::utility::AssertionFailure -- An assertion has failed."), file(_file), line(_line)
+	AssertionFailure::AssertionFailure(const std::string& file, const int& line)
+		: Exception("avl::utility::AssertionFailure -- An assertion has failed."), file(file), line(line)
 	{
 	}
 
@@ -52,8 +52,8 @@ namespace utility
 
 
 
-	VerificationFailure::VerificationFailure(const std::string& _file, const int& _line)
-		: Exception("avl::utility::VerificationFailure -- A verification has failed."), file(_file), line(_line)
+	VerificationFailure::VerificationFailure(const std::string& file, const int& line)
+		: Exception("avl::utility::VerificationFailure -- A verification has failed."), file(file), line(line)
 	{
 	}
 
