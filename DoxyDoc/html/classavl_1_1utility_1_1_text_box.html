@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -114,62 +115,104 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">Row</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single row of text within the text box.  <a href="classavl_1_1utility_1_1_text_box_1_1_row.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f">OverwriteBehavior</a> { <a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3fa75f0e90f8d213f0f687a6368509288d1">NO_OVERWRITE</a>, 
-<a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3fadb7d149a1671590fa14c90132f9189e5">OVERWRITE_CHARS</a>, 
 <a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3fa2f01802211627861af36755c785b8462">OVERWRITE_ROWS</a>, 
 <a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3fac8e782f1ebaaad9a6ab8178f0951ddc8">AUTO_ADJUST_SIZE</a>
  }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Behavior flags for how the text box should react to overstepping the maximum number of displayable characters in the box.  <a href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a9e50f5ae7fad7373eddb9f4aced9c037">TextBox</a> (const float &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#aeed9a01ef21bc2891027c5be832c0fc1">left</a>, const float &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#a6c2158f7953a0553614aad532ae967a6">top</a>, const float &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#a199dd18a22e433cea4a9325cbcc7e4c0">right</a>, const float &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#a3cfd3e53808dcefe1e327a4ca03787ce">bottom</a>, const float &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#aa108eb0bcde466d5af540b54d4f209d2">z</a>, const unsigned int &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#ad61c267d460eb0b58fea160fcc3fc5ba">chars_per_row</a>, const unsigned int &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#abcbcee59129bef48d79459ca546c9eea">number_of_rows</a>, const <a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f">OverwriteBehavior</a> &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#a12f4b03a0c5d536630a0733a1f1065ad">behavior</a>, const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a> &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#a939446c2b902861ffdb2f7e3a2d4ef72">texture_handle</a>, const unsigned int &amp;<a class="el" href="classavl_1_1utility_1_1_text_box.html#ab9ea9714aa0d17238a80a9e453d7663b">chars_per_texture_row</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-spec constructor.  <a href="#a9e50f5ae7fad7373eddb9f4aced9c037"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#abc108b219148163c7f87b83350430636">~TextBox</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#abc108b219148163c7f87b83350430636"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a2a85f733f02e01453ac9ee8b64c89002">IsVisible</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the text box's visibility.  <a href="#a2a85f733f02e01453ac9ee8b64c89002"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a4be89196fd17b9cd02f612ed004e0247">GetText</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the text box's current text, unmodified due to the overwrite behavior.  <a href="#a4be89196fd17b9cd02f612ed004e0247"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a69d8b7dc69cb7a1f56626181e8a2b5d6">GetCharsPerRow</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum number of characters displayed per row.  <a href="#a69d8b7dc69cb7a1f56626181e8a2b5d6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a47afa24bdde111051e3fb767a99406e4">GetRows</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum number of rows display.  <a href="#a47afa24bdde111051e3fb767a99406e4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#aff5cd95bb2496f990f80e605d298f909">GetLeft</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the box's left boundary.  <a href="#aff5cd95bb2496f990f80e605d298f909"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ada01342fee1b36be327895c6a17364a0">GetTop</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the box's left boundary.  <a href="#ada01342fee1b36be327895c6a17364a0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ac0f49c4585ed108756a664d05dea3dd9">GetRight</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the box's upper boundary.  <a href="#ac0f49c4585ed108756a664d05dea3dd9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a8e0d0ce31b644b3f7a537afc96975eff">GetBottom</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the box's right boundary.  <a href="#a8e0d0ce31b644b3f7a537afc96975eff"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a2d3c6145c51589a36de1991dfe57bd56">GetZ</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the box's z depth.  <a href="#a2d3c6145c51589a36de1991dfe57bd56"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a1dbf0e1a756f24599b2fd78e74b8ca72">GetTextureHandle</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the box's texture handle.  <a href="#a1dbf0e1a756f24599b2fd78e74b8ca72"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2337af287655edb35aedb0e46aba7cab">utility::Sprite::SpriteList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a5b83111e1ac1399f5f9472e239266e0e">GetSprites</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ac69a639fb222b8b4c7b818e260319344">SetVisiblity</a> (const bool new_visbility)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all sprites composing this box.  <a href="#a5b83111e1ac1399f5f9472e239266e0e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ad1b524079478ffba4579153eeca78f13">SetVisiblity</a> (const bool new_visibility)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the box's visiblity.  <a href="#ad1b524079478ffba4579153eeca78f13"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#af6a4305831cff74059a8228a8b0921f2">SetText</a> (const std::string &amp;new_text)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the box's text.  <a href="#af6a4305831cff74059a8228a8b0921f2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ac515bb9302ce665018d78b222a3ddaed">AddText</a> (const std::string &amp;new_text)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends text to the end of the box.  <a href="#ac515bb9302ce665018d78b222a3ddaed"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#adb02ef5bf7b303b578889a1a15828ac8">ClearText</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the box of any text.  <a href="#adb02ef5bf7b303b578889a1a15828ac8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a61b9a0c4d4ae929df9d41698c08d214d">SetDimensions</a> (const unsigned int &amp;new_chars_per_row, const unsigned int &amp;new_rows)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the dimensions of the box.  <a href="#a61b9a0c4d4ae929df9d41698c08d214d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#aa1291cdfd01e04161e265d2d3ace2bdc">SetOverwriteBehavior</a> (const <a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f">OverwriteBehavior</a> &amp;new_behavior)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the way that this text box behaves when the user attempts to display more characters than will fit within the text box's dimensions.  <a href="#aa1291cdfd01e04161e265d2d3ace2bdc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a2464abda931bc79c4af6a18de8e79348">SetPosition</a> (const float &amp;new_left, const float &amp;new_top, const float &amp;new_right, const float &amp;new_bottom, const float &amp;new_z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the position and/or size of the box.  <a href="#a2464abda931bc79c4af6a18de8e79348"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#af7966c80563608935c1cebc81ab5c860">SetTextureHandle</a> (const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a> &amp;new_texture_handle)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a67c73c2f7f4dc0d48b0900a0208f978e">IncreaseDimensions</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the dimensions of the textbox by either one row or one column, whichever more closely maintains the original proportions of the box.  <a href="#a67c73c2f7f4dc0d48b0900a0208f978e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ad36dd13b28941b9653ef7d7661df0cbd">DecreaseDimensions</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases the dimensions of the textbox by either one row or one column, whichever more closely maintains the original proportions of the box.  <a href="#ad36dd13b28941b9653ef7d7661df0cbd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::deque&lt; const std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a5b1ce0105598b99b1456b89bbfcdd652">GenerateRowSubstrings</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the substrings which will be displayed on each row of the text box.  <a href="#a5b1ce0105598b99b1456b89bbfcdd652"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a1ea8364159a2c2e436c1a869ca3be411">TextBox</a> (const <a class="el" href="classavl_1_1utility_1_1_text_box.html">TextBox</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a1ea8364159a2c2e436c1a869ca3be411"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_text_box.html">TextBox</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#af3d824a43bcadb46a37d9001a156213e">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_text_box.html">TextBox</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#af3d824a43bcadb46a37d9001a156213e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a5e156ebb1c35884903cac4e5a4176604">visibility</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The visibility of the text box.  <a href="#a5e156ebb1c35884903cac4e5a4176604"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a8d4778c7a311fb619df7cfff5f39c975">text</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The current text for the text box.  <a href="#a8d4778c7a311fb619df7cfff5f39c975"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ad61c267d460eb0b58fea160fcc3fc5ba">chars_per_row</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of characters per row.  <a href="#ad61c267d460eb0b58fea160fcc3fc5ba"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#abcbcee59129bef48d79459ca546c9eea">number_of_rows</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of rows.  <a href="#abcbcee59129bef48d79459ca546c9eea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a0f546524be1f9db45e6b847aaf5e814f">width_to_height_proportion</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The original proportion of width to height.  <a href="#a0f546524be1f9db45e6b847aaf5e814f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f">OverwriteBehavior</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a12f4b03a0c5d536630a0733a1f1065ad">behavior</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The text box's overwrite behavior.  <a href="#a12f4b03a0c5d536630a0733a1f1065ad"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#aeed9a01ef21bc2891027c5be832c0fc1">left</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Left boundary.  <a href="#aeed9a01ef21bc2891027c5be832c0fc1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a6c2158f7953a0553614aad532ae967a6">top</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Top boundary.  <a href="#a6c2158f7953a0553614aad532ae967a6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a199dd18a22e433cea4a9325cbcc7e4c0">right</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Right boundary.  <a href="#a199dd18a22e433cea4a9325cbcc7e4c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a3cfd3e53808dcefe1e327a4ca03787ce">bottom</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Bottom boundary.  <a href="#a3cfd3e53808dcefe1e327a4ca03787ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#aa108eb0bcde466d5af540b54d4f209d2">z</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Z-depth.  <a href="#aa108eb0bcde466d5af540b54d4f209d2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#ab9ea9714aa0d17238a80a9e453d7663b">chars_per_texture_row</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of characters per row in the texture.  <a href="#ab9ea9714aa0d17238a80a9e453d7663b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a939446c2b902861ffdb2f7e3a2d4ef72">texture_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The texture handle.  <a href="#a939446c2b902861ffdb2f7e3a2d4ef72"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">Row</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box.html#a6055c869eadacc8f893abf64a4c53969">rows</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The rows composing this textbox.  <a href="#a6055c869eadacc8f893abf64a4c53969"></a><br/></td></tr>
 </table>
-<hr/><h2>Member Enumeration Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Properly comment this class definition.</dd></dl>
+</div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a3bf798649383b9a00b9bdd80d31b3b3f"></a><!-- doxytag: member="avl::utility::TextBox::OverwriteBehavior" ref="a3bf798649383b9a00b9bdd80d31b3b3f" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -180,14 +223,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Behavior flags for how the text box should react to overstepping the maximum number of displayable characters in the box. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>When using any of these behaviors, if the user attempts to display more characters in a textbox than is possible, all of the original characters and the characters attempted to be displayed by the user after the maximum size is reached will be stored and, in the event of the user specifying new dimensions for the text box, it will dynamically change how much of the text it displays to match the new dimensions. In other words: Excess text data will not be discarded. </dd></dl>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="a3bf798649383b9a00b9bdd80d31b3b3fa75f0e90f8d213f0f687a6368509288d1"></a><!-- doxytag: member="NO_OVERWRITE" ref="a3bf798649383b9a00b9bdd80d31b3b3fa75f0e90f8d213f0f687a6368509288d1" args="" -->NO_OVERWRITE</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a3bf798649383b9a00b9bdd80d31b3b3fadb7d149a1671590fa14c90132f9189e5"></a><!-- doxytag: member="OVERWRITE_CHARS" ref="a3bf798649383b9a00b9bdd80d31b3b3fadb7d149a1671590fa14c90132f9189e5" args="" -->OVERWRITE_CHARS</em>&nbsp;</td><td>
+<p>If the user reaches the maximum number of characters, any new characters will be ignored. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3bf798649383b9a00b9bdd80d31b3b3fa2f01802211627861af36755c785b8462"></a><!-- doxytag: member="OVERWRITE_ROWS" ref="a3bf798649383b9a00b9bdd80d31b3b3fa2f01802211627861af36755c785b8462" args="" -->OVERWRITE_ROWS</em>&nbsp;</td><td>
+<p>If the user reaches the maximum number of characters, any additional characters will, if necessary, remove the top row of text and scoot all rows up one position, and then begin a new row at the bottom. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3bf798649383b9a00b9bdd80d31b3b3fac8e782f1ebaaad9a6ab8178f0951ddc8"></a><!-- doxytag: member="AUTO_ADJUST_SIZE" ref="a3bf798649383b9a00b9bdd80d31b3b3fac8e782f1ebaaad9a6ab8178f0951ddc8" args="" -->AUTO_ADJUST_SIZE</em>&nbsp;</td><td>
+<p>If the user reaches the maximum number of characters, any additional characters will force the text box to resize itself to accomodate the new characters. </p>
+<p>Note that, with this behavior, the <em>chars_per_row</em> and <em>rows</em> parameters are ignored in the constructor. </p>
 </td></tr>
 </table>
 </dd>
@@ -269,6 +317,30 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Full-spec constructor. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>texture_handle</em> must be the handle to a font image with the following properties: <ul>
+<li>It contains all 256 extended ASCII characters in sequence. </li>
+<li>Each character has the same pixel dimensions. </li>
+<li>There are <em>chars_per_texture_row</em> characters per row. </li>
+<li>There is no padding around the edges of the image or between characters. </li>
+</ul>
+</dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>The left boundary of the text box. </td></tr>
+    <tr><td class="paramname">top</td><td>The top boundary of the text box. </td></tr>
+    <tr><td class="paramname">right</td><td>The right boundary of the text box. </td></tr>
+    <tr><td class="paramname">bottom</td><td>The bottom boundary of the text box. </td></tr>
+    <tr><td class="paramname">z</td><td>The z-depth of the text box. </td></tr>
+    <tr><td class="paramname">chars_per_row</td><td>The number of characters per row. </td></tr>
+    <tr><td class="paramname">number_of_rows</td><td>The number of rows in the box. </td></tr>
+    <tr><td class="paramname">behavior</td><td>The overwrite behavior of the box. </td></tr>
+    <tr><td class="paramname">texture_handle</td><td>The handle to the font image. </td></tr>
+    <tr><td class="paramname">chars_per_texture_row</td><td>The number of characters per row in the font image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="abc108b219148163c7f87b83350430636"></a><!-- doxytag: member="avl::utility::TextBox::~TextBox" ref="abc108b219148163c7f87b83350430636" args="()" -->
@@ -284,6 +356,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -301,6 +375,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>NOT IMPLEMENTED. </p>
 
 </div>
 </div>
@@ -320,6 +396,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Appends text to the end of the box. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_text</td><td>The text to be appended to the box. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="adb02ef5bf7b303b578889a1a15828ac8"></a><!-- doxytag: member="avl::utility::TextBox::ClearText" ref="adb02ef5bf7b303b578889a1a15828ac8" args="()" -->
@@ -335,6 +419,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Clears the box of any text. </p>
 
 </div>
 </div>
@@ -352,6 +438,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Decreases the dimensions of the textbox by either one row or one column, whichever more closely maintains the original proportions of the box. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>The text box will be decreased by either 1 row or 1 character per row, whichever more accurately maintains the original proportions of the box. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a5b1ce0105598b99b1456b89bbfcdd652"></a><!-- doxytag: member="avl::utility::TextBox::GenerateRowSubstrings" ref="a5b1ce0105598b99b1456b89bbfcdd652" args="() const " -->
@@ -367,6 +456,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Generates the substrings which will be displayed on each row of the text box. </p>
+<p>These substrings are based on how many characters may fit in a row and on any newline characters in the text. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The substrings for each row, with the upper row at the front and the lower row at the back. </dd></dl>
 
 </div>
 </div>
@@ -384,6 +477,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets the box's right boundary. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The right boundary of the box. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a69d8b7dc69cb7a1f56626181e8a2b5d6"></a><!-- doxytag: member="avl::utility::TextBox::GetCharsPerRow" ref="a69d8b7dc69cb7a1f56626181e8a2b5d6" args="() const " -->
@@ -399,6 +495,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the maximum number of characters displayed per row. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The maximum number of characters displayed per row. </dd></dl>
 
 </div>
 </div>
@@ -416,6 +515,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets the box's left boundary. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The left boundary of the box. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ac0f49c4585ed108756a664d05dea3dd9"></a><!-- doxytag: member="avl::utility::TextBox::GetRight" ref="ac0f49c4585ed108756a664d05dea3dd9" args="() const " -->
@@ -431,6 +533,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets the box's upper boundary. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The upper boundary of the box. </dd></dl>
 
 </div>
 </div>
@@ -448,6 +553,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the maximum number of rows display. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The maximum number of rows displayed. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a5b83111e1ac1399f5f9472e239266e0e"></a><!-- doxytag: member="avl::utility::TextBox::GetSprites" ref="a5b83111e1ac1399f5f9472e239266e0e" args="() const " -->
@@ -463,6 +571,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns a list of all sprites composing this box. </p>
+<p>Used for rendering purposes. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A list of the sprites necessary to render this box. </dd></dl>
 
 </div>
 </div>
@@ -480,6 +592,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the text box's current text, unmodified due to the overwrite behavior. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The box's current text. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a1dbf0e1a756f24599b2fd78e74b8ca72"></a><!-- doxytag: member="avl::utility::TextBox::GetTextureHandle" ref="a1dbf0e1a756f24599b2fd78e74b8ca72" args="() const " -->
@@ -495,6 +610,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets the box's texture handle. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The current texture handle. </dd></dl>
 
 </div>
 </div>
@@ -512,6 +630,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets the box's left boundary. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The left boundary of the box. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a2d3c6145c51589a36de1991dfe57bd56"></a><!-- doxytag: member="avl::utility::TextBox::GetZ" ref="a2d3c6145c51589a36de1991dfe57bd56" args="() const " -->
@@ -527,6 +648,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets the box's z depth. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The z depth of the box. </dd></dl>
 
 </div>
 </div>
@@ -544,6 +668,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Increases the dimensions of the textbox by either one row or one column, whichever more closely maintains the original proportions of the box. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>The text box will be increased by either 1 row or 1 character per row, whichever more accurately maintains the original proportions of the box. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a2a85f733f02e01453ac9ee8b64c89002"></a><!-- doxytag: member="avl::utility::TextBox::IsVisible" ref="a2a85f733f02e01453ac9ee8b64c89002" args="() const " -->
@@ -559,6 +686,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the text box's visibility. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the box is visible, and false if not. </dd></dl>
 
 </div>
 </div>
@@ -576,6 +706,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>NOT IMPLEMENTED. </p>
 
 </div>
 </div>
@@ -604,6 +736,17 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Changes the dimensions of the box. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>The dimensions of the text box will be changed to display the new specifications. However, the overwrite behavior of this text box will still be in effect. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_chars_per_row</td><td>The new number of characters to be displayed per row. </td></tr>
+    <tr><td class="paramname">new_rows</td><td>The new number of rows to be displayed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f" title="Behavior flags for how the text box should react to overstepping the maximum number of displayable ch...">OverwriteBehavior</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aa1291cdfd01e04161e265d2d3ace2bdc"></a><!-- doxytag: member="avl::utility::TextBox::SetOverwriteBehavior" ref="aa1291cdfd01e04161e265d2d3ace2bdc" args="(const OverwriteBehavior &amp;new_behavior)" -->
@@ -620,6 +763,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Changes the way that this text box behaves when the user attempts to display more characters than will fit within the text box's dimensions. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_behavior</td><td>The new overwrite behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f" title="Behavior flags for how the text box should react to overstepping the maximum number of displayable ch...">OverwriteBehavior</a> </dd></dl>
 
 </div>
 </div>
@@ -666,6 +818,18 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Changes the position and/or size of the box. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_left</td><td>The new left boundary. </td></tr>
+    <tr><td class="paramname">new_top</td><td>The new upper boundary. </td></tr>
+    <tr><td class="paramname">new_right</td><td>The new right boundary. </td></tr>
+    <tr><td class="paramname">new_bottom</td><td>The new lower boundary. </td></tr>
+    <tr><td class="paramname">new_z</td><td>The new z-depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="af6a4305831cff74059a8228a8b0921f2"></a><!-- doxytag: member="avl::utility::TextBox::SetText" ref="af6a4305831cff74059a8228a8b0921f2" args="(const std::string &amp;new_text)" -->
@@ -682,6 +846,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets the box's text. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Are the overwrite behaviors properly implemented? See this method's definition for details. </dd></dl>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd><em>new_text</em> will be displayed in the text box according to the box's current overwrite behavior. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_text</td><td>The new text to be displayed in the box. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_text_box.html#a3bf798649383b9a00b9bdd80d31b3b3f" title="Behavior flags for how the text box should react to overstepping the maximum number of displayable ch...">OverwriteBehavior</a> </dd></dl>
 
 </div>
 </div>
@@ -702,7 +877,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac69a639fb222b8b4c7b818e260319344"></a><!-- doxytag: member="avl::utility::TextBox::SetVisiblity" ref="ac69a639fb222b8b4c7b818e260319344" args="(const bool new_visbility)" -->
+<a class="anchor" id="ad1b524079478ffba4579153eeca78f13"></a><!-- doxytag: member="avl::utility::TextBox::SetVisiblity" ref="ad1b524079478ffba4579153eeca78f13" args="(const bool new_visibility)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -710,12 +885,20 @@ Private Attributes</h2></td></tr>
           <td class="memname">void avl::utility::TextBox::SetVisiblity </td>
           <td>(</td>
           <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>new_visbility</em></td><td>)</td>
+          <td class="paramname"><em>new_visibility</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets the box's visiblity. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_visibility</td><td>The new visibility of the box. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -731,6 +914,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The text box's overwrite behavior. </p>
+
 </div>
 </div>
 <a class="anchor" id="a3cfd3e53808dcefe1e327a4ca03787ce"></a><!-- doxytag: member="avl::utility::TextBox::bottom" ref="a3cfd3e53808dcefe1e327a4ca03787ce" args="" -->
@@ -743,6 +928,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Bottom boundary. </p>
 
 </div>
 </div>
@@ -757,6 +944,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Number of characters per row. </p>
+
 </div>
 </div>
 <a class="anchor" id="ab9ea9714aa0d17238a80a9e453d7663b"></a><!-- doxytag: member="avl::utility::TextBox::chars_per_texture_row" ref="ab9ea9714aa0d17238a80a9e453d7663b" args="" -->
@@ -769,6 +958,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Number of characters per row in the texture. </p>
 
 </div>
 </div>
@@ -783,6 +974,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Left boundary. </p>
+
 </div>
 </div>
 <a class="anchor" id="abcbcee59129bef48d79459ca546c9eea"></a><!-- doxytag: member="avl::utility::TextBox::number_of_rows" ref="abcbcee59129bef48d79459ca546c9eea" args="" -->
@@ -795,6 +988,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Number of rows. </p>
 
 </div>
 </div>
@@ -809,6 +1004,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Right boundary. </p>
+
 </div>
 </div>
 <a class="anchor" id="a6055c869eadacc8f893abf64a4c53969"></a><!-- doxytag: member="avl::utility::TextBox::rows" ref="a6055c869eadacc8f893abf64a4c53969" args="" -->
@@ -821,6 +1018,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The rows composing this textbox. </p>
 
 </div>
 </div>
@@ -835,6 +1034,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The current text for the text box. </p>
+
 </div>
 </div>
 <a class="anchor" id="a939446c2b902861ffdb2f7e3a2d4ef72"></a><!-- doxytag: member="avl::utility::TextBox::texture_handle" ref="a939446c2b902861ffdb2f7e3a2d4ef72" args="" -->
@@ -847,6 +1048,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The texture handle. </p>
 
 </div>
 </div>
@@ -861,6 +1064,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Top boundary. </p>
+
 </div>
 </div>
 <a class="anchor" id="a5e156ebb1c35884903cac4e5a4176604"></a><!-- doxytag: member="avl::utility::TextBox::visibility" ref="a5e156ebb1c35884903cac4e5a4176604" args="" -->
@@ -873,6 +1078,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The visibility of the text box. </p>
 
 </div>
 </div>
@@ -887,6 +1094,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The original proportion of width to height. </p>
+
 </div>
 </div>
 <a class="anchor" id="aa108eb0bcde466d5af540b54d4f209d2"></a><!-- doxytag: member="avl::utility::TextBox::z" ref="aa108eb0bcde466d5af540b54d4f209d2" args="" -->
@@ -899,6 +1108,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Z-depth. </p>
 
 </div>
 </div>
@@ -924,7 +1135,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

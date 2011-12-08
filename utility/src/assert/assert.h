@@ -1,12 +1,12 @@
 #ifndef __AVL_UTILITY_ASSERT__
 #define __AVL_UTILITY_ASSERT__
 /**
-\file
+@file
 Conditionally-compiling ASSERT and VERIFY macros. In debug mode, these macros will throw an
-AssertionFailure/VerificationFailure if the condition evaluates to false, but will do
+avl::utility::AssertionFailure / avl::utility::VerificationFailure if the condition evaluates to false, but will do
 nothing in non-debug mode.
-\author Sheldon Bachstein
-\date January 13, 2010
+@author Sheldon Bachstein
+@date January 13, 2010
 */
 
 #include<string>
@@ -23,27 +23,31 @@ namespace utility
 
 #ifdef _DEBUG
 	/**
-	If \a x evaluates to false and _DEBUG is defined, throws an AssertionFailure with the current file name and the current line.
+	If \a x evaluates to false and _DEBUG is defined, throws an avl::utility::AssertionFailure with the current file name and the current line.
 	If _DEBUG is not defined, \a x will be discarded and not evaluated.
+	@hideinitializer
 	*/
 	#define ASSERT(x) if(!(x)) throw(avl::utility::AssertionFailure(__FILE__, __LINE__))
 
 	/**
-	If \a x evaluates to false and _DEBUG is defined, throws a VerificationFailure with the current file name and the current line.
-	If _DEBUG is not defined, /a x will still be evaluated to maintain consistency between compile modes.
+	If \a x evaluates to false and _DEBUG is defined, throws a avl::utility::VerificationFailure with the current file name and the current line.
+	If _DEBUG is not defined, \a x will still be evaluated to maintain consistency between compile modes.
+	@hideinitializer
 	*/
 	#define VERIFY(x) if(!(x)) throw(avl::utility::VerificationFailure(__FILE__, __LINE__))
 
 #else
 	/**
-	If \a x evaluates to false and _DEBUG is defined, throws an AssertionFailure with the current file name and the current line.
+	If \a x evaluates to false and _DEBUG is defined, throws an avl::utility::AssertionFailure with the current file name and the current line.
 	If _DEBUG is not defined, \a x will be discarded and not evaluated.
+	@hideinitializer
 	*/
 	#define ASSERT(x)
 
 	/**
-	If \a x evaluates to false and _DEBUG is defined, throws a VerificationFailure with the current file name and the current line.
-	If _DEBUG is not defined, /a x will still be evaluated to maintain consistency between compile modes.
+	If \a x evaluates to false and _DEBUG is defined, throws a avl::utility::VerificationFailure with the current file name and the current line.
+	If _DEBUG is not defined, \a x will still be evaluated to maintain consistency between compile modes.
+	@hideinitializer
 	*/
 	#define VERIFY(x) x
 #endif
@@ -60,7 +64,7 @@ namespace utility
 {
 	/**
 	Represents the occurrence of a failed assertion. Thrown when an assertion fails, and accepts the file-name and
-	line-number of the failed assertion. Generally used by the ASSERT macro defined above. /sa ASSERT
+	line-number of the failed assertion. Generally used by the \ref ASSERT macro.
 	*/
 	class AssertionFailure: public avl::utility::Exception
 	{
@@ -103,7 +107,7 @@ namespace utility
 
 	/**
 	Represents the occurrence of a failed verification. Thrown when a verification fails, and accepts the file-name and
-	line-number of the failed verification. Generally used by the VERIFY macro. /sa VERIFY
+	line-number of the failed verification. Generally used by the \ref VERIFY macro.
 	*/
 	class VerificationFailure: public avl::utility::Exception
 	{

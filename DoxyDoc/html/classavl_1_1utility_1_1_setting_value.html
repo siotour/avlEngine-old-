@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -106,6 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::SettingValue" -->
+<p>Contains information regarding a variable's value, and is intended to be mapped to a variable name.  
+ <a href="classavl_1_1utility_1_1_setting_value.html#details">More...</a></p>
+
 <p><code>#include &lt;settings file.h&gt;</code></p>
 
 <p><a href="classavl_1_1utility_1_1_setting_value-members.html">List of all members.</a></p>
@@ -115,24 +119,38 @@ Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448">ValueType</a> { <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448afe5ab2ac695722feb45ec5efc0907cae">INTEGER_VALUE</a>, 
 <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448af6b1397de7199a8cac338c8988c4fd4f">STRING_VALUE</a>
  }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes what type of value is being stored.  <a href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a8b197945ba441cebe7e3a2f98ea16264">SettingValue</a> (const int *const <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for integer values.  <a href="#a8b197945ba441cebe7e3a2f98ea16264"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a187a333493ba3b6c1f61dcf75d61d428">SettingValue</a> (const std::string *const <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for string values.  <a href="#a187a333493ba3b6c1f61dcf75d61d428"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a635e5b74838db36b6a4e363d98b6a3fb">~SettingValue</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>.  <a href="#a635e5b74838db36b6a4e363d98b6a3fb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448">avl::utility::SettingValue::ValueType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a08f7b494f714ed6630fcb69780565501">GetValueType</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a09c208515c76639d1ac78b6fe404ab56">value_type</a>.  <a href="#a08f7b494f714ed6630fcb69780565501"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const void *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a5600c17039899bde50b1aa1315eeeea4">GetValue</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>.  <a href="#a5600c17039899bde50b1aa1315eeeea4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a4abfc1e0466ec87655865e734f3d827e">SettingValue</a> (const <a class="el" href="classavl_1_1utility_1_1_setting_value.html">SettingValue</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a4abfc1e0466ec87655865e734f3d827e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_setting_value.html">SettingValue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#ac5dc19f10d5fcc838f8a56912b9328e3">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_setting_value.html">SettingValue</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#ac5dc19f10d5fcc838f8a56912b9328e3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448">avl::utility::SettingValue::ValueType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a09c208515c76639d1ac78b6fe404ab56">value_type</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of value.  <a href="#a09c208515c76639d1ac78b6fe404ab56"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A void pointer to the value.  <a href="#a7f5dfba52daf11518f2593da9f8e95c0"></a><br/></td></tr>
 </table>
-<hr/><h2>Member Enumeration Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Contains information regarding a variable's value, and is intended to be mapped to a variable name. </p>
+<p>It contains the type of value and the actual value. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Should be made into a union and nested within the <a class="el" href="classavl_1_1utility_1_1_settings_file.html" title="Loads formatted settings data from a text file.">avl::utility::SettingsFile</a> class. </dd></dl>
+</div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a3311b5bdd6c1b3a84a6c61f19d045448"></a><!-- doxytag: member="avl::utility::SettingValue::ValueType" ref="a3311b5bdd6c1b3a84a6c61f19d045448" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -143,6 +161,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Describes what type of value is being stored. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="a3311b5bdd6c1b3a84a6c61f19d045448afe5ab2ac695722feb45ec5efc0907cae"></a><!-- doxytag: member="INTEGER_VALUE" ref="a3311b5bdd6c1b3a84a6c61f19d045448afe5ab2ac695722feb45ec5efc0907cae" args="" -->INTEGER_VALUE</em>&nbsp;</td><td>
 </td></tr>
@@ -170,6 +190,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Constructor for integer values. </p>
+<p>Note that <em>value</em> will be deleted when this object is destroyed. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a09c208515c76639d1ac78b6fe404ab56">value_type</a> will be set to <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448afe5ab2ac695722feb45ec5efc0907cae">INTEGER_VALUE</a>. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value represented by this object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a187a333493ba3b6c1f61dcf75d61d428"></a><!-- doxytag: member="avl::utility::SettingValue::SettingValue" ref="a187a333493ba3b6c1f61dcf75d61d428" args="(const std::string *const value)" -->
@@ -187,6 +217,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Constructor for string values. </p>
+<p>Note that value will be deleted when this object is destroyed. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a09c208515c76639d1ac78b6fe404ab56">value_type</a> will be set to <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a3311b5bdd6c1b3a84a6c61f19d045448af6b1397de7199a8cac338c8988c4fd4f">STRING_VALUE</a>. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value represented by this object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a635e5b74838db36b6a4e363d98b6a3fb"></a><!-- doxytag: member="avl::utility::SettingValue::~SettingValue" ref="a635e5b74838db36b6a4e363d98b6a3fb" args="()" -->
@@ -202,6 +242,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Deletes <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>. </p>
 
 </div>
 </div>
@@ -220,6 +262,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -237,6 +281,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_setting_value.html#a7f5dfba52daf11518f2593da9f8e95c0">value</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a08f7b494f714ed6630fcb69780565501"></a><!-- doxytag: member="avl::utility::SettingValue::GetValueType" ref="a08f7b494f714ed6630fcb69780565501" args="() const " -->
@@ -252,6 +299,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a09c208515c76639d1ac78b6fe404ab56">value_type</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The value of <a class="el" href="classavl_1_1utility_1_1_setting_value.html#a09c208515c76639d1ac78b6fe404ab56">value_type</a>. </dd></dl>
 
 </div>
 </div>
@@ -270,6 +320,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -284,6 +336,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>A void pointer to the value. </p>
+
 </div>
 </div>
 <a class="anchor" id="a09c208515c76639d1ac78b6fe404ab56"></a><!-- doxytag: member="avl::utility::SettingValue::value_type" ref="a09c208515c76639d1ac78b6fe404ab56" args="" -->
@@ -296,6 +350,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The type of value. </p>
 
 </div>
 </div>
@@ -321,7 +377,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

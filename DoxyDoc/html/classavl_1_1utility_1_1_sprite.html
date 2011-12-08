@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -106,6 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::Sprite" -->
+<p>Encapsulates a basic textured quadrilateral in 3-D space, oriented to be parallel to the XY plane.  
+ <a href="classavl_1_1utility_1_1_sprite.html#details">More...</a></p>
+
 <p><code>#include &lt;sprite.h&gt;</code></p>
 
 <p><a href="classavl_1_1utility_1_1_sprite-members.html">List of all members.</a></p>
@@ -113,76 +117,142 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">TextureHandle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a handle to a texture which is meant to be rendered to a sprite.  <a href="#ad63b039b423197d036379061a4f83fe3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef std::list&lt; <a class="el" href="classavl_1_1utility_1_1_sprite.html">Sprite</a> *const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2337af287655edb35aedb0e46aba7cab">SpriteList</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for storing multiple Sprites in a light, sortable container.  <a href="#a2337af287655edb35aedb0e46aba7cab"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a4cbaae263c1ed8b835ec0bd1d1de346b">Sprite</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor.  <a href="#a4cbaae263c1ed8b835ec0bd1d1de346b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ac92a53517fc690dc7d6185f01ddebeff">Sprite</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>, const float &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a17224ade1a99f51775f67ee8efb3dd90">z</a>, const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">TextureHandle</a> <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2de22112b88a6bbc605cd440e9e916d6">texture_handle</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-spec constructor.  <a href="#ac92a53517fc690dc7d6185f01ddebeff"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a3b5b982c766eaebb76e5496493acf82b">Sprite</a> (const float &amp;left, const float &amp;top, const float &amp;right, const float &amp;bottom, const float &amp;<a class="el" href="classavl_1_1utility_1_1_sprite.html#a17224ade1a99f51775f67ee8efb3dd90">z</a>, const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">TextureHandle</a> <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2de22112b88a6bbc605cd440e9e916d6">texture_handle</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an axis-aligned bounding box.  <a href="#a3b5b982c766eaebb76e5496493acf82b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a5a177b61af8981355fc5c9f710cae77a">Sprite</a> (const <a class="el" href="classavl_1_1utility_1_1_sprite.html">Sprite</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a5a177b61af8981355fc5c9f710cae77a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab46922afc74f496ed5679790a159d267">~Sprite</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#ab46922afc74f496ed5679790a159d267"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#abef219d5922b8801495027ac74976586">IsVisible</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the visibility of the sprite.  <a href="#abef219d5922b8801495027ac74976586"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">TextureHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#aa529b4ca7f197de35d7ab274967e46d5">GetTextureHandle</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the texture handle for this sprite.  <a href="#aa529b4ca7f197de35d7ab274967e46d5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a8fa7c97ff2ec3fc9dfbdff4c3c7d1a3d">GetUntransformedP1</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a>.  <a href="#a8fa7c97ff2ec3fc9dfbdff4c3c7d1a3d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a48f3d6ccd1d26d237c700b4510050a18">GetUntransformedP2</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a>.  <a href="#a48f3d6ccd1d26d237c700b4510050a18"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a79cd4288359d4c6c4d71ebe0638b6db3">GetUntransformedP3</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a>.  <a href="#a79cd4288359d4c6c4d71ebe0638b6db3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a70fb330c36b3bdfc16f96946bd63e682">GetUntransformedP4</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a>.  <a href="#a70fb330c36b3bdfc16f96946bd63e682"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a1310311728357fc2d57d7517171780dd">GetP1</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>.  <a href="#a1310311728357fc2d57d7517171780dd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a90f17f1b030becf8201b013ec3a0dfea">GetP2</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>.  <a href="#a90f17f1b030becf8201b013ec3a0dfea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a41b8ebe74dc89941d998028673d060d3">GetP3</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>.  <a href="#a41b8ebe74dc89941d998028673d060d3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#aa8a51a5fec22469f81d6a06f418f8db2">GetP4</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>.  <a href="#aa8a51a5fec22469f81d6a06f418f8db2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a783583bf205f6e26865c67b8d5a1c260">GetCenter</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the center of the sprite.  <a href="#a783583bf205f6e26865c67b8d5a1c260"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#af3f078218eaf890e3f6ed38d2bfb35c4">GetRotation</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current rotation of the sprite.  <a href="#af3f078218eaf890e3f6ed38d2bfb35c4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a68fdbd4eb5eb2e78d6a85e63196e26b2">GetScale</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current scale of the sprite.  <a href="#a68fdbd4eb5eb2e78d6a85e63196e26b2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#aec694e1ca2e4820f753a1cd1a36264a3">GetQ1</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>.  <a href="#aec694e1ca2e4820f753a1cd1a36264a3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a9e189146ee866203fbdc1166428b6e1b">GetQ2</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>.  <a href="#a9e189146ee866203fbdc1166428b6e1b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a33b55533285a2a399e03d52ad180e015">GetQ3</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>.  <a href="#a33b55533285a2a399e03d52ad180e015"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a4c3fa42ea5adc80caf44da92481f18ce">GetQ4</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>.  <a href="#a4c3fa42ea5adc80caf44da92481f18ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a73368eac44a3d2849130f22ce6eee156">GetZ</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the z-depth of the sprite.  <a href="#a73368eac44a3d2849130f22ce6eee156"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a9edb383e8bb4a92148c7cae2775460e9">SetVisibility</a> (const bool new_visibility)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sprite's visibility.  <a href="#a9edb383e8bb4a92148c7cae2775460e9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a63df5813dd98faef1f317a925906317f">SetTextureHandle</a> (const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">TextureHandle</a> new_texture_handle)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the texture handle for this sprite.  <a href="#a63df5813dd98faef1f317a925906317f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a1ff5cfa02a14f1d7ef39c536766c33c7">SetCenter</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;new_center)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Translates the sprite such that its center is at the specified vertex.  <a href="#a1ff5cfa02a14f1d7ef39c536766c33c7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a1848e32b06aff998ebd021aef4fd34a7">Move</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;delta)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the spatial coordinates along the vector <em>delta</em>.  <a href="#a1848e32b06aff998ebd021aef4fd34a7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab05ac5b84b46fac7ba59c24852edf054">SetRotation</a> (const float &amp;new_rotation)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rotation to <em>new_rotation</em>.  <a href="#ab05ac5b84b46fac7ba59c24852edf054"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a969eaa16b27a62249e1679b4439463f0">Rotate</a> (const float &amp;delta_theta)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates the quad counter-clockwise by <em>delta_theta</em> degrees.  <a href="#a969eaa16b27a62249e1679b4439463f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a00aad5654e005efae9309a35561c28bf">SetScale</a> (float new_scale)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the scale to <em>new_scale</em>.  <a href="#a00aad5654e005efae9309a35561c28bf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ae63abe57da91dd79f4119153c09a79df">Scale</a> (const float &amp;delta_scale)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the quad by the scaling factor <em>delta_scale</em>.  <a href="#ae63abe57da91dd79f4119153c09a79df"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2c651e084aee18c78ee8b875343cdeb5">ResetPosition</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;new_p1, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;new_p2, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;new_p3, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;new_p4, const float &amp;new_z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad50e4eac9694aad5c2045081e30c9bf3">rotation</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a>, and then sets the Sprite's spatial vertices and z-depth to those specified.  <a href="#a2c651e084aee18c78ee8b875343cdeb5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#af6755f039d29d11d2396fbb225841b73">ResetPosition</a> (const float &amp;left, const float &amp;top, const float &amp;right, const float &amp;bottom, const float &amp;new_z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad50e4eac9694aad5c2045081e30c9bf3">rotation</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a>, and then aligns the Sprite's position to the boundaries and z-depth specified.  <a href="#af6755f039d29d11d2396fbb225841b73"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#afde9173e9ab66733c9c65a49541bd11f">SetQ1</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;q)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets q1.  <a href="#afde9173e9ab66733c9c65a49541bd11f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a278bad6e9be8ff5c96f14d27491eb315">SetQ2</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;q)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets q2.  <a href="#a278bad6e9be8ff5c96f14d27491eb315"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#af9120906289b6792804d03d40c4fef0f">SetQ3</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;q)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets q3.  <a href="#af9120906289b6792804d03d40c4fef0f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad5ccc10f1d8bb97eb8504e77057505b0">SetQ4</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;q)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets q4.  <a href="#ad5ccc10f1d8bb97eb8504e77057505b0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab38810c04af4347ec2a7cc565c702baf">MoveTexture</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;delta)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the texture coordinates along the vector <em>delta</em>.  <a href="#ab38810c04af4347ec2a7cc565c702baf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab215eef6028702f1e0799bd35bff2a01">SetZ</a> (const float &amp;new_z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the z-depth of this sprite.  <a href="#ab215eef6028702f1e0799bd35bff2a01"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_sprite.html">Sprite</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ac345c6e3308ceeb2342fb8816cad498b">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_sprite.html">Sprite</a> &amp;rhs)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="#ac345c6e3308ceeb2342fb8816cad498b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab6fd18609de9a022eb57a77e66a91959">FindCenter</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the center of the sprite.  <a href="#ab6fd18609de9a022eb57a77e66a91959"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad6abfc416b6725cf5e1e5f5567997527">RotateVertice</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;center_point, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;untransformed_point, float theta)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates <em>untransformed_point</em> about the <em>center_point</em> by <em>theta</em> degrees counter-clockwise.  <a href="#ad6abfc416b6725cf5e1e5f5567997527"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a7d76b209db22cee43a00bed4f5805830">ScaleVertice</a> (const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;center_point, const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a> &amp;untransformed_point, const float &amp;scale_factor)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales <em>untransformed_point</em> in relation to <em>center_point</em> by <em>scaling_factor</em>.  <a href="#a7d76b209db22cee43a00bed4f5805830"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a8f812a29ca3388c951d656a3202b40b6">is_visible</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this sprite currently visible or invisible?  <a href="#a8f812a29ca3388c951d656a3202b40b6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">TextureHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2de22112b88a6bbc605cd440e9e916d6">texture_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The handle of the texture for this sprite.  <a href="#a2de22112b88a6bbc605cd440e9e916d6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Untransformed spatial coordinate.  <a href="#a37bf6b461b3461835e52bc75c16c3848"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Untransformed spatial coordinate.  <a href="#a558ada7dc6a80a5029bcfb36a2829866"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Untransformed spatial coordinate.  <a href="#aac39afa177f5e7f3fee7f91b35e5b89a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Untransformed spatial coordinate.  <a href="#a2f559207f169cf5a52d2626b5797ce62"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>.  <a href="#a4a1e717dec06737161376a0db6b56329"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>.  <a href="#a3a5d821c62375169f79630a266b27417"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>.  <a href="#ab85702223b91729e981f8bb94d490e67"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>.  <a href="#ab3877af3662d337940da8a4d23e4b4db"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a9f476c80073a578167bb497859509357">center</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The center of the sprite.  <a href="#a9f476c80073a578167bb497859509357"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad50e4eac9694aad5c2045081e30c9bf3">rotation</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The current rotation in degrees counter-clockwise..  <a href="#ad50e4eac9694aad5c2045081e30c9bf3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The current scale.  <a href="#a95e40bc7cf30b1d4fbd232d1255cf46c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a17224ade1a99f51775f67ee8efb3dd90">z</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The z-depth of the sprite.  <a href="#a17224ade1a99f51775f67ee8efb3dd90"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>.  <a href="#a8c347877f156ab56968d00c50a3b071b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>.  <a href="#a46a0ea2e86558a2e937cc6c55179595f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>.  <a href="#aeecf216ac5cd6a16c81980c0bd8974a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">Vertex2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>.  <a href="#a69f63eb5b48974531c183cf78af35bbb"></a><br/></td></tr>
 </table>
-<hr/><h2>Member Typedef Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Encapsulates a basic textured quadrilateral in 3-D space, oriented to be parallel to the XY plane. </p>
+<p>Includes accessors and mutators for the spatial coordinates as well as the texture coordinates. Additionally, defines a TextureHandle type which is used to represent textures. </p>
+</div><hr/><h2>Member Typedef Documentation</h2>
 <a class="anchor" id="a2337af287655edb35aedb0e46aba7cab"></a><!-- doxytag: member="avl::utility::Sprite::SpriteList" ref="a2337af287655edb35aedb0e46aba7cab" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -193,6 +263,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Used for storing multiple Sprites in a light, sortable container. </p>
+<p>Intended to be used to send a collection of Sprites to a renderer. </p>
 
 </div>
 </div>
@@ -206,6 +279,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Represents a handle to a texture which is meant to be rendered to a sprite. </p>
 
 </div>
 </div>
@@ -223,6 +298,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic constructor. </p>
+<p>Initializes each vertice to the origin with texture coordinates of (0, 0). </p>
 
 </div>
 </div>
@@ -299,6 +377,24 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Full-spec constructor. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>Winding order is clockwise. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>Spatial coordinate. Adjacent to <em>p2</em> and <em>p4</em>; opposite to <em>p3</em>. </td></tr>
+    <tr><td class="paramname">p2</td><td>Spatial coordinate. Adjacent to <em>p1</em> and <em>p3</em>; opposite to <em>p4</em>. </td></tr>
+    <tr><td class="paramname">p3</td><td>Spatial coordinate. Adjacent to <em>p3</em> and <em>p4</em>; opposite to <em>p1</em>. </td></tr>
+    <tr><td class="paramname">p4</td><td>Spatial coordinate. Adjacent to <em>p3</em> and <em>p1</em>; opposite to <em>p2</em>. </td></tr>
+    <tr><td class="paramname">q1</td><td>Texture coordinate. Adjacent to <em>q2</em> and <em>q4</em>; opposite to <em>q3</em>. </td></tr>
+    <tr><td class="paramname">q2</td><td>Texture coordinate. Adjacent to <em>q1</em> and <em>q3</em>; opposite to <em>q4</em>. </td></tr>
+    <tr><td class="paramname">q3</td><td>Texture coordinate. Adjacent to <em>q3</em> and <em>q4</em>; opposite to <em>q1</em>. </td></tr>
+    <tr><td class="paramname">q4</td><td>Texture coordinate. Adjacent to <em>q3</em> and <em>q1</em>; opposite to <em>q2</em>. </td></tr>
+    <tr><td class="paramname">z</td><td>The z-depth of the quadrilateral. </td></tr>
+    <tr><td class="paramname">texture_handle</td><td>A handle to a texture meant to be rendered to this quadrilateral. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a3b5b982c766eaebb76e5496493acf82b"></a><!-- doxytag: member="avl::utility::Sprite::Sprite" ref="a3b5b982c766eaebb76e5496493acf82b" args="(const float &amp;left, const float &amp;top, const float &amp;right, const float &amp;bottom, const float &amp;z, const TextureHandle texture_handle)" -->
@@ -350,6 +446,20 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Creates an axis-aligned bounding box. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>The texture coordinates <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>, <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>, <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>, and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a> will be initialized such that they span from (0, 0) in the bottom-left corner to (1, 1) in the top-right corner. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>The leftmost boundary of the box. </td></tr>
+    <tr><td class="paramname">top</td><td>The topmost boundary of the box. </td></tr>
+    <tr><td class="paramname">right</td><td>The rightmost boundary of the box. </td></tr>
+    <tr><td class="paramname">bottom</td><td>The bottommost boundary of the box. </td></tr>
+    <tr><td class="paramname">z</td><td>The z-depth of the box. </td></tr>
+    <tr><td class="paramname">texture_handle</td><td>A handle to a texture meant to be rendered to this box. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a5a177b61af8981355fc5c9f710cae77a"></a><!-- doxytag: member="avl::utility::Sprite::Sprite" ref="a5a177b61af8981355fc5c9f710cae77a" args="(const Sprite &amp;original)" -->
@@ -367,6 +477,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ab46922afc74f496ed5679790a159d267"></a><!-- doxytag: member="avl::utility::Sprite::~Sprite" ref="ab46922afc74f496ed5679790a159d267" args="()" -->
@@ -382,6 +500,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -400,6 +520,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Finds the center of the sprite. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a9f476c80073a578167bb497859509357">center</a> will accurately be the center of this quadrilateral. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a783583bf205f6e26865c67b8d5a1c260"></a><!-- doxytag: member="avl::utility::Sprite::GetCenter" ref="a783583bf205f6e26865c67b8d5a1c260" args="() const " -->
@@ -415,6 +538,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the center of the sprite. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a9f476c80073a578167bb497859509357">center</a>. </dd></dl>
 
 </div>
 </div>
@@ -432,6 +558,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a90f17f1b030becf8201b013ec3a0dfea"></a><!-- doxytag: member="avl::utility::Sprite::GetP2" ref="a90f17f1b030becf8201b013ec3a0dfea" args="() const " -->
@@ -447,6 +576,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>. </dd></dl>
 
 </div>
 </div>
@@ -464,6 +596,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aa8a51a5fec22469f81d6a06f418f8db2"></a><!-- doxytag: member="avl::utility::Sprite::GetP4" ref="aa8a51a5fec22469f81d6a06f418f8db2" args="() const " -->
@@ -479,6 +614,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>. </dd></dl>
 
 </div>
 </div>
@@ -496,6 +634,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a9e189146ee866203fbdc1166428b6e1b"></a><!-- doxytag: member="avl::utility::Sprite::GetQ2" ref="a9e189146ee866203fbdc1166428b6e1b" args="() const " -->
@@ -511,6 +652,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>. </dd></dl>
 
 </div>
 </div>
@@ -528,6 +672,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a4c3fa42ea5adc80caf44da92481f18ce"></a><!-- doxytag: member="avl::utility::Sprite::GetQ4" ref="a4c3fa42ea5adc80caf44da92481f18ce" args="() const " -->
@@ -543,6 +690,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>. </dd></dl>
 
 </div>
 </div>
@@ -560,6 +710,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the current rotation of the sprite. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad50e4eac9694aad5c2045081e30c9bf3">rotation</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a68fdbd4eb5eb2e78d6a85e63196e26b2"></a><!-- doxytag: member="avl::utility::Sprite::GetScale" ref="a68fdbd4eb5eb2e78d6a85e63196e26b2" args="() const " -->
@@ -575,6 +728,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the current scale of the sprite. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a>. </dd></dl>
 
 </div>
 </div>
@@ -592,6 +748,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the texture handle for this sprite. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The texture handle of this sprite. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a8fa7c97ff2ec3fc9dfbdff4c3c7d1a3d"></a><!-- doxytag: member="avl::utility::Sprite::GetUntransformedP1" ref="a8fa7c97ff2ec3fc9dfbdff4c3c7d1a3d" args="() const " -->
@@ -607,6 +766,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a>. </dd></dl>
 
 </div>
 </div>
@@ -624,6 +786,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a79cd4288359d4c6c4d71ebe0638b6db3"></a><!-- doxytag: member="avl::utility::Sprite::GetUntransformedP3" ref="a79cd4288359d4c6c4d71ebe0638b6db3" args="() const " -->
@@ -639,6 +804,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a>. </dd></dl>
 
 </div>
 </div>
@@ -656,6 +824,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a73368eac44a3d2849130f22ce6eee156"></a><!-- doxytag: member="avl::utility::Sprite::GetZ" ref="a73368eac44a3d2849130f22ce6eee156" args="() const " -->
@@ -672,6 +843,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the z-depth of the sprite. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_sprite.html#a17224ade1a99f51775f67ee8efb3dd90">z</a>. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="abef219d5922b8801495027ac74976586"></a><!-- doxytag: member="avl::utility::Sprite::IsVisible" ref="abef219d5922b8801495027ac74976586" args="() const " -->
@@ -687,6 +861,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the visibility of the sprite. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the sprite is visible, and false if not. </dd></dl>
 
 </div>
 </div>
@@ -705,6 +882,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Moves the spatial coordinates along the vector <em>delta</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>A vector along which to move the sprite. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ab38810c04af4347ec2a7cc565c702baf"></a><!-- doxytag: member="avl::utility::Sprite::MoveTexture" ref="ab38810c04af4347ec2a7cc565c702baf" args="(const Vertex2D &amp;delta)" -->
@@ -722,6 +907,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Moves the texture coordinates along the vector <em>delta</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>A vector along which to move each texture coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ac345c6e3308ceeb2342fb8816cad498b"></a><!-- doxytag: member="avl::utility::Sprite::operator=" ref="ac345c6e3308ceeb2342fb8816cad498b" args="(const Sprite &amp;rhs)" -->
@@ -738,6 +931,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Assignment operator. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="classavl_1_1utility_1_1_sprite.html" title="Encapsulates a basic textured quadrilateral in 3-D space, oriented to be parallel to the XY plane...">Sprite</a> to assign this one to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -784,6 +985,19 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Resets <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad50e4eac9694aad5c2045081e30c9bf3">rotation</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a>, and then sets the Sprite's spatial vertices and z-depth to those specified. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>Winding order is clockwise. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_p1</td><td>Spatial coordinate. Adjacent to <em>new_p2</em> and <em>new_p4</em>; opposite to <em>new_p3</em>. </td></tr>
+    <tr><td class="paramname">new_p2</td><td>Spatial coordinate. Adjacent to <em>new_p1</em> and <em>new_p3</em>; opposite to <em>new_p4</em>. </td></tr>
+    <tr><td class="paramname">new_p3</td><td>Spatial coordinate. Adjacent to <em>new_p3</em> and <em>new_p4</em>; opposite to <em>new_p1</em>. </td></tr>
+    <tr><td class="paramname">new_p4</td><td>Spatial coordinate. Adjacent to <em>new_p3</em> and <em>new_p1</em>; opposite to <em>new_p2</em>. </td></tr>
+    <tr><td class="paramname">new_z</td><td>The new z-depth of this quadrilateral. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="af6755f039d29d11d2396fbb225841b73"></a><!-- doxytag: member="avl::utility::Sprite::ResetPosition" ref="af6755f039d29d11d2396fbb225841b73" args="(const float &amp;left, const float &amp;top, const float &amp;right, const float &amp;bottom, const float &amp;new_z)" -->
@@ -829,6 +1043,18 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Resets the <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad50e4eac9694aad5c2045081e30c9bf3">rotation</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a>, and then aligns the Sprite's position to the boundaries and z-depth specified. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>The leftmost boundary of the box. </td></tr>
+    <tr><td class="paramname">top</td><td>The topmost boundary of the box. </td></tr>
+    <tr><td class="paramname">right</td><td>The rightmost boundary of the box. </td></tr>
+    <tr><td class="paramname">bottom</td><td>The bottommost boundary of the box. </td></tr>
+    <tr><td class="paramname">new_z</td><td>The z-depth of the box. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a969eaa16b27a62249e1679b4439463f0"></a><!-- doxytag: member="avl::utility::Sprite::Rotate" ref="a969eaa16b27a62249e1679b4439463f0" args="(const float &amp;delta_theta)" -->
@@ -845,6 +1071,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Rotates the quad counter-clockwise by <em>delta_theta</em> degrees. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta_theta</td><td>The amount to rotate the sprite in degrees. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -879,6 +1113,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Rotates <em>untransformed_point</em> about the <em>center_point</em> by <em>theta</em> degrees counter-clockwise. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">center_point</td><td>The point around which to rotate <em>untransformed_point</em>. </td></tr>
+    <tr><td class="paramname">untransformed_point</td><td>The vertex to be rotated. </td></tr>
+    <tr><td class="paramname">theta</td><td>The amount to rotate <em>untransformed_point</em> in degrees counter-clockwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ae63abe57da91dd79f4119153c09a79df"></a><!-- doxytag: member="avl::utility::Sprite::Scale" ref="ae63abe57da91dd79f4119153c09a79df" args="(const float &amp;delta_scale)" -->
@@ -895,6 +1139,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Scales the quad by the scaling factor <em>delta_scale</em>. </p>
+<p>If <a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a> is initially 3.0 and <em>delta_scale</em> is 2.0, then <a class="el" href="classavl_1_1utility_1_1_sprite.html#a95e40bc7cf30b1d4fbd232d1255cf46c">scale</a> will be 6.0 after a call to this function. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta_scale</td><td>The relative factor by which to scale the sprite. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -929,6 +1182,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Scales <em>untransformed_point</em> in relation to <em>center_point</em> by <em>scaling_factor</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">center_point</td><td>The point about which to scale <em>untransformed_point</em>. </td></tr>
+    <tr><td class="paramname">untransformed_point</td><td>The point to be scaled. </td></tr>
+    <tr><td class="paramname">scale_factor</td><td>The relative factor by which to scale <em>untransformed_point</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a1ff5cfa02a14f1d7ef39c536766c33c7"></a><!-- doxytag: member="avl::utility::Sprite::SetCenter" ref="a1ff5cfa02a14f1d7ef39c536766c33c7" args="(const Vertex2D &amp;new_center)" -->
@@ -945,6 +1208,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Translates the sprite such that its center is at the specified vertex. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_center</td><td>The new center for the sprite. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -963,6 +1234,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets q1. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>Texture coordinate adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>; opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a278bad6e9be8ff5c96f14d27491eb315"></a><!-- doxytag: member="avl::utility::Sprite::SetQ2" ref="a278bad6e9be8ff5c96f14d27491eb315" args="(const Vertex2D &amp;q)" -->
@@ -979,6 +1258,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets q2. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>Texture coordinate adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>; opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -997,6 +1284,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets q3. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>Texture coordinate adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>; opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ad5ccc10f1d8bb97eb8504e77057505b0"></a><!-- doxytag: member="avl::utility::Sprite::SetQ4" ref="ad5ccc10f1d8bb97eb8504e77057505b0" args="(const Vertex2D &amp;q)" -->
@@ -1013,6 +1308,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets q4. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>Texture coordinate adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>; opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1031,6 +1334,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets the rotation to <em>new_rotation</em>. </p>
+<p>Rotation is counter-clockwise. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_rotation</td><td>The new rotation of the sprite in degrees. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a00aad5654e005efae9309a35561c28bf"></a><!-- doxytag: member="avl::utility::Sprite::SetScale" ref="a00aad5654e005efae9309a35561c28bf" args="(float new_scale)" -->
@@ -1047,6 +1359,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets the scale to <em>new_scale</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_scale</td><td>The new scale of the sprite. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1065,6 +1385,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets the texture handle for this sprite. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_texture_handle</td><td>The new texture handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a9edb383e8bb4a92148c7cae2775460e9"></a><!-- doxytag: member="avl::utility::Sprite::SetVisibility" ref="a9edb383e8bb4a92148c7cae2775460e9" args="(const bool new_visibility)" -->
@@ -1081,6 +1409,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets the sprite's visibility. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_visibility</td><td>The new visibility for the sprite. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1099,6 +1435,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets the z-depth of this sprite. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_z</td><td>The new z-depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -1113,6 +1457,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The center of the sprite. </p>
+
 </div>
 </div>
 <a class="anchor" id="a8f812a29ca3388c951d656a3202b40b6"></a><!-- doxytag: member="avl::utility::Sprite::is_visible" ref="a8f812a29ca3388c951d656a3202b40b6" args="" -->
@@ -1125,6 +1471,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Is this sprite currently visible or invisible? </p>
 
 </div>
 </div>
@@ -1139,6 +1487,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="a3a5d821c62375169f79630a266b27417"></a><!-- doxytag: member="avl::utility::Sprite::p2" ref="a3a5d821c62375169f79630a266b27417" args="" -->
@@ -1151,6 +1501,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>. </p>
 
 </div>
 </div>
@@ -1165,6 +1517,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a4a1e717dec06737161376a0db6b56329">p1</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="ab3877af3662d337940da8a4d23e4b4db"></a><!-- doxytag: member="avl::utility::Sprite::p4" ref="ab3877af3662d337940da8a4d23e4b4db" args="" -->
@@ -1177,6 +1531,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Transformed spatial coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab85702223b91729e981f8bb94d490e67">p3</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#ab3877af3662d337940da8a4d23e4b4db">p4</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a3a5d821c62375169f79630a266b27417">p2</a>. </p>
 
 </div>
 </div>
@@ -1191,6 +1547,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="a46a0ea2e86558a2e937cc6c55179595f"></a><!-- doxytag: member="avl::utility::Sprite::q2" ref="a46a0ea2e86558a2e937cc6c55179595f" args="" -->
@@ -1203,6 +1561,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>. </p>
 
 </div>
 </div>
@@ -1217,6 +1577,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a69f63eb5b48974531c183cf78af35bbb">q4</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="a69f63eb5b48974531c183cf78af35bbb"></a><!-- doxytag: member="avl::utility::Sprite::q4" ref="a69f63eb5b48974531c183cf78af35bbb" args="" -->
@@ -1229,6 +1591,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Texture coordinate. Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aeecf216ac5cd6a16c81980c0bd8974a8">q3</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a8c347877f156ab56968d00c50a3b071b">q1</a>, opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a46a0ea2e86558a2e937cc6c55179595f">q2</a>. </p>
 
 </div>
 </div>
@@ -1243,6 +1607,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The current rotation in degrees counter-clockwise.. </p>
+
 </div>
 </div>
 <a class="anchor" id="a95e40bc7cf30b1d4fbd232d1255cf46c"></a><!-- doxytag: member="avl::utility::Sprite::scale" ref="a95e40bc7cf30b1d4fbd232d1255cf46c" args="" -->
@@ -1255,6 +1621,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The current scale. </p>
 
 </div>
 </div>
@@ -1269,6 +1637,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The handle of the texture for this sprite. </p>
+
 </div>
 </div>
 <a class="anchor" id="a37bf6b461b3461835e52bc75c16c3848"></a><!-- doxytag: member="avl::utility::Sprite::untransformed_p1" ref="a37bf6b461b3461835e52bc75c16c3848" args="" -->
@@ -1281,6 +1651,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Untransformed spatial coordinate. </p>
+<p>Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a>. </p>
 
 </div>
 </div>
@@ -1295,6 +1668,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Untransformed spatial coordinate. </p>
+<p>Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="aac39afa177f5e7f3fee7f91b35e5b89a"></a><!-- doxytag: member="avl::utility::Sprite::untransformed_p3" ref="aac39afa177f5e7f3fee7f91b35e5b89a" args="" -->
@@ -1307,6 +1683,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Untransformed spatial coordinate. </p>
+<p>Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a2f559207f169cf5a52d2626b5797ce62">untransformed_p4</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a>. </p>
 
 </div>
 </div>
@@ -1321,6 +1700,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Untransformed spatial coordinate. </p>
+<p>Adjacent to <a class="el" href="classavl_1_1utility_1_1_sprite.html#aac39afa177f5e7f3fee7f91b35e5b89a">untransformed_p3</a> and <a class="el" href="classavl_1_1utility_1_1_sprite.html#a37bf6b461b3461835e52bc75c16c3848">untransformed_p1</a>, and opposite to <a class="el" href="classavl_1_1utility_1_1_sprite.html#a558ada7dc6a80a5029bcfb36a2829866">untransformed_p2</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="a17224ade1a99f51775f67ee8efb3dd90"></a><!-- doxytag: member="avl::utility::Sprite::z" ref="a17224ade1a99f51775f67ee8efb3dd90" args="" -->
@@ -1333,6 +1715,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The z-depth of the sprite. </p>
 
 </div>
 </div>
@@ -1358,7 +1742,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

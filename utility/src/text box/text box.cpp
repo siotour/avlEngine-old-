@@ -199,6 +199,8 @@ namespace utility
 		}
 
 		
+		/////////// Does this actually work? GenerateSubstrings() should be inserting
+		/////////// older rows at the front and newer rows at the back.
 		// If the behavior is NO_OVERWRITE, then we need to discard the newest
 		// rows substrings until only number_of_rows row substrings remain.
 		if(behavior == OVERWRITE_ROWS)
@@ -210,6 +212,8 @@ namespace utility
 		}
 
 
+		/////////// Does this actually work? GenerateSubstrings() should be inserting
+		/////////// older rows at the front and newer rows at the back.
 		// If the behavior is OVERWRITE_ROWS, then we need to discard the oldest
 		// rows substrings until only number_of_rows row substrings remain.
 		if(behavior == OVERWRITE_ROWS)

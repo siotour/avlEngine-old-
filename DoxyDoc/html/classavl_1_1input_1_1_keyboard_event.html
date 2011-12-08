@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -105,6 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::input::KeyboardEvent" --><!-- doxytag: inherits="avl::input::InputEvent" -->
+<p>The <a class="el" href="classavl_1_1input_1_1_keyboard_event.html" title="The KeyboardEvent class encapsulates a single input event from the keyboard.">KeyboardEvent</a> class encapsulates a single input event from the keyboard.  
+ <a href="classavl_1_1input_1_1_keyboard_event.html#details">More...</a></p>
+
 <p><code>#include &lt;keyboard event.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::input::KeyboardEvent:</div>
@@ -112,7 +116,7 @@ Inheritance diagram for avl::input::KeyboardEvent:</div>
  <div class="center">
   <img src="classavl_1_1input_1_1_keyboard_event.png" usemap="#avl::input::KeyboardEvent_map" alt=""/>
   <map id="avl::input::KeyboardEvent_map" name="avl::input::KeyboardEvent_map">
-<area href="classavl_1_1input_1_1_input_event.html" alt="avl::input::InputEvent" shape="rect" coords="0,0,155,24"/>
+<area href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events." alt="avl::input::InputEvent" shape="rect" coords="0,0,155,24"/>
 </map>
  </div></div>
 
@@ -121,21 +125,32 @@ Inheritance diagram for avl::input::KeyboardEvent:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#ab3635495f6873612b14ebb6a19ed4ad6">KeyboardEvent</a> (const <a class="el" href="structavl_1_1input_1_1key__codes_1_1_keyboard_key.html#a8dd8d5f08c142af270d7fbc1a93cc2d9">key_codes::KeyboardKey::KeyboardKeyCodes</a> &amp;initial_key, const bool pressed)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a key which this event concerns, and a bool indicated of whether it was pressed or released.  <a href="#ab3635495f6873612b14ebb6a19ed4ad6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#a7e9950444c67da70fe13122caff5e25b">KeyboardEvent</a> (const <a class="el" href="classavl_1_1input_1_1_keyboard_event.html">KeyboardEvent</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a7e9950444c67da70fe13122caff5e25b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#a8cfbf777ece5e0022ebf48fad85e409e">~KeyboardEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a8cfbf777ece5e0022ebf48fad85e409e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="structavl_1_1input_1_1key__codes_1_1_keyboard_key.html#a8dd8d5f08c142af270d7fbc1a93cc2d9">key_codes::KeyboardKey::KeyboardKeyCodes</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#aad17644f3f59e0a62bfc857f0c68819a">GetKey</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the key which was pressed or released.  <a href="#aad17644f3f59e0a62bfc857f0c68819a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#aa8362fac0e6397be6759a7f203991ff1">IsPressed</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the key was pressed, and false if it was released.  <a href="#aa8362fac0e6397be6759a7f203991ff1"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#afdd65d72b725d379afa6486cb5f0c6aa">KEYBOARD_TYPE</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This constant is used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class.  <a href="#afdd65d72b725d379afa6486cb5f0c6aa"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="structavl_1_1input_1_1key__codes_1_1_keyboard_key.html#a8dd8d5f08c142af270d7fbc1a93cc2d9">key_codes::KeyboardKey::KeyboardKeyCodes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#adc5c977b25963e242f06f5c0da76ffed">key</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The key which was pressed/released.  <a href="#adc5c977b25963e242f06f5c0da76ffed"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_keyboard_event.html#afe852c00bb86efc811b64d1d9ec62b26">is_pressed</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Was <a class="el" href="classavl_1_1input_1_1_keyboard_event.html#adc5c977b25963e242f06f5c0da76ffed">key</a> pressed or released?  <a href="#afe852c00bb86efc811b64d1d9ec62b26"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classavl_1_1input_1_1_keyboard_event.html" title="The KeyboardEvent class encapsulates a single input event from the keyboard.">KeyboardEvent</a> class encapsulates a single input event from the keyboard. </p>
+<p>This includes the key which the event concerns, and whether that key was pressed or released. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab3635495f6873612b14ebb6a19ed4ad6"></a><!-- doxytag: member="avl::input::KeyboardEvent::KeyboardEvent" ref="ab3635495f6873612b14ebb6a19ed4ad6" args="(const key_codes::KeyboardKey::KeyboardKeyCodes &amp;initial_key, const bool pressed)" -->
 <div class="memitem">
 <div class="memproto">
@@ -161,6 +176,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Takes a key which this event concerns, and a bool indicated of whether it was pressed or released. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initial_key</td><td>The key which has been pressed or released. </td></tr>
+    <tr><td class="paramname">pressed</td><td>True if <em>initialKey</em> was pressed, or false if it was released. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a7e9950444c67da70fe13122caff5e25b"></a><!-- doxytag: member="avl::input::KeyboardEvent::KeyboardEvent" ref="a7e9950444c67da70fe13122caff5e25b" args="(const KeyboardEvent &amp;original)" -->
@@ -178,6 +202,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a8cfbf777ece5e0022ebf48fad85e409e"></a><!-- doxytag: member="avl::input::KeyboardEvent::~KeyboardEvent" ref="a8cfbf777ece5e0022ebf48fad85e409e" args="()" -->
@@ -193,6 +225,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -211,6 +245,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the key which was pressed or released. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The key which was pressed or released. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aa8362fac0e6397be6759a7f203991ff1"></a><!-- doxytag: member="avl::input::KeyboardEvent::IsPressed" ref="aa8362fac0e6397be6759a7f203991ff1" args="() const " -->
@@ -227,6 +264,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns true if the key was pressed, and false if it was released. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the key was pressed, and false if it was released. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -241,6 +281,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Was <a class="el" href="classavl_1_1input_1_1_keyboard_event.html#adc5c977b25963e242f06f5c0da76ffed">key</a> pressed or released? </p>
+
 </div>
 </div>
 <a class="anchor" id="adc5c977b25963e242f06f5c0da76ffed"></a><!-- doxytag: member="avl::input::KeyboardEvent::key" ref="adc5c977b25963e242f06f5c0da76ffed" args="" -->
@@ -254,6 +296,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The key which was pressed/released. </p>
+
 </div>
 </div>
 <a class="anchor" id="afdd65d72b725d379afa6486cb5f0c6aa"></a><!-- doxytag: member="avl::input::KeyboardEvent::KEYBOARD_TYPE" ref="afdd65d72b725d379afa6486cb5f0c6aa" args="" -->
@@ -266,6 +310,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>This constant is used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class. </p>
+<p>It can be used to identify <a class="el" href="classavl_1_1input_1_1_keyboard_event.html" title="The KeyboardEvent class encapsulates a single input event from the keyboard.">KeyboardEvent</a> objects. </p>
 
 </div>
 </div>
@@ -291,7 +338,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -105,6 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::Win32Timer" -->
+<p>Keeps track of the passage of time.  
+ <a href="classavl_1_1utility_1_1_win32_timer.html#details">More...</a></p>
+
 <p><code>#include &lt;win32 timer.h&gt;</code></p>
 
 <p><a href="classavl_1_1utility_1_1_win32_timer-members.html">List of all members.</a></p>
@@ -112,22 +116,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a07de89df8b735fb38cf1c53133e86146">Win32Timer</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor.  <a href="#a07de89df8b735fb38cf1c53133e86146"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a4624159dfbec01d4c5b0f49d7742458b">~Win32Timer</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a4624159dfbec01d4c5b0f49d7742458b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a06624e3f03ec368eb80b4560cf091822">IsPerformanceTimer</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Are performance counters being used?  <a href="#a06624e3f03ec368eb80b4560cf091822"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#ac464cde3fa7323692f229990876e08aa">Poll</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a9711369bc01a91ce7748ae2cfa584df0">PollPerformanceCounter</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Polls the performance timer.  <a href="#a9711369bc01a91ce7748ae2cfa584df0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a3aee844df37dc00aa3253300391e82cc">PollCounter</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Polls the non-performance timer.  <a href="#a3aee844df37dc00aa3253300391e82cc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a6c5d3b632c1ac43c78f65aa260ce1bb8">Win32Timer</a> (const <a class="el" href="classavl_1_1utility_1_1_win32_timer.html">Win32Timer</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a6c5d3b632c1ac43c78f65aa260ce1bb8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html">Win32Timer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a428bf33a1d6eaf32f721d99eeb2c2e9c">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_win32_timer.html">Win32Timer</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a428bf33a1d6eaf32f721d99eeb2c2e9c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a62b39e87b53ab85353461326d58f3669">use_performance_counter</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Are performance counters used?  <a href="#a62b39e87b53ab85353461326d58f3669"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">__int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a08a8644fce93d3c280bb4bed3f2a29c5">frequency</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the number of counter ticks per second.  <a href="#a08a8644fce93d3c280bb4bed3f2a29c5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">__int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_win32_timer.html#a44647c199578ccc874b6dc722402ff56">last_count</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the counter's count at last poll.  <a href="#a44647c199578ccc874b6dc722402ff56"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Keeps track of the passage of time. </p>
+<p>Uses performance counters if available. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a07de89df8b735fb38cf1c53133e86146"></a><!-- doxytag: member="avl::utility::Win32Timer::Win32Timer" ref="a07de89df8b735fb38cf1c53133e86146" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -141,6 +158,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic constructor. </p>
+<p>Attempts to use performance counters if available. </p>
 
 </div>
 </div>
@@ -157,6 +177,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -175,6 +197,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -191,6 +215,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Are performance counters being used? </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if performance counters are used, and false if not. </dd></dl>
 
 </div>
 </div>
@@ -209,6 +236,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac464cde3fa7323692f229990876e08aa"></a><!-- doxytag: member="avl::utility::Win32Timer::Poll" ref="ac464cde3fa7323692f229990876e08aa" args="()" -->
@@ -224,6 +253,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>The amount of time passed, in seconds, since either creation or the last call to <a class="el" href="classavl_1_1utility_1_1_win32_timer.html#ac464cde3fa7323692f229990876e08aa">Poll()</a>. </dd></dl>
 
 </div>
 </div>
@@ -241,6 +271,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Polls the non-performance timer. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Seconds passed since the last poll of the non-performance counter. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a9711369bc01a91ce7748ae2cfa584df0"></a><!-- doxytag: member="avl::utility::Win32Timer::PollPerformanceCounter" ref="a9711369bc01a91ce7748ae2cfa584df0" args="()" -->
@@ -257,6 +290,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Polls the performance timer. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Seconds passed since the last poll of the performance counter. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -271,6 +307,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Stores the number of counter ticks per second. </p>
+
 </div>
 </div>
 <a class="anchor" id="a44647c199578ccc874b6dc722402ff56"></a><!-- doxytag: member="avl::utility::Win32Timer::last_count" ref="a44647c199578ccc874b6dc722402ff56" args="" -->
@@ -284,6 +322,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Stores the counter's count at last poll. </p>
+
 </div>
 </div>
 <a class="anchor" id="a62b39e87b53ab85353461326d58f3669"></a><!-- doxytag: member="avl::utility::Win32Timer::use_performance_counter" ref="a62b39e87b53ab85353461326d58f3669" args="" -->
@@ -296,6 +336,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Are performance counters used? </p>
 
 </div>
 </div>
@@ -321,7 +363,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

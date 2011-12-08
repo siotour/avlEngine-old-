@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -104,36 +105,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::TextBox::Row" -->
+<p>Represents a single row of text within the text box.  
+ <a href="classavl_1_1utility_1_1_text_box_1_1_row.html#details">More...</a></p>
+
 <p><a href="classavl_1_1utility_1_1_text_box_1_1_row-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a88d0c058b1d0d17cab7207ee2b10e9ab">Row</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a88d0c058b1d0d17cab7207ee2b10e9ab"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a90b7c87380453ce682494ee82f474fcf">Row</a> (const <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">Row</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a90b7c87380453ce682494ee82f474fcf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a3373cf5e81b2d734faccd33a53282bb0">~Row</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all sprites used by this row.  <a href="#a3373cf5e81b2d734faccd33a53282bb0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2337af287655edb35aedb0e46aba7cab">utility::Sprite::SpriteList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a07cfc02cbbb512b7d488c5ea4bd96070">GetSprites</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the sprites composing this row.  <a href="#a07cfc02cbbb512b7d488c5ea4bd96070"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a098c1dbd1b51283c910c9ac6fa7a0c63">SetVisibility</a> (const bool new_visibility)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this row.  <a href="#a098c1dbd1b51283c910c9ac6fa7a0c63"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a944f9e3e3b0afc749f4ed0f5046bd09b">SetText</a> (const std::string &amp;new_text)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the text of this row.  <a href="#a944f9e3e3b0afc749f4ed0f5046bd09b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a118d1081f4dff84dc0381693f3d8b587">SetMaxCharacters</a> (const unsigned int &amp;new_max)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the maximum number of characters for this row.  <a href="#a118d1081f4dff84dc0381693f3d8b587"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#ad9241e4a95b8fe9a40cd0e47c77ff447">SetCharsPerTextureRow</a> (const unsigned int &amp;new_chars)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of characters per row in the texture.  <a href="#ad9241e4a95b8fe9a40cd0e47c77ff447"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a47022e69865f0efad65d2104fbe8d7c1">SetPosition</a> (const float &amp;new_left, const float &amp;new_top, const float &amp;new_right, const float &amp;new_bottom, const float &amp;new_z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets position of this row.  <a href="#a47022e69865f0efad65d2104fbe8d7c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a61f2953d66f6173eaa79ecae19076650">SetTextureHandle</a> (const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a> &amp;new_texture_handle)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the new texture handle for the row.  <a href="#a61f2953d66f6173eaa79ecae19076650"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">Row</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a41fa99e14324bf6067ae5c3e25af5d9c">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">Row</a> &amp;rhs)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="#a41fa99e14324bf6067ae5c3e25af5d9c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a9c10941b72bd0b857cccd2ac5ffe6838">visibility</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Visibility of this row.  <a href="#a9c10941b72bd0b857cccd2ac5ffe6838"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a3ca334e26cdaa079f19918c571934106">text</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This row's text.  <a href="#a3ca334e26cdaa079f19918c571934106"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#adffaba9d7824fbbd887eea2cb553f783">max_characters</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a5402c411470f5158521d09182548f02f">left</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Left boundary.  <a href="#a5402c411470f5158521d09182548f02f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a719ef257cd8850e13db87b3b35bf3549">top</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Upper boundary.  <a href="#a719ef257cd8850e13db87b3b35bf3549"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a1caaf38b0f6a4d4389141e44ffdb83bd">right</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Right boundary.  <a href="#a1caaf38b0f6a4d4389141e44ffdb83bd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a2c1bc5a3b42a02ef8bb14e8477316b5e">bottom</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower boundary.  <a href="#a2c1bc5a3b42a02ef8bb14e8477316b5e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a8eb49bd095039bebb59147a4d861a738">z</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Z-depth.  <a href="#a8eb49bd095039bebb59147a4d861a738"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a9588fdd9d3d1af0b9297339c4cafa60e">chars_per_texture_row</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of characters per row in the texture.  <a href="#a9588fdd9d3d1af0b9297339c4cafa60e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a8a8dfb2f36e0426105a4e2fa7f4b8a85">texture_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The texture handle for characters in this row.  <a href="#a8a8dfb2f36e0426105a4e2fa7f4b8a85"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1utility_1_1_sprite.html#a2337af287655edb35aedb0e46aba7cab">utility::Sprite::SpriteList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a06664111f2969ee5403b7767d58b256f">sprites</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">All of the sprites forming this row.  <a href="#a06664111f2969ee5403b7767d58b256f"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Represents a single row of text within the text box. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd></dd></dl>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a88d0c058b1d0d17cab7207ee2b10e9ab"></a><!-- doxytag: member="avl::utility::TextBox::Row::Row" ref="a88d0c058b1d0d17cab7207ee2b10e9ab" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -147,6 +175,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Default constructor. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Doesn't initialize any variables -- use at your own risk! </dd></dl>
 
 </div>
 </div>
@@ -165,6 +196,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Doesn't initialize any variables -- use at your own risk! </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a3373cf5e81b2d734faccd33a53282bb0"></a><!-- doxytag: member="avl::utility::TextBox::Row::~Row" ref="a3373cf5e81b2d734faccd33a53282bb0" args="()" -->
@@ -180,6 +220,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Deletes all sprites used by this row. </p>
 
 </div>
 </div>
@@ -198,6 +240,10 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns a list of all the sprites composing this row. </p>
+<p>Used for rendering. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A list of Sprites </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a41fa99e14324bf6067ae5c3e25af5d9c"></a><!-- doxytag: member="avl::utility::TextBox::Row::operator=" ref="a41fa99e14324bf6067ae5c3e25af5d9c" args="(const Row &amp;rhs)" -->
@@ -214,6 +260,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Assignment operator. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Note -- this doesn't perform as one would expect! Use at your own risk. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>This stub was inserted simply to stop a linker error. When this class was used within a STL container, the linker issued a warning about a templated type not having an assignment operator, so I added this to shut it up. This class needs to be rewritten so that it has accessors and a legitimate assignment operator. And also a legitimate full-spec constructor. </dd></dl>
 
 </div>
 </div>
@@ -232,6 +282,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets the number of characters per row in the texture. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_chars</td><td>The new number of characters per row in the texture. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a118d1081f4dff84dc0381693f3d8b587"></a><!-- doxytag: member="avl::utility::TextBox::Row::SetMaxCharacters" ref="a118d1081f4dff84dc0381693f3d8b587" args="(const unsigned int &amp;new_max)" -->
@@ -248,6 +306,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets the maximum number of characters for this row. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_max</td><td>The new number of max characters in this row. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -294,6 +360,18 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets position of this row. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_left</td><td>The new left boundary. </td></tr>
+    <tr><td class="paramname">new_top</td><td>The new upper boundary. </td></tr>
+    <tr><td class="paramname">new_right</td><td>The new right boundary. </td></tr>
+    <tr><td class="paramname">new_bottom</td><td>The new lower boundary. </td></tr>
+    <tr><td class="paramname">new_z</td><td>The new z-depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a944f9e3e3b0afc749f4ed0f5046bd09b"></a><!-- doxytag: member="avl::utility::TextBox::Row::SetText" ref="a944f9e3e3b0afc749f4ed0f5046bd09b" args="(const std::string &amp;new_text)" -->
@@ -310,6 +388,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Sets the text of this row. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_text</td><td>The row's new text. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -328,6 +414,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets the new texture handle for the row. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_texture_handle</td><td>The new texture handle for this row. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a098c1dbd1b51283c910c9ac6fa7a0c63"></a><!-- doxytag: member="avl::utility::TextBox::Row::SetVisibility" ref="a098c1dbd1b51283c910c9ac6fa7a0c63" args="(const bool new_visibility)" -->
@@ -345,6 +439,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Sets the visibility of this row. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_visibility</td><td>The new visibility of the row. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -359,6 +461,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Lower boundary. </p>
+
 </div>
 </div>
 <a class="anchor" id="a9588fdd9d3d1af0b9297339c4cafa60e"></a><!-- doxytag: member="avl::utility::TextBox::Row::chars_per_texture_row" ref="a9588fdd9d3d1af0b9297339c4cafa60e" args="" -->
@@ -372,6 +476,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The number of characters per row in the texture. </p>
+
 </div>
 </div>
 <a class="anchor" id="a5402c411470f5158521d09182548f02f"></a><!-- doxytag: member="avl::utility::TextBox::Row::left" ref="a5402c411470f5158521d09182548f02f" args="" -->
@@ -384,6 +490,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Left boundary. </p>
 
 </div>
 </div>
@@ -411,6 +519,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Right boundary. </p>
+
 </div>
 </div>
 <a class="anchor" id="a06664111f2969ee5403b7767d58b256f"></a><!-- doxytag: member="avl::utility::TextBox::Row::sprites" ref="a06664111f2969ee5403b7767d58b256f" args="" -->
@@ -423,6 +533,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>All of the sprites forming this row. </p>
 
 </div>
 </div>
@@ -437,6 +549,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>This row's text. </p>
+
 </div>
 </div>
 <a class="anchor" id="a8a8dfb2f36e0426105a4e2fa7f4b8a85"></a><!-- doxytag: member="avl::utility::TextBox::Row::texture_handle" ref="a8a8dfb2f36e0426105a4e2fa7f4b8a85" args="" -->
@@ -449,6 +563,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The texture handle for characters in this row. </p>
 
 </div>
 </div>
@@ -463,6 +579,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Upper boundary. </p>
+
 </div>
 </div>
 <a class="anchor" id="a9c10941b72bd0b857cccd2ac5ffe6838"></a><!-- doxytag: member="avl::utility::TextBox::Row::visibility" ref="a9c10941b72bd0b857cccd2ac5ffe6838" args="" -->
@@ -476,6 +594,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Visibility of this row. </p>
+
 </div>
 </div>
 <a class="anchor" id="a8eb49bd095039bebb59147a4d861a738"></a><!-- doxytag: member="avl::utility::TextBox::Row::z" ref="a8eb49bd095039bebb59147a4d861a738" args="" -->
@@ -488,6 +608,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Z-depth. </p>
 
 </div>
 </div>
@@ -514,7 +636,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

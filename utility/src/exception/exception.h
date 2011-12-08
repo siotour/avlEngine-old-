@@ -1,11 +1,11 @@
 #ifndef __AVL_UTILITY_EXCEPTION__
 #define __AVL_UTILITY_EXCEPTION__
-/**********
- * Author: Sheldon Bachstein
- * Date: January 16, 2010
- * Description: Base exception class for all exceptions in the avl library. Includes the function getMessage()
- * which returns a string describing the exception which has occurred.
- **********/
+/**
+@file
+Defines the base Exception class from which all other library exceptions inherit.
+@author Sheldon Bachstein
+@date January 16, 2010
+ */
 
 #include<string>
 
@@ -15,25 +15,39 @@ namespace avl
 {
 namespace utility
 {
-	// See the description at the beginning of this file.
+	/**
+	The base class for all avl Library exceptions.
+	*/
 	class Exception
 	{
 	public:
-		// Constructors.
-		Exception(const std::string& initial_description);
+		/** Constructs an exception given a description of the situation.
+		@param description A description of the exceptional situation.
+		*/
+		Exception(const std::string& description);
+		/** Basic destructor.*/
 		virtual ~Exception();
-		// Copy constructor required in order to catch Exception by value.
+		/** Copy constructor required in order to catch Exception by value.
+		@param original The object being copied.
+		*/
 		Exception(const Exception& original);
 
-		// Returns a string describing the exception that occurred.
+		/** Gets a description of the exceptional situation.
+		@return Description of the exception.
+		*/
 		const std::string& GetDescription() const;
 
-	private:
-		// Describes the exception which occurred.
+	protected:
+		/** Basic constructor. Only usable by subclasses.*/
+		Exception();
+
+
+		/// Describes the exception which occurred.
 		const std::string description;
 
-		// NOT IMPLEMENTED.
-		Exception();
+		
+	private:
+		/// NOT IMPLEMENTED.
 		const Exception& operator=(const Exception&);
 	};
 

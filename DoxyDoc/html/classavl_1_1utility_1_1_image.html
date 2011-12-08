@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -104,30 +105,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::Image" -->
+<p>Represents a graphical image.  
+ <a href="classavl_1_1utility_1_1_image.html#details">More...</a></p>
+
 <p><code>#include &lt;image.h&gt;</code></p>
 
 <p><a href="classavl_1_1utility_1_1_image-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#aa37b36ea43919551c4a2cbec4ee8469f">Image</a> (const unsigned int &amp;initial_width, const unsigned int &amp;initial_height, const unsigned short &amp;initial_pixel_depth, const bool &amp;initial_alpha, unsigned char *initial_pixel_data)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a94d981364937809e52511db5adf946fb">Image</a> (const unsigned int &amp;<a class="el" href="classavl_1_1utility_1_1_image.html#af6696e2a651292075226adfcda8b6c43">width</a>, const unsigned int &amp;<a class="el" href="classavl_1_1utility_1_1_image.html#a4f4d13b81edcaee03dcca1c5039b6b5e">height</a>, const unsigned short &amp;<a class="el" href="classavl_1_1utility_1_1_image.html#a3fd3636c0c7b0cc052b0eec4892fbdb9">pixel_depth</a>, const bool &amp;alpha, unsigned char *<a class="el" href="classavl_1_1utility_1_1_image.html#a6f027e8640d37929e8e534217ef7ab07">pixel_data</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-spec constructor.  <a href="#a94d981364937809e52511db5adf946fb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a511e5fc33f1796ff4839c59b7a91ef8a">Image</a> (const std::string &amp;file_name)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to load an image given only a file name.  <a href="#a511e5fc33f1796ff4839c59b7a91ef8a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a575aed10308011512920e0f23a7d9175">~Image</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a575aed10308011512920e0f23a7d9175"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a6afccdafa4dd386c3dd6c271f1844254">GetWidth</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the image's width.  <a href="#a6afccdafa4dd386c3dd6c271f1844254"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a2704d718cdd1d1267ac9f71d075529ee">GetHeight</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the image's height.  <a href="#a2704d718cdd1d1267ac9f71d075529ee"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a8942a8d321f31e52d8ffcbcc0123ff9d">GetPixelDepth</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the image's pixel depth in bytes.  <a href="#a8942a8d321f31e52d8ffcbcc0123ff9d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#accfd092851820a29fbaeff011017472a">ContainsAlphaChannel</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this image have an alpha channel?  <a href="#accfd092851820a29fbaeff011017472a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a17f46b939f873a9790fbb35077a73a01">GetPixelData</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the image's pixel data.  <a href="#a17f46b939f873a9790fbb35077a73a01"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#af6696e2a651292075226adfcda8b6c43">width</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's width in pixels.  <a href="#af6696e2a651292075226adfcda8b6c43"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a4f4d13b81edcaee03dcca1c5039b6b5e">height</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's height in pixels.  <a href="#a4f4d13b81edcaee03dcca1c5039b6b5e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a3fd3636c0c7b0cc052b0eec4892fbdb9">pixel_depth</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's pixel depth in bytes.  <a href="#a3fd3636c0c7b0cc052b0eec4892fbdb9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#af2672a531e43786b973a0aad7f2d4e8d">contains_alpha_channel</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the image contains an alpha channel.  <a href="#af2672a531e43786b973a0aad7f2d4e8d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_image.html#a6f027e8640d37929e8e534217ef7ab07">pixel_data</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's pixel data.  <a href="#a6f027e8640d37929e8e534217ef7ab07"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa37b36ea43919551c4a2cbec4ee8469f"></a><!-- doxytag: member="avl::utility::Image::Image" ref="aa37b36ea43919551c4a2cbec4ee8469f" args="(const unsigned int &amp;initial_width, const unsigned int &amp;initial_height, const unsigned short &amp;initial_pixel_depth, const bool &amp;initial_alpha, unsigned char *initial_pixel_data)" -->
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Represents a graphical image. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a94d981364937809e52511db5adf946fb"></a><!-- doxytag: member="avl::utility::Image::Image" ref="a94d981364937809e52511db5adf946fb" args="(const unsigned int &amp;width, const unsigned int &amp;height, const unsigned short &amp;pixel_depth, const bool &amp;alpha, unsigned char *pixel_data)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -135,31 +154,31 @@ Private Attributes</h2></td></tr>
           <td class="memname">avl::utility::Image::Image </td>
           <td>(</td>
           <td class="paramtype">const unsigned int &amp;&#160;</td>
-          <td class="paramname"><em>initial_width</em>, </td>
+          <td class="paramname"><em>width</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned int &amp;&#160;</td>
-          <td class="paramname"><em>initial_height</em>, </td>
+          <td class="paramname"><em>height</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned short &amp;&#160;</td>
-          <td class="paramname"><em>initial_pixel_depth</em>, </td>
+          <td class="paramname"><em>pixel_depth</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname"><em>initial_alpha</em>, </td>
+          <td class="paramname"><em>alpha</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>initial_pixel_data</em>&#160;</td>
+          <td class="paramname"><em>pixel_data</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -169,6 +188,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Full-spec constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>The width of the image in pixel. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the image in pixels. </td></tr>
+    <tr><td class="paramname">pixel_depth</td><td>The image's pixel depth in bytes. </td></tr>
+    <tr><td class="paramname">alpha</td><td>Does the image contain an alpha channel? </td></tr>
+    <tr><td class="paramname">pixel_data</td><td>Pointer to the image's pixel data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -187,6 +218,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to load an image given only a file name. </p>
+<p><em>file_name</em> must have the extension of a currently implemented image file format, and the data contained in the file must match that file format (i.e. you will run into problems if you simply rename a .PNG file to .TGA and then try loading it). </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>If an error occurs while reading from the file, if the file's formatting is not supported, or if an unsupported file extension is supplied, the created <a class="el" href="classavl_1_1utility_1_1_image.html" title="Represents a graphical image.">Image</a> will have 0 <a class="el" href="classavl_1_1utility_1_1_image.html#af6696e2a651292075226adfcda8b6c43">width</a>, <a class="el" href="classavl_1_1utility_1_1_image.html#a4f4d13b81edcaee03dcca1c5039b6b5e">height</a>, <a class="el" href="classavl_1_1utility_1_1_image.html#a3fd3636c0c7b0cc052b0eec4892fbdb9">pixel_depth</a>, and <a class="el" href="classavl_1_1utility_1_1_image.html#a6f027e8640d37929e8e534217ef7ab07">pixel_data</a> pointer will be <code>NULL</code>.<br/>
+ See the image-loading functions for each individual image file format to see what additional restrictions are imposed for each file format. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a575aed10308011512920e0f23a7d9175"></a><!-- doxytag: member="avl::utility::Image::~Image" ref="a575aed10308011512920e0f23a7d9175" args="()" -->
@@ -202,6 +238,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
+<p>Deletes <a class="el" href="classavl_1_1utility_1_1_image.html#a6f027e8640d37929e8e534217ef7ab07">pixel_data</a>. </p>
 
 </div>
 </div>
@@ -220,6 +259,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Does this image have an alpha channel? </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the image has an alpha channel, and false if not. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a2704d718cdd1d1267ac9f71d075529ee"></a><!-- doxytag: member="avl::utility::Image::GetHeight" ref="a2704d718cdd1d1267ac9f71d075529ee" args="() const " -->
@@ -235,6 +277,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the image's height. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The value of <a class="el" href="classavl_1_1utility_1_1_image.html#a4f4d13b81edcaee03dcca1c5039b6b5e">height</a>. </dd></dl>
 
 </div>
 </div>
@@ -252,6 +297,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets the image's pixel data. </p>
+<p>Allows for modification of the pixel data. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_image.html#a6f027e8640d37929e8e534217ef7ab07">pixel_data</a>. </dd></dl>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>Pixel data is arranged in little-endian order. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a8942a8d321f31e52d8ffcbcc0123ff9d"></a><!-- doxytag: member="avl::utility::Image::GetPixelDepth" ref="a8942a8d321f31e52d8ffcbcc0123ff9d" args="() const " -->
@@ -267,6 +317,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the image's pixel depth in bytes. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The value of <a class="el" href="classavl_1_1utility_1_1_image.html#a3fd3636c0c7b0cc052b0eec4892fbdb9">pixel_depth</a>. </dd></dl>
 
 </div>
 </div>
@@ -284,6 +337,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the image's width. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The value of <a class="el" href="classavl_1_1utility_1_1_image.html#af6696e2a651292075226adfcda8b6c43">width</a>. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -298,6 +354,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>True if the image contains an alpha channel. </p>
+
 </div>
 </div>
 <a class="anchor" id="a4f4d13b81edcaee03dcca1c5039b6b5e"></a><!-- doxytag: member="avl::utility::Image::height" ref="a4f4d13b81edcaee03dcca1c5039b6b5e" args="" -->
@@ -310,6 +368,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The image's height in pixels. </p>
 
 </div>
 </div>
@@ -324,6 +384,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The image's pixel data. </p>
+
 </div>
 </div>
 <a class="anchor" id="a3fd3636c0c7b0cc052b0eec4892fbdb9"></a><!-- doxytag: member="avl::utility::Image::pixel_depth" ref="a3fd3636c0c7b0cc052b0eec4892fbdb9" args="" -->
@@ -337,6 +399,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The image's pixel depth in bytes. </p>
+
 </div>
 </div>
 <a class="anchor" id="af6696e2a651292075226adfcda8b6c43"></a><!-- doxytag: member="avl::utility::Image::width" ref="af6696e2a651292075226adfcda8b6c43" args="" -->
@@ -349,6 +413,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The image's width in pixels. </p>
 
 </div>
 </div>
@@ -374,7 +440,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

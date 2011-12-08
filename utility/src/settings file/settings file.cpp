@@ -54,8 +54,7 @@ namespace utility
 		file.close();
 
 		// Iterate through the settings map and delete each value.
-		for(std::map<std::string, SettingValue* const>::iterator i = settings.begin();
-																					i != settings.end(); ++i)
+		for(std::map<std::string, SettingValue* const>::iterator i = settings.begin(); i != settings.end(); ++i)
 		{
 			delete i->second;
 		}

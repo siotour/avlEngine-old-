@@ -1,6 +1,9 @@
 var NAVTREE =
 [
   [ "avl Library", "index.html", [
+    [ "Related Pages", "pages.html", [
+      [ "Todo List", "todo.html", null ]
+    ] ],
     [ "Class List", "annotated.html", [
       [ "avl::input::DirectInputInputDevice", "classavl_1_1input_1_1_direct_input_input_device.html", null ],
       [ "avl::input::InputEvent", "classavl_1_1input_1_1_input_event.html", null ],

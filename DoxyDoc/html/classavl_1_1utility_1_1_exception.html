@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -98,13 +99,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a>  </div>
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a>  </div>
   <div class="headertitle">
 <div class="title">avl::utility::Exception Class Reference</div>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::Exception" -->
+<p>The base class for all avl Library exceptions.  
+ <a href="classavl_1_1utility_1_1_exception.html#details">More...</a></p>
+
 <p><code>#include &lt;exception.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::utility::Exception:</div>
@@ -114,7 +119,7 @@ Inheritance diagram for avl::utility::Exception:</div>
   <map id="avl::utility::Exception_map" name="avl::utility::Exception_map">
 <area href="classavl_1_1utility_1_1_assertion_failure.html" title="Represents the occurrence of a failed assertion." alt="avl::utility::AssertionFailure" shape="rect" coords="0,56,199,80"/>
 <area href="classavl_1_1utility_1_1_read_write_error.html" alt="avl::utility::ReadWriteError" shape="rect" coords="209,56,408,80"/>
-<area href="classavl_1_1utility_1_1_syntax_error.html" alt="avl::utility::SyntaxError" shape="rect" coords="418,56,617,80"/>
+<area href="classavl_1_1utility_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file." alt="avl::utility::SyntaxError" shape="rect" coords="418,56,617,80"/>
 <area href="classavl_1_1utility_1_1_verification_failure.html" title="Represents the occurrence of a failed verification." alt="avl::utility::VerificationFailure" shape="rect" coords="627,56,826,80"/>
 <area href="classavl_1_1view_1_1_renderer_exception.html" alt="avl::view::RendererException" shape="rect" coords="836,56,1035,80"/>
 <area href="classavl_1_1view_1_1_window_creation_failure.html" alt="avl::view::WindowCreationFailure" shape="rect" coords="1045,56,1244,80"/>
@@ -126,20 +131,31 @@ Inheritance diagram for avl::utility::Exception:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#aeb62230bfc8f02c649b0182a4ba11376">Exception</a> (const std::string &amp;initial_description)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#aabe20de196385269e30e9e2b8ea5ad19">Exception</a> (const std::string &amp;<a class="el" href="classavl_1_1utility_1_1_exception.html#a15f19244623335928231cfbb3a09b2a4">description</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an exception given a description of the situation.  <a href="#aabe20de196385269e30e9e2b8ea5ad19"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#a8100712fdb9ae894f6cb23b0a1ff4a83">~Exception</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a8100712fdb9ae894f6cb23b0a1ff4a83"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#a6243e528c8c35492bd14a2597881b5da">Exception</a> (const <a class="el" href="classavl_1_1utility_1_1_exception.html">Exception</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor required in order to catch <a class="el" href="classavl_1_1utility_1_1_exception.html" title="The base class for all avl Library exceptions.">Exception</a> by value.  <a href="#a6243e528c8c35492bd14a2597881b5da"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#a111b546c5a79ef98790db9f90d4688f7">GetDescription</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a description of the exceptional situation.  <a href="#a111b546c5a79ef98790db9f90d4688f7"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#aa8c5077390cc196f49e76d30b063a0bb">Exception</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor.  <a href="#aa8c5077390cc196f49e76d30b063a0bb"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#a15f19244623335928231cfbb3a09b2a4">description</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes the exception which occurred.  <a href="#a15f19244623335928231cfbb3a09b2a4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#aa8c5077390cc196f49e76d30b063a0bb">Exception</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_exception.html">Exception</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#a68b5c9f8bc82c31b4a6a2eeb6123c4e1">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_exception.html">Exception</a> &amp;)</td></tr>
-<tr><td colspan="2"><h2><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_exception.html#a15f19244623335928231cfbb3a09b2a4">description</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a68b5c9f8bc82c31b4a6a2eeb6123c4e1"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aeb62230bfc8f02c649b0182a4ba11376"></a><!-- doxytag: member="avl::utility::Exception::Exception" ref="aeb62230bfc8f02c649b0182a4ba11376" args="(const std::string &amp;initial_description)" -->
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>The base class for all avl Library exceptions. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aabe20de196385269e30e9e2b8ea5ad19"></a><!-- doxytag: member="avl::utility::Exception::Exception" ref="aabe20de196385269e30e9e2b8ea5ad19" args="(const std::string &amp;description)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -147,12 +163,20 @@ Private Attributes</h2></td></tr>
           <td class="memname">avl::utility::Exception::Exception </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>initial_description</em></td><td>)</td>
+          <td class="paramname"><em>description</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructs an exception given a description of the situation. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">description</td><td>A description of the exceptional situation. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -169,6 +193,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -187,6 +213,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor required in order to catch <a class="el" href="classavl_1_1utility_1_1_exception.html" title="The base class for all avl Library exceptions.">Exception</a> by value. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="aa8c5077390cc196f49e76d30b063a0bb"></a><!-- doxytag: member="avl::utility::Exception::Exception" ref="aa8c5077390cc196f49e76d30b063a0bb" args="()" -->
@@ -197,11 +231,14 @@ Private Attributes</h2></td></tr>
           <td class="memname">avl::utility::Exception::Exception </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic constructor. </p>
+<p>Only usable by subclasses. </p>
 
 </div>
 </div>
@@ -220,6 +257,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets a description of the exceptional situation. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Description of the exception. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a68b5c9f8bc82c31b4a6a2eeb6123c4e1"></a><!-- doxytag: member="avl::utility::Exception::operator=" ref="a68b5c9f8bc82c31b4a6a2eeb6123c4e1" args="(const Exception &amp;)" -->
@@ -237,6 +277,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -245,11 +287,13 @@ Private Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string <a class="el" href="classavl_1_1utility_1_1_exception.html#a15f19244623335928231cfbb3a09b2a4">avl::utility::Exception::description</a><code> [private]</code></td>
+          <td class="memname">const std::string <a class="el" href="classavl_1_1utility_1_1_exception.html#a15f19244623335928231cfbb3a09b2a4">avl::utility::Exception::description</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Describes the exception which occurred. </p>
 
 </div>
 </div>
@@ -275,7 +319,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

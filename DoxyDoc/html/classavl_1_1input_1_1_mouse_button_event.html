@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -105,6 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::input::MouseButtonEvent" --><!-- doxytag: inherits="avl::input::InputEvent" -->
+<p>The <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html" title="The MouseButtonEvent encapsulates an input event from the mouse buttons.">MouseButtonEvent</a> encapsulates an input event from the mouse buttons.  
+ <a href="classavl_1_1input_1_1_mouse_button_event.html#details">More...</a></p>
+
 <p><code>#include &lt;mouse button event.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::input::MouseButtonEvent:</div>
@@ -112,7 +116,7 @@ Inheritance diagram for avl::input::MouseButtonEvent:</div>
  <div class="center">
   <img src="classavl_1_1input_1_1_mouse_button_event.png" usemap="#avl::input::MouseButtonEvent_map" alt=""/>
   <map id="avl::input::MouseButtonEvent_map" name="avl::input::MouseButtonEvent_map">
-<area href="classavl_1_1input_1_1_input_event.html" alt="avl::input::InputEvent" shape="rect" coords="0,0,173,24"/>
+<area href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events." alt="avl::input::InputEvent" shape="rect" coords="0,0,173,24"/>
 </map>
  </div></div>
 
@@ -121,21 +125,32 @@ Inheritance diagram for avl::input::MouseButtonEvent:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a7aeebbb99acf42437fdf3701e09cd690">MouseButtonEvent</a> (const <a class="el" href="structavl_1_1input_1_1key__codes_1_1_mouse_button.html#a47ab6e9c27eb875603ce9cd51593cb60">key_codes::MouseButton::MouseButtonCodes</a> &amp;initial_button, const bool is_pressed)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a button and whether the button was pressed or released.  <a href="#a7aeebbb99acf42437fdf3701e09cd690"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a0233e2bc2599e13344912bc9ac163f66">MouseButtonEvent</a> (const <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html">MouseButtonEvent</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a0233e2bc2599e13344912bc9ac163f66"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a17410cea42b9f42778ec7e93114f3684">~MouseButtonEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a17410cea42b9f42778ec7e93114f3684"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="structavl_1_1input_1_1key__codes_1_1_mouse_button.html#a47ab6e9c27eb875603ce9cd51593cb60">key_codes::MouseButton::MouseButtonCodes</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#ac05c6bf56396f2f3f0dcd56a6e6c5d40">GetButton</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the button which was pressed or released.  <a href="#ac05c6bf56396f2f3f0dcd56a6e6c5d40"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#ae0edc884dc839b7d11bb6b89374a529b">IsPressed</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the button was pressed, and false if it was released.  <a href="#ae0edc884dc839b7d11bb6b89374a529b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a385186ef077f04fd37ab53d9c02b0791">MOUSE_BUTTON_TYPE</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A constant used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class.  <a href="#a385186ef077f04fd37ab53d9c02b0791"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="structavl_1_1input_1_1key__codes_1_1_mouse_button.html#a47ab6e9c27eb875603ce9cd51593cb60">key_codes::MouseButton::MouseButtonCodes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a458608215fc70a5fcce2924fd4e83354">button</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The button which was pressed/released.  <a href="#a458608215fc70a5fcce2924fd4e83354"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a61083792b24be92b3ff1bc881d41f901">pressed</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Was <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a458608215fc70a5fcce2924fd4e83354">button</a> pressed or released?  <a href="#a61083792b24be92b3ff1bc881d41f901"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html" title="The MouseButtonEvent encapsulates an input event from the mouse buttons.">MouseButtonEvent</a> encapsulates an input event from the mouse buttons. </p>
+<p>This includes which button the event concerns, and whether the button was pressed or released. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a7aeebbb99acf42437fdf3701e09cd690"></a><!-- doxytag: member="avl::input::MouseButtonEvent::MouseButtonEvent" ref="a7aeebbb99acf42437fdf3701e09cd690" args="(const key_codes::MouseButton::MouseButtonCodes &amp;initial_button, const bool is_pressed)" -->
 <div class="memitem">
 <div class="memproto">
@@ -161,6 +176,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Takes a button and whether the button was pressed or released. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initial_button</td><td>The button which was pressed or released. </td></tr>
+    <tr><td class="paramname">is_pressed</td><td>True if <em>initial_button</em> was pressed, and false if it was released. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a0233e2bc2599e13344912bc9ac163f66"></a><!-- doxytag: member="avl::input::MouseButtonEvent::MouseButtonEvent" ref="a0233e2bc2599e13344912bc9ac163f66" args="(const MouseButtonEvent &amp;original)" -->
@@ -178,6 +202,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a17410cea42b9f42778ec7e93114f3684"></a><!-- doxytag: member="avl::input::MouseButtonEvent::~MouseButtonEvent" ref="a17410cea42b9f42778ec7e93114f3684" args="()" -->
@@ -193,6 +225,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -211,6 +245,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the button which was pressed or released. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The button which was pressed or released. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ae0edc884dc839b7d11bb6b89374a529b"></a><!-- doxytag: member="avl::input::MouseButtonEvent::IsPressed" ref="ae0edc884dc839b7d11bb6b89374a529b" args="() const " -->
@@ -227,6 +264,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns true if the button was pressed, and false if it was released. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a458608215fc70a5fcce2924fd4e83354">button</a> was pressed, and false if it was released. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -241,6 +281,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The button which was pressed/released. </p>
+
 </div>
 </div>
 <a class="anchor" id="a385186ef077f04fd37ab53d9c02b0791"></a><!-- doxytag: member="avl::input::MouseButtonEvent::MOUSE_BUTTON_TYPE" ref="a385186ef077f04fd37ab53d9c02b0791" args="" -->
@@ -254,6 +296,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>A constant used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class. </p>
+<p>This constant allows clients to identify an event as a <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html" title="The MouseButtonEvent encapsulates an input event from the mouse buttons.">MouseButtonEvent</a>. </p>
+
 </div>
 </div>
 <a class="anchor" id="a61083792b24be92b3ff1bc881d41f901"></a><!-- doxytag: member="avl::input::MouseButtonEvent::pressed" ref="a61083792b24be92b3ff1bc881d41f901" args="" -->
@@ -266,6 +311,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Was <a class="el" href="classavl_1_1input_1_1_mouse_button_event.html#a458608215fc70a5fcce2924fd4e83354">button</a> pressed or released? </p>
 
 </div>
 </div>
@@ -291,7 +338,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

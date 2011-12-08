@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -104,6 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::input::InputEvent" -->
+<p>Acts as a base class for all input events.  
+ <a href="classavl_1_1input_1_1_input_event.html#details">More...</a></p>
+
 <p><code>#include &lt;input event.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::input::InputEvent:</div>
@@ -111,8 +115,8 @@ Inheritance diagram for avl::input::InputEvent:</div>
  <div class="center">
   <img src="classavl_1_1input_1_1_input_event.png" usemap="#avl::input::InputEvent_map" alt=""/>
   <map id="avl::input::InputEvent_map" name="avl::input::InputEvent_map">
-<area href="classavl_1_1input_1_1_keyboard_event.html" alt="avl::input::KeyboardEvent" shape="rect" coords="0,56,173,80"/>
-<area href="classavl_1_1input_1_1_mouse_button_event.html" alt="avl::input::MouseButtonEvent" shape="rect" coords="183,56,356,80"/>
+<area href="classavl_1_1input_1_1_keyboard_event.html" title="The KeyboardEvent class encapsulates a single input event from the keyboard." alt="avl::input::KeyboardEvent" shape="rect" coords="0,56,173,80"/>
+<area href="classavl_1_1input_1_1_mouse_button_event.html" title="The MouseButtonEvent encapsulates an input event from the mouse buttons." alt="avl::input::MouseButtonEvent" shape="rect" coords="183,56,356,80"/>
 <area href="classavl_1_1input_1_1_mouse_move_event.html" alt="avl::input::MouseMoveEvent" shape="rect" coords="366,56,539,80"/>
 <area href="classavl_1_1input_1_1_mouse_scroll_event.html" alt="avl::input::MouseScrollEvent" shape="rect" coords="549,56,722,80"/>
 </map>
@@ -123,14 +127,22 @@ Inheritance diagram for avl::input::InputEvent:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_input_event.html#a919068506d536c70c9826ccbeb489896">InputEvent</a> (const unsigned char &amp;initial_type)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes an integer constant which is used by clients to identify the type of input event this is.  <a href="#a919068506d536c70c9826ccbeb489896"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_input_event.html#a61a20befecf7a050e12d70c9ea93029f">InputEvent</a> (const <a class="el" href="classavl_1_1input_1_1_input_event.html">InputEvent</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a61a20befecf7a050e12d70c9ea93029f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_input_event.html#a08a53638ecf9d5636ae0fefd24118b97">~InputEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a08a53638ecf9d5636ae0fefd24118b97"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned char &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_input_event.html#a131e5b4ef0b94b5c41735b13f520bdbf">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to identify what type of event this is.  <a href="#a131e5b4ef0b94b5c41735b13f520bdbf"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_input_event.html#ad9e3a3d2dba90e8b92944065d284726f">type</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies what type of input event this is.  <a href="#ad9e3a3d2dba90e8b92944065d284726f"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Acts as a base class for all input events. </p>
+<p>Derived classes must define a literal by which to identify that class. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a919068506d536c70c9826ccbeb489896"></a><!-- doxytag: member="avl::input::InputEvent::InputEvent" ref="a919068506d536c70c9826ccbeb489896" args="(const unsigned char &amp;initial_type)" -->
 <div class="memitem">
 <div class="memproto">
@@ -145,6 +157,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Takes an integer constant which is used by clients to identify the type of input event this is. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initial_type</td><td>A literal used to identify different input event types. Derived classes should define a new one. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -163,6 +183,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a08a53638ecf9d5636ae0fefd24118b97"></a><!-- doxytag: member="avl::input::InputEvent::~InputEvent" ref="a08a53638ecf9d5636ae0fefd24118b97" args="()" -->
@@ -178,6 +206,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -196,6 +226,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Used to identify what type of event this is. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A literal used to differentiate different input event types. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -209,6 +242,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Identifies what type of input event this is. </p>
 
 </div>
 </div>
@@ -234,7 +269,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

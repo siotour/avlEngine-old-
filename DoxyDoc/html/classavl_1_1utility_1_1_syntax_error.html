@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -106,6 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::SyntaxError" --><!-- doxytag: inherits="avl::utility::Exception" -->
+<p>Indicates that there was a syntax error in a settings file.  
+ <a href="classavl_1_1utility_1_1_syntax_error.html#details">More...</a></p>
+
 <p><code>#include &lt;settings file.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::utility::SyntaxError:</div>
@@ -113,7 +117,7 @@ Inheritance diagram for avl::utility::SyntaxError:</div>
  <div class="center">
   <img src="classavl_1_1utility_1_1_syntax_error.png" usemap="#avl::utility::SyntaxError_map" alt=""/>
   <map id="avl::utility::SyntaxError_map" name="avl::utility::SyntaxError_map">
-<area href="classavl_1_1utility_1_1_exception.html" alt="avl::utility::Exception" shape="rect" coords="0,0,138,24"/>
+<area href="classavl_1_1utility_1_1_exception.html" title="The base class for all avl Library exceptions." alt="avl::utility::Exception" shape="rect" coords="0,0,138,24"/>
 </map>
  </div></div>
 
@@ -125,22 +129,34 @@ Public Types</h2></td></tr>
 <a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a05e2cc5524782f2afaf9e2dfca68674ba6097f7f7651ad6e7a0b51c7a3dbf49f4">BAD_VALUE</a>, 
 <a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a05e2cc5524782f2afaf9e2dfca68674bae5375c91ebd25fe1b2e7262acddfaf40">OUT_OF_RANGE_INTEGER</a>
  }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes what kind of syntax error has occurred.  <a href="classavl_1_1utility_1_1_syntax_error.html#a05e2cc5524782f2afaf9e2dfca68674b">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a36219a081e66b4aa0b8a1d205ab247a7">SyntaxError</a> (const <a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a05e2cc5524782f2afaf9e2dfca68674b">ErrorType</a> &amp;<a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a964a3e9fe6d5f74758e49053b1e2682c">error_type</a>, const int &amp;<a class="el" href="classavl_1_1utility_1_1_syntax_error.html#ae2d3c17e8d8739aa0dc33848536ebdf2">line_number</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-spec constructor.  <a href="#a36219a081e66b4aa0b8a1d205ab247a7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a81ad57f8e92bed0bb27873b9c5c22f31">~SyntaxError</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a81ad57f8e92bed0bb27873b9c5c22f31"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#aa0dd4751cdadac98311fe71224fe27cb">SyntaxError</a> (const <a class="el" href="classavl_1_1utility_1_1_syntax_error.html">SyntaxError</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Required in order to throw/catch by value.  <a href="#aa0dd4751cdadac98311fe71224fe27cb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a05e2cc5524782f2afaf9e2dfca68674b">ErrorType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a6f4c756ac6dbada8b2e88521e9085251">GetErrorType</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the error type.  <a href="#a6f4c756ac6dbada8b2e88521e9085251"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a6dd5556e934e0af01800abba2e3bd0fc">GetLineNumber</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the line on which the error occured.  <a href="#a6dd5556e934e0af01800abba2e3bd0fc"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_syntax_error.html">SyntaxError</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a39a00bc98fe7195868cb0f8d1022f625">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_syntax_error.html">SyntaxError</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a39a00bc98fe7195868cb0f8d1022f625"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a05e2cc5524782f2afaf9e2dfca68674b">ErrorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#a964a3e9fe6d5f74758e49053b1e2682c">error_type</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The error type.  <a href="#a964a3e9fe6d5f74758e49053b1e2682c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html#ae2d3c17e8d8739aa0dc33848536ebdf2">line_number</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The line number on which the error occured.  <a href="#ae2d3c17e8d8739aa0dc33848536ebdf2"></a><br/></td></tr>
 </table>
-<hr/><h2>Member Enumeration Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Indicates that there was a syntax error in a settings file. </p>
+<p>Includes the line number where the error was found and an error code describing what kind of error occured. </p>
+</div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a05e2cc5524782f2afaf9e2dfca68674b"></a><!-- doxytag: member="avl::utility::SyntaxError::ErrorType" ref="a05e2cc5524782f2afaf9e2dfca68674b" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -151,6 +167,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Describes what kind of syntax error has occurred. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="a05e2cc5524782f2afaf9e2dfca68674bab6201214ad95982cc1e72f05e2efa904"></a><!-- doxytag: member="BAD_VARIABLE_NAME" ref="a05e2cc5524782f2afaf9e2dfca68674bab6201214ad95982cc1e72f05e2efa904" args="" -->BAD_VARIABLE_NAME</em>&nbsp;</td><td>
 </td></tr>
@@ -190,6 +208,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Full-spec constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error_type</td><td>The type of syntax error which was found. </td></tr>
+    <tr><td class="paramname">line_number</td><td>the line on which the syntax error was detected. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a81ad57f8e92bed0bb27873b9c5c22f31"></a><!-- doxytag: member="avl::utility::SyntaxError::~SyntaxError" ref="a81ad57f8e92bed0bb27873b9c5c22f31" args="()" -->
@@ -205,6 +232,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -223,6 +252,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Required in order to throw/catch by value. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -240,6 +277,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets the error type. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The type of syntax error found. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a6dd5556e934e0af01800abba2e3bd0fc"></a><!-- doxytag: member="avl::utility::SyntaxError::GetLineNumber" ref="a6dd5556e934e0af01800abba2e3bd0fc" args="() const " -->
@@ -255,6 +295,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Gets the line on which the error occured. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The line on which the error was detected. </dd></dl>
 
 </div>
 </div>
@@ -273,6 +316,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -287,6 +332,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The error type. </p>
+
 </div>
 </div>
 <a class="anchor" id="ae2d3c17e8d8739aa0dc33848536ebdf2"></a><!-- doxytag: member="avl::utility::SyntaxError::line_number" ref="ae2d3c17e8d8739aa0dc33848536ebdf2" args="" -->
@@ -299,6 +346,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The line number on which the error occured. </p>
 
 </div>
 </div>
@@ -324,7 +373,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

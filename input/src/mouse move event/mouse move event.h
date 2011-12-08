@@ -1,40 +1,46 @@
 #ifndef __AVL_INPUT_MOUSE_MOVE_EVENT__
 #define __AVL_INPUT_MOUSE_MOVE_EVENT__
-/**********
- * Author: Sheldon Bachstein
- * Date: Sep 08, 2011
- * Description: The MouseMoveEvent encapsulates a movement input event from the
- * mouse. This includes the change in x and y coordinates.
- **********/
+/**
+@file
+Implements the MouseMoveEvent, which represents a movement input event
+from a mouse device.
+@author Sheldon Bachstein
+@date Sep 08, 2011
+*/
 
 
 #include"..\input event\input event.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 
 
 namespace avl
 {
 namespace input
 {
-	// See the beginning of the file for details.
+	/**
+	Encapsulates a movement input event from a mouse device.
+	Includes the change in x and y coordinates.
+	*/
 	class MouseMoveEvent: public InputEvent
 	{
 	public:
-		// A constant used to initialize the InputEvent base class. This constant
-		// allows clients to identify an event as a MouseMoveEvent.
+		/** A constant used to initialize the InputEvent base class. This constant
+		allows clients to identify an event as a MouseMoveEvent.*/
 		static const unsigned char MOUSE_MOVE_TYPE;
 
 
-		// Constructors:
-		// Takes a 2-dimensional vector representing the change in x and y
-		// coordinates.
+		/** Constructs a new event based on \a x and \a y.
+		@param x Movement along the vertical axis.
+		@param y Movement along the horizontal axis.
+		*/
 		MouseMoveEvent(const short& x, const short& y);
-		// Copy constructor.
+		/** Copy constructor.
+		@param original The object being copied.
+		*/
 		MouseMoveEvent(const MouseMoveEvent& original);
-		// Destructor.
+		/** Basic  destructor.*/
 		~MouseMoveEvent();
 
-		// Accessors:
+		
 		// Returns the mouse delta coordinates.
 		const utility::Vertex2D& GetDelta() const;
 		// Returns the change in x coordinates.

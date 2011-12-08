@@ -14,8 +14,8 @@ namespace utility
 {
 
 	// initial_description should describe the exception that occurred.
-	Exception::Exception(const std::string& initial_description)
-		: description(initial_description)
+	Exception::Exception(const std::string& description)
+		: description(description)
 	{
 	}
 
@@ -38,6 +38,13 @@ namespace utility
 	const std::string& Exception::GetDescription() const
 	{
 		return description;
+	}
+
+
+
+	// Only usable by subclasses. Doesn't initialize descrption.
+	Exception::Exception()
+	{
 	}
 
 

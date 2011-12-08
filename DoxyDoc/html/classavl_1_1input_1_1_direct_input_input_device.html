@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -106,6 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::input::DirectInputInputDevice" -->
+<p>Uses Direct Input to retrieve input events from the keyboard and mouse devices.  
+ <a href="classavl_1_1input_1_1_direct_input_input_device.html#details">More...</a></p>
+
 <p><code>#include &lt;direct input input device.h&gt;</code></p>
 
 <p><a href="classavl_1_1input_1_1_direct_input_input_device-members.html">List of all members.</a></p>
@@ -114,28 +118,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef std::queue&lt; const <br class="typebreak"/>
 <a class="el" href="classavl_1_1input_1_1_input_event.html">InputEvent</a> *const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a81f638bba66d3ee6ead6413718ac2ba0">EventQueue</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A queue of pointers to InputEvents.  <a href="#a81f638bba66d3ee6ead6413718ac2ba0"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a7601dfbb989b377e0ab8bfc277873876">DirectInputInputDevice</a> (const HWND &amp;initial_window_handle)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Given the handle to a window, creates an input device to monitor input for that window.  <a href="#a7601dfbb989b377e0ab8bfc277873876"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a29abddd76d7e86dc31af04a14c991cb5">~DirectInputInputDevice</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees all resources for this device.  <a href="#a29abddd76d7e86dc31af04a14c991cb5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a81f638bba66d3ee6ead6413718ac2ba0">EventQueue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a010f626fbc958d6088bc93ccda56d0dd">PollInput</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Polls for mouse and keyboard input and returns a queue of any new input events.  <a href="#a010f626fbc958d6088bc93ccda56d0dd"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#aeaf12d46dc772aa315ec3cc79ba88da5">ResetDeviceStates</a> (<a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a81f638bba66d3ee6ead6413718ac2ba0">EventQueue</a> &amp;queue)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the keyboard and mouse states so that any currently pressed keys or buttons are released and appropriate InputEvents are generated.  <a href="#aeaf12d46dc772aa315ec3cc79ba88da5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a4af791e6923d597e2784f92fabe095c0">PollKeyboard</a> (<a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a81f638bba66d3ee6ead6413718ac2ba0">EventQueue</a> &amp;queue)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to poll the keyboard for new input data.  <a href="#a4af791e6923d597e2784f92fabe095c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#ad8ac7cfc0cc7eabcc2c91e50d89994a9">PollMouse</a> (<a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a81f638bba66d3ee6ead6413718ac2ba0">EventQueue</a> &amp;queue)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to poll the mouse for new input data.  <a href="#ad8ac7cfc0cc7eabcc2c91e50d89994a9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a3a0a0ff0c1179bca55a58f69d8ee5aa7">DirectInputInputDevice</a> (const <a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html">DirectInputInputDevice</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented.  <a href="#a3a0a0ff0c1179bca55a58f69d8ee5aa7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html">DirectInputInputDevice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a8d620b4fbf9c10259e85d2c2f59fdf56">operator=</a> (const <a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html">DirectInputInputDevice</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented.  <a href="#a8d620b4fbf9c10259e85d2c2f59fdf56"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a1febf92edaefbd7d5c41c96653b3168c">window_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The handle of the window receiving input.  <a href="#a1febf92edaefbd7d5c41c96653b3168c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">LPDIRECTINPUT8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a0f4dab050fa305f2c5c3ab0362c7c85f">direct_input_interface</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the DirectInput8 interface.  <a href="#a0f4dab050fa305f2c5c3ab0362c7c85f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">LPDIRECTINPUTDEVICE8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#acc2ce1b2817b367660f7126c02377468">keyboard_device</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the keyboard device.  <a href="#acc2ce1b2817b367660f7126c02377468"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">LPDIRECTINPUTDEVICE8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#ac01265929e507e0e87476c5b3b51225c">mouse_device</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the mouse device.  <a href="#ac01265929e507e0e87476c5b3b51225c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a14d51dae4ebd7bc5ced39a995b648d04">keyboard_state</a> [256]</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyboard state.  <a href="#a14d51dae4ebd7bc5ced39a995b648d04"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a29b479255178c3cea6185649651cce6d">mouse_button_state</a> [8]</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Mouse button states.  <a href="#a29b479255178c3cea6185649651cce6d"></a><br/></td></tr>
 </table>
-<hr/><h2>Member Typedef Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Uses Direct Input to retrieve input events from the keyboard and mouse devices. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Modify this class to also record the sequence ID of each input event, and then sort the container which input events are stored in by that sequence ID. </dd></dl>
+</div><hr/><h2>Member Typedef Documentation</h2>
 <a class="anchor" id="a81f638bba66d3ee6ead6413718ac2ba0"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::EventQueue" ref="a81f638bba66d3ee6ead6413718ac2ba0" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -146,6 +168,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>A queue of pointers to InputEvents. </p>
+<p>This is how polled input is reported to the client. </p>
 
 </div>
 </div>
@@ -165,6 +190,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Given the handle to a window, creates an input device to monitor input for that window. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initial_window_handle</td><td>The handle of the window we're getting input for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a29abddd76d7e86dc31af04a14c991cb5"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::~DirectInputInputDevice" ref="a29abddd76d7e86dc31af04a14c991cb5" args="()" -->
@@ -180,6 +213,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Frees all resources for this device. </p>
 
 </div>
 </div>
@@ -197,6 +232,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Not implemented. </p>
 
 </div>
 </div>
@@ -216,6 +253,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Not implemented. </p>
+
 </div>
 </div>
 <a class="anchor" id="a010f626fbc958d6088bc93ccda56d0dd"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::PollInput" ref="a010f626fbc958d6088bc93ccda56d0dd" args="()" -->
@@ -231,6 +270,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Polls for mouse and keyboard input and returns a queue of any new input events. </p>
+<p>If there are no new inputs, then the returned queue will be empty. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>The returned queue contains pointers to the input events. Calling this function assumes ownership of these pointers and they should be deleted when you're done with them. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Perhaps this function should strictly maintain ownership of the returned EventQueue, and specify that all of the pointers will remain valid up until the next poll. And then, at each call to PollInput, any old <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> pointers are deleted. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An EventQueue containing all InputEvents since the last call to <a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a010f626fbc958d6088bc93ccda56d0dd" title="Polls for mouse and keyboard input and returns a queue of any new input events.">PollInput()</a> or since this device was created. </dd></dl>
 
 </div>
 </div>
@@ -249,6 +294,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to poll the keyboard for new input data. </p>
+<p>Any new input events are appended to <em>queue</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>A queue into which any InputEvents should be inserted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ad8ac7cfc0cc7eabcc2c91e50d89994a9"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::PollMouse" ref="ad8ac7cfc0cc7eabcc2c91e50d89994a9" args="(EventQueue &amp;queue)" -->
@@ -265,6 +319,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Attempts to poll the mouse for new input data. </p>
+<p>Any new input events are appended to queue. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>A queue into which any InputEvents should be inserted. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -283,6 +346,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Resets the keyboard and mouse states so that any currently pressed keys or buttons are released and appropriate InputEvents are generated. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>For each <code>true</code> value in the <a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a14d51dae4ebd7bc5ced39a995b648d04">keyboard_state</a> and <a class="el" href="classavl_1_1input_1_1_direct_input_input_device.html#a29b479255178c3cea6185649651cce6d">mouse_button_state</a> arrays, that value will be set to <code>false</code> and an appropriate <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> will be added to <em>queue</em> to indicate that the key/button is considered released. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>A queue into which any InputEvents should be inserted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -297,6 +369,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Pointer to the DirectInput8 interface. </p>
+
 </div>
 </div>
 <a class="anchor" id="acc2ce1b2817b367660f7126c02377468"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::keyboard_device" ref="acc2ce1b2817b367660f7126c02377468" args="" -->
@@ -309,6 +383,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Pointer to the keyboard device. </p>
 
 </div>
 </div>
@@ -323,6 +399,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Keyboard state. </p>
+<p>This is needed to keep track of which buttons are down when the device is lost, so that key-up messages can be sent. </p>
+
 </div>
 </div>
 <a class="anchor" id="a29b479255178c3cea6185649651cce6d"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::mouse_button_state" ref="a29b479255178c3cea6185649651cce6d" args="[8]" -->
@@ -335,6 +414,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Mouse button states. </p>
+<p>This is needed to keep track of which buttons are down whent he device is lost so that button-release messages can be sent. </p>
 
 </div>
 </div>
@@ -349,6 +431,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Pointer to the mouse device. </p>
+
 </div>
 </div>
 <a class="anchor" id="a1febf92edaefbd7d5c41c96653b3168c"></a><!-- doxytag: member="avl::input::DirectInputInputDevice::window_handle" ref="a1febf92edaefbd7d5c41c96653b3168c" args="" -->
@@ -361,6 +445,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The handle of the window receiving input. </p>
 
 </div>
 </div>
@@ -386,7 +472,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Thu Nov 3 2011 14:23:09 for avl Library by
+    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
