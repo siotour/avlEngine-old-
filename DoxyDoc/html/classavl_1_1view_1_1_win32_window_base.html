@@ -106,6 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::view::Win32WindowBase" -->
+<p>A partially-implemented skeleton used to build higher-level Win32 windows on.  
+ <a href="classavl_1_1view_1_1_win32_window_base.html#details">More...</a></p>
+
 <p><code>#include &lt;win32 window base.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::view::Win32WindowBase:</div>
@@ -113,7 +116,7 @@ Inheritance diagram for avl::view::Win32WindowBase:</div>
  <div class="center">
   <img src="classavl_1_1view_1_1_win32_window_base.png" usemap="#avl::view::Win32WindowBase_map" alt=""/>
   <map id="avl::view::Win32WindowBase_map" name="avl::view::Win32WindowBase_map">
-<area href="classavl_1_1view_1_1_basic_window.html" alt="avl::view::BasicWindow" shape="rect" coords="0,56,174,80"/>
+<area href="classavl_1_1view_1_1_basic_window.html" title="Provides an implementation for a very basic Win32 window." alt="avl::view::BasicWindow" shape="rect" coords="0,56,174,80"/>
 </map>
  </div></div>
 
@@ -122,23 +125,37 @@ Inheritance diagram for avl::view::Win32WindowBase:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a8d121e8b2aa8d938e398cad34de56d5e">Win32WindowBase</a> (HINSTANCE instance_handle, const std::string &amp;window_title, const int &amp;width, const int &amp;height, LRESULT(CALLBACK *const window_procedure)(HWND, UINT, WPARAM, LPARAM))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create a window with the specified properties.  <a href="#a8d121e8b2aa8d938e398cad34de56d5e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a94b7d625fc800bcad16a876eb23ee947">~Win32WindowBase</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a94b7d625fc800bcad16a876eb23ee947"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#afe434a39d347b84b0b28ca5bac918f56">GetWindowHandle</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the window's handle.  <a href="#afe434a39d347b84b0b28ca5bac918f56"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">HDC&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a0e87f929eb8e3b5c447ddc488b6d46f1">GetDeviceContextHandle</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the device context handle for this window.  <a href="#a0e87f929eb8e3b5c447ddc488b6d46f1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a2a6469ced971ff169afd07a5fbdb324e">Update</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">General upkeep of the window; should be called often.  <a href="#a2a6469ced971ff169afd07a5fbdb324e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a072ae21d0ffae3a0bbd64d0febd702e1">RegisterWindowClass</a> (HINSTANCE instance_handle, const char *const &amp;window_title, LRESULT(CALLBACK *const window_procedure)(HWND, UINT, WPARAM, LPARAM))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to register a window class matching the parameters.  <a href="#a072ae21d0ffae3a0bbd64d0febd702e1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a05200a40ae7d6fe3a782d18fc643c3fd">MakeWindow</a> (HINSTANCE instance_handle, const char *const &amp;window_title, const int width, const int height)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create a window matching the parameters.  <a href="#a05200a40ae7d6fe3a782d18fc643c3fd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a195d3d1bf80027bd25277ebda11fe17a">AttainDeviceContext</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to attain a device context for this window.  <a href="#a195d3d1bf80027bd25277ebda11fe17a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a0bfac57afd12146e30b96b9943d7fb84">Win32WindowBase</a> (const <a class="el" href="classavl_1_1view_1_1_win32_window_base.html">avl::view::Win32WindowBase</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a0bfac57afd12146e30b96b9943d7fb84"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1view_1_1_win32_window_base.html">avl::view::Win32WindowBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a581cb8a28eec8e1a9959235d8003c2e7">operator=</a> (const <a class="el" href="classavl_1_1view_1_1_win32_window_base.html">avl::view::Win32WindowBase</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a581cb8a28eec8e1a9959235d8003c2e7"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#ad0d2b0c5d94766a85b0584f965fd61d4">window_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The handle to the window.  <a href="#ad0d2b0c5d94766a85b0584f965fd61d4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">HDC&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_win32_window_base.html#aea6848206a5b0289be92e8600a47e742">device_context_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The handle to the device context for the window.  <a href="#aea6848206a5b0289be92e8600a47e742"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>A partially-implemented skeleton used to build higher-level Win32 windows on. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a8d121e8b2aa8d938e398cad34de56d5e"></a><!-- doxytag: member="avl::view::Win32WindowBase::Win32WindowBase" ref="a8d121e8b2aa8d938e398cad34de56d5e" args="(HINSTANCE instance_handle, const std::string &amp;window_title, const int &amp;width, const int &amp;height, LRESULT(CALLBACK *const window_procedure)(HWND, UINT, WPARAM, LPARAM))" -->
 <div class="memitem">
 <div class="memproto">
@@ -182,6 +199,28 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to create a window with the specified properties. </p>
+<p>If an error occurs, will throw a <a class="el" href="classavl_1_1view_1_1_window_creation_failure.html" title="Represents a failure while attempting to create a window.">WindowCreationFailure</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance_handle</td><td>Handle to the application instance. </td></tr>
+    <tr><td class="paramname">window_title</td><td>The name which will appear in the window's title bar, task bar icon, and task manager. </td></tr>
+    <tr><td class="paramname">width</td><td>The window's client-area width. </td></tr>
+    <tr><td class="paramname">height</td><td>The window's client-area height. </td></tr>
+    <tr><td class="paramname">window_procedure</td><td>A handle to the window procedure for this window. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_window_creation_failure.html" title="Represents a failure while attempting to create a window.">WindowCreationFailure</a></td><td>If unable to create the window. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd><p class="startdd">Clarify when an exception may be thrown from this procedure. </p>
+<p class="enddd">Define the pre- and post-conditions for this constructor. </p>
+</dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a94b7d625fc800bcad16a876eb23ee947"></a><!-- doxytag: member="avl::view::Win32WindowBase::~Win32WindowBase" ref="a94b7d625fc800bcad16a876eb23ee947" args="()" -->
@@ -197,6 +236,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -215,6 +256,8 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -232,6 +275,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to attain a device context for this window. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>When does this procedure throw any exceptions? What are the pre- and post-conditions? </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a0e87f929eb8e3b5c447ddc488b6d46f1"></a><!-- doxytag: member="avl::view::Win32WindowBase::GetDeviceContextHandle" ref="a0e87f929eb8e3b5c447ddc488b6d46f1" args="() const " -->
@@ -248,6 +294,9 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the device context handle for this window. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The handle to the device context created for this window. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="afe434a39d347b84b0b28ca5bac918f56"></a><!-- doxytag: member="avl::view::Win32WindowBase::GetWindowHandle" ref="afe434a39d347b84b0b28ca5bac918f56" args="() const " -->
@@ -263,6 +312,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the window's handle. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The window's handle. </dd></dl>
 
 </div>
 </div>
@@ -303,6 +355,18 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to create a window matching the parameters. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>"CreateWindow" is a macro, so it can't be used as a name. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance_handle</td><td>Handle to the application instance. </td></tr>
+    <tr><td class="paramname">window_title</td><td>The title of the window and name of the window class. </td></tr>
+    <tr><td class="paramname">width</td><td>The width of the window's client area. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the window's client area. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a581cb8a28eec8e1a9959235d8003c2e7"></a><!-- doxytag: member="avl::view::Win32WindowBase::operator=" ref="a581cb8a28eec8e1a9959235d8003c2e7" args="(const avl::view::Win32WindowBase &amp;)" -->
@@ -319,6 +383,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>NOT IMPLEMENTED. </p>
 
 </div>
 </div>
@@ -353,6 +419,23 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to register a window class matching the parameters. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance_handle</td><td>Handle to the application instance. </td></tr>
+    <tr><td class="paramname">window_title</td><td>The title of the window and name of the window class. </td></tr>
+    <tr><td class="paramname">window_procedure</td><td>A handle to the window procedure for this window. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_window_creation_failure.html" title="Represents a failure while attempting to create a window.">WindowCreationFailure</a></td><td>If unable to create the window. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>Clarify when this procedure throws an exception and define the pre- and post-conditions. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a2a6469ced971ff169afd07a5fbdb324e"></a><!-- doxytag: member="avl::view::Win32WindowBase::Update" ref="a2a6469ced971ff169afd07a5fbdb324e" args="()=0" -->
@@ -368,6 +451,10 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>General upkeep of the window; should be called often. </p>
+<p>A return value of true means the window is functioning normally, false means that the window has been closed. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True means the window is performing normally, and false means the window has been closed. </dd></dl>
 
 <p>Implemented in <a class="el" href="classavl_1_1view_1_1_basic_window.html#a662342557b2f8567f6d344494a415df7">avl::view::BasicWindow</a>.</p>
 
@@ -385,6 +472,8 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The handle to the device context for the window. </p>
+
 </div>
 </div>
 <a class="anchor" id="ad0d2b0c5d94766a85b0584f965fd61d4"></a><!-- doxytag: member="avl::view::Win32WindowBase::window_handle" ref="ad0d2b0c5d94766a85b0584f965fd61d4" args="" -->
@@ -397,6 +486,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The handle to the window. </p>
 
 </div>
 </div>
@@ -422,7 +513,7 @@ Protected Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:27 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

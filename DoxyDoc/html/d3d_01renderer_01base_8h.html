@@ -104,6 +104,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">d3d renderer base.h File Reference</div>  </div>
 </div>
 <div class="contents">
+
+<p>Defines the <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">avl::view::D3DRendererBase</a> class.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;..\..\..\utility\src\exception\exception.h&quot;</code><br/>
 <code>#include &lt;Windows.h&gt;</code><br/>
 <code>#include &lt;d3d9.h&gt;</code><br/>
@@ -114,9 +117,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">avl::view::D3DRendererBase</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A test class.  <a href="classavl_1_1view_1_1_d3_d_renderer_base.html#details">More...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a partially implemented interface for a basic Direct3D renderer.  <a href="classavl_1_1view_1_1_d3_d_renderer_base.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html">avl::view::RendererException</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the basic exception type for renderers.  <a href="classavl_1_1view_1_1_renderer_exception.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html">avl::view::D3DError</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This exception type is thrown when one of the Direct3D functions fail.  <a href="classavl_1_1view_1_1_d3_d_error.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl.html">avl</a></td></tr>
@@ -126,13 +131,22 @@ Namespaces</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef const std::vector<br class="typebreak"/>
 &lt; const D3DDisplayProfile &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl_1_1view.html#a39144266a1de20c9715320460b435202">avl::view::DisplayProfiles</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to return a set of <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">avl::view::D3DDisplayProfile</a> objects.  <a href="#a39144266a1de20c9715320460b435202"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const D3DDisplayProfile &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl_1_1view.html#a31c5e0bb784c6ceac2b260d63fd12768">avl::view::LeastSquaredDisplayProfile</a> (const bool fullscreen, const int width, const int height)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const D3DDisplayProfile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl_1_1view.html#ac79a90f659349dd895d5702f702757ef">avl::view::LeastSquaredDisplayProfile</a> (const bool fullscreen, const int width, const int height)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to find the closest fitting display profile matching the parameters.  <a href="#ac79a90f659349dd895d5702f702757ef"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">DisplayProfiles&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl_1_1view.html#aa1765d25abf637c0140539f6321fda65">avl::view::EnumerateDisplayProfiles</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This function attempts to enumerate the default display adapter, using the HAL device, for all legal display profiles with multisampling disabled.  <a href="#aa1765d25abf637c0140539f6321fda65"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl_1_1view.html#a0c6d7e4f0b61ddd0ef20d4c0f42440d4">avl::view::CheckDeviceCapabilities</a> (IDirect3D9 *const d3d)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see whether or not the HAL Direct3D device on the default adapter supports all of the functionality required by the <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html" title="Provides a partially implemented interface for a basic Direct3D renderer.">D3DRendererBase</a>.  <a href="#a0c6d7e4f0b61ddd0ef20d4c0f42440d4"></a><br/></td></tr>
 </table>
-</div>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Defines the <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">avl::view::D3DRendererBase</a> class. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Sheldon Bachstein </dd></dl>
+<dl class="date"><dt><b>Date:</b></dt><dd>Dec 25, 2010 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Everything in this file needs to be refactored into smaller, more manageable chunks. </dd></dl>
+</div></div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
@@ -152,7 +166,7 @@ Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:05 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:25 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

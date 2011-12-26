@@ -106,6 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::input::MouseMoveEvent" --><!-- doxytag: inherits="avl::input::InputEvent" -->
+<p>Encapsulates a movement input event from a mouse device.  
+ <a href="classavl_1_1input_1_1_mouse_move_event.html#details">More...</a></p>
+
 <p><code>#include &lt;mouse move event.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::input::MouseMoveEvent:</div>
@@ -122,20 +125,30 @@ Inheritance diagram for avl::input::MouseMoveEvent:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#afb2734fd231b49f70c193be8b55f9a3e">MouseMoveEvent</a> (const short &amp;x, const short &amp;y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new event where <em>x</em> and <em>y</em> are the movement along the vertical and horizontal axes.  <a href="#afb2734fd231b49f70c193be8b55f9a3e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#ac3d4060754fa9382fae7b2dd4ef4ded2">MouseMoveEvent</a> (const <a class="el" href="classavl_1_1input_1_1_mouse_move_event.html">MouseMoveEvent</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#ac3d4060754fa9382fae7b2dd4ef4ded2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#ac70d1901c445619a607882a92f5b8350">~MouseMoveEvent</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">utility::Vertex2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#aafd2470251e98820a39ca27c98c95880">GetDelta</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#ac70d1901c445619a607882a92f5b8350"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#a81ed7a870a0c36863e4d1b3f0dd8cd24">GetDeltaX</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the change in x coordinates.  <a href="#a81ed7a870a0c36863e4d1b3f0dd8cd24"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#a5c81c515bb886fe8619353d5c6a0c6fc">GetDeltaY</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the change in y coordinates.  <a href="#a5c81c515bb886fe8619353d5c6a0c6fc"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#a2b385a030a3f12b6f76bc00049bd15dd">MOUSE_MOVE_TYPE</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A constant used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class.  <a href="#a2b385a030a3f12b6f76bc00049bd15dd"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#a33f7a096f90623c50067ca59e3b0543a">delta_x</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The mouse movement along the horizontal axis.  <a href="#a33f7a096f90623c50067ca59e3b0543a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_move_event.html#aa06207c80b47fafab7bebacb517bcb9a">delta_y</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The mouse movement along the vertical axis.  <a href="#aa06207c80b47fafab7bebacb517bcb9a"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Encapsulates a movement input event from a mouse device. </p>
+<p>Includes the change in x and y coordinates. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afb2734fd231b49f70c193be8b55f9a3e"></a><!-- doxytag: member="avl::input::MouseMoveEvent::MouseMoveEvent" ref="afb2734fd231b49f70c193be8b55f9a3e" args="(const short &amp;x, const short &amp;y)" -->
 <div class="memitem">
 <div class="memproto">
@@ -161,6 +174,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Constructs a new event where <em>x</em> and <em>y</em> are the movement along the vertical and horizontal axes. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Movement along the vertical axis. </td></tr>
+    <tr><td class="paramname">y</td><td>Movement along the horizontal axis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ac3d4060754fa9382fae7b2dd4ef4ded2"></a><!-- doxytag: member="avl::input::MouseMoveEvent::MouseMoveEvent" ref="ac3d4060754fa9382fae7b2dd4ef4ded2" args="(const MouseMoveEvent &amp;original)" -->
@@ -178,6 +200,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ac70d1901c445619a607882a92f5b8350"></a><!-- doxytag: member="avl::input::MouseMoveEvent::~MouseMoveEvent" ref="ac70d1901c445619a607882a92f5b8350" args="()" -->
@@ -194,25 +224,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aafd2470251e98820a39ca27c98c95880"></a><!-- doxytag: member="avl::input::MouseMoveEvent::GetDelta" ref="aafd2470251e98820a39ca27c98c95880" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="classavl_1_1utility_1_1_vertex2_d.html">utility::Vertex2D</a>&amp; avl::input::MouseMoveEvent::GetDelta </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Basic destructor. </p>
 
 </div>
 </div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a81ed7a870a0c36863e4d1b3f0dd8cd24"></a><!-- doxytag: member="avl::input::MouseMoveEvent::GetDeltaX" ref="a81ed7a870a0c36863e4d1b3f0dd8cd24" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -226,6 +242,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the change in x coordinates. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The mouse movement along the vertical axis. </dd></dl>
 
 </div>
 </div>
@@ -243,6 +262,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the change in y coordinates. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The mouse movement along the horizontal axis. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -257,6 +279,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The mouse movement along the horizontal axis. </p>
+
 </div>
 </div>
 <a class="anchor" id="aa06207c80b47fafab7bebacb517bcb9a"></a><!-- doxytag: member="avl::input::MouseMoveEvent::delta_y" ref="aa06207c80b47fafab7bebacb517bcb9a" args="" -->
@@ -270,6 +294,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The mouse movement along the vertical axis. </p>
+
 </div>
 </div>
 <a class="anchor" id="a2b385a030a3f12b6f76bc00049bd15dd"></a><!-- doxytag: member="avl::input::MouseMoveEvent::MOUSE_MOVE_TYPE" ref="a2b385a030a3f12b6f76bc00049bd15dd" args="" -->
@@ -282,6 +308,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>A constant used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class. </p>
+<p>This constant allows clients to identify an event as a <a class="el" href="classavl_1_1input_1_1_mouse_move_event.html" title="Encapsulates a movement input event from a mouse device.">MouseMoveEvent</a>. </p>
 
 </div>
 </div>
@@ -307,7 +336,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:26 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

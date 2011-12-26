@@ -31,8 +31,9 @@ namespace view
 {
 	// Attempts to find the closest fitting display profile matching the parameters.
 	// If fullscreen is true, the resulting display profile will be fullscreen. If unable to find a
-	// display profile that at least matches the user's fullscreen preference, will throw...<TODO>.
-	const D3DDisplayProfile& LeastSquaredDisplayProfile(const bool fullscreen, const int width, const int height)
+	// display profile that at least matches the user's fullscreen preference, will throw a
+	// RendererException.
+	const D3DDisplayProfile LeastSquaredDisplayProfile(const bool fullscreen, const int width, const int height)
 	{
 		// Retrieve all possible display profiles.
 		const DisplayProfiles profiles = EnumerateDisplayProfiles();
@@ -70,12 +71,12 @@ namespace view
 		}
 
 		// If index points to the end of display profiles, then no suitable display profile
-		// was found. Throw<TODO>.
+		// was found.
 		if(index == end)
 		{
-			throw <todo>;
+			throw RendererException("avl::view::D3DRendererBase::LeastSquaredDisplayProfile() -- Unable to find an appropriate display profile.");
 		}
-		// Otherwise we found a good profile. Return it.
+		// Otherwise we've found a good profile. Return it.
 		return *index;
 	}
 
@@ -333,23 +334,6 @@ namespace view
 
 
 
-	// Attempts to clear the screen to black and the z-buffer to 1.0f.
-	void D3DRendererBase::ClearViewport()
-	{
-		ASSERT(d3d != NULL);
-		ASSERT(device != NULL);
-
-		// Clear the viewport to solid black. If this fails, throw a D3DError with the error
-		// code and description.
-		HRESULT result = device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
-		if(FAILED(result))
-		{
-			throw D3DError("avl::view::D3DRendererBase::ClearViewport() -- Unable to clear the viewport.", result);
-		}
-	}
-
-
-
 
 	// Attempts to reset the device if the device is lost. If successful, returns true. If not, returns false. Should
 	// be called when the device is lost. If there is an internal error with the device, a D3DError will be thrown
@@ -423,6 +407,23 @@ namespace view
 		else
 		{
 			throw D3DError("avl::view::D3DRendererBase::ResetDevice() -- An internal error occurred while checking the device's state.", result);
+		}
+	}
+
+
+
+	// Attempts to clear the screen to black and the z-buffer to 1.0f.
+	void D3DRendererBase::ClearViewport()
+	{
+		ASSERT(d3d != NULL);
+		ASSERT(device != NULL);
+
+		// Clear the viewport to solid black. If this fails, throw a D3DError with the error
+		// code and description.
+		HRESULT result = device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
+		if(FAILED(result))
+		{
+			throw D3DError("avl::view::D3DRendererBase::ClearViewport() -- Unable to clear the viewport.", result);
 		}
 	}
 
@@ -817,8 +818,8 @@ namespace view
 	// Constructor; takes a description of the error (which is suggested to contain the full
 	// function name and what was being attempted when the error occured) and the
 	// actual HRESULT error code returned by the failing function.
-	D3DError::D3DError(const std::string& description, const HRESULT& initial_error_code)
-	: RendererException(description), error_code(initial_error_code)
+	D3DError::D3DError(const std::string& description, const HRESULT& error_code)
+	: RendererException(description), error_code(error_code)
 	{
 	}
 

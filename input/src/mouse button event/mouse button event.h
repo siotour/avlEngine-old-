@@ -2,10 +2,9 @@
 #define __AVL_INPUT_MOUSE_BUTTON_EVENT__
 /**
 @file
-Implements the MouseButtonEvent, which represents the the press or release of
-one of the mouse buttons.
-@author: Sheldon Bachstein
-@date: Sep 08, 2011
+Implements the \ref avl::input::MouseButtonEvent.
+@author Sheldon Bachstein
+@date Sep 08, 2011
 */
 
 

@@ -1,11 +1,13 @@
 #ifndef __AVL_VIEW_BASIC_RENDERER__
 #define __AVL_VIEW_BASIC_RENDERER__
-/**********
- * Author: Sheldon Bachstein
- * Date: Jan 13, 2011
- * Description: Builds on the functionality of D3DRendererBase to implement a basic 2-D renderer
- * capable of rendering basic textured rectangles.
- **********/
+/**
+@file
+Defines the \ref avl::view::BasicRenderer class.
+@author Sheldon Bachstein
+@date Jan 13, 2011
+@todo There's a memory leak while using this class. Enable maximum debugging in the DirectX9
+control panel for details.
+*/
 
 #include"..\d3d renderer base\d3d renderer base.h"
 // Necessary since the typedef utility::Sprite::TextureHandle is used.
@@ -21,70 +23,104 @@ namespace utility{class Image;}
 
 namespace view
 {
-	// See the beginning of the file for details.
+	/**
+	Builds on the functionality of \ref avl::view::D3DRendererBase to implement a basic
+	2-D renderer capable of rendering basic textured rectangles.
+	@todo The methods for this class desperately need to be refactored into smaller,
+	cleaner chunks.
+	*/
 	class BasicRenderer: public D3DRendererBase
 	{
 	public:
-		// Constructors:
-		// Attempts to initialize a Direct3D device for the specified window and with the specified
-		// display profile.
+		/** Attempts to initialize a Direct3D device to render to the window represented by
+		\a window_handle using the display profile \a profile.
+		@param window_handle The handle to the window to render to.
+		@param profile The display profile to initialize the device with.
+		@throws RendererException If unable to create the D3D object.
+		@throws D3DError If unable to create the Direct3D device.
+		@throws D3DError If unable to set the viewport.
+		*/
 		BasicRenderer(HWND window_handle, const D3DDisplayProfile& profile);
-		// Destroys the Direct3D device and releases all assets.
+		/** Destroys the Direct3D device and releases all assets.
+		*/
 		~BasicRenderer();
 
-		// Mutators:
-		// Attempts to create a texture with the specified data. Returns the texture handle, which can be used
-		// to specify which texture to use when rendering primitives. Note that all texture handles are > 0.
+		
+		/** Attempts to create a texture for \a image.
+		@sa avl::view::BasicRenderer::DeleteTexture
+		@sa avl::view::BasicRenderer::RenderSprites
+		@param image The image data used to create the texture.
+		@return A handle to the created texture.
+		@throws D3DError If unable to create the texture.
+		*/
 		const utility::Sprite::TextureHandle AddTexture(const utility::Image& image);
-		// Releases the texture associated with the specified handle and renders the handle useless. Don't try to
-		// draw with textures that have been deleted or else <TODO>.
+
+		/** Releases the texture associated with the texture handle \a texture_handle.
+		If \a texture_handle is not associated with a texture, then nothing happens.
+		@warning Don't try to render sprites using a deleted texture handle.
+		@param texture_handle The handle to the texture to be deleted.
+		*/
 		void DeleteTexture(const utility::Sprite::TextureHandle& texture_handle);
-		// Renders a series of sprites.
+
+		/** Renders a series of sprites.
+		@param sprites The sprites to be rendered.
+		@throws RendererException If \a sprites contains one or more NULL pointers.
+		@throws D3DError If there is an error while using the device.
+		*/
 		void RenderSprites(utility::Sprite::SpriteList sprites);
 
 	private:
-		// Utility functions:
-		// Iterates through the pixel data for an image with an alpha channel, checking for semi-transparency.
-		// If semi-transparency is found, true is returned. Otherwise false. The image data is assumed to be
-		// 32-bits per pixel in RGBA format. size is the number of pixels in the image, and pixel_data is a
-		// pointer to the pixel data.
+		/** Checks to see whether or not an image contains semi-transparent pixels. Semi-transparent pixels
+		have an alpha value that is neither the minimum nor the maximum.
+		@pre The pixels are in 32-bit RGBA format.
+		@param size The number of pixels in \a pixel_data.
+		@param pixel_data The pixel data for the image.
+		@returns True if \a pixel_data contains semi-transparent pixels, and false if not.
+		*/
 		bool IsImagePartiallyTransparent(const unsigned int size, const BYTE* const pixel_data);
-		// Initializes the Direct3D device's state to what is required for this object to render with it. This
-		// includes creating the vertex and index buffers, turning lighting off, and configuring the device
-		// to use a fixed function vertex shader.
-		void Initialize();
-		// Releases the index buffer and vertex buffer. This is called when the device is lost.
+
+
+		/** Releases the index buffer and vertex buffer. This is called when the device is lost.
+		*/
 		void ReleaseUnmanagedAssets();
-		// Creates the index buffer and vertex buffer. This is called upon initialization and when the
-		// device is reset after having been lost.
+
+		/** Creates the index buffer and vertex buffer. This is called upon initialization and when the
+		device is reset after having been lost.
+		@throws D3DError If unable to create either the vertex or index buffers.
+		*/
 		void AcquireUnmanagedAssets();
 
 
-		// Used to store the type of vertex format used for textures.
+		/// Used to store the type of vertex format used for sprites.
 		const unsigned int vertex_format;
-		// Used to store the number of bytes per pixel.
+
+		/// Used to store the number of bytes per pixel.
 		const unsigned int bytes_per_pixel;
 
-		// Texture map.
+		/// Maps texture handles to texture objects.
 		typedef std::map<const utility::Sprite::TextureHandle, IDirect3DTexture9*> TexHandleToTex;
-		// Maintains a map of valid texture handles and their associated textures.
+
+		/// Maintains a map of valid texture handles and their associated textures.
 		TexHandleToTex textures;
 
-		// Used to assign a unique texture handle to each created texture. This imposes the restriction that it
-		// is highly inadvisable to attempt to load more than UINT_MAX (defined in limits.h) textures throughout a program.
+		/// Used to assign a unique texture handle to each created texture. This imposes the restriction that it
+		///is highly inadvisable to attempt to load more than UINT_MAX/2 (defined in limits.h) textures throughout a program.
 		unsigned int next_texture_handle;
 
 		
-		// The size of the vertex buffer and index buffer, in terms of the objects being stored in them.
+		/// The size of the vertex buffer and index buffer, in terms of the objects being stored in them.
 		const unsigned int buffer_length;
-		// Holds the vertex buffer.
+
+		/// The vertex buffer.
 		IDirect3DVertexBuffer9* vertex_buffer;
-		// Holds the index buffer.
+
+		/// The index buffer.
 		IDirect3DIndexBuffer9* index_buffer;
 
 
-		// NOT IMPLEMENTED:
+		/// NOT IMPLEMENTED.
 		BasicRenderer(const BasicRenderer&);
+		/// NOT IMPLEMENTED.
 		const BasicRenderer& operator=(const BasicRenderer&);
 	};
 

@@ -101,28 +101,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="namespaceavl_1_1utility.html#a5adc53036a0823139ebe4f35a1bab7e5">avl::utility::LoadImageTGA</a>  (const std::string &amp;file_name, unsigned int &amp;width, unsigned int &amp;height, unsigned short &amp;pixel_depth, bool &amp;contains_alpha_channel, unsigned char *&amp;pixel_data)</dt>
 <dd>This function definition is absolutely monolothic -- nearly 300 lines. It needs to be refactored into utility functions and probably all of them put into an anonymous namespace. Either that or put all image-loading functions (and utility functions) into their own namespace.  </dd>
 <dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="classavl_1_1utility_1_1_settings_file.html">avl::utility::SettingsFile</a>  </dt>
-<dd>The read utility functions need to be refactored into more manageable sized functions.  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classavl_1_1utility_1_1_settings_file.html#af06c9cbcbdeec353a4bc88f2a9d31bf8">avl::utility::SettingsFile::ReadValue</a>  (int &amp;line_number, const void *&amp;value)</dt>
-<dd><a class="el" href="classavl_1_1utility_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">avl::utility::SettingValue</a> should be made into a union, and this function should return a <a class="el" href="classavl_1_1utility_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">avl::utility::SettingValue</a>.  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="classavl_1_1utility_1_1_setting_value.html">avl::utility::SettingValue</a>  </dt>
-<dd>Should be made into a union and nested within the <a class="el" href="classavl_1_1utility_1_1_settings_file.html" title="Loads formatted settings data from a text file.">avl::utility::SettingsFile</a> class.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="classavl_1_1utility_1_1_text_box.html">avl::utility::TextBox</a>  </dt>
+<dd>Document the syntax and so on.  </dd>
+<dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html">avl::utility::SettingsFile::SyntaxError</a>  </dt>
+<dd>Record the name of the settings file in which exceptions occur.  </dd>
+<dt><a class="anchor" id="_todo000010"></a>Class <a class="el" href="classavl_1_1utility_1_1_text_box.html">avl::utility::TextBox</a>  </dt>
 <dd>Properly comment this class definition. </dd>
-<dt><a class="anchor" id="_todo000013"></a>Class <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">avl::utility::TextBox::Row</a>  </dt>
+<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html">avl::utility::TextBox::Row</a>  </dt>
 <dd></dd>
-<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a41fa99e14324bf6067ae5c3e25af5d9c">avl::utility::TextBox::Row::operator=</a>  (const Row &amp;rhs)</dt>
+<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="classavl_1_1utility_1_1_text_box_1_1_row.html#a41fa99e14324bf6067ae5c3e25af5d9c">avl::utility::TextBox::Row::operator=</a>  (const Row &amp;rhs)</dt>
 <dd>This stub was inserted simply to stop a linker error. When this class was used within a STL container, the linker issued a warning about a templated type not having an assignment operator, so I added this to shut it up. This class needs to be rewritten so that it has accessors and a legitimate assignment operator. And also a legitimate full-spec constructor.  </dd>
-<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="classavl_1_1utility_1_1_text_box.html#af6a4305831cff74059a8228a8b0921f2">avl::utility::TextBox::SetText</a>  (const std::string &amp;new_text)</dt>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classavl_1_1utility_1_1_text_box.html#af6a4305831cff74059a8228a8b0921f2">avl::utility::TextBox::SetText</a>  (const std::string &amp;new_text)</dt>
 <dd>Are the overwrite behaviors properly implemented? See this method's definition for details.  </dd>
+<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="classavl_1_1view_1_1_basic_renderer.html">avl::view::BasicRenderer</a>  </dt>
+<dd>The methods for this class desperately need to be refactored into smaller, cleaner chunks.  </dd>
+<dt><a class="anchor" id="_todo000017"></a>Class <a class="el" href="classavl_1_1view_1_1_basic_window.html">avl::view::BasicWindow</a>  </dt>
+<dd>Expand on 'default behavior.'  </dd>
+<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="namespaceavl_1_1view.html#a0c6d7e4f0b61ddd0ef20d4c0f42440d4">avl::view::CheckDeviceCapabilities</a>  (IDirect3D9 *const d3d)</dt>
+<dd>This function needs to be refactored.  </dd>
+<dt><a class="anchor" id="_todo000018"></a>Class <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">avl::view::D3DDisplayProfile</a>  </dt>
+<dd>The public static arrays and the public static array lengths are very ugly. There must be a better way to do this.  </dd>
+<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ada55c60cef00f1e602a5e3fc0817311b">avl::view::D3DRendererBase::InitializeDevice</a>  ()</dt>
+<dd>If present_parameters is modified in this function, then it's impossible for derived classes to customize present_parameters before the device is created.  </dd>
+<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#adfd14a3ed778bffd671bcfc034e58df2">avl::view::D3DRendererBase::Reset</a>  ()</dt>
+<dd>This function needs to be cleaned up and probably refactored.  </dd>
+<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="namespaceavl_1_1view.html#aa1765d25abf637c0140539f6321fda65">avl::view::EnumerateDisplayProfiles</a>  ()</dt>
+<dd>Refactor this function into multiple anonymous functions.  </dd>
+<dt><a class="anchor" id="_todo000026"></a>Member <a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a195d3d1bf80027bd25277ebda11fe17a">avl::view::Win32WindowBase::AttainDeviceContext</a>  ()</dt>
+<dd>When does this procedure throw any exceptions? What are the pre- and post-conditions?  </dd>
+<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a072ae21d0ffae3a0bbd64d0febd702e1">avl::view::Win32WindowBase::RegisterWindowClass</a>  (HINSTANCE instance_handle, const char *const &amp;window_title, LRESULT(CALLBACK *const window_procedure)(HWND, UINT, WPARAM, LPARAM))</dt>
+<dd>Clarify when this procedure throws an exception and define the pre- and post-conditions.  </dd>
+<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a8d121e8b2aa8d938e398cad34de56d5e">avl::view::Win32WindowBase::Win32WindowBase</a>  (HINSTANCE instance_handle, const std::string &amp;window_title, const int &amp;width, const int &amp;height, LRESULT(CALLBACK *const window_procedure)(HWND, UINT, WPARAM, LPARAM))</dt>
+<dd><p class="startdd">Clarify when an exception may be thrown from this procedure. </p>
+<p class="enddd">Define the pre- and post-conditions for this constructor.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000014"></a>File <a class="el" href="basic_01renderer_8h.html">basic renderer.h</a>  </dt>
+<dd>There's a memory leak while using this class. Enable maximum debugging in the DirectX9 control panel for details.  </dd>
+<dt><a class="anchor" id="_todo000016"></a>File <a class="el" href="basic_01window_8h.html">basic window.h</a>  </dt>
+<dd><p class="startdd">There is a bug when creating multiple of these windows and then switching between them when they overlap (whether the windows are in separate instances or a single instance). </p>
+<p class="enddd">There is a bug where when you move the cursor into the window's client area for the first time, it stays "busy" until you move it out of the client area.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000019"></a>File <a class="el" href="d3d_01renderer_01base_8h.html">d3d renderer base.h</a>  </dt>
+<dd>Everything in this file needs to be refactored into smaller, more manageable chunks.  </dd>
 <dt><a class="anchor" id="_todo000001"></a>File <a class="el" href="direct_01input_01input_01device_8h.html">direct input input device.h</a>  </dt>
 <dd>Go through the source code and document all thrown exceptions.  </dd>
 <dt><a class="anchor" id="_todo000004"></a>File <a class="el" href="input_01event_8h.html">input event.h</a>  </dt>
 <dd>Find a better way for derived classes to be identified. If necessary, use RTTI or the template magic used in previous engine.  </dd>
 <dt><a class="anchor" id="_todo000006"></a>File <a class="el" href="settings_01file_8h.html">settings file.h</a>  </dt>
-<dd><p class="startdd">Properly document syntax for settings files and document the fact that variable names are converted to lowercase when they're mapped. </p>
-<p class="enddd">Completely renovate this component so that it supports editing a settings file (requires changing the size of the file using _chsize_s()). Will require a complete overhaul and increase complexity dramatically.  </p>
-</dd>
-<dt><a class="anchor" id="_todo000010"></a>File <a class="el" href="text_01box_8h.html">text box.h</a>  </dt>
+<dd>Completely renovate this component so that it supports editing a settings file (requires changing the size of the file using _chsize_s()). Will require a complete overhaul and increase complexity dramatically.  </dd>
+<dt><a class="anchor" id="_todo000009"></a>File <a class="el" href="text_01box_8h.html">text box.h</a>  </dt>
 <dd>This file description needs a more detailed comment. </dd>
 </dl>
 </div></div>
@@ -144,7 +170,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:05 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:25 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

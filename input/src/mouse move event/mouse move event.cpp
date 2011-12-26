@@ -18,9 +18,9 @@ namespace input
 	const unsigned char MouseMoveEvent::MOUSE_MOVE_TYPE = 0x03;
 
 
-	// Constructors:
-	// Takes a 2-dimensional vector representing the change in x and y
-	// coordinates.
+
+
+	// Takes the individual vertical and horizontal movements.
 	MouseMoveEvent::MouseMoveEvent(const short& x, const short& y)
 		: InputEvent(MOUSE_MOVE_TYPE), delta_x(x), delta_y(y)
 	{
@@ -42,6 +42,7 @@ namespace input
 	MouseMoveEvent::~MouseMoveEvent()
 	{
 	}
+
 
 
 

@@ -107,17 +107,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;..\exception\exception.h&quot;</code><br/>
 <code>#include &lt;string&gt;</code><br/>
-<code>#include &lt;fstream&gt;</code><br/>
 <code>#include &lt;map&gt;</code><br/>
+<code>#include &lt;fstream&gt;</code><br/>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html">avl::utility::SettingsFile</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads formatted settings data from a text file.  <a href="classavl_1_1utility_1_1_settings_file.html#details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_setting_value.html">avl::utility::SettingValue</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information regarding a variable's value, and is intended to be mapped to a variable name.  <a href="classavl_1_1utility_1_1_setting_value.html#details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html">avl::utility::SyntaxError</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that there was a syntax error in a settings file.  <a href="classavl_1_1utility_1_1_syntax_error.html#details">More...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a text file and loads in variable names and variable values within that text file.  <a href="classavl_1_1utility_1_1_settings_file.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html">avl::utility::SettingsFile::SettingValue</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information regarding a variable's value, and is intended to be mapped to a variable name.  <a href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionavl_1_1utility_1_1_settings_file_1_1_setting_value_1_1_long_string_union.html">avl::utility::SettingsFile::SettingValue::LongStringUnion</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines a long or string pointer.  <a href="unionavl_1_1utility_1_1_settings_file_1_1_setting_value_1_1_long_string_union.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html">avl::utility::SettingsFile::SyntaxError</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that there was a syntax error in a settings file.  <a href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceavl.html">avl</a></td></tr>
@@ -127,9 +129,7 @@ Namespaces</h2></td></tr>
 <div class="textblock"><p>Loads formatted settings data from a text file. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Sheldon Bachstein </dd></dl>
 <dl class="date"><dt><b>Date:</b></dt><dd>Dec 29, 2010 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd><p class="startdd">Properly document syntax for settings files and document the fact that variable names are converted to lowercase when they're mapped. </p>
-<p class="enddd">Completely renovate this component so that it supports editing a settings file (requires changing the size of the file using _chsize_s()). Will require a complete overhaul and increase complexity dramatically. </p>
-</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Completely renovate this component so that it supports editing a settings file (requires changing the size of the file using _chsize_s()). Will require a complete overhaul and increase complexity dramatically. </dd></dl>
 </div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -150,7 +150,7 @@ Namespaces</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:05 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:25 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

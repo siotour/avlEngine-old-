@@ -106,6 +106,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::input::MouseScrollEvent" --><!-- doxytag: inherits="avl::input::InputEvent" -->
+<p>Used to communicate the user scrolling the mouse wheel.  
+ <a href="classavl_1_1input_1_1_mouse_scroll_event.html#details">More...</a></p>
+
 <p><code>#include &lt;mouse scroll event.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::input::MouseScrollEvent:</div>
@@ -122,17 +125,26 @@ Inheritance diagram for avl::input::MouseScrollEvent:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html#ae1188e1a7abf18104945b33d731704ce">MouseScrollEvent</a> (const short &amp;initial_delta)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a signed short representing the amount and direction of the scroll event.  <a href="#ae1188e1a7abf18104945b33d731704ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html#a3856f9affeed96b588be128508c6a36a">MouseScrollEvent</a> (const <a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html">MouseScrollEvent</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a3856f9affeed96b588be128508c6a36a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html#ae0517c8daacfaa413f23c5bec68ae472">~MouseScrollEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#ae0517c8daacfaa413f23c5bec68ae472"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html#ab98b0ae63f17e8ff01b3ce0c71abebc4">GetDelta</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the delta scroll value.  <a href="#ab98b0ae63f17e8ff01b3ce0c71abebc4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html#a68e9f33185e4fdf0c106a341ba55f341">MOUSE_SCROLL_TYPE</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A constant used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class.  <a href="#a68e9f33185e4fdf0c106a341ba55f341"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html#aa9abf7592cc862c13e700f1aeec7dba8">delta</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The delta scroll value.  <a href="#aa9abf7592cc862c13e700f1aeec7dba8"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Used to communicate the user scrolling the mouse wheel. </p>
+<p>This includes a signed integer representing the scroll amount and direction. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae1188e1a7abf18104945b33d731704ce"></a><!-- doxytag: member="avl::input::MouseScrollEvent::MouseScrollEvent" ref="ae1188e1a7abf18104945b33d731704ce" args="(const short &amp;initial_delta)" -->
 <div class="memitem">
 <div class="memproto">
@@ -147,6 +159,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Takes a signed short representing the amount and direction of the scroll event. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initial_delta</td><td>The direction and amount in which the mouse wheel has been scrolled. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -165,6 +185,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ae0517c8daacfaa413f23c5bec68ae472"></a><!-- doxytag: member="avl::input::MouseScrollEvent::~MouseScrollEvent" ref="ae0517c8daacfaa413f23c5bec68ae472" args="()" -->
@@ -180,6 +208,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -198,6 +228,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the delta scroll value. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The direction and amount in which the mouse wheel has been scrolled. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -212,6 +245,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The delta scroll value. </p>
+
 </div>
 </div>
 <a class="anchor" id="a68e9f33185e4fdf0c106a341ba55f341"></a><!-- doxytag: member="avl::input::MouseScrollEvent::MOUSE_SCROLL_TYPE" ref="a68e9f33185e4fdf0c106a341ba55f341" args="" -->
@@ -224,6 +259,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>A constant used to initialize the <a class="el" href="classavl_1_1input_1_1_input_event.html" title="Acts as a base class for all input events.">InputEvent</a> base class. </p>
+<p>This constant allows clients to identify an event as a <a class="el" href="classavl_1_1input_1_1_mouse_scroll_event.html" title="Used to communicate the user scrolling the mouse wheel.">MouseScrollEvent</a>. </p>
 
 </div>
 </div>
@@ -249,7 +287,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:26 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

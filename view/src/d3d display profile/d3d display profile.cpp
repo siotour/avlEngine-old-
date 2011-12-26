@@ -50,9 +50,9 @@ namespace view
 
 	// Constructor. Requires a width, height, fullscreen boolean, back buffer format, and a
 	// depth/stencil format.
-	D3DDisplayProfile::D3DDisplayProfile(const bool fullscreen, const unsigned int initial_width, const unsigned int initial_height,
-										 const D3DFORMAT initial_display_format, const D3DFORMAT initial_backbuffer_format)
-		: is_fullscreen(fullscreen), width(initial_width), height(initial_height), display_format(initial_display_format), backbuffer_format(initial_backbuffer_format)
+	D3DDisplayProfile::D3DDisplayProfile(const bool fullscreen, const unsigned int width, const unsigned int height,
+										 const D3DFORMAT display_format, const D3DFORMAT backbuffer_format)
+		: is_fullscreen(fullscreen), width(width), height(height), display_format(display_format), backbuffer_format(backbuffer_format)
 	{
 	}
 

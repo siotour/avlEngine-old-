@@ -107,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::view::D3DRendererBase" -->
-<p>A test class.  
+<p>Provides a partially implemented interface for a basic Direct3D renderer.  
  <a href="classavl_1_1view_1_1_d3_d_renderer_base.html#details">More...</a></p>
 
 <p><code>#include &lt;d3d renderer base.h&gt;</code></p>
@@ -117,7 +117,7 @@ Inheritance diagram for avl::view::D3DRendererBase:</div>
  <div class="center">
   <img src="classavl_1_1view_1_1_d3_d_renderer_base.png" usemap="#avl::view::D3DRendererBase_map" alt=""/>
   <map id="avl::view::D3DRendererBase_map" name="avl::view::D3DRendererBase_map">
-<area href="classavl_1_1view_1_1_basic_renderer.html" alt="avl::view::BasicRenderer" shape="rect" coords="0,56,173,80"/>
+<area href="classavl_1_1view_1_1_basic_renderer.html" title="Builds on the functionality of avl::view::D3DRendererBase to implement a basic 2-D renderer capable o..." alt="avl::view::BasicRenderer" shape="rect" coords="0,56,173,80"/>
 </map>
  </div></div>
 
@@ -126,44 +126,71 @@ Inheritance diagram for avl::view::D3DRendererBase:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a7a68adaebc2d56bda4beb3400ae4bd32">D3DRendererBase</a> (HWND <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a7b46c4f40d8216c336ee615ec6c5f398">window_handle</a>, const <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">D3DDisplayProfile</a> &amp;profile)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to initialize a Direct3D device for the window with handle <em>window_handle</em> using the parameters detailed in <em>profile</em>.  <a href="#a7a68adaebc2d56bda4beb3400ae4bd32"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a9afbc5ac742f3def03e23071bed8cec8">~D3DRendererBase</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the D3D object and the Direct3D device, and sets the renderer to a not-ready state.  <a href="#a9afbc5ac742f3def03e23071bed8cec8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#adfd14a3ed778bffd671bcfc034e58df2">Reset</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to reset the device.  <a href="#adfd14a3ed778bffd671bcfc034e58df2"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a49dd528bee002ed7f26ef00def8feabd">ClearViewport</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to clear the backbuffer to black and the z-buffer to 1.0f.  <a href="#a49dd528bee002ed7f26ef00def8feabd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a5ea570100339dc193fcca3c13db65d9f">ReleaseUnmanagedAssets</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will be called when the device is lost.  <a href="#a5ea570100339dc193fcca3c13db65d9f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a46d67d96d5a9f3cf0c23e364777e8a6a">AcquireUnmanagedAssets</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will be called when the device is reset after having been lost.  <a href="#a46d67d96d5a9f3cf0c23e364777e8a6a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a8de521794f8ed0dbe261c6e6b064ab8c">CopyPixelDataToTexture</a> (IDirect3DTexture9 &amp;destination, const unsigned char *const pixel_data, const unsigned int &amp;<a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a113c0d8b70f726892d27d985312bfdc5">width</a>, const unsigned int &amp;<a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a8b4cdbef64dc41e70bc93e0bff089eea">height</a>, const unsigned int &amp;bytes_per_pixel)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to copy <em>pixel_data</em> into the destination texture, taking into account the pitch of the destiantion surface.  <a href="#a8de521794f8ed0dbe261c6e6b064ab8c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a552054d0aa9646e3e1e4733eef3bc4ec">CopyPixelDataToSurface</a> (IDirect3DSurface9 &amp;destination, const unsigned char *const pixel_data, const unsigned int &amp;<a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a113c0d8b70f726892d27d985312bfdc5">width</a>, const unsigned int &amp;<a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a8b4cdbef64dc41e70bc93e0bff089eea">height</a>, const unsigned int &amp;bytes_per_pixel)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to copy pixel_data into the destination surface, taking into account the pitch of <em>destination</em>.  <a href="#a552054d0aa9646e3e1e4733eef3bc4ec"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#abfcac2eba5264b29821c6e3b322879f6">IsTextureFormatOk</a> (D3DFORMAT &amp;format)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the device supports textures in the specified format.  <a href="#abfcac2eba5264b29821c6e3b322879f6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3DTexture9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a2b2e481ce674a655b7af907688b3cd66">CreateTexture</a> (const unsigned int &amp;<a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a113c0d8b70f726892d27d985312bfdc5">width</a>, const unsigned int &amp;<a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a8b4cdbef64dc41e70bc93e0bff089eea">height</a>, D3DFORMAT format)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create a texture with the specified width, height, and format.  <a href="#a2b2e481ce674a655b7af907688b3cd66"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3DVertexBuffer9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a36f6636164d6313678b9f6ad7b299ebd">CreateVertexBuffer</a> (const unsigned int &amp;buffer_length)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create a vertex buffer capable of storing <em>buffer_length</em> vertices.  <a href="#a36f6636164d6313678b9f6ad7b299ebd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3DIndexBuffer9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a2e060330ff3d85f11b88d36e4b09f057">CreateIndexBuffer</a> (const unsigned int &amp;buffer_length)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create an index buffer capable of storing <em>buffer_length</em> 16-bit indices.  <a href="#a2e060330ff3d85f11b88d36e4b09f057"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a215b8578dc08a814042c3cae320174b4">FillVertexBuffer</a> (IDirect3DVertexBuffer9 &amp;vertex_buffer, const unsigned char *const source, const unsigned int size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to lock <em>vertex_buffer</em> and then copy <em>size</em> bytes from <em>source</em> to <em>vertex_buffer</em>.  <a href="#a215b8578dc08a814042c3cae320174b4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#aff2bec28714d1b74b39f6e9f965560d3">FillIndexBuffer</a> (IDirect3DIndexBuffer9 &amp;index_buffer, const unsigned char *const source, const unsigned int size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to lock <em>index_buffer</em> and then copy <em>size</em> bytes from <em>source</em> to <em>vertex_buffer</em>.  <a href="#aff2bec28714d1b74b39f6e9f965560d3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">D3DPRESENT_PARAMETERS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ae045c161de6088aef3662f3a95e6104d">present_parameters</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The present paramters for the device.  <a href="#ae045c161de6088aef3662f3a95e6104d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a113c0d8b70f726892d27d985312bfdc5">width</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the backbuffer and viewport in pixels.  <a href="#a113c0d8b70f726892d27d985312bfdc5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a8b4cdbef64dc41e70bc93e0bff089eea">height</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of the backbuffer and viewport in pixels.  <a href="#a8b4cdbef64dc41e70bc93e0bff089eea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a991eb6bc3ba8617d0ea4d2f9f257f46b">fullscreen</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the window for this device fullscreen or not?  <a href="#a991eb6bc3ba8617d0ea4d2f9f257f46b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a6f5d10cc43d46176db475617ad13b15b">display_format</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The format of the direct3d device.  <a href="#a6f5d10cc43d46176db475617ad13b15b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ae81c98ff9611a985e69f49189dddc62d">backbuffer_format</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The format of the backbuffer.  <a href="#ae81c98ff9611a985e69f49189dddc62d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a7b46c4f40d8216c336ee615ec6c5f398">window_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A handle to the window which is being rendered to.  <a href="#a7b46c4f40d8216c336ee615ec6c5f398"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3D9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a9f37ea8c4a978b2fe266b6e9dc44e731">d3d</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Direct3D8 object.  <a href="#a9f37ea8c4a978b2fe266b6e9dc44e731"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3DDevice9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a27704afaf60837d5e0245a5241f7bb28">device</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Direct3D device.  <a href="#a27704afaf60837d5e0245a5241f7bb28"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a91a41f148375399466ff7d6ec338a170">is_device_ready</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether or not the device is ready for rendering.  <a href="#a91a41f148375399466ff7d6ec338a170"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a1e3481b49da12807424e3aa87ec7a193">InitializeDevice</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ab001eb9f02575767a70633c18b3e169b">ResetDevice</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ada55c60cef00f1e602a5e3fc0817311b">InitializeDevice</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create the Direct3D device.  <a href="#ada55c60cef00f1e602a5e3fc0817311b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ab2cde3c8c747c5e26a78dcffdc8b8e04">CreateViewport</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a basic viewport for the device.  <a href="#ab2cde3c8c747c5e26a78dcffdc8b8e04"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a8fc8bed02048766c0ceabda4f8df0844">D3DRendererBase</a> (const <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">D3DRendererBase</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a8fc8bed02048766c0ceabda4f8df0844"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">D3DRendererBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ae347d5597a044c16360ecb9e86be109d">operator=</a> (const <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">D3DRendererBase</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#ae347d5597a044c16360ecb9e86be109d"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A test class. </p>
-<p>more blah blah. </p>
+<div class="textblock"><p>Provides a partially implemented interface for a basic Direct3D renderer. </p>
+<p>Implements the initialization of a Direct3D device and is meant to be used as a skeleton on which to build customized Direct3D renderers. Additionally implements various wrapper functions over Direct3D, such as for creating vertex buffers.<code>Implemented</code> behavior is for a 32-bit pixel format, but this can be customized by overloading the <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ada55c60cef00f1e602a5e3fc0817311b">avl::view::D3DRendererBase::InitializeDevice</a> function. As long as <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#ae045c161de6088aef3662f3a95e6104d">avl::view::D3DRendererBase::present_parameters</a> is assigned the proper format, then <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#adfd14a3ed778bffd671bcfc034e58df2">avl::view::D3DRendererBase::Reset</a> should work fine. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a7a68adaebc2d56bda4beb3400ae4bd32"></a><!-- doxytag: member="avl::view::D3DRendererBase::D3DRendererBase" ref="a7a68adaebc2d56bda4beb3400ae4bd32" args="(HWND window_handle, const D3DDisplayProfile &amp;profile)" -->
 <div class="memitem">
@@ -190,6 +217,23 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to initialize a Direct3D device for the window with handle <em>window_handle</em> using the parameters detailed in <em>profile</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window_handle</td><td>The handle of the window to which the device is initialized. </td></tr>
+    <tr><td class="paramname">profile</td><td>Details the parameters of the device. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html" title="This is the basic exception type for renderers.">RendererException</a></td><td>If unable to create the D3D object. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create the Direct3D device. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to set the viewport. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a9afbc5ac742f3def03e23071bed8cec8"></a><!-- doxytag: member="avl::view::D3DRendererBase::~D3DRendererBase" ref="a9afbc5ac742f3def03e23071bed8cec8" args="()" -->
@@ -205,6 +249,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Releases the D3D object and the Direct3D device, and sets the renderer to a not-ready state. </p>
 
 </div>
 </div>
@@ -223,6 +269,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -239,6 +287,9 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>This function will be called when the device is reset after having been lost. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>Derived classes should implement this method such that it re-acquries any non-managed Direct3D assets that were released in the <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a5ea570100339dc193fcca3c13db65d9f">ReleaseUnmanagedAssets</a> method. </dd></dl>
 
 <p>Implemented in <a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a91a61dbb3d3552f6b56daa9002252e4e">avl::view::BasicRenderer</a>.</p>
 
@@ -257,6 +308,14 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Attempts to clear the backbuffer to black and the z-buffer to 1.0f. </p>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to clear the viewport. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -303,6 +362,26 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to copy pixel_data into the destination surface, taking into account the pitch of <em>destination</em>. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>destination</em> must be a lockable Direct3D surface, and <em>pixel_data</em> must point to a block of pixel data of size <code>width*height*bytes_per_pixel</code> bytes. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>The surface to which <em>pixel_data</em> is to be copied. </td></tr>
+    <tr><td class="paramname">pixel_data</td><td>The image data to be copied to <em>destination</em>. </td></tr>
+    <tr><td class="paramname">width</td><td>The width of <em>pixel_data</em> in pixels. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of <em>pixel_data</em> in pixels. </td></tr>
+    <tr><td class="paramname">bytes_per_pixel</td><td>The number of bytes of data for each pixel in <em>pixel_data</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If <em>pixel_data</em> is <code>NULL</code>. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to lock or unlock <em>destination</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a8de521794f8ed0dbe261c6e6b064ab8c"></a><!-- doxytag: member="avl::view::D3DRendererBase::CopyPixelDataToTexture" ref="a8de521794f8ed0dbe261c6e6b064ab8c" args="(IDirect3DTexture9 &amp;destination, const unsigned char *const pixel_data, const unsigned int &amp;width, const unsigned int &amp;height, const unsigned int &amp;bytes_per_pixel)" -->
@@ -348,6 +427,27 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to copy <em>pixel_data</em> into the destination texture, taking into account the pitch of the destiantion surface. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>destination</em> must be a lockable Direct3D surface, and <em>pixel_data</em> must point to a block of pixel data of size <code>width*height*bytes_per_pixel</code> bytes. width and height are the dimensions of the pixel data, and bytes_per_pixel specifies the amount of data per pixel (which depends on the pixel format). </dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd>This function delegates to <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a552054d0aa9646e3e1e4733eef3bc4ec" title="Attempts to copy pixel_data into the destination surface, taking into account the pitch of destinatio...">CopyPixelDataToSurface()</a>, so thrown exceptions may describe the problem as originating there. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>The texture to which <em>pixel_data</em> is to be copied. </td></tr>
+    <tr><td class="paramname">pixel_data</td><td>The image data to be copied to <em>destination</em>. </td></tr>
+    <tr><td class="paramname">width</td><td>The width in pixels of <em>pixel_data</em>. </td></tr>
+    <tr><td class="paramname">height</td><td>The height in pixels of <em>pixel_data</em>. </td></tr>
+    <tr><td class="paramname">bytes_per_pixel</td><td>The number of bytes of data per pixel. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If <em>pixel_data</em> is <code>NULL</code>. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to lock or unlock the surface of <em>destination</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a2e060330ff3d85f11b88d36e4b09f057"></a><!-- doxytag: member="avl::view::D3DRendererBase::CreateIndexBuffer" ref="a2e060330ff3d85f11b88d36e4b09f057" args="(const unsigned int &amp;buffer_length)" -->
@@ -364,6 +464,16 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Attempts to create an index buffer capable of storing <em>buffer_length</em> 16-bit indices. </p>
+<p>The created buffer is dynamic and write-only and in the default pool. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The newly created index buffer. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create the index buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -398,6 +508,17 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to create a texture with the specified width, height, and format. </p>
+<p>Textures are created in the <code>MANAGED</code> Direct3D pool and with 1 level. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>You can check to see if the device supports the creation of textures of a format by using <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#abfcac2eba5264b29821c6e3b322879f6">avl::view::D3DRendererBase::IsTextureFormatOk()</a>. </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#abfcac2eba5264b29821c6e3b322879f6" title="Checks to see if the device supports textures in the specified format.">avl::view::D3DRendererBase::IsTextureFormatOk()</a> </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If the creation of the texture fails. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a36f6636164d6313678b9f6ad7b299ebd"></a><!-- doxytag: member="avl::view::D3DRendererBase::CreateVertexBuffer" ref="a36f6636164d6313678b9f6ad7b299ebd" args="(const unsigned int &amp;buffer_length)" -->
@@ -415,6 +536,16 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to create a vertex buffer capable of storing <em>buffer_length</em> vertices. </p>
+<p>The expected vertex format consists of spatial coordinates (XYZ) and one set of texture coordinates. The created buffer is dynamic and write-only and in the default pool. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The newly created vertex buffer. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create the buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ab2cde3c8c747c5e26a78dcffdc8b8e04"></a><!-- doxytag: member="avl::view::D3DRendererBase::CreateViewport" ref="ab2cde3c8c747c5e26a78dcffdc8b8e04" args="()" -->
@@ -430,6 +561,15 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Creates a basic viewport for the device. </p>
+<p>Uses the width and height supplied to the constructor, with Z ranging from 0.0 to 1.0. </p>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to set the viewport. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -464,6 +604,23 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to lock <em>index_buffer</em> and then copy <em>size</em> bytes from <em>source</em> to <em>vertex_buffer</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index_buffer</td><td>The destination index buffer. </td></tr>
+    <tr><td class="paramname">source</td><td>The source of data to be copied to <em>index_buffer</em>. </td></tr>
+    <tr><td class="paramname">size</td><td>The number of bytes to copy from <em>source</em> to <em>index_buffer</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html" title="This is the basic exception type for renderers.">RendererException</a></td><td>If <em>index_buffer</em> can't hold <em>size</em> bytes. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to lock <em>index_buffer</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a215b8578dc08a814042c3cae320174b4"></a><!-- doxytag: member="avl::view::D3DRendererBase::FillVertexBuffer" ref="a215b8578dc08a814042c3cae320174b4" args="(IDirect3DVertexBuffer9 &amp;vertex_buffer, const unsigned char *const source, const unsigned int size)" -->
@@ -497,21 +654,47 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to lock <em>vertex_buffer</em> and then copy <em>size</em> bytes from <em>source</em> to <em>vertex_buffer</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertex_buffer</td><td>The destination vertex buffer. </td></tr>
+    <tr><td class="paramname">source</td><td>The source of data to be copied to <em>vertex_buffer</em>. </td></tr>
+    <tr><td class="paramname">size</td><td>The number of bytes to copy from <em>source</em> to <em>vertex_buffer</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html" title="This is the basic exception type for renderers.">RendererException</a></td><td>If <em>vertex_buffer</em> can't hold <em>size</em> bytes. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to lock <em>vertex_buffer</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a class="anchor" id="a1e3481b49da12807424e3aa87ec7a193"></a><!-- doxytag: member="avl::view::D3DRendererBase::InitializeDevice" ref="a1e3481b49da12807424e3aa87ec7a193" args="()" -->
+<a class="anchor" id="ada55c60cef00f1e602a5e3fc0817311b"></a><!-- doxytag: member="avl::view::D3DRendererBase::InitializeDevice" ref="ada55c60cef00f1e602a5e3fc0817311b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void avl::view::D3DRendererBase::InitializeDevice </td>
+          <td class="memname">virtual void avl::view::D3DRendererBase::InitializeDevice </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td><code> [private, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Attempts to create the Direct3D device. </p>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create the device. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>If present_parameters is modified in this function, then it's impossible for derived classes to customize present_parameters before the device is created. </dd></dl>
 
 </div>
 </div>
@@ -530,6 +713,15 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Checks to see if the device supports textures in the specified format. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>The texture format to check whether or not the device supports. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the device supports textures of the format <em>format</em>, and false if not. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ae347d5597a044c16360ecb9e86be109d"></a><!-- doxytag: member="avl::view::D3DRendererBase::operator=" ref="ae347d5597a044c16360ecb9e86be109d" args="(const D3DRendererBase &amp;)" -->
@@ -547,6 +739,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <a class="anchor" id="a5ea570100339dc193fcca3c13db65d9f"></a><!-- doxytag: member="avl::view::D3DRendererBase::ReleaseUnmanagedAssets" ref="a5ea570100339dc193fcca3c13db65d9f" args="()=0" -->
@@ -562,6 +756,9 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>This function will be called when the device is lost. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>Derived classes should implement this method such that it release all non-managed Direct3D assets. These should then be re-acquired in the <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a46d67d96d5a9f3cf0c23e364777e8a6a">AcquireUnmanagedAssets</a> method. </dd></dl>
 
 <p>Implemented in <a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a1f93412e7d408c72f52fd2cf089825f5">avl::view::BasicRenderer</a>.</p>
 
@@ -581,21 +778,18 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="ab001eb9f02575767a70633c18b3e169b"></a><!-- doxytag: member="avl::view::D3DRendererBase::ResetDevice" ref="ab001eb9f02575767a70633c18b3e169b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool avl::view::D3DRendererBase::ResetDevice </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Attempts to reset the device. </p>
+<p>Should be called when the device is lost. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>This function makes calls to the pure-virtual functions <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a5ea570100339dc193fcca3c13db65d9f">ReleaseUnmanagedAssets</a> and <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a46d67d96d5a9f3cf0c23e364777e8a6a">AcquireUnmanagedAssets</a>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the device is successfully reset, and false if not. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If an error occurs while resetting the device. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If an internal Direct3D error occurs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>This function needs to be cleaned up and probably refactored. </dd></dl>
 
 </div>
 </div>
@@ -611,6 +805,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The format of the backbuffer. </p>
+
 </div>
 </div>
 <a class="anchor" id="a9f37ea8c4a978b2fe266b6e9dc44e731"></a><!-- doxytag: member="avl::view::D3DRendererBase::d3d" ref="a9f37ea8c4a978b2fe266b6e9dc44e731" args="" -->
@@ -623,6 +819,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The Direct3D8 object. </p>
 
 </div>
 </div>
@@ -637,6 +835,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The Direct3D device. </p>
+
 </div>
 </div>
 <a class="anchor" id="a6f5d10cc43d46176db475617ad13b15b"></a><!-- doxytag: member="avl::view::D3DRendererBase::display_format" ref="a6f5d10cc43d46176db475617ad13b15b" args="" -->
@@ -649,6 +849,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The format of the direct3d device. </p>
 
 </div>
 </div>
@@ -663,6 +865,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Is the window for this device fullscreen or not? </p>
+
 </div>
 </div>
 <a class="anchor" id="a8b4cdbef64dc41e70bc93e0bff089eea"></a><!-- doxytag: member="avl::view::D3DRendererBase::height" ref="a8b4cdbef64dc41e70bc93e0bff089eea" args="" -->
@@ -675,6 +879,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The height of the backbuffer and viewport in pixels. </p>
 
 </div>
 </div>
@@ -689,6 +895,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Indicates whether or not the device is ready for rendering. </p>
+
 </div>
 </div>
 <a class="anchor" id="ae045c161de6088aef3662f3a95e6104d"></a><!-- doxytag: member="avl::view::D3DRendererBase::present_parameters" ref="ae045c161de6088aef3662f3a95e6104d" args="" -->
@@ -701,6 +909,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The present paramters for the device. </p>
 
 </div>
 </div>
@@ -715,6 +925,8 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The width of the backbuffer and viewport in pixels. </p>
+
 </div>
 </div>
 <a class="anchor" id="a7b46c4f40d8216c336ee615ec6c5f398"></a><!-- doxytag: member="avl::view::D3DRendererBase::window_handle" ref="a7b46c4f40d8216c336ee615ec6c5f398" args="" -->
@@ -727,6 +939,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>A handle to the window which is being rendered to. </p>
 
 </div>
 </div>
@@ -752,7 +966,7 @@ Private Member Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:27 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

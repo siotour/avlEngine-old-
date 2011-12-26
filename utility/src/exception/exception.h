@@ -38,12 +38,12 @@ namespace utility
 		const std::string& GetDescription() const;
 
 	protected:
-		/** Basic constructor. Only usable by subclasses.*/
+		/** Basic constructor. Only usable to subclasses.*/
 		Exception();
 
 
 		/// Describes the exception which occurred.
-		const std::string description;
+		std::string description;
 
 		
 	private:

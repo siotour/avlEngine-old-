@@ -20,9 +20,10 @@ var NAVTREE =
       [ "avl::utility::LogFile", "classavl_1_1utility_1_1_log_file.html", null ],
       [ "avl::utility::ReadWriteError", "classavl_1_1utility_1_1_read_write_error.html", null ],
       [ "avl::utility::SettingsFile", "classavl_1_1utility_1_1_settings_file.html", null ],
-      [ "avl::utility::SettingValue", "classavl_1_1utility_1_1_setting_value.html", null ],
+      [ "avl::utility::SettingsFile::SettingValue", "classavl_1_1utility_1_1_settings_file_1_1_setting_value.html", null ],
+      [ "avl::utility::SettingsFile::SettingValue::LongStringUnion", "unionavl_1_1utility_1_1_settings_file_1_1_setting_value_1_1_long_string_union.html", null ],
+      [ "avl::utility::SettingsFile::SyntaxError", "classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html", null ],
       [ "avl::utility::Sprite", "classavl_1_1utility_1_1_sprite.html", null ],
-      [ "avl::utility::SyntaxError", "classavl_1_1utility_1_1_syntax_error.html", null ],
       [ "avl::utility::TextBox", "classavl_1_1utility_1_1_text_box.html", null ],
       [ "avl::utility::TextBox::Row", "classavl_1_1utility_1_1_text_box_1_1_row.html", null ],
       [ "avl::utility::VerificationFailure", "classavl_1_1utility_1_1_verification_failure.html", null ],
@@ -52,7 +53,7 @@ var NAVTREE =
       [ "avl::utility::Exception", "classavl_1_1utility_1_1_exception.html", [
         [ "avl::utility::AssertionFailure", "classavl_1_1utility_1_1_assertion_failure.html", null ],
         [ "avl::utility::ReadWriteError", "classavl_1_1utility_1_1_read_write_error.html", null ],
-        [ "avl::utility::SyntaxError", "classavl_1_1utility_1_1_syntax_error.html", null ],
+        [ "avl::utility::SettingsFile::SyntaxError", "classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html", null ],
         [ "avl::utility::VerificationFailure", "classavl_1_1utility_1_1_verification_failure.html", null ],
         [ "avl::view::RendererException", "classavl_1_1view_1_1_renderer_exception.html", [
           [ "avl::view::D3DError", "classavl_1_1view_1_1_d3_d_error.html", null ]
@@ -62,7 +63,8 @@ var NAVTREE =
       [ "avl::utility::Image", "classavl_1_1utility_1_1_image.html", null ],
       [ "avl::utility::LogFile", "classavl_1_1utility_1_1_log_file.html", null ],
       [ "avl::utility::SettingsFile", "classavl_1_1utility_1_1_settings_file.html", null ],
-      [ "avl::utility::SettingValue", "classavl_1_1utility_1_1_setting_value.html", null ],
+      [ "avl::utility::SettingsFile::SettingValue", "classavl_1_1utility_1_1_settings_file_1_1_setting_value.html", null ],
+      [ "avl::utility::SettingsFile::SettingValue::LongStringUnion", "unionavl_1_1utility_1_1_settings_file_1_1_setting_value_1_1_long_string_union.html", null ],
       [ "avl::utility::Sprite", "classavl_1_1utility_1_1_sprite.html", null ],
       [ "avl::utility::TextBox", "classavl_1_1utility_1_1_text_box.html", null ],
       [ "avl::utility::TextBox::Row", "classavl_1_1utility_1_1_text_box_1_1_row.html", null ],

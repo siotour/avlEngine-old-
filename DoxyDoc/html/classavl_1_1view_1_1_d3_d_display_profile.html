@@ -106,38 +106,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::view::D3DDisplayProfile" -->
+<p>A structure designed to store D3D Device display format information.  
+ <a href="classavl_1_1view_1_1_d3_d_display_profile.html#details">More...</a></p>
+
 <p><code>#include &lt;d3d display profile.h&gt;</code></p>
 
 <p><a href="classavl_1_1view_1_1_d3_d_display_profile-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a8ead5b0aed5033a1f00d64f84495f642">D3DDisplayProfile</a> (const bool fullscreen, const unsigned int initial_width, const unsigned int initial_height, const D3DFORMAT initial_display_format, const D3DFORMAT initial_backbuffer_format)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a719e2873a90ce10bf6f82ce4077cc24c">D3DDisplayProfile</a> (const bool fullscreen, const unsigned int <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ad9711bf464b5649c1de1c6a9fb7dbb19">width</a>, const unsigned int <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a7726b1792c3d3f7c994b4381dd794440">height</a>, const D3DFORMAT <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ac40bcc66d618191969be462e58c6582b">display_format</a>, const D3DFORMAT <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ad9623c8f8ce256b2b993ceaf39a243f6">backbuffer_format</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-spec constructor.  <a href="#a719e2873a90ce10bf6f82ce4077cc24c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#aa6550fc09d7e89fe22bc88e5ac04c585">D3DDisplayProfile</a> (const <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">D3DDisplayProfile</a> &amp;original)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#aa6550fc09d7e89fe22bc88e5ac04c585"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ad6b8f727a7ebec9e400103f85a88dcf8">~D3DDisplayProfile</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#ad6b8f727a7ebec9e400103f85a88dcf8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a5ffc8e9546ba3f915ad16a7b21a4fbe3">IsFullscreen</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this profile fullscreen?  <a href="#a5ffc8e9546ba3f915ad16a7b21a4fbe3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a738f82bb084c400fd1898efab04c62d7">GetWidth</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the width.  <a href="#a738f82bb084c400fd1898efab04c62d7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a882574281426dd93bc3e07ea40f2cd2b">GetHeight</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the height.  <a href="#a882574281426dd93bc3e07ea40f2cd2b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a8ba87b5e22f5df632caabf710b777e8d">GetDisplayFormat</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the display format.  <a href="#a8ba87b5e22f5df632caabf710b777e8d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a773f092313123fbc60861f31b692a4c9">GetBackbufferFormat</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the backbuffer format.  <a href="#a773f092313123fbc60861f31b692a4c9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">D3DDisplayProfile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ac7d91b06034a915ae3d805ed1125f562">operator=</a> (const <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">D3DDisplayProfile</a> &amp;rhs)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes this object into a copy of <em>rhs</em>.  <a href="#ac7d91b06034a915ae3d805ed1125f562"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a3b56181bc6e6884f5d78d633ea3e9bbc">operator==</a> (const <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">D3DDisplayProfile</a> &amp;rhs) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares this object to <em>rhs</em> for equality.  <a href="#a3b56181bc6e6884f5d78d633ea3e9bbc"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ad9716bc1e852ebfa0368e83a43e255cd">BACKBUFFER_FORMATS</a> []</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all of the backbuffer formats that may be used.  <a href="#ad9716bc1e852ebfa0368e83a43e255cd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#add594fd86c96abbf1bb1f51db1c5396f">BACKBUFFER_FORMATS_LENGTH</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The length of the backbuffer format array.  <a href="#add594fd86c96abbf1bb1f51db1c5396f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#abddc36c3d283ec715f9a916417a0bee9">DISPLAY_FORMATS</a> []</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all of the display formats that may be used.  <a href="#abddc36c3d283ec715f9a916417a0bee9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a15eacecc502ca7e96ca5b38ff88223ea">DISPLAY_FORMATS_LENGTH</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The length of the display format array.  <a href="#a15eacecc502ca7e96ca5b38ff88223ea"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a0ff19a689a3d5cbe9cccc115d60d87c9">is_fullscreen</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this profile windowed or fullscreen?  <a href="#a0ff19a689a3d5cbe9cccc115d60d87c9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ad9711bf464b5649c1de1c6a9fb7dbb19">width</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Width and height.  <a href="#ad9711bf464b5649c1de1c6a9fb7dbb19"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#a7726b1792c3d3f7c994b4381dd794440">height</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ac40bcc66d618191969be462e58c6582b">display_format</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The display format.  <a href="#ac40bcc66d618191969be462e58c6582b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">D3DFORMAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html#ad9623c8f8ce256b2b993ceaf39a243f6">backbuffer_format</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Backbuffer format.  <a href="#ad9623c8f8ce256b2b993ceaf39a243f6"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8ead5b0aed5033a1f00d64f84495f642"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::D3DDisplayProfile" ref="a8ead5b0aed5033a1f00d64f84495f642" args="(const bool fullscreen, const unsigned int initial_width, const unsigned int initial_height, const D3DFORMAT initial_display_format, const D3DFORMAT initial_backbuffer_format)" -->
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>A structure designed to store D3D Device display format information. </p>
+<p>This includes: width/height (resolution), backbuffer format, and depth/stencil buffer format. This structure does not take into account the adapter, device type, or multisampling type; instead, these are assumed to be (respectively): <code>D3DADAPTER_DEFAULT</code>, <code>D3DDEVTYPE_HAL</code>, <code>D3DMULTISAMPLE_NONE</code>. This class is intended to be used internally to enumerate the possible different display formats, and then be given to the user so that they may choose an appropriate display format. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>The public static arrays and the public static array lengths are very ugly. There must be a better way to do this. </dd></dl>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a719e2873a90ce10bf6f82ce4077cc24c"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::D3DDisplayProfile" ref="a719e2873a90ce10bf6f82ce4077cc24c" args="(const bool fullscreen, const unsigned int width, const unsigned int height, const D3DFORMAT display_format, const D3DFORMAT backbuffer_format)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -151,25 +176,25 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned int&#160;</td>
-          <td class="paramname"><em>initial_width</em>, </td>
+          <td class="paramname"><em>width</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned int&#160;</td>
-          <td class="paramname"><em>initial_height</em>, </td>
+          <td class="paramname"><em>height</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const D3DFORMAT&#160;</td>
-          <td class="paramname"><em>initial_display_format</em>, </td>
+          <td class="paramname"><em>display_format</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const D3DFORMAT&#160;</td>
-          <td class="paramname"><em>initial_backbuffer_format</em>&#160;</td>
+          <td class="paramname"><em>backbuffer_format</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -179,6 +204,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Full-spec constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fullscreen</td><td>Is this profile fullscreen or windowed? </td></tr>
+    <tr><td class="paramname">width</td><td>The width of the profile in pixels. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the profile in pixels. </td></tr>
+    <tr><td class="paramname">display_format</td><td>The pixel format of the profile display. </td></tr>
+    <tr><td class="paramname">backbuffer_format</td><td>The pixel format of the profile backbuffer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -197,6 +234,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ad6b8f727a7ebec9e400103f85a88dcf8"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::~D3DDisplayProfile" ref="ad6b8f727a7ebec9e400103f85a88dcf8" args="()" -->
@@ -212,6 +257,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -230,6 +277,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the backbuffer format. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The format of the profile backbuffer. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a8ba87b5e22f5df632caabf710b777e8d"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::GetDisplayFormat" ref="a8ba87b5e22f5df632caabf710b777e8d" args="() const " -->
@@ -245,6 +295,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Returns the display format. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The format of the profile display. </dd></dl>
 
 </div>
 </div>
@@ -262,6 +315,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the height. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The height of the profile in pixels. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a738f82bb084c400fd1898efab04c62d7"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::GetWidth" ref="a738f82bb084c400fd1898efab04c62d7" args="() const " -->
@@ -278,6 +334,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Returns the width. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The width of the profile in pixels. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a5ffc8e9546ba3f915ad16a7b21a4fbe3"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::IsFullscreen" ref="a5ffc8e9546ba3f915ad16a7b21a4fbe3" args="() const " -->
@@ -293,6 +352,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Is this profile fullscreen? </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the the profile is fullscreen, and false if it's windowed. </dd></dl>
 
 </div>
 </div>
@@ -311,6 +373,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Makes this object into a copy of <em>rhs</em>. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>This is required to allow for storing these in a vector. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>The object to which this one is being assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A reference to this object after the assignment takes place. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a3b56181bc6e6884f5d78d633ea3e9bbc"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::operator==" ref="a3b56181bc6e6884f5d78d633ea3e9bbc" args="(const D3DDisplayProfile &amp;rhs) const " -->
@@ -328,6 +400,16 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Compares this object to <em>rhs</em> for equality. </p>
+<p>Equality is based on the fullscreen mode, width, height, display format, and backbuffer format being the same. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>The object against which this one is being compared. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if this object is equal to <em>rhs</em>, and false if not. </dd></dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -342,6 +424,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Backbuffer format. </p>
+
 </div>
 </div>
 <a class="anchor" id="ad9716bc1e852ebfa0368e83a43e255cd"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::BACKBUFFER_FORMATS" ref="ad9716bc1e852ebfa0368e83a43e255cd" args="[]" -->
@@ -354,6 +438,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Contains all of the backbuffer formats that may be used. </p>
 
 </div>
 </div>
@@ -368,6 +454,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The length of the backbuffer format array. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac40bcc66d618191969be462e58c6582b"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::display_format" ref="ac40bcc66d618191969be462e58c6582b" args="" -->
@@ -380,6 +468,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The display format. </p>
 
 </div>
 </div>
@@ -394,6 +484,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Contains all of the display formats that may be used. </p>
+
 </div>
 </div>
 <a class="anchor" id="a15eacecc502ca7e96ca5b38ff88223ea"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::DISPLAY_FORMATS_LENGTH" ref="a15eacecc502ca7e96ca5b38ff88223ea" args="" -->
@@ -406,6 +498,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The length of the display format array. </p>
 
 </div>
 </div>
@@ -433,6 +527,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Is this profile windowed or fullscreen? </p>
+
 </div>
 </div>
 <a class="anchor" id="ad9711bf464b5649c1de1c6a9fb7dbb19"></a><!-- doxytag: member="avl::view::D3DDisplayProfile::width" ref="ad9711bf464b5649c1de1c6a9fb7dbb19" args="" -->
@@ -445,6 +541,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Width and height. </p>
 
 </div>
 </div>
@@ -470,7 +568,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:27 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

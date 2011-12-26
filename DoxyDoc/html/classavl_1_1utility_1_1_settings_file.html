@@ -98,21 +98,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">avl::utility::SettingsFile Class Reference</div>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::utility::SettingsFile" -->
-<p>Loads formatted settings data from a text file.  
+<p>Parses a text file and loads in variable names and variable values within that text file.  
  <a href="classavl_1_1utility_1_1_settings_file.html#details">More...</a></p>
 
 <p><code>#include &lt;settings file.h&gt;</code></p>
 
 <p><a href="classavl_1_1utility_1_1_settings_file-members.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html">SettingValue</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains information regarding a variable's value, and is intended to be mapped to a variable name.  <a href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html">SyntaxError</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that there was a syntax error in a settings file.  <a href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a1db89bd808286cb437e26f4ddab16c3e">SettingsFile</a> (const std::string &amp;file_name)</td></tr>
@@ -120,36 +128,43 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#adb2ee4002296893ed867b240b840e582">~SettingsFile</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#adb2ee4002296893ed867b240b840e582"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a0f4cd2e187b4683f3e2639dec0e36b26">GetIntegerValue</a> (const std::string &amp;variable, int &amp;value) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses an integer setting.  <a href="#a0f4cd2e187b4683f3e2639dec0e36b26"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to access an integer setting value.  <a href="#a0f4cd2e187b4683f3e2639dec0e36b26"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#abbdb2f9b4a95372206157c3514fe4a75">GetStringValue</a> (const std::string &amp;variable, std::string &amp;value) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses a string setting.  <a href="#abbdb2f9b4a95372206157c3514fe4a75"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to access a string setting value.  <a href="#abbdb2f9b4a95372206157c3514fe4a75"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a1e863824f825359b5c73ab922aaf046f">LoadSettings</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to read in the formatted settings data from <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>.  <a href="#a1e863824f825359b5c73ab922aaf046f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a2590f39708a0169d9e1334b9e38622d1">ReadLine</a> (int &amp;line_number)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to read in formatted data from a single line.  <a href="#a2590f39708a0169d9e1334b9e38622d1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#adf2fa2be89a7074802274517e4c2aaa8">ReadVariableName</a> (int &amp;line_number)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to read in a variable name.  <a href="#adf2fa2be89a7074802274517e4c2aaa8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#af06c9cbcbdeec353a4bc88f2a9d31bf8">ReadValue</a> (int &amp;line_number, const void *&amp;value)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to read in a value.  <a href="#af06c9cbcbdeec353a4bc88f2a9d31bf8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a370df9a14ad74f9be23678ebdc3f2da3">LoadFileToString</a> (std::ifstream &amp;file)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to load the contents in the file <em>file</em> to a string.  <a href="#a370df9a14ad74f9be23678ebdc3f2da3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4b43aecae09505e14e6079c476e335c2">LoadSettings</a> (const std::string &amp;lines, const std::string &amp;file_name)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse <em>lines</em> into a map of variable name/value pairs and add them to <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4cecc333f9de4f1f9ffa9ebb5f923e46">settings</a>.  <a href="#a4b43aecae09505e14e6079c476e335c2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a96c14d0c18f832a2644e079b74316cf9">ProcessLine</a> (const std::string &amp;lines, const unsigned int &amp;line_start, const unsigned int &amp;line_end, const std::string &amp;file_name, const unsigned int &amp;line_number)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a single line of text data within <em>lines.Determines</em> whether or not the line of text data in <em>lines</em>, beginning at index line_start and ending at index line_end, is a comment, blank line, or a substantial line.  <a href="#a96c14d0c18f832a2644e079b74316cf9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a73041a7b63bc64202eaae88261352b6e">ProcessVariable</a> (const std::string &amp;lines, const unsigned int &amp;line_start, const unsigned int &amp;line_end, const std::string &amp;file_name, const unsigned int &amp;line_number)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a non-comment, non-blank line within <em>lines</em> into a variable name/value pair and adds it to <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4cecc333f9de4f1f9ffa9ebb5f923e46">settings</a>.  <a href="#a73041a7b63bc64202eaae88261352b6e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a3cea99e1681fc958b96fe0a84467b6b6">SettingsFile</a> (const <a class="el" href="classavl_1_1utility_1_1_settings_file.html">SettingsFile</a> &amp;)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a3cea99e1681fc958b96fe0a84467b6b6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1utility_1_1_settings_file.html">SettingsFile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#ae9737da5432ee037b987027a4733b39b">operator=</a> (const <a class="el" href="classavl_1_1utility_1_1_settings_file.html">SettingsFile</a> &amp;)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#ae9737da5432ee037b987027a4733b39b"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a12f2165123f5a833a272c0273a37bf30">CheckVariableName</a> (std::string &amp;name, const std::string &amp;file_name, const unsigned int &amp;line_number)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if <em>name</em> is a valid variable name.  <a href="#a12f2165123f5a833a272c0273a37bf30"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a152aa09a512ba40b15e948dce045581e">CheckVariableValue</a> (std::string &amp;value, const std::string &amp;file_name, const unsigned int &amp;line_number)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if <em>value</em> is a valid variable value.  <a href="#a152aa09a512ba40b15e948dce045581e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#af36069217b56f6d88044446a1a863a82">IsIntegerValue</a> (std::string &amp;value, long &amp;integer_value)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if <em>value</em> can be parsed to an integer value, and if so stores the parsed integer in <em>integer_value</em>.  <a href="#af36069217b56f6d88044446a1a863a82"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#afe7e383670b7f17355b3b71826c65b47">PruneWhitespace</a> (std::string &amp;bush)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prunes any whitespace off of the beginning and end of <em>bush</em>.  <a href="#afe7e383670b7f17355b3b71826c65b47"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ifstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the file which contains formatted setting information.  <a href="#aa6c880edd27ea2e14c317d89ba07cd84"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <br class="typebreak"/>
-<a class="el" href="classavl_1_1utility_1_1_setting_value.html">avl::utility::SettingValue</a> <br class="typebreak"/>
-*const  &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a8cf723df7e00301a0944f4ed301b7250">settings</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of variable names to <a class="el" href="classavl_1_1utility_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">SettingValue</a> objects.  <a href="#a8cf723df7e00301a0944f4ed301b7250"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; const std::string, <br class="typebreak"/>
+const <br class="typebreak"/>
+<a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html">SettingsFile::SettingValue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4cecc333f9de4f1f9ffa9ebb5f923e46">settings</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of variable names to <a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">SettingValue</a> objects.  <a href="#a4cecc333f9de4f1f9ffa9ebb5f923e46"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Loads formatted settings data from a text file. </p>
-<p>Is able to process comments, integer variables, and string variables. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>The read utility functions need to be refactored into more manageable sized functions. </dd></dl>
+<div class="textblock"><p>Parses a text file and loads in variable names and variable values within that text file. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Document the syntax and so on. </dd></dl>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1db89bd808286cb437e26f4ddab16c3e"></a><!-- doxytag: member="avl::utility::SettingsFile::SettingsFile" ref="a1db89bd808286cb437e26f4ddab16c3e" args="(const std::string &amp;file_name)" -->
 <div class="memitem">
@@ -175,8 +190,8 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">avl::utility::ReadWriteError</a></td><td>If unable to open or ready from <em>file_name</em>. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">avl::utility::SyntaxError</a></td><td>If there is a problem with the syntax. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">avl::utility::ReadWriteError</a></td><td>If unable to open or read from <em>file_name</em>. </td></tr>
+    <tr><td class="paramname">avl::utility::SyntaxError</td><td>If there is a problem with the syntax in <em>file_name</em>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -221,6 +236,106 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a12f2165123f5a833a272c0273a37bf30"></a><!-- doxytag: member="avl::utility::SettingsFile::CheckVariableName" ref="a12f2165123f5a833a272c0273a37bf30" args="(std::string &amp;name, const std::string &amp;file_name, const unsigned int &amp;line_number)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void avl::utility::SettingsFile::CheckVariableName </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Checks to see if <em>name</em> is a valid variable name. </p>
+<p>Additionally, trims any whitespace off the beginning and end of <em>name</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The variable name being checked. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the settings file. </td></tr>
+    <tr><td class="paramname">line_number</td><td>The line in the settings file on which this name occurs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">SyntaxError</a></td><td>If <em>name</em> is not a valid variable name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a152aa09a512ba40b15e948dce045581e"></a><!-- doxytag: member="avl::utility::SettingsFile::CheckVariableValue" ref="a152aa09a512ba40b15e948dce045581e" args="(std::string &amp;value, const std::string &amp;file_name, const unsigned int &amp;line_number)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void avl::utility::SettingsFile::CheckVariableValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Checks to see if <em>value</em> is a valid variable value. </p>
+<p>Additionally, trims any whitespace off the beginning and end of <em>value</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The variable value being checked. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the settings file. </td></tr>
+    <tr><td class="paramname">line_number</td><td>The line in the settings file on which this value occurs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">SyntaxError</a></td><td>If <em>value</em> is not a valid variable value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a0f4cd2e187b4683f3e2639dec0e36b26"></a><!-- doxytag: member="avl::utility::SettingsFile::GetIntegerValue" ref="a0f4cd2e187b4683f3e2639dec0e36b26" args="(const std::string &amp;variable, int &amp;value) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -246,13 +361,12 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Accesses an integer setting. </p>
-<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>variable</em> is the name of an integer variable. </dd></dl>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd>value will contain the value associated with the variable named <em>variable</em>. </dd></dl>
+<p>Attempts to access an integer setting value. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>If <em>variable</em> does not exist or is not an integer variable, then <em>value</em> will not be modified. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">variable</td><td>[IN] The name of the variable to access. </td></tr>
-    <tr><td class="paramname">value</td><td>[OUT] If <em>variable</em> is an integer variable, the value associated with it. </td></tr>
+    <tr><td class="paramname">value</td><td>[OUT] If <em>variable</em> exists and is an integer variable, the value associated with it. </td></tr>
   </table>
   </dd>
 </dl>
@@ -285,13 +399,12 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Accesses a string setting. </p>
-<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>variable</em> is the name of a string variable. </dd></dl>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd>value will contain the value associated with the variable named <em>variable</em>. </dd></dl>
+<p>Attempts to access a string setting value. </p>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>If <em>variable</em> does not exist or is not a string variable, then <em>value</em> will not be modified. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">variable</td><td>[IN] The name of the variable to access. </td></tr>
-    <tr><td class="paramname">value</td><td>[OUT] If <em>variable</em> is a string variable, the value associated with it. </td></tr>
+    <tr><td class="paramname">value</td><td>[OUT] If <em>variable</em> exists and is a string variable, the value associated with it. </td></tr>
   </table>
   </dd>
 </dl>
@@ -299,26 +412,106 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1e863824f825359b5c73ab922aaf046f"></a><!-- doxytag: member="avl::utility::SettingsFile::LoadSettings" ref="a1e863824f825359b5c73ab922aaf046f" args="()" -->
+<a class="anchor" id="af36069217b56f6d88044446a1a863a82"></a><!-- doxytag: member="avl::utility::SettingsFile::IsIntegerValue" ref="af36069217b56f6d88044446a1a863a82" args="(std::string &amp;value, long &amp;integer_value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void avl::utility::SettingsFile::LoadSettings </td>
+          <td class="memname">static bool avl::utility::SettingsFile::IsIntegerValue </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long &amp;&#160;</td>
+          <td class="paramname"><em>integer_value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Checks to see if <em>value</em> can be parsed to an integer value, and if so stores the parsed integer in <em>integer_value</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>[IN] The string which is being checked. </td></tr>
+    <tr><td class="paramname">integer_value</td><td>[OUT] The parsed integer value of <em>value</em>, if <em>value</em> can be parsed to an integer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if <em>value</em> may be parsed to an integer value, and false if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a370df9a14ad74f9be23678ebdc3f2da3"></a><!-- doxytag: member="avl::utility::SettingsFile::LoadFileToString" ref="a370df9a14ad74f9be23678ebdc3f2da3" args="(std::ifstream &amp;file)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string avl::utility::SettingsFile::LoadFileToString </td>
+          <td>(</td>
+          <td class="paramtype">std::ifstream &amp;&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
           <td><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Attempts to read in the formatted settings data from <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. </p>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd><a class="el" href="classavl_1_1utility_1_1_settings_file.html#a8cf723df7e00301a0944f4ed301b7250">settings</a> will be populated with the variable name/value pairs stored in <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. </dd></dl>
+<p>Attempts to load the contents in the file <em>file</em> to a string. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing the contents of <em>file</em>. </dd></dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">avl::utility::ReadWriteError</a></td><td>If unable to read from <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">avl::utility::SyntaxError</a></td><td>If there is a syntax error. Will indicate the error type. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">ReadWriteError</a></td><td>If unable to load the data from <em>file</em>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4b43aecae09505e14e6079c476e335c2"></a><!-- doxytag: member="avl::utility::SettingsFile::LoadSettings" ref="a4b43aecae09505e14e6079c476e335c2" args="(const std::string &amp;lines, const std::string &amp;file_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void avl::utility::SettingsFile::LoadSettings </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>lines</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Attempts to parse <em>lines</em> into a map of variable name/value pairs and add them to <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4cecc333f9de4f1f9ffa9ebb5f923e46">settings</a>. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>lines</em> obeys the rules of syntax described in <a class="el" href="classavl_1_1utility_1_1_settings_file.html">avl::utility::SettingsFile</a>. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lines</td><td>A set of lines of text to be parsed into variable name/value pairs. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the settings file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">SyntaxError</a></td><td>If there is a syntactical error in <em>lines</em>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -344,48 +537,39 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2590f39708a0169d9e1334b9e38622d1"></a><!-- doxytag: member="avl::utility::SettingsFile::ReadLine" ref="a2590f39708a0169d9e1334b9e38622d1" args="(int &amp;line_number)" -->
+<a class="anchor" id="a96c14d0c18f832a2644e079b74316cf9"></a><!-- doxytag: member="avl::utility::SettingsFile::ProcessLine" ref="a96c14d0c18f832a2644e079b74316cf9" args="(const std::string &amp;lines, const unsigned int &amp;line_start, const unsigned int &amp;line_end, const std::string &amp;file_name, const unsigned int &amp;line_number)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void avl::utility::SettingsFile::ReadLine </td>
+          <td class="memname">void avl::utility::SettingsFile::ProcessLine </td>
           <td>(</td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>line_number</em></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Attempts to read in formatted data from a single line. </p>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd>Will add a new variable name/value pair to <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a8cf723df7e00301a0944f4ed301b7250">settings</a>. </dd></dl>
-<dl><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">avl::utility::ReadWriteError</a></td><td>If an error occurs while reading from <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">avl::utility::SyntaxError</a></td><td>If there is a syntax error in <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. Will indicate the type of syntax error. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="af06c9cbcbdeec353a4bc88f2a9d31bf8"></a><!-- doxytag: member="avl::utility::SettingsFile::ReadValue" ref="af06c9cbcbdeec353a4bc88f2a9d31bf8" args="(int &amp;line_number, const void *&amp;value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool avl::utility::SettingsFile::ReadValue </td>
-          <td>(</td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>line_number</em>, </td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>lines</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const void *&amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_number</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -396,54 +580,111 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Attempts to read in a value. </p>
-<dl class="pre"><dt><b>Precondition:</b></dt><dd><em>value</em> must be NULL. </dd></dl>
+<p>Parses a single line of text data within <em>lines.Determines</em> whether or not the line of text data in <em>lines</em>, beginning at index line_start and ending at index line_end, is a comment, blank line, or a substantial line. </p>
+<p>If it's a substantial line, then we will attempt to parse it into a variable name/value pair. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd>The specified line of text obeys the syntactical rules laid out in <a class="el" href="classavl_1_1utility_1_1_settings_file.html">avl::utility::SettingsFile</a>. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">line_number</td><td>[IN] The line number which is currently being analyzed in the file. This is used to generate a <a class="el" href="classavl_1_1utility_1_1_syntax_error.html">SyntaxError</a> with the correct line number if an error occurs. </td></tr>
-    <tr><td class="paramname">value</td><td>[OUT] The new value. </td></tr>
+    <tr><td class="paramname">lines</td><td>A set of lines of text data to be parsed into variable name/value pairs. </td></tr>
+    <tr><td class="paramname">line_start</td><td>The index into <em>lines</em> of the first character on the line. </td></tr>
+    <tr><td class="paramname">line_end</td><td>The index into <em>lines</em> of the last character on the line. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the settings file. </td></tr>
+    <tr><td class="paramname">line_number</td><td>The number of the line currently being parsed. Used to report which line syntax errors occur on. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if the value is an integer, and false if it's a string. </dd></dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">avl::utility::ReadWriteError</a></td><td>If an error occurs while reading from <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">avl::utility::SyntaxError</a></td><td>If there is a syntax error with a setting value. </td></tr>
+    <tr><td class="paramname">avl::utility::SyntaxError</td><td>If there is a syntactical error in the specified line of text data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd><a class="el" href="classavl_1_1utility_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">avl::utility::SettingValue</a> should be made into a union, and this function should return a <a class="el" href="classavl_1_1utility_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">avl::utility::SettingValue</a>. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="adf2fa2be89a7074802274517e4c2aaa8"></a><!-- doxytag: member="avl::utility::SettingsFile::ReadVariableName" ref="adf2fa2be89a7074802274517e4c2aaa8" args="(int &amp;line_number)" -->
+<a class="anchor" id="a73041a7b63bc64202eaae88261352b6e"></a><!-- doxytag: member="avl::utility::SettingsFile::ProcessVariable" ref="a73041a7b63bc64202eaae88261352b6e" args="(const std::string &amp;lines, const unsigned int &amp;line_start, const unsigned int &amp;line_end, const std::string &amp;file_name, const unsigned int &amp;line_number)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string avl::utility::SettingsFile::ReadVariableName </td>
+          <td class="memname">void avl::utility::SettingsFile::ProcessVariable </td>
           <td>(</td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>line_number</em></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>lines</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int &amp;&#160;</td>
+          <td class="paramname"><em>line_number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Attempts to read in a variable name. </p>
+<p>Attempts to parse a non-comment, non-blank line within <em>lines</em> into a variable name/value pair and adds it to <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4cecc333f9de4f1f9ffa9ebb5f923e46">settings</a>. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd>The specified line of text obeys the syntactical rules laid out in <a class="el" href="classavl_1_1utility_1_1_settings_file.html">avl::utility::SettingsFile</a>, and is neither a blank line (whitespace not considered substantial) or a comment. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">line_number</td><td>The line number which is currently being analyzed in the file. This is used to generate a <a class="el" href="classavl_1_1utility_1_1_syntax_error.html">SyntaxError</a> with the correct line number if an error occurs. </td></tr>
+    <tr><td class="paramname">lines</td><td>A set of lines of text data to be parsed into variable name/value pairs. </td></tr>
+    <tr><td class="paramname">line_start</td><td>The index into <em>lines</em> of the first character on the line. </td></tr>
+    <tr><td class="paramname">line_end</td><td>The index into <em>lines</em> of the last character on the line. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the settings file. </td></tr>
+    <tr><td class="paramname">line_number</td><td>The number of the line currently being parsed. Used to report which line syntax errors occur on. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The variable name. </dd></dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_read_write_error.html">avl::utility::ReadWriteError</a></td><td>If an error occurs while reading <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">file</a>. </td></tr>
-    <tr><td class="paramname"><a class="el" href="classavl_1_1utility_1_1_syntax_error.html" title="Indicates that there was a syntax error in a settings file.">avl::utility::SyntaxError</a></td><td>If there is a syntax error with a variable name. line_number should be the </td></tr>
+    <tr><td class="paramname">avl::utility::SyntaxError</td><td>If there is a syntactical error in the specified line of text data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afe7e383670b7f17355b3b71826c65b47"></a><!-- doxytag: member="avl::utility::SettingsFile::PruneWhitespace" ref="afe7e383670b7f17355b3b71826c65b47" args="(std::string &amp;bush)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void avl::utility::SettingsFile::PruneWhitespace </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>bush</em></td><td>)</td>
+          <td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Prunes any whitespace off of the beginning and end of <em>bush</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bush</td><td>The string to be pruned. </td></tr>
   </table>
   </dd>
 </dl>
@@ -451,33 +692,18 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aa6c880edd27ea2e14c317d89ba07cd84"></a><!-- doxytag: member="avl::utility::SettingsFile::file" ref="aa6c880edd27ea2e14c317d89ba07cd84" args="" -->
+<a class="anchor" id="a4cecc333f9de4f1f9ffa9ebb5f923e46"></a><!-- doxytag: member="avl::utility::SettingsFile::settings" ref="a4cecc333f9de4f1f9ffa9ebb5f923e46" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::ifstream <a class="el" href="classavl_1_1utility_1_1_settings_file.html#aa6c880edd27ea2e14c317d89ba07cd84">avl::utility::SettingsFile::file</a><code> [private]</code></td>
+          <td class="memname">std::map&lt;const std::string, const <a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html">SettingsFile::SettingValue</a>&gt; <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a4cecc333f9de4f1f9ffa9ebb5f923e46">avl::utility::SettingsFile::settings</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Pointer to the file which contains formatted setting information. </p>
-
-</div>
-</div>
-<a class="anchor" id="a8cf723df7e00301a0944f4ed301b7250"></a><!-- doxytag: member="avl::utility::SettingsFile::settings" ref="a8cf723df7e00301a0944f4ed301b7250" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::map&lt;std::string, <a class="el" href="classavl_1_1utility_1_1_setting_value.html">avl::utility::SettingValue</a>* const&gt; <a class="el" href="classavl_1_1utility_1_1_settings_file.html#a8cf723df7e00301a0944f4ed301b7250">avl::utility::SettingsFile::settings</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Map of variable names to <a class="el" href="classavl_1_1utility_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">SettingValue</a> objects. </p>
+<p>Map of variable names to <a class="el" href="classavl_1_1utility_1_1_settings_file_1_1_setting_value.html" title="Contains information regarding a variable&#39;s value, and is intended to be mapped to a variable name...">SettingValue</a> objects. </p>
 
 </div>
 </div>
@@ -503,7 +729,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:06 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:26 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

@@ -105,6 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::view::RendererException" --><!-- doxytag: inherits="avl::utility::Exception" -->
+<p>This is the basic exception type for renderers.  
+ <a href="classavl_1_1view_1_1_renderer_exception.html#details">More...</a></p>
+
 <p><code>#include &lt;d3d renderer base.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::view::RendererException:</div>
@@ -113,7 +116,7 @@ Inheritance diagram for avl::view::RendererException:</div>
   <img src="classavl_1_1view_1_1_renderer_exception.png" usemap="#avl::view::RendererException_map" alt=""/>
   <map id="avl::view::RendererException_map" name="avl::view::RendererException_map">
 <area href="classavl_1_1utility_1_1_exception.html" title="The base class for all avl Library exceptions." alt="avl::utility::Exception" shape="rect" coords="0,0,175,24"/>
-<area href="classavl_1_1view_1_1_d3_d_error.html" alt="avl::view::D3DError" shape="rect" coords="0,112,175,136"/>
+<area href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail." alt="avl::view::D3DError" shape="rect" coords="0,112,175,136"/>
 </map>
  </div></div>
 
@@ -121,14 +124,21 @@ Inheritance diagram for avl::view::RendererException:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html#a3fdedf56570e8de148bd1aa9fab1263e">RendererException</a> (const std::string &amp;<a class="el" href="classavl_1_1utility_1_1_exception.html#a15f19244623335928231cfbb3a09b2a4">description</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html#a3fdedf56570e8de148bd1aa9fab1263e">RendererException</a> (const std::string &amp;<a class="el" href="classavl_1_1utility_1_1_exception.html#a41aef41d17b5b882b6f7de03149c8d38">description</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a3fdedf56570e8de148bd1aa9fab1263e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html#a479f9a898cdd150053723e6c764507e5">RendererException</a> (const <a class="el" href="classavl_1_1view_1_1_renderer_exception.html">RendererException</a> &amp;original)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html#afd3b91ea4f2ea366ca8d7b1836c7e140">~RendererException</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a479f9a898cdd150053723e6c764507e5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html#a3359d7946041f01a0b00372aa382e319">~RendererException</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a3359d7946041f01a0b00372aa382e319"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1view_1_1_renderer_exception.html">RendererException</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html#a3e917eb21fd9ae5338f3fde73cf97585">operator=</a> (const <a class="el" href="classavl_1_1view_1_1_renderer_exception.html">RendererException</a> &amp;rhs)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a3e917eb21fd9ae5338f3fde73cf97585"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>This is the basic exception type for renderers. </p>
+<p>All rendering-related exceptions will be derived from this. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3fdedf56570e8de148bd1aa9fab1263e"></a><!-- doxytag: member="avl::view::RendererException::RendererException" ref="a3fdedf56570e8de148bd1aa9fab1263e" args="(const std::string &amp;description)" -->
 <div class="memitem">
 <div class="memproto">
@@ -143,6 +153,15 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd><em>description</em> should include a way of identifying where the problem occurred (i.e. the full function name). </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">description</td><td>A description of the exception which occurred. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -161,21 +180,31 @@ Private Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">original</td><td>The object being copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a class="anchor" id="afd3b91ea4f2ea366ca8d7b1836c7e140"></a><!-- doxytag: member="avl::view::RendererException::~RendererException" ref="afd3b91ea4f2ea366ca8d7b1836c7e140" args="()" -->
+<a class="anchor" id="a3359d7946041f01a0b00372aa382e319"></a><!-- doxytag: member="avl::view::RendererException::~RendererException" ref="a3359d7946041f01a0b00372aa382e319" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">avl::view::RendererException::~RendererException </td>
+          <td class="memname">virtual avl::view::RendererException::~RendererException </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -194,6 +223,8 @@ Private Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>NOT IMPLEMENTED. </p>
 
 </div>
 </div>
@@ -219,7 +250,7 @@ Private Member Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:27 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

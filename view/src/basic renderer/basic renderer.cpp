@@ -194,11 +194,10 @@ namespace view
 		TexHandleToTex::iterator i = textures.find(texture_handle);
 		ASSERT(i != textures.end());
 
-		// If the specified texture handle doesn't exist, throw utility::Exception describing the problem.
+		// If the specified texture handle doesn't exist, then simply ignore the deletion request.
 		if(i == textures.end())
 		{
-			throw utility::Exception("avl::view::BasicRenderer::DeleteTexture() -- The specified texture handle does not "
-									 "correspond to an existing texture.");
+			return;
 		}
 
 		// Release the texture.
@@ -237,7 +236,7 @@ namespace view
 			// Make sure this pointer is not NULL.
 			if((*e) == NULL)
 			{
-				throw utility::Exception("avl::view::BasicRenderer::RenderSprites() -- The supplied utility::Sprite::SpriteList contains one or more NULL pointers.");
+				throw RendererException("avl::view::BasicRenderer::RenderSprites() -- The supplied utility::Sprite::SpriteList contains one or more NULL pointers.");
 			}
 			// Is this sprite visible?
 			else if((*e)->IsVisible() != false)
@@ -417,7 +416,7 @@ namespace view
 		ClearViewport();
 		
 		// Begin the scene.
-		D3DRendererBase::device->BeginScene();
+		device->BeginScene();
 
 		// Set the vertex buffer stream and index buffer stream.
 		device->SetStreamSource(0, vertex_buffer, 0, sizeof(float) * 5);

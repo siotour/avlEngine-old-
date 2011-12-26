@@ -107,6 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::view::BasicWindow" --><!-- doxytag: inherits="avl::view::Win32WindowBase" -->
+<p>Provides an implementation for a very basic Win32 window.  
+ <a href="classavl_1_1view_1_1_basic_window.html#details">More...</a></p>
+
 <p><code>#include &lt;basic window.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::view::BasicWindow:</div>
@@ -114,7 +117,7 @@ Inheritance diagram for avl::view::BasicWindow:</div>
  <div class="center">
   <img src="classavl_1_1view_1_1_basic_window.png" usemap="#avl::view::BasicWindow_map" alt=""/>
   <map id="avl::view::BasicWindow_map" name="avl::view::BasicWindow_map">
-<area href="classavl_1_1view_1_1_win32_window_base.html" alt="avl::view::Win32WindowBase" shape="rect" coords="0,0,174,24"/>
+<area href="classavl_1_1view_1_1_win32_window_base.html" title="A partially-implemented skeleton used to build higher-level Win32 windows on." alt="avl::view::Win32WindowBase" shape="rect" coords="0,0,174,24"/>
 </map>
  </div></div>
 
@@ -123,22 +126,35 @@ Inheritance diagram for avl::view::BasicWindow:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#ade2be63998b60cfec2a471546383c225">BasicWindow</a> (HINSTANCE instance_handle, const std::string &amp;window_title, const int &amp;width, const int &amp;height)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to construct a window with the specified parameters.  <a href="#ade2be63998b60cfec2a471546383c225"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a2afbb07b6f94173b7de1550cf1d43112">~BasicWindow</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic destructor.  <a href="#a2afbb07b6f94173b7de1550cf1d43112"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a662342557b2f8567f6d344494a415df7">Update</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs basic upkeep of the window.  <a href="#a662342557b2f8567f6d344494a415df7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a81a7a17e38f88a4cb5ef00fae058a720">IsActive</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the window is currently in focus.  <a href="#a81a7a17e38f88a4cb5ef00fae058a720"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static LRESULT CALLBACK&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a24b907d296673e38c412a3335cbe6695">RouteWindowMessage</a> (HWND <a class="el" href="classavl_1_1view_1_1_win32_window_base.html#ad0d2b0c5d94766a85b0584f965fd61d4">window_handle</a>, UINT msg, WPARAM w_param, LPARAM l_param)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The window procedure for windows of this class.  <a href="#a24b907d296673e38c412a3335cbe6695"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a0de33888957b72f7f0c768dc8d6852aa">BasicWindow</a> (const <a class="el" href="classavl_1_1view_1_1_basic_window.html">BasicWindow</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a0de33888957b72f7f0c768dc8d6852aa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1view_1_1_basic_window.html">BasicWindow</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a7b241ac8b70d9bba68cd79dc0a8b203b">operator=</a> (const <a class="el" href="classavl_1_1view_1_1_basic_window.html">BasicWindow</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a7b241ac8b70d9bba68cd79dc0a8b203b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a855b1a11581264214ebff15649fc1bc5">window_status</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Status of the window. True if the window is running as expected, false if it has been closed.  <a href="#a855b1a11581264214ebff15649fc1bc5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_window.html#a88e44bac22ca7deb0dd6bbf90db839cb">is_active</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the window's active state. True if the window is active, false if it's inactive.  <a href="#a88e44bac22ca7deb0dd6bbf90db839cb"></a><br/></td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Provides an implementation for a very basic Win32 window. </p>
+<p>All behavior is default. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Expand on 'default behavior.' </dd></dl>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ade2be63998b60cfec2a471546383c225"></a><!-- doxytag: member="avl::view::BasicWindow::BasicWindow" ref="ade2be63998b60cfec2a471546383c225" args="(HINSTANCE instance_handle, const std::string &amp;window_title, const int &amp;width, const int &amp;height)" -->
 <div class="memitem">
 <div class="memproto">
@@ -176,6 +192,17 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to construct a window with the specified parameters. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance_handle</td><td>The handle to the application instance. </td></tr>
+    <tr><td class="paramname">window_title</td><td>Appears in the window's title bar, task bar icon, and task manager. </td></tr>
+    <tr><td class="paramname">width</td><td>The width of the window's client area. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the window's client area. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a2afbb07b6f94173b7de1550cf1d43112"></a><!-- doxytag: member="avl::view::BasicWindow::~BasicWindow" ref="a2afbb07b6f94173b7de1550cf1d43112" args="()" -->
@@ -191,6 +218,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Basic destructor. </p>
 
 </div>
 </div>
@@ -209,6 +238,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -226,6 +257,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Checks to see if the window is currently in focus. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the window is in focus, and false if not. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a7b241ac8b70d9bba68cd79dc0a8b203b"></a><!-- doxytag: member="avl::view::BasicWindow::operator=" ref="a7b241ac8b70d9bba68cd79dc0a8b203b" args="(const BasicWindow &amp;)" -->
@@ -242,6 +276,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>NOT IMPLEMENTED. </p>
 
 </div>
 </div>
@@ -282,6 +318,24 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The window procedure for windows of this class. </p>
+<p>With a few exceptions, all messages are simply fed to the default window procedure. The exceptions are: </p>
+<ul>
+<li><code>WM_CLOSE</code> is posted to the window's message queue. </li>
+<li><code>WM_DESTROY</code> results in calling <code>PostQuitMessage(0)</code>. </li>
+<li><code>WM_ACTIVATE</code> is first posted to the window's message queue, and then fed to the default window procedure. <dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window_handle</td><td>The handle of the window to which the message is addressed. </td></tr>
+    <tr><td class="paramname">msg</td><td>The message type. </td></tr>
+    <tr><td class="paramname">w_param</td><td>Message data. </td></tr>
+    <tr><td class="paramname">l_param</td><td>Message data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>0 if the message was handled correctly, and false if not. </dd></dl>
+</li>
+</ul>
+
 </div>
 </div>
 <a class="anchor" id="a662342557b2f8567f6d344494a415df7"></a><!-- doxytag: member="avl::view::BasicWindow::Update" ref="a662342557b2f8567f6d344494a415df7" args="()" -->
@@ -297,6 +351,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Performs basic upkeep of the window. </p>
+<p>Should be called often. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the window is working properly, and false if the window has closed. </dd></dl>
 
 <p>Implements <a class="el" href="classavl_1_1view_1_1_win32_window_base.html#a2a6469ced971ff169afd07a5fbdb324e">avl::view::Win32WindowBase</a>.</p>
 
@@ -314,6 +372,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Represents the window's active state. True if the window is active, false if it's inactive. </p>
+
 </div>
 </div>
 <a class="anchor" id="a855b1a11581264214ebff15649fc1bc5"></a><!-- doxytag: member="avl::view::BasicWindow::window_status" ref="a855b1a11581264214ebff15649fc1bc5" args="" -->
@@ -326,6 +386,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Status of the window. True if the window is running as expected, false if it has been closed. </p>
 
 </div>
 </div>
@@ -351,7 +413,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:27 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>

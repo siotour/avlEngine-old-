@@ -107,6 +107,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="avl::view::BasicRenderer" --><!-- doxytag: inherits="avl::view::D3DRendererBase" -->
+<p>Builds on the functionality of <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">avl::view::D3DRendererBase</a> to implement a basic 2-D renderer capable of rendering basic textured rectangles.  
+ <a href="classavl_1_1view_1_1_basic_renderer.html#details">More...</a></p>
+
 <p><code>#include &lt;basic renderer.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for avl::view::BasicRenderer:</div>
@@ -114,7 +117,7 @@ Inheritance diagram for avl::view::BasicRenderer:</div>
  <div class="center">
   <img src="classavl_1_1view_1_1_basic_renderer.png" usemap="#avl::view::BasicRenderer_map" alt=""/>
   <map id="avl::view::BasicRenderer_map" name="avl::view::BasicRenderer_map">
-<area href="classavl_1_1view_1_1_d3_d_renderer_base.html" title="A test class." alt="avl::view::D3DRendererBase" shape="rect" coords="0,0,173,24"/>
+<area href="classavl_1_1view_1_1_d3_d_renderer_base.html" title="Provides a partially implemented interface for a basic Direct3D renderer." alt="avl::view::D3DRendererBase" shape="rect" coords="0,0,173,24"/>
 </map>
  </div></div>
 
@@ -123,35 +126,55 @@ Inheritance diagram for avl::view::BasicRenderer:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#aeb0a91168d2e6716771813dae67402fc">BasicRenderer</a> (HWND <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a7b46c4f40d8216c336ee615ec6c5f398">window_handle</a>, const <a class="el" href="classavl_1_1view_1_1_d3_d_display_profile.html">D3DDisplayProfile</a> &amp;profile)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to initialize a Direct3D device to render to the window represented by <em>window_handle</em> using the display profile <em>profile</em>.  <a href="#aeb0a91168d2e6716771813dae67402fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a045b5f44c2e0bbd9271b992435d56ee0">~BasicRenderer</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the Direct3D device and releases all assets.  <a href="#a045b5f44c2e0bbd9271b992435d56ee0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <br class="typebreak"/>
 <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a9034b96d46b05f032c1d8c9b630c5936">AddTexture</a> (const <a class="el" href="classavl_1_1utility_1_1_image.html">utility::Image</a> &amp;image)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create a texture for <em>image</em>.  <a href="#a9034b96d46b05f032c1d8c9b630c5936"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a47fdd9fe7b56445cebf997d824f3cacb">DeleteTexture</a> (const <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a> &amp;texture_handle)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the texture associated with the texture handle <em>texture_handle</em>.  <a href="#a47fdd9fe7b56445cebf997d824f3cacb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a4ae16e0e9c47ee9fd875f3ac9c8fb377">RenderSprites</a> (<a class="el" href="classavl_1_1utility_1_1_sprite.html#a2337af287655edb35aedb0e46aba7cab">utility::Sprite::SpriteList</a> sprites)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a series of sprites.  <a href="#a4ae16e0e9c47ee9fd875f3ac9c8fb377"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-types"></a>
 Private Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; const <br class="typebreak"/>
 <a class="el" href="classavl_1_1utility_1_1_sprite.html#ad63b039b423197d036379061a4f83fe3">utility::Sprite::TextureHandle</a>, <br class="typebreak"/>
 IDirect3DTexture9 * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a7cc7c62029162a3a6777cd66c33c24d5">TexHandleToTex</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps texture handles to texture objects.  <a href="#a7cc7c62029162a3a6777cd66c33c24d5"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a4d3d54d0a3c30bb110d22bc9fce0e4a2">IsImagePartiallyTransparent</a> (const unsigned int size, const BYTE *const pixel_data)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#ac2963237dbfb782c89584c249101846f">Initialize</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see whether or not an image contains semi-transparent pixels.  <a href="#a4d3d54d0a3c30bb110d22bc9fce0e4a2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a1f93412e7d408c72f52fd2cf089825f5">ReleaseUnmanagedAssets</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the index buffer and vertex buffer.  <a href="#a1f93412e7d408c72f52fd2cf089825f5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a91a61dbb3d3552f6b56daa9002252e4e">AcquireUnmanagedAssets</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the index buffer and vertex buffer.  <a href="#a91a61dbb3d3552f6b56daa9002252e4e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a79b6221cda8e5a8d5bfa45d816d6a384">BasicRenderer</a> (const <a class="el" href="classavl_1_1view_1_1_basic_renderer.html">BasicRenderer</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#a79b6221cda8e5a8d5bfa45d816d6a384"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classavl_1_1view_1_1_basic_renderer.html">BasicRenderer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#aa9d942f08e499afedd1fcaa55f7b8834">operator=</a> (const <a class="el" href="classavl_1_1view_1_1_basic_renderer.html">BasicRenderer</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">NOT IMPLEMENTED.  <a href="#aa9d942f08e499afedd1fcaa55f7b8834"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a557047f93a4d7da6d82f897a8dd9f336">vertex_format</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to store the type of vertex format used for sprites.  <a href="#a557047f93a4d7da6d82f897a8dd9f336"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a89a6fbeee433990285942a83d7991795">bytes_per_pixel</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to store the number of bytes per pixel.  <a href="#a89a6fbeee433990285942a83d7991795"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a7cc7c62029162a3a6777cd66c33c24d5">TexHandleToTex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#ac1e8a097840ad0c9caf5fbe2d32a257f">textures</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maintains a map of valid texture handles and their associated textures.  <a href="#ac1e8a097840ad0c9caf5fbe2d32a257f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#accb8cd55123c35e5dbac7daa634bd411">next_texture_handle</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to assign a unique texture handle to each created texture.  <a href="#accb8cd55123c35e5dbac7daa634bd411"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a9e3dba560e3ec52e9aacf4192370d7f6">buffer_length</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the vertex buffer and index buffer, in terms of the objects being stored in them.  <a href="#a9e3dba560e3ec52e9aacf4192370d7f6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3DVertexBuffer9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a09beabd0e138c62d0dbfa17e12e1b689">vertex_buffer</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The vertex buffer.  <a href="#a09beabd0e138c62d0dbfa17e12e1b689"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">IDirect3DIndexBuffer9 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#ad1b00cadd2dcacfdce3277ce7fd493f5">index_buffer</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The index buffer.  <a href="#ad1b00cadd2dcacfdce3277ce7fd493f5"></a><br/></td></tr>
 </table>
-<hr/><h2>Member Typedef Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Builds on the functionality of <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html">avl::view::D3DRendererBase</a> to implement a basic 2-D renderer capable of rendering basic textured rectangles. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>The methods for this class desperately need to be refactored into smaller, cleaner chunks. </dd></dl>
+</div><hr/><h2>Member Typedef Documentation</h2>
 <a class="anchor" id="a7cc7c62029162a3a6777cd66c33c24d5"></a><!-- doxytag: member="avl::view::BasicRenderer::TexHandleToTex" ref="a7cc7c62029162a3a6777cd66c33c24d5" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -162,6 +185,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Maps texture handles to texture objects. </p>
 
 </div>
 </div>
@@ -191,6 +216,23 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to initialize a Direct3D device to render to the window represented by <em>window_handle</em> using the display profile <em>profile</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window_handle</td><td>The handle to the window to render to. </td></tr>
+    <tr><td class="paramname">profile</td><td>The display profile to initialize the device with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html" title="This is the basic exception type for renderers.">RendererException</a></td><td>If unable to create the D3D object. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create the Direct3D device. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to set the viewport. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a045b5f44c2e0bbd9271b992435d56ee0"></a><!-- doxytag: member="avl::view::BasicRenderer::~BasicRenderer" ref="a045b5f44c2e0bbd9271b992435d56ee0" args="()" -->
@@ -206,6 +248,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Destroys the Direct3D device and releases all assets. </p>
 
 </div>
 </div>
@@ -224,6 +268,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
@@ -240,6 +286,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Creates the index buffer and vertex buffer. </p>
+<p>This is called upon initialization and when the device is reset after having been lost. </p>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create either the vertex or index buffers. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a46d67d96d5a9f3cf0c23e364777e8a6a">avl::view::D3DRendererBase</a>.</p>
 
@@ -260,6 +315,24 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Attempts to create a texture for <em>image</em>. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a47fdd9fe7b56445cebf997d824f3cacb" title="Releases the texture associated with the texture handle texture_handle.">avl::view::BasicRenderer::DeleteTexture</a> </dd>
+<dd>
+<a class="el" href="classavl_1_1view_1_1_basic_renderer.html#a4ae16e0e9c47ee9fd875f3ac9c8fb377" title="Renders a series of sprites.">avl::view::BasicRenderer::RenderSprites</a> </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image data used to create the texture. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A handle to the created texture. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If unable to create the texture. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a47fdd9fe7b56445cebf997d824f3cacb"></a><!-- doxytag: member="avl::view::BasicRenderer::DeleteTexture" ref="a47fdd9fe7b56445cebf997d824f3cacb" args="(const utility::Sprite::TextureHandle &amp;texture_handle)" -->
@@ -277,21 +350,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="ac2963237dbfb782c89584c249101846f"></a><!-- doxytag: member="avl::view::BasicRenderer::Initialize" ref="ac2963237dbfb782c89584c249101846f" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void avl::view::BasicRenderer::Initialize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Releases the texture associated with the texture handle <em>texture_handle</em>. </p>
+<p>If <em>texture_handle</em> is not associated with a texture, then nothing happens. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Don't try to render sprites using a deleted texture handle. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texture_handle</td><td>The handle to the texture to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -320,6 +387,18 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Checks to see whether or not an image contains semi-transparent pixels. </p>
+<p>Semi-transparent pixels have an alpha value that is neither the minimum nor the maximum. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd>The pixels are in 32-bit RGBA format. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The number of pixels in <em>pixel_data</em>. </td></tr>
+    <tr><td class="paramname">pixel_data</td><td>The pixel data for the image. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if <em>pixel_data</em> contains semi-transparent pixels, and false if not. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aa9d942f08e499afedd1fcaa55f7b8834"></a><!-- doxytag: member="avl::view::BasicRenderer::operator=" ref="aa9d942f08e499afedd1fcaa55f7b8834" args="(const BasicRenderer &amp;)" -->
@@ -337,6 +416,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>NOT IMPLEMENTED. </p>
+
 </div>
 </div>
 <a class="anchor" id="a1f93412e7d408c72f52fd2cf089825f5"></a><!-- doxytag: member="avl::view::BasicRenderer::ReleaseUnmanagedAssets" ref="a1f93412e7d408c72f52fd2cf089825f5" args="()" -->
@@ -352,6 +433,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Releases the index buffer and vertex buffer. </p>
+<p>This is called when the device is lost. </p>
 
 <p>Implements <a class="el" href="classavl_1_1view_1_1_d3_d_renderer_base.html#a5ea570100339dc193fcca3c13db65d9f">avl::view::D3DRendererBase</a>.</p>
 
@@ -372,6 +456,21 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Renders a series of sprites. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sprites</td><td>The sprites to be rendered. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_renderer_exception.html" title="This is the basic exception type for renderers.">RendererException</a></td><td>If <em>sprites</em> contains one or more NULL pointers. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classavl_1_1view_1_1_d3_d_error.html" title="This exception type is thrown when one of the Direct3D functions fail.">D3DError</a></td><td>If there is an error while using the device. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -386,6 +485,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The size of the vertex buffer and index buffer, in terms of the objects being stored in them. </p>
+
 </div>
 </div>
 <a class="anchor" id="a89a6fbeee433990285942a83d7991795"></a><!-- doxytag: member="avl::view::BasicRenderer::bytes_per_pixel" ref="a89a6fbeee433990285942a83d7991795" args="" -->
@@ -398,6 +499,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Used to store the number of bytes per pixel. </p>
 
 </div>
 </div>
@@ -412,6 +515,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The index buffer. </p>
+
 </div>
 </div>
 <a class="anchor" id="accb8cd55123c35e5dbac7daa634bd411"></a><!-- doxytag: member="avl::view::BasicRenderer::next_texture_handle" ref="accb8cd55123c35e5dbac7daa634bd411" args="" -->
@@ -424,6 +529,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Used to assign a unique texture handle to each created texture. </p>
+<p>This imposes the restriction that it is highly inadvisable to attempt to load more than UINT_MAX/2 (defined in limits.h) textures throughout a program. </p>
 
 </div>
 </div>
@@ -438,6 +546,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Maintains a map of valid texture handles and their associated textures. </p>
+
 </div>
 </div>
 <a class="anchor" id="a09beabd0e138c62d0dbfa17e12e1b689"></a><!-- doxytag: member="avl::view::BasicRenderer::vertex_buffer" ref="a09beabd0e138c62d0dbfa17e12e1b689" args="" -->
@@ -451,6 +561,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>The vertex buffer. </p>
+
 </div>
 </div>
 <a class="anchor" id="a557047f93a4d7da6d82f897a8dd9f336"></a><!-- doxytag: member="avl::view::BasicRenderer::vertex_format" ref="a557047f93a4d7da6d82f897a8dd9f336" args="" -->
@@ -463,6 +575,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Used to store the type of vertex format used for sprites. </p>
 
 </div>
 </div>
@@ -488,7 +602,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Tue Dec 6 2011 21:56:07 for avl Library by
+    <li class="footer">Generated on Thu Dec 15 2011 20:40:26 for avl Library by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5.1 </li>
    </ul>
