@@ -97,6 +97,7 @@ var NAVTREE =
       [ "input/src/mouse move event/mouse move event.h", "mouse_01move_01event_8h.html", null ],
       [ "input/src/mouse scroll event/mouse scroll event.h", "mouse_01scroll_01event_8h.html", null ],
       [ "model/src/sprite/sprite.h", "model_2src_2sprite_2sprite_8h.html", null ],
+      [ "Tools/assets/component script.h", "component_01script_8h.html", null ],
       [ "utility/src/assert/assert.h", "assert_8h.html", null ],
       [ "utility/src/exception/exception.h", "exception_8h.html", null ],
       [ "utility/src/image/image.h", "image_8h.html", null ],
@@ -129,6 +130,9 @@ var NAVTREE =
         [ "src", "dir_0b117dff43dbb01291a098b3e86fcfbe.html", [
           [ "sprite", "dir_44cb8e6aa098d33d1721aaffd60d2255.html", null ]
         ] ]
+      ] ],
+      [ "Tools", "dir_b0b722ad174ed60395acf4adf41348cb.html", [
+        [ "assets", "dir_43aa5d025f9e6da00768fb1f7374c62b.html", null ]
       ] ],
       [ "utility", "dir_a993d835b3f4976a914b8f0e05f86fcf.html", [
         [ "src", "dir_91e68aa75256262b79e71f929d634487.html", [
