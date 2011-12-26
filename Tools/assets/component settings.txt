@@ -1,0 +1,14 @@
+// Script file for the component builder.
+// Name of the author.
+author=Sheldon Bachstein
+// Component directory template. Uses variables <solution>, <project>, and <component>.
+directory=..\<project>\src\<component>\
+// Name of the solution namespace to which the component belongs ("none" for no solution).
+solution=avl
+// Possible projects to one of which the component belongs (none for no project). Note that, unless none is used,
+//the component header and source files will be pre-scoped to the namespace of the project (i.e. will contain "namespace <project>{<...>}").
+project1=utility
+project2=model
+project3=view
+project4=input
+project5=sound

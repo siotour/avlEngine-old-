@@ -1,0 +1,10 @@
+// Two slashes denote a line as a comment.
+
+// Empty lines (not including spaces, tabs) are ignored.
+
+// Integer variable and value. Alphabetic characters and underscores okay for variable names, but first character must be alphabetic. Whitespace not allowed.
+integer_value_one=747
+negative_integer=-626
+
+// String values must begin with <> and may contain anything other than newlines.
+string_variable=How do you do, good sir? My name is NOT R2D2!

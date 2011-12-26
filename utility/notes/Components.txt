@@ -1,0 +1,15 @@
+To Do:
+text tokenizer(?)
+file manipulator (create directories and files and resize/delete files)
+2-d and 3-d vectors(?)
+2-d quad
+2-d point
+2-d line
+
+
+Done:
+assert/verify
+exceptions
+logfile
+settings file (partially implemented -- work remains)
+timer
