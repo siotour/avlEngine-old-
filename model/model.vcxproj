@@ -10,12 +10,6 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\sprite\sprite.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\sprite\sprite.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BBE84B90-1848-472F-9D74-8AD229EFB8D4}</ProjectGuid>
     <RootNamespace>model</RootNamespace>

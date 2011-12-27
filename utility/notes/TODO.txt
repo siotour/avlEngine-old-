@@ -1,3 +1,0 @@
-Create a unit test for the exception component.
-Create a unit test for the read write error component.
-Rewrite the unit test for the settings file component.
