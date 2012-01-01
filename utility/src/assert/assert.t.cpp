@@ -9,21 +9,17 @@
  **********/
 
 #include"assert.h"
-#include"..\exception\exception.h"
+#include"..\exceptions\exceptions.h"
 #include<iostream>
 
 
 void TestAssertComponent()
 {
 	// This is how AssertionFailures are created to report a failed assertion.
-	avl::utility::AssertionFailure assertion_failure(__FILE__, __LINE__);
+	avl::utility::AssertVerifyFailure assertion_failure(__FILE__, __LINE__);
 	// This is how you get the file name and line number of a failed assertion.
 	std::cout<< assertion_failure.GetFile() << "\t" << assertion_failure.GetLine() << "\n";
 
-	// This is how VerificationFailures are created to report a failed verification.
-	avl::utility::VerificationFailure verification_failure(__FILE__, __LINE__);
-	// This is how you get the file name and line number of a failed verification.
-	std::cout<< verification_failure.GetFile() << "\t" << verification_failure.GetLine() << "\n";
 
 	// This is how to catch assertion and verification failure exceptions.
 	try
@@ -36,12 +32,7 @@ void TestAssertComponent()
 		VERIFY(2 + 2 == 5);
 	}
 	// Catch an assertion failure exception.
-	catch (avl::utility::AssertionFailure	n)
-	{
-		throw;
-	}
-	// Catch a verification failure exception.
-	catch (avl::utility::VerificationFailure n)
+	catch (avl::utility::AssertVerifyFailure	n)
 	{
 		std::cout<< n.GetFile() << "\t" << n.GetLine() << "\n";
 	}

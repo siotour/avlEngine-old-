@@ -11,7 +11,7 @@ and increase complexity dramatically.
 */
 
 
-#include"..\exception\exception.h"
+#include"..\exceptions\exceptions.h"
 #include<string>
 #include<map>
 #include<fstream>
@@ -31,33 +31,50 @@ namespace utility
 	public:
 		/** Attempts to open the file \a file_name and read in any formatted data.
 		@param file_name The name of the file to read settings from.
-		@throws avl::utility::ReadWriteError If unable to open or read from \a file_name.
-		@throws avl::utility::SyntaxError If there is a problem with the syntax in \a file_name.
+		@throws FileReadException If unable to open or read from \a file_name.
+		@throws SyntaxError If there is a problem with the syntax in \a file_name.
+		@throws OutOfMemoryError If unable to allocate space for a new string value.
 		*/
 		SettingsFile(const std::string& file_name);
 
 		/** Basic destructor.*/
 		~SettingsFile();
 
-		/** Attempts to access an integer setting value.
-		@post If \a variable does not exist or is not an integer variable, then \a value will
-		not be modified.
-		@param variable [IN] The name of the variable to access.
-		@param value [OUT] If \a variable exists and is an integer variable, the value associated with it.
-		@return True if \a variable exists and is an integer variable. False if \a variable does
-		not exist or is not an integer variable.
+
+		/** Checks to see if a variable name exists and stores an integer value.
+		@param variable The name of the variable to check.
+		@return True if \a variable is a variable name and is mapped to an integer value.
 		*/
-		const bool GetIntegerValue(const std::string& variable, long& value) const;
+		const bool IsIntegerVariable(const std::string& variable);
+
+		/** Checks to see if a variable name exists and stores a string value.
+		@param variable The name of the variable to check.
+		@return True if \a variable is a variable name and is mapped to a string value.
+		*/
+		const bool IsStringVariable(const std::string& variable);
+
+		/** Attempts to access an integer setting value.
+		@attention Use \ref IsIntegerVariable() to tell whether or not a variable name is associated
+		with an integer value.
+		@sa IsIntegerValue()
+		@param variable The name of the variable to access.
+		@return The value associated with the \a variable.
+		@throws InvalidArgumentException If \a variable does not exist or does not have an associated
+		integer value.
+		*/
+		const long& GetIntegerValue(const std::string& variable) const;
 		
 		/** Attempts to access a string setting value.
-		@post If \a variable does not exist or is not a string variable, then \a value will
-		not be modified.
-		@param variable [IN] The name of the variable to access.
-		@param value [OUT] If \a variable exists and is a string variable, the value associated with it.
-		@return True if \a variable exists and is a string variable. False if \a variable does
-		not exist or is not a string variable.
+		@attention Use \ref IsStringVariable() to tell whether or not a variable name is associated
+		with a string value.
+		@sa IsStringVariable()
+		@param variable The name of the variable to access.
+		@return The value associated with the \a variable.
+		@throws InvalidArgumentException If \a variable does not exist or does not have an associated
+		string value.
 		*/
-		const bool GetStringValue(const std::string& variable, std::string& value) const;
+		const std::string& GetStringValue(const std::string& variable) const;
+
 	private:
 		/** Merely a convenience.*/
 		typedef std::vector<const std::string> StringVector;
@@ -67,13 +84,14 @@ namespace utility
 		@param file [IN] The file from which to read.
 		@param lines [OUT] A vector which is to contain the contents of \a file separated
 		into strings for each line.
+		@param file_name The name of the file which is to be read.
 		@return The contents of \a file separated into strings for each line.
-		@throws ReadWriteError If unable to load the data from \a file.
+		@throws FileWriteException If unable to load the data from \a file.
 		*/
-		void LoadFileToString(std::ifstream& file, StringVector& lines);
+		void LoadFileToString(std::ifstream& file, StringVector& lines, const std::string& file_name);
 
-		/** Attempts to parse \a lines into a map of variable name/value pairs and add them
-		to \ref settings.
+		/** Attempts to parse \a lines into a series of variable name/value pairs and add them
+		to \ref integer_variables and \ref string_variables.
 		@pre \a lines obeys the rules of syntax described in \ref avl::utility::SettingsFile.
 		@param lines The lines from which the settings are to be loaded. Each string should
 		contain a full line from the settings file.
@@ -90,22 +108,21 @@ namespace utility
 		@param file_name The name of the settings file.
 		@param line_number The number of the line currently being parsed. Used to report which line
 		syntax errors occur on.
-		@throws avl::utility::SyntaxError If there is a syntactical error in the specified line of text
+		@throws SyntaxError If there is a syntactical error in the specified line of text
 		data.
 		*/
 		void ProcessLine(const std::string& line, const std::string& file_name, const unsigned int& line_number);
 
 
-		/** Attempts to parse a non-comment, non-blank line into a variable name/value pair and adds
-		it to \ref settings.
+		/** Attempts to parse a non-comment, non-blank line into a variable name/value pair and add
+		it to either \ref integer_variables or \ref string_variables
 		@pre \a line obeys the syntactical rules laid out in \ref avl::utility::SettingsFile, and is
 		neither a blank line (whitespace not considered substantial) or a comment.
 		@param line The line to be processed.
 		@param file_name The name of the settings file.
 		@param line_number The number of the line currently being parsed. Used to report which line
 		syntax errors occur on.
-		@throws avl::utility::SyntaxError If there is a syntactical error in the specified line of text
-		data.
+		@throws SyntaxError If there is a syntactical error in the specified line of text data.
 		*/
 		void ProcessVariable(const std::string& line, const std::string& file_name, const unsigned int& line_number);
 
@@ -149,8 +166,18 @@ namespace utility
 		// Forward declaration.
 		class SettingValue;
 
-		/// Map of variable names to SettingValue objects.
-		std::map<const std::string, const SettingsFile::SettingValue> settings;
+		/// The structure in which string variables are stored.
+		typedef std::map<const std::string, const std::string> StringVariableMap;
+
+		/// Contains all string variables.
+		StringVariableMap string_variables;
+
+		/// The structure in which integer variables are stored.
+		typedef std::map<const std::string, const long> IntegerVariableMap;
+
+		/// Contains all integer variables.
+		IntegerVariableMap integer_variables;
+
 
 		/// NOT IMPLEMENTED.
 		SettingsFile(const SettingsFile&);
@@ -159,78 +186,10 @@ namespace utility
 
 
 
-		/** Contains information regarding a variable's value, and is intended
-		to be mapped to a variable name. It contains the type of value and the actual value.
-		*/
-		class SettingValue
-		{
-		public:
-			/**Describes what type of value is being stored.*/
-			enum ValueType {INTEGER_VALUE, STRING_VALUE};
-
-			/** Constructor for integer values.
-			@post \ref value_type will be set to \ref INTEGER_VALUE.
-			@param the_value The value represented by this object.
-			*/
-			SettingValue(const long& the_value);
-
-			/** Constructor for string values.
-			@post \ref value_type will be set to \ref STRING_VALUE.
-			@param the_value The value represented by this object.
-			*/
-			SettingValue(const std::string& the_value);
-
-			/** Copy constructor.
-			@param original The object being copied.
-			*/
-			SettingValue(const SettingValue& original);
-
-			/** If this value is a string value, then the internal
-			pointer containing that string is deleted.
-			*/
-			~SettingValue();
-
-			/** Returns \ref value_type.
-			@return The value of \ref value_type.
-			*/
-			const SettingValue::ValueType& GetValueType() const;
-
-			/** Returns \c value.long_value.
-			@return \c value.long_value.
-			@sa value
-			*/
-			const long& GetIntegerValue() const;
-
-			/** Returns \c value.string_value.
-			@return \c value.string_value.
-			@sa value
-			*/
-			const std::string& GetStringValue() const;
-		private:
-			/// The type of value.
-			SettingValue::ValueType value_type;
-
-			/** Combines a long or string pointer.
-			*/
-			union LongStringUnion{
-				long integer_value;
-				std::string* string_value;
-			};
-
-			/// The value.
-			LongStringUnion value;
-
-			/// NOT IMPLEMENTED.
-			const SettingValue& operator=(const SettingValue&);
-		};
-
-
-
 
 		public:
 		/** Indicates that there was a syntax error in a settings file. Includes the line number
 		where the error was found and an error code describing what kind of error occured.
-		@todo Record the name of the settings file in which exceptions occur.
 		*/
 		class SyntaxError: public Exception
 		{

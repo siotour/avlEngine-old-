@@ -36,13 +36,7 @@
     <ClCompile Include="..\utility\src\assert\assert.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\utility\src\exception\exception.t.cpp">
-      <Filter>Source Files\utility Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\utility\src\log file\log file.t.cpp">
-      <Filter>Source Files\utility Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\utility\src\read write error\read write error.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp">
@@ -59,9 +53,6 @@
     </ClCompile>
     <ClCompile Include="..\view\src\win32 window base\win32 window base.t.cpp">
       <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\model\src\sprite\sprite.t.cpp">
-      <Filter>Source Files\model Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\view\src\basic renderer\basic renderer.t.cpp">
       <Filter>Source Files\view Tests</Filter>
@@ -83,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="..\utility\src\text box\text box.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\exceptions\exceptions.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\renderer\renderer.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

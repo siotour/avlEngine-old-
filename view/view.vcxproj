@@ -15,6 +15,7 @@
     <ClInclude Include="src\basic window\basic window.h" />
     <ClInclude Include="src\d3d display profile\d3d display profile.h" />
     <ClInclude Include="src\d3d renderer base\d3d renderer base.h" />
+    <ClInclude Include="src\renderer\renderer.h" />
     <ClInclude Include="src\win32 window base\win32 window base.h" />
   </ItemGroup>
   <ItemGroup>
@@ -22,6 +23,7 @@
     <ClCompile Include="src\basic window\basic window.cpp" />
     <ClCompile Include="src\d3d display profile\d3d display profile.cpp" />
     <ClCompile Include="src\d3d renderer base\d3d renderer base.cpp" />
+    <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\win32 window base\win32 window base.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -81,7 +83,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d9.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +103,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d9.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

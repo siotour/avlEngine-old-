@@ -5,6 +5,8 @@
  **********/
 
 #include"d3d renderer base.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
+#include"..\renderer\renderer.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include"..\..\..\utility\src\assert\assert.h"
@@ -144,7 +146,7 @@ namespace view
 				// If enumeration failed, throw a D3DError with the error code and a description of the problem.
 				if(FAILED(result))
 				{
-					throw D3DError("avl::view::D3DRendererBase::EnumerateDisplayProfiles() -- Unable to enumerate display mode.", result);
+					throw D3DError("IDirect3D9::EnumAdapterModes()", "avl::view::D3DRendererBase::EnumerateDisplayProfiles() -- Unable to enumerate display mode.", result);
 				}
 
 				// Obtain the resolution from the enumerated display mode.
@@ -224,7 +226,7 @@ namespace view
 		HRESULT result = d3d->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CheckDeviceCapabilities() -- Unable to get the device capabilities.", result);
+			throw D3DError("IDirect3D9::GetDeviceCaps()", "avl::view::D3DRendererBase::CheckDeviceCapabilities() -- Unable to get the device capabilities.", result);
 		}
 
 
@@ -399,14 +401,14 @@ namespace view
 			// of the problem.
 			else
 			{
-				throw D3DError("avl::view::D3DRendererBase::ResetDevice() -- An error occurred while resetting the device.", result2);
+				throw D3DError("IDirect3DDevice9::Reset()", "avl::view::D3DRendererBase::ResetDevice() -- An error occurred while resetting the device.", result2);
 			}
 		}
 		// Otherwise there was some sort of error (internal error?). Throw a D3DError with the error code
 		// and a description of the problem.
 		else
 		{
-			throw D3DError("avl::view::D3DRendererBase::ResetDevice() -- An internal error occurred while checking the device's state.", result);
+			throw D3DError("IDirect3D9::TestCooperativeLevel()", "avl::view::D3DRendererBase::ResetDevice() -- An internal error occurred while checking the device's state.", result);
 		}
 	}
 
@@ -423,7 +425,7 @@ namespace view
 		HRESULT result = device->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::ClearViewport() -- Unable to clear the viewport.", result);
+			throw D3DError("IDirect3D9::Clear()", "avl::view::D3DRendererBase::ClearViewport() -- Unable to clear the viewport.", result);
 		}
 	}
 
@@ -455,7 +457,7 @@ namespace view
 		// If accessing the texture's surface data failed, throw a D3DError with the error code and a description.
 		if (FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CopyPixelDataToTexture() -- Unable to access texture surface.", result);
+			throw D3DError("IDirect3DTexture9::GetSurfaceLevel()", "avl::view::D3DRendererBase::CopyPixelDataToTexture() -- Unable to access texture surface.", result);
 		}
 
 		
@@ -495,7 +497,7 @@ namespace view
 		// If locking of the surface failed, throw a D3DError with the error code and a description.
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CopyPixelDataToSurface() -- Unable to lock surface.", result);
+			throw D3DError("IDirect3DSurface9::LockRect()", "avl::view::D3DRendererBase::CopyPixelDataToSurface() -- Unable to lock surface.", result);
 		}
 
 
@@ -517,7 +519,7 @@ namespace view
 		// If unable to unlock the surface, throw a D3DError with the error code and a description.
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CopyPixelDataToSurface() - Unable to unlock the surface.", result);
+			throw D3DError("IDirect3DSurface9::UnlockRect()", "avl::view::D3DRendererBase::CopyPixelDataToSurface() - Unable to unlock the surface.", result);
 		}
 	}
 
@@ -555,7 +557,7 @@ namespace view
 		HRESULT result = D3DRendererBase::device->CreateTexture(width, height, 1, 0, format, D3DPOOL_MANAGED, &texture, NULL);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::View::D3DRendererBAse::CreateTexture() - Unable to create a new texture.", result);
+			throw D3DError("IDirect3DDevice9::CreateTexture()", "avl::View::D3DRendererBAse::CreateTexture() - Unable to create a new texture.", result);
 		}
 		ASSERT(texture != NULL);
 
@@ -580,7 +582,7 @@ namespace view
 																					D3DFVF_XYZ | D3DFVF_TEX1, D3DPOOL_DEFAULT, &vertex_buffer, NULL);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CreateVertexBuffer() -- Unable to create a vertex buffer.", result);
+			throw D3DError("IDirect3DDevice9()", "avl::view::D3DRendererBase::CreateVertexBuffer() -- Unable to create a vertex buffer.", result);
 		}
 		
 		ASSERT(vertex_buffer != NULL);
@@ -609,7 +611,7 @@ namespace view
 																				D3DFMT_INDEX16, D3DPOOL_DEFAULT, &index_buffer, NULL);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CreateIndexBuffer() -- Unable to create an index buffer.", result);
+			throw D3DError("IDirect3DDevice9::CreateIndexBuffer()", "avl::view::D3DRendererBase::CreateIndexBuffer() -- Unable to create an index buffer.", result);
 		}
 		
 		ASSERT(index_buffer != NULL);
@@ -646,7 +648,7 @@ namespace view
 		HRESULT result = vertex_buffer.Lock(0, size, (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::FillVertexBuffer() -- Unable to lock the vertex buffer.", result);
+			throw D3DError("IDirect3DVertexBuffer9::Lock()", "avl::view::D3DRendererBase::FillVertexBuffer() -- Unable to lock the vertex buffer.", result);
 		}
 
 
@@ -685,7 +687,7 @@ namespace view
 		HRESULT result = index_buffer.Lock(0, size, (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::BasicRenderer::WriteIndicesToBuffer() -- Unable to lock the index buffer.", result);
+			throw D3DError("IDirect3DIndexBuffer9::Lock()", "avl::view::BasicRenderer::WriteIndicesToBuffer() -- Unable to lock the index buffer.", result);
 		}
 
 
@@ -739,7 +741,7 @@ namespace view
 		// D3DError containing information on the failure.
 		if (FAILED(result) == true)
 		{
-			throw D3DError("avl::view::D3DRendererBase::InitializeDevice() -- Creation of the Direct3D device failed.", result);
+			throw D3DError("IDirect3D9::CreateDevice()", "avl::view::D3DRendererBase::InitializeDevice() -- Creation of the Direct3D device failed.", result);
 		}
 
 		ASSERT(device != NULL);
@@ -773,7 +775,7 @@ namespace view
 		HRESULT result = device->SetViewport(&viewport);
 		if(FAILED(result))
 		{
-			throw D3DError("avl::view::D3DRendererBase::CreateViewport() -- Unable to set the viewport.", result);
+			throw D3DError("IDirect3DDevice9::SetViewport()", "avl::view::D3DRendererBase::CreateViewport() -- Unable to set the viewport.", result);
 		}
 	}
 
@@ -784,43 +786,18 @@ namespace view
 
 
 
-	// RendererException
-	//
-	//
-
-	// Takes a description of the problem, which is suggested to contain the full function
-	// name and what was being attempted.
-	RendererException::RendererException(const std::string& description)
-		: utility::Exception(description)
-	{
-	}
-
-	// Copy constructor.
-	RendererException::RendererException(const RendererException& original)
-		: utility::Exception(original)
-	{
-	}
-
-	// Basic destructor.
-	RendererException::~RendererException()
-	{
-	}
-
-
-
-
-
-
 	// D3DError Class:
 	//
 	//
-
-	// Constructor; takes a description of the error (which is suggested to contain the full
-	// function name and what was being attempted when the error occured) and the
-	// actual HRESULT error code returned by the failing function.
-	D3DError::D3DError(const std::string& description, const HRESULT& error_code)
-	: RendererException(description), error_code(error_code)
+	D3DError::D3DError(const std::string& d3d_function, const std::string& explanation, const HRESULT& error_code)
+		: error_code(error_code)
 	{
+		description = "The Direct3D function ";
+		description += d3d_function;
+		description += " failed with error code ";
+		description += error_code;
+		description += ": ";
+		description += explanation;
 	}
 
 

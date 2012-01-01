@@ -14,7 +14,7 @@
 
 #include"..\key codes\key codes.h"
 
-#include"..\..\..\utility\src\exception\exception.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\assert\assert.h"
 
 // Define the direct input version to avoid a compiler warning.

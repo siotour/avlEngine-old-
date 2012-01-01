@@ -105,13 +105,9 @@ void TestBasicRendererComponent(HINSTANCE instance)
 	{
 		throw d3d;
 	}
-	catch(avl::utility::AssertionFailure& assertion)
+	catch(avl::utility::AssertVerifyFailure& assertion)
 	{
 		throw assertion;
-	}
-	catch(avl::utility::VerificationFailure& verification)
-	{
-		throw verification;
 	}
 	catch(avl::view::WindowCreationFailure& window)
 	{

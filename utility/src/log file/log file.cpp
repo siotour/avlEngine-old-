@@ -5,7 +5,7 @@
  **********/
 
 #include"log file.h"
-#include"..\read write error\read write error.h"
+#include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
 #include<string>
 #include<ctime>
@@ -20,8 +20,9 @@ namespace utility
 
 	// Takes the name of a file to use for logging. If the file doesn't exist, it will be created.
 	// If it does exist, it will be appended to. If an error occurs while attempting to open the
-	// file, a ReadWriteError will be thrown.
+	// file, a FileWriteException will be thrown.
 	LogFile::LogFile(const std::string& file_name)
+		: file_name(file_name)
 	{
 		// First, tell the file not to throw any exceptions.
 		file.exceptions(std::ios_base::goodbit);
@@ -29,10 +30,10 @@ namespace utility
 		file.open(file_name.c_str(), std::ios_base::out | std::ios_base::app);
 
 		// Check to make sure that the file was successfully opened. If not, throw a
-		// ReadWriteError.
+		// FileWriteException.
 		if (file.good() != true)
 		{
-			throw ReadWriteError();
+			throw FileWriteException(file_name);
 		}
 	}
 
@@ -54,14 +55,14 @@ namespace utility
 	// 1 will be considered 1 and values greater than 4 will be considered 4) with
 	// 1 being the least urgent and 4 being the most urgent. Delegates the work to
 	// the virtual functions LogFile::WriteMessageHeader() and LogFile::WriteMessage().
-	// Will throw a ReadWriteError if an error occurs while attempting to
+	// Will throw a FileWriteException if an error occurs while attempting to
 	// access the file.
 	const LogFile& LogFile::operator()(const short& urgency, const std::string& message)
 	{
-		// If the file isn't ready for writing, throw a ReadWriteError.
+		// If the file isn't ready for writing, throw a FileWriteException.
 		if (file.good() != true)
 		{
-			throw ReadWriteError();
+			throw FileWriteException(file_name);
 		}
 
 		// Write the message header.
@@ -70,10 +71,10 @@ namespace utility
 		this->WriteMessage(message);
 
 		// Make sure that the file is still in a writable state. If not, throw a
-		// ReadWriteError.
+		// FileWriteException.
 		if (file.good() != true)
 		{
-			throw ReadWriteError();
+			throw FileWriteException(file_name);
 		}
 
 		// Return the original object.
@@ -85,13 +86,13 @@ namespace utility
 
 	// Attempts to write a message header including the message's urgency (in the
 	// form of 1-4 asterisks), the date, and the time. If there is a problem writing
-	// to the file, will throw a ReadWriteError.
+	// to the file, will throw a FileWriteException.
 	void LogFile::WriteMessageHeader(const short& urgency)
 	{
-		// If the file isn't read for writing, throw a ReadWriteError.
+		// If the file isn't read for writing, throw a FileWriteException.
 		if (file.good() != true)
 		{
-			throw ReadWriteError();
+			throw FileWriteException(file_name);
 		}
 
 		// Contains the message header as it is composed.
@@ -148,13 +149,13 @@ namespace utility
 
 
 	// Writes the message to the log file without any special formatting. Will throw a
-	// ReadWriteError if there is a problem writing to the file.
+	// FileWriteException if there is a problem writing to the file.
 	void LogFile::WriteMessage(const std::string& message)
 	{
-		// If the file isn't ready for writing, throw a ReadWriteError.
+		// If the file isn't ready for writing, throw a FileWriteException.
 		if (file.good() != true)
 		{
-			throw ReadWriteError();
+			throw FileWriteException(file_name);
 		}
 
 		// Write the message to the file.

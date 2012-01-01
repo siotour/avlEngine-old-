@@ -6,9 +6,11 @@ Defines the \ref avl::view::D3DRendererBase class.
 @author Sheldon Bachstein
 @date Dec 25, 2010
 @todo Everything in this file needs to be refactored into smaller, more manageable chunks.
+@todo Should this class inherit from Renderer, or should D3D renderers just contain one?
 */
 
-#include"..\..\..\utility\src\exception\exception.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
+#include"..\renderer\renderer.h"
 // For window handles.
 #include<Windows.h>
 #ifdef _DEBUG
@@ -275,34 +277,6 @@ namespace view
 
 	
 
-	/**
-	This is the basic exception type for renderers. All rendering-related exceptions
-	will be derived from this.
-	*/
-	class RendererException: public utility::Exception
-	{
-	public:
-		/** Constructor.
-		@note \a description should include a way of identifying where the problem occurred (i.e. the full function name).
-		@param description A description of the exception which occurred.
-		*/
-		RendererException(const std::string& description);
-		/** Copy constructor.
-		@param original The object being copied.
-		*/
-		RendererException(const RendererException& original);
-		/** Basic destructor.*/
-		virtual ~RendererException();
-
-	private:
-		/// NOT IMPLEMENTED.
-		const RendererException& operator=(const RendererException& rhs);
-	};
-
-
-
-
-	
 	
 	
 	
@@ -314,12 +288,12 @@ namespace view
 	{
 	public:
 		/** Full-spec constructor.
-		@param description A description of the problem which has occurred. Should include
-		the full function name where the error occurred.
-		@param error_code The actual error code returned from the problematic Direct3D
+		@param d3d_function The name of the Direct3D function which failed.
+		@param explanation A description of the problem which has occurred.
+		@param error_code The actual error code returned from calling \a d3d_function.
 		function.
 		*/
-		D3DError(const std::string& description, const HRESULT& error_code);
+		D3DError(const std::string& d3d_function, const std::string& explanation, const HRESULT& error_code);
 		/** Basic destructor.*/
 		~D3DError();
 		/** Copy constructor.

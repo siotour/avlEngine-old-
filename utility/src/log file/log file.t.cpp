@@ -6,7 +6,7 @@
  **********/
 
 #include"log file.h"
-#include"..\read write error\read write error.h"
+#include"..\exceptions\exceptions.h"
 #include<iostream>
 
 void TestLogFileComponent()
@@ -23,11 +23,11 @@ void TestLogFileComponent()
 		// Log a critical message.
 		log(4, "A fake critical error has occured! Run!!!!");
 	}
-	catch (const avl::utility::ReadWriteError&)
+	catch (const avl::utility::FileIOException& e)
 	{
 		// If this exception is caught, it means that the program was unable to either
 		// create or open the log file.
-		std::cout << "A read/write error occured while attemping to create and/or use the log file (test log.txt).\n\n";
+		std::cout << e.GetDescription() << std::endl;
 	}
 
 	system("pause");

@@ -18,16 +18,10 @@
     <ClCompile Include="src\assert\assert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\exception\exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\settings file\settings file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\log file\log file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\read write error\read write error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\win32 timer\win32 timer.cpp">
@@ -45,21 +39,18 @@
     <ClCompile Include="src\text box\text box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\exceptions\exceptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\assert\assert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\exception\exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\settings file\settings file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\log file\log file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\read write error\read write error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\win32 timer\win32 timer.h">
@@ -75,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\text box\text box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\exceptions\exceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

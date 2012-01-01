@@ -24,7 +24,7 @@ namespace utility
 		/** Takes the name of a file which will either be created or appended to.
 		Delegates the initialization of the file to the virtual function LogFile::OpenFile().
 		@param file_name Name of the file to log messages to.
-		@throws avl::utility::ReadWriteError If an error occurs while attempting to access \a file_name.
+		@throws FileWriteException If an error occurs while attempting to access \a file_name.
 		*/
 		LogFile(const std::string& file_name);
 		/** Basic destructor. Closes the file stream.*/
@@ -37,22 +37,25 @@ namespace utility
 		@param urgency The urgency of the message, from 1 to 4. Values less than 1 will be considered 1 and
 		values greater than 4 will be considered 4, with 1 being the least urgent and 4 being the most urgent.
 		@param message The message to be logged.
-		@throws avl::utility::ReadWriteError If an error occurs while attempting to access the file.
+		@throws FileWriteException If an error occurs while attempting to access the file.
 		*/
 		virtual const LogFile& operator()(const short& urgency, const std::string& message);
 
 	private:
 		/** Attempts to write a message header to LogFile::file.
 		@param urgency The urgency of the message to follow this header.
-		@throws avl::utility::ReadWriteError If an error occurs while attempting to write to LogFile::file.
+		@throws FileWriteException If an error occurs while attempting to write to \ref file.
 		*/
 		virtual void WriteMessageHeader(const short& urgency);
 		/** Attempts to write \a message to LogFile::file.
 		@param message The message to be written.
-		@throws avl::utility::ReadWriteError If an error occurs while attempting to write to LogFile::file.
+		@throws FileWriteException If an error occurs while attempting to write to \ref file.
 		*/
 		virtual void WriteMessage(const std::string& message);
 
+		/// The name of the log file.
+		const std::string file_name;
+		
 		/// The file which information will be logged to.
 		std::ofstream file;
 

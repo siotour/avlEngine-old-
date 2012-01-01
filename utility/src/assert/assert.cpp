@@ -5,7 +5,7 @@
  **********/
 
 #include"assert.h"
-#include"..\exception\exception.h"
+#include"..\exceptions\exceptions.h"
 #include<string>
 
 
@@ -16,73 +16,43 @@ namespace utility
 
 
 
-	AssertionFailure::AssertionFailure(const std::string& file, const int& line)
-		: Exception("avl::utility::AssertionFailure -- An assertion has failed."), file(file), line(line)
+	AssertVerifyFailure::AssertVerifyFailure(const std::string& file, const int& line)
+		: file(file), line(line)
+	{
+		description = "An assertion/verification failed on line ";
+		description += line;
+		description += " of source file ";
+		description += file;
+		description += '.';
+	}
+
+
+
+	AssertVerifyFailure::~AssertVerifyFailure()
 	{
 	}
 
 
 
-	AssertionFailure::~AssertionFailure()
+	AssertVerifyFailure::AssertVerifyFailure(const avl::utility::AssertVerifyFailure& original)
+		: Exception(original.GetDescription()), file(original.GetFile()), line(original.GetLine())
 	{
 	}
 
 
 
-	AssertionFailure::AssertionFailure(const avl::utility::AssertionFailure& original)
-		: Exception(original), file(original.GetFile()), line(original.GetLine())
-	{
-	}
-
-
-
-	const std::string& AssertionFailure::GetFile() const
-	{
-		return file;
-	}
-
-
-
-	const int AssertionFailure::GetLine() const
-	{
-		return line;
-	}
-
-
-
-
-
-	VerificationFailure::VerificationFailure(const std::string& file, const int& line)
-		: Exception("avl::utility::VerificationFailure -- A verification has failed."), file(file), line(line)
-	{
-	}
-
-
-
-	VerificationFailure::~VerificationFailure()
-	{
-	}
-
-
-
-	VerificationFailure::VerificationFailure(const avl::utility::VerificationFailure& original)
-		: Exception(original), file(original.GetFile()), line(original.GetLine())
-	{
-	}
-
-
-
-	const std::string& VerificationFailure::GetFile() const
+	const std::string& AssertVerifyFailure::GetFile() const
 	{
 		return file;
 	}
 
 
 
-	const int VerificationFailure::GetLine() const
+	const int AssertVerifyFailure::GetLine() const
 	{
 		return line;
 	}
+
 
 
 }

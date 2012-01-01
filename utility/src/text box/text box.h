@@ -288,6 +288,7 @@ namespace utility
 
 			/** Sets the text of this row.
 			@param new_text The row's new text.
+			@throws OutOfMemoryError If unable to allocate required memory.
 			*/
 			void SetText(const std::string& new_text);
 

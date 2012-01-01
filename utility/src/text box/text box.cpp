@@ -7,7 +7,7 @@
 #include"text box.h"
 #include"..\sprite\sprite.h"
 #include"..\vertex 2d\vertex 2d.h"
-#include"..\exception\exception.h"
+#include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
 
 #include<vector>
@@ -548,13 +548,13 @@ namespace utility
 		// Make sure that we have the correct number of sprites.
 
 		// Create new sprites if we're short. If unable to allocate space, will
-		// throw a utility::Exception.
+		// throw an OutOfMemoryError.
 		while(sprites.size() < text.size())
 		{
 			utility::Sprite* const new_sprite = new utility::Sprite();
 			if(new_sprite == NULL)
 			{
-				throw utility::Exception("avl::utility::TextBox::Row::SetText() -- Unable to allocate memory for a new utility::Sprite.");
+				throw OutOfMemoryError();
 			}
 			sprites.insert(sprites.end(), new_sprite);
 		}

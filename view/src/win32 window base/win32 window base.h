@@ -10,7 +10,7 @@ an exception class for dealing with exceptions during window creation.
 
 #include<string>
 #include<windows.h>
-#include"..\..\..\utility\src\exception\exception.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
 
 
 namespace avl

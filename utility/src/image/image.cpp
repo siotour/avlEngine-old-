@@ -5,7 +5,7 @@
  **********/
 
 #include"image.h"
-#include"..\exception\exception.h"
+#include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
 #include<memory>
 #include<fstream>

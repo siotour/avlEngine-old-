@@ -7,7 +7,7 @@
 
 
 #include"settings file.h"
-#include"..\read write error\read write error.h"
+#include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
 #include<iostream>
 #include<string>
@@ -18,15 +18,12 @@ void TestSettingsFileComponent()
 	try
 	{
 		SettingsFile file("Example.txt");
-		std::string string_value;
-		long int_value;
 
-		VERIFY(file.GetIntegerValue("integer_value_one", int_value));
-		std::cout << int_value << "\n";
-		VERIFY(file.GetIntegerValue("negative_integer", int_value));
-		std::cout << int_value << "\n";
-		VERIFY(file.GetStringValue("string_variable", string_value));
-		std::cout << string_value << "\n";
+		std::cout << file.GetIntegerValue("integer_value_one") << "\n";
+
+		std::cout << file.GetIntegerValue("negative_integer") << "\n";
+
+		std::cout << file.GetStringValue("string_variable") << "\n";
 	}
 	catch (const avl::utility::Exception& error)
 	{

@@ -6,7 +6,7 @@
 
 #include"settings file.h"
 #include"..\assert\assert.h"
-#include"..\read write error\read write error.h"
+#include"..\exceptions\exceptions.h"
 #include<cctype>
 #include<cstdlib>
 #include<iostream>
@@ -23,12 +23,10 @@ namespace utility
 {
 
 	// Attempts to open the specified file and read in formatted data. If an error occurs
-	// while attempting to read from the file, will throw a avl::utility::ReadWriteError. If there is a syntax
-	// error, will throw a avl::utility::SyntaxError with one of these types:
-	// avl::utility::SyntaxError::BAD_VARIABLE_NAME if there is a problem with the variable name;
-	// avl::utility::SyntaxError::BAD_VALUE if there is a problem with a variable's value;
-	// or avl::utulity::SyntaxError::OUT_OF_RANGE_INTEGER if the integer value for a variable is out of the valid
-	// range of values.
+	// while attempting to read from the file, will throw a FileReadException. If there is a syntax
+	// error, will throw a SettingsFileSyntaxError with one of these types:
+	// SettingsFile::SyntaxError::BAD_VARIABLE_NAME if there is a problem with the variable name; or
+	// SettingsFile::SyntaxError::BAD_VALUE if there is a problem with a variable's value.
 	SettingsFile::SettingsFile(const std::string& file_name)
 	{
 		std::ifstream file;
@@ -36,15 +34,15 @@ namespace utility
 		file.exceptions(std::ios_base::goodbit);
 		// Now attempt to open the specified file name for reading.
 		file.open(file_name.c_str(), std::ios_base::in);
-		// Check to see if the file was successfully opened. If not, then throw an avl::utility::ReadWriteError.
+		// Check to see if the file was successfully opened. If not, then throw a FileReadException.
 		if(file.fail() == true)
 		{
 			file.close();
-			throw ReadWriteError();
+			throw FileReadException(file_name);
 		}
 		// At this point, the file should be ready for reading. Read the file into memory.
 		StringVector lines;
-		LoadFileToString(file, lines);
+		LoadFileToString(file, lines, file_name);
 		// Close the file.
 		file.close();
 		// Load the settings from the file.
@@ -61,47 +59,52 @@ namespace utility
 
 
 
-
-	// If the specified variable has an associated integer value, it will be assigned to the value parameter and
-	// true will be returned. If the variable does not exist or the variable does not have an associated integer
-	// value, the value parameter will be left unchanged and false will be returned.
-	const bool SettingsFile::GetIntegerValue(const std::string& variable, long& value) const
+	const bool SettingsFile::IsIntegerVariable(const std::string& variable)
 	{
-		// If there's no value associated with variable, or if that value is a string, return false.
-		std::map<const std::string, const SettingsFile::SettingValue>::const_iterator i = settings.find(variable);
-		if(i == settings.end() || i->second.GetValueType() == SettingsFile::SettingValue::STRING_VALUE)
+		return (integer_variables.find(variable) != integer_variables.end());
+	}
+
+
+
+
+	const bool SettingsFile::IsStringVariable(const std::string& variable)
+	{
+		return (string_variables.find(variable) != string_variables.end());
+	}
+
+
+
+
+	const long& SettingsFile::GetIntegerValue(const std::string& variable) const
+	{
+		// If there's no value associated with variable, throw an InvalidArgumentException.
+		IntegerVariableMap::const_iterator i = integer_variables.find(variable);
+		if(i == integer_variables.end())
 		{
-			return false;
+			throw InvalidArgumentException("avl::utility::SettingsFile::GetIntegerValue()", "variable", "The supplied variable is not associated with an integer value. See avl::utility::SettingsFile::IsIntegerValue().");
 		}
-		// Otherwise the variable must exist and be an integer, so assign its value to the value parameter
-		// and return true.
+		// Otherwise the variable must exist.
 		else
 		{
-			value = i->second.GetIntegerValue();
-			return true;
+			return i->second;
 		}
 	}
 
 
 
 
-	// If the specified variable has an associated string value, it will be assigned to the value parameter and
-	// true will be returned. If the variable does not exist or the variable does not have an associated string
-	// value, the value parameter will be left unchanged and false will be returned.
-	const bool SettingsFile::GetStringValue(const std::string& variable, std::string& value) const
+	const std::string& SettingsFile::GetStringValue(const std::string& variable) const
 	{
-		// If there's no value associated with variable, or if that value is a an integer value, return false.
-		std::map<const std::string, const SettingsFile::SettingValue>::const_iterator i = settings.find(variable);
-		if(i == settings.end() || i->second.GetValueType() == SettingsFile::SettingValue::INTEGER_VALUE)
+		// If there's no value associated with variable, throw an InvalidArgumentException.
+		StringVariableMap::const_iterator i = string_variables.find(variable);
+		if(i == string_variables.end())
 		{
-			return false;
+			throw InvalidArgumentException("avl::utility::SettingsFile::GetStringValue()", "variable", "The supplied variable is not associated with a string value. See avl::utility::SettingsFile::IsStringValue().");
 		}
-		// Otherwise the variable must exist and is a string, so assign its value to the value parameter
-		// and return true.
+		// Otherwise the variable must exist.
 		else
 		{
-			value = i->second.GetStringValue();
-			return true;
+			return i->second;
 		}
 	}
 
@@ -109,7 +112,7 @@ namespace utility
 
 
 
-	void SettingsFile::LoadFileToString(std::ifstream& file, SettingsFile::StringVector& lines)
+	void SettingsFile::LoadFileToString(std::ifstream& file, SettingsFile::StringVector& lines, const std::string& file_name)
 	{
 		// First, tell the file not to throw any exceptions.
 		file.exceptions(std::ios_base::goodbit);
@@ -120,11 +123,11 @@ namespace utility
 			std::getline(file, line);
 			lines.push_back(line);
 		}
-		// If an error occurred while reading (other than reaching EOF), then throw a ReadWriteError.
+		// If an error occurred while reading (other than reaching EOF), then throw a FileReadException.
 		if(file.fail() == true && file.eof() == false)
 		{
 			file.close();
-			throw new ReadWriteError();
+			throw FileReadException(file_name);
 		}
 	}
 
@@ -164,7 +167,7 @@ namespace utility
 		{
 			if(isspace(line[0]) == 0)
 			{
-				throw new SettingsFile::SyntaxError(SettingsFile::SyntaxError::BAD_VARIABLE_NAME, file_name, line_number);
+				throw SettingsFile::SyntaxError(SettingsFile::SyntaxError::BAD_VARIABLE_NAME, file_name, line_number);
 			}
 		}
 		// Otherwise there are at least 2 characters.
@@ -196,8 +199,8 @@ namespace utility
 		std::string name = line.substr(0, separator);
 		// Make sure that the variable name is valid.
 		CheckVariableName(name, file_name, line_number);
-		// If this variable name already exists in the map, then this is a bad variable name.
-		if(settings.find(name) != settings.end())
+		// If this variable name already exists, then this is a bad variable name.
+		if(integer_variables.find(name) != integer_variables.end() || string_variables.find(name) != string_variables.end())
 		{
 			throw SettingsFile::SyntaxError(SettingsFile::SyntaxError::BAD_VARIABLE_NAME, file_name, line_number);
 		}
@@ -205,7 +208,7 @@ namespace utility
 		// on this line, then the variable's value is malformed.
 		if(separator == line.length() - 1)
 		{
-			throw new SettingsFile::SyntaxError(SettingsFile::SyntaxError::BAD_VALUE, file_name, line_number);
+			throw SettingsFile::SyntaxError(SettingsFile::SyntaxError::BAD_VALUE, file_name, line_number);
 		}
 		// Get the raw variable value.
 		std::string value = line.substr(separator + 1, line.npos);
@@ -216,12 +219,12 @@ namespace utility
 		if(IsIntegerValue(value, integer_value) == true)
 		{
 			// The value is an integer.
-			settings.insert(std::make_pair(name, SettingValue(integer_value)));
+			integer_variables.insert(std::make_pair(name, integer_value));
 		}
 		else
 		{
 			// The value is a string.
-			settings.insert(std::make_pair(name, SettingValue(value)));
+			string_variables.insert(std::make_pair(name, value));
 		}
 	}
 
@@ -317,82 +320,6 @@ namespace utility
 		}
 	}
 
-
-
-
-
-	// Creates an integer SettingValue with the specified long value.
-	SettingsFile::SettingValue::SettingValue(const long& the_value)
-	: value_type(SettingValue::INTEGER_VALUE)
-	{
-		value.integer_value = the_value;
-	}
-
-
-
-	// Creates a string SettingValue with the specified string value. The string
-	// is deleted in the destructor.
-	SettingsFile::SettingValue::SettingValue(const std::string& the_value)
-	: value_type(SettingValue::STRING_VALUE)
-	{
-		value.string_value = new std::string(the_value);
-	}
-
-
-
-
-	SettingsFile::SettingValue::SettingValue(const SettingValue& original)
-		: value_type(original.GetValueType())
-	{
-		if(value_type == SettingValue::INTEGER_VALUE)
-		{
-			value.integer_value = original.GetIntegerValue();
-		}
-		else
-		{
-			value.string_value = new std::string(original.GetStringValue());
-		}
-	}
-
-
-
-	// If this value represents a string value, then the internal string pointer
-	// is deleted.
-	SettingsFile::SettingValue::~SettingValue()
-	{
-		// If value is a string value, then delete the string pointer.
-		if(value_type == SettingValue::STRING_VALUE)
-		{
-			ASSERT(value.string_value != NULL);
-			delete value.string_value;
-		}
-	}
-
-
-
-	// Returns the value type.
-	const SettingsFile::SettingValue::ValueType& SettingsFile::SettingValue::GetValueType() const
-	{
-		return value_type;
-	}
-
-
-
-
-	// Returns value as a long.
-	const long& SettingsFile::SettingValue::GetIntegerValue() const
-	{
-		ASSERT(value_type == SettingValue::INTEGER_VALUE);
-		return value.integer_value;
-	}
-
-
-	// Returns value as a string.
-	const std::string& SettingsFile::SettingValue::GetStringValue() const
-	{
-		ASSERT(value_type == SettingValue::STRING_VALUE);
-		return *value.string_value;
-	}
 
 
 

@@ -167,8 +167,22 @@ namespace view
 
 	// Constructor for WindowCreationFailure.
 	WindowCreationFailure::WindowCreationFailure(const WindowCreationFailure::Type& type)
-		: Exception("avl::view::Win32WindowBase -- Unable to create window."), type(type)
+		: type(type)
 	{
+		// Set the proper description depending on the error type.
+		description = "Unable to create a Win32 Window: ";
+		switch(type)
+		{
+		case CLASS_REGISTRATION:
+			description += "Registering the class failed.";
+			break;
+		case WINDOW_CREATION:
+			description += "Window creation failed.";
+			break;
+		case DEVICE_CONTEXT:
+			description += "Unable to obtain a device context.";
+			break;
+		}
 	}
 
 
