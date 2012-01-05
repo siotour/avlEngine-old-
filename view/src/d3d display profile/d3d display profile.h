@@ -21,8 +21,8 @@ namespace avl
 namespace view
 {
 	/**
-	A structure designed to store D3D Device display format information. This
-	includes: width/height (resolution), backbuffer format, and depth/stencil buffer format. This structure does not take into
+	A structure designed to store D3D Device display format information. This includes:
+	width/height (resolution), backbuffer format, and depth/stencil buffer format. This structure does not take into
 	account the adapter, device type, or multisampling type; instead, these are assumed to be (respectively): \c D3DADAPTER_DEFAULT,
 	\c D3DDEVTYPE_HAL, \c D3DMULTISAMPLE_NONE. This class is intended to be used internally to enumerate the possible different display
 	formats, and then be given to the user so that they may choose an appropriate display format.

@@ -28,6 +28,9 @@ namespace view
 	2-D renderer capable of rendering basic textured rectangles.
 	@todo The methods for this class desperately need to be refactored into smaller,
 	cleaner chunks.
+	@todo It seems very sloppy that sprites are rendered using a non-const container of
+	non-const pointers to sprites... Modify this interface (and the rendering code) to
+	instead use a const reference to a container of pointers to const sprites.
 	*/
 	class BasicRenderer: public D3DRendererBase
 	{
@@ -63,11 +66,16 @@ namespace view
 		void DeleteTexture(const utility::Sprite::TextureHandle& texture_handle);
 
 		/** Renders a series of sprites.
+		@attention \a sprites may very well be modified during this operation (though
+		no actual sprites will be modified). If you need a copy of \a sprites after
+		the call to this method, then make that copy before this method call.
+		@post \a sprites may well not contain the same (or any) sprites. Make sure to
+		keep your own separate copy if you need \a sprites for something else.
 		@param sprites The sprites to be rendered.
 		@throws RendererException If \a sprites contains one or more NULL pointers.
 		@throws D3DError If there is an error while using the device.
 		*/
-		void RenderSprites(utility::Sprite::SpriteList sprites);
+		void RenderSprites(utility::Sprite::SpriteList& sprites);
 
 	private:
 		/** Checks to see whether or not an image contains semi-transparent pixels. Semi-transparent pixels

@@ -144,7 +144,7 @@ namespace view
 	// Attempts to create a texture with the specified width and height, in a 32-bit format (RGBA), with
 	// the specified data. pixel_data must be in 32-bit, RGBA form. It will be copied and not deleted. The
 	// return will be a handle for the texture which can be used to draw with it and delete it.
-	const unsigned int BasicRenderer::AddTexture(const utility::Image& image)
+	const utility::Sprite::TextureHandle BasicRenderer::AddTexture(const utility::Image& image)
 	{
 		ASSERT(image.GetPixelData() != NULL);
 		ASSERT(image.GetWidth() > 0);
@@ -188,7 +188,7 @@ namespace view
 	// Releases the texture associated with the specified handle and deletes it from the texture map. Don't 
 	// try to draw with textures that have been deleted. Don't attempt to delete the same texture
 	// multiple times.
-	void BasicRenderer::DeleteTexture(const unsigned int& texture_handle)
+	void BasicRenderer::DeleteTexture(const utility::Sprite::TextureHandle& texture_handle)
 	{
 		// Find the texture within the texture map.
 		TexHandleToTex::iterator i = textures.find(texture_handle);
@@ -211,7 +211,7 @@ namespace view
 
 
 	// Renders a series of sprites...
-	void BasicRenderer::RenderSprites(utility::Sprite::SpriteList sprites)
+	void BasicRenderer::RenderSprites(utility::Sprite::SpriteList& sprites)
 	{
 		ASSERT(D3DRendererBase::d3d != false);
 		ASSERT(D3DRendererBase::device != false);

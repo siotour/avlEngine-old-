@@ -23,9 +23,6 @@ Defines the \ref avl::view::D3DRendererBase class.
 
 namespace avl
 {
-// Forward declaration.
-namespace utility{class TexturedVertex;}
-
 namespace view
 {
 	// Forward declaration.
@@ -37,7 +34,7 @@ namespace view
 
 
 	/** Attempts to find the closest fitting display profile matching the parameters.
-	@post If a match is found, then it will only be fullscreen if and only if \a fullscreen
+	@post If a match is found, then it will be fullscreen if and only if \a fullscreen
 	is true.
 	@param fullscreen Do you want a fullscreen or windowed profile?
 	@param width The desired width.
@@ -48,12 +45,12 @@ namespace view
 	const D3DDisplayProfile LeastSquaredDisplayProfile(const bool fullscreen, const int width, const int height);
 
 
-	/** This function attempts to enumerate the default display adapter, using the HAL device, for all
-	legal display profiles with multisampling disabled.
+	/** This function attempts to enumerate the default display adapter, using the HAL
+	device, for all legal display profiles with multisampling disabled.
 	@return A vector containing all legal display profiles.
-	@sa avl::view::D3DDisplayProfile
 	@throws RendererException If unable to create the D3D object.
 	@throws D3DError If enumeration of a display mode fails.
+	@sa avl::view::D3DDisplayProfile
 	@todo Refactor this function into multiple anonymous functions.
 	*/
 	DisplayProfiles EnumerateDisplayProfiles();
@@ -85,7 +82,7 @@ namespace view
 	\ref avl::view::D3DRendererBase::present_parameters is assigned the proper format, then
 	\ref avl::view::D3DRendererBase::Reset should work fine.
 	*/
-	class D3DRendererBase
+	class D3DRendererBase: public Renderer
 	{
 	public:
 		/** Attempts to initialize a Direct3D device for the window with handle \a window_handle
@@ -253,12 +250,19 @@ namespace view
 
 
 	private:
-		/** Attempts to create the Direct3D device.
+		/** Attempts to create the Direct3D device. Uses a 16-bit depth/stencil buffer, and allows
+		Direct3D to maintain it.
 		@throws D3DError If unable to create the device.
-		@todo If present_parameters is modified in this function, then it's impossible for derived
-		classes to customize present_parameters before the device is created.
 		*/
-		virtual void InitializeDevice();
+		void InitializeDevice();
+
+		
+		/** Attmpts to reset the Direct3D9 device.
+		@return True if the device was successfully reset, and false if unable to reset the device.
+		@throws D3DError If an error occurs while resetting the device.
+		*/
+		bool PerformDeviceReset();
+
 
 		/** Creates a basic viewport for the device. Uses the width and height supplied to the
 		constructor, with Z ranging from 0.0 to 1.0.
