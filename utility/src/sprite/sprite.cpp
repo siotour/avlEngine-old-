@@ -1,11 +1,29 @@
-/**********
- * Author: Sheldon Bachstein
- * Date: Jan 21, 2011
- * Description: See sprite.h for details.
- **********/
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+@file
+Implementation for the sprite component. See "sprite.h" for details.
+@author Sheldon Bachstein
+@date January 21, 2011
+*/
 
 #include"sprite.h"
 #include"..\vertex 2d\vertex 2d.h"
+#include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
 #include<cmath>
 #include<limits>
@@ -22,6 +40,30 @@ namespace utility
 		// Pi.
 		const double PI = 4.0 * std::atan(1.0);
 	}
+
+
+
+	// See function declaration for details.
+	const unsigned int CountVisibleSprites(const SpriteList& sprites)
+	{
+		// Count the number of visible sprites and check for NULL pointers.
+		unsigned int number_of_sprites = 0;
+		for(SpriteList::const_iterator i = sprites.begin(); i != sprites.end(); ++i)
+		{
+			// Make sure this pointer is not NULL.
+			if((*i) == NULL)
+			{
+				throw InvalidArgumentException("avl::utility::CountSprites()", "sprites", "Contains one or more NULL pointers.");
+			}
+			// Count visible sprites.
+			else if((*i)->IsVisible() != false)
+			{
+				++number_of_sprites;
+			}
+		}
+		return number_of_sprites;
+	}
+
 
 
 	// Basic constructor. Each vertice (both spatial and texture) is initialized to (0, 0),

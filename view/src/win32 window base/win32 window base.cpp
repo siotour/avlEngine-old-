@@ -1,10 +1,29 @@
-/**********
- * Author: Sheldon Bachstein
- * Date: Feb 01, 2010
- * Description: See win32 window.h for details. TODO: Make this component at least minimally exception safety, preferably commit-or-rollback
- * safe (see Wikipedia: Exception Safety). TODO: Figure out why the program locks up when creating multiple windows and then switching between them
- * when they are overlapped (i think the fact that they are registered with the same class name contributes).
- **********/
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+@file
+Unit test for the win32 window base component. See "win32 window base.h" for details.
+@author Sheldon Bachstein
+@date February 01, 2010
+@todo Make this component at least minimally exception safety, preferably commit-or-rollback
+safe (see Wikipedia: Exception Safety).
+@todo Figure out why the program locks up when creating multiple windows and then switching between them
+when they are overlapped (I think the fact that they are registered with the same class name contributes).
+*/
 
 #include<windows.h>
 #include"win32 window base.h"

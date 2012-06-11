@@ -1,14 +1,31 @@
-/**********
- * Author: Sheldon Bachstein
- * Date: Jan 13, 2011
- * Description: Unit test for the basic renderer component. See basic renderer.h for details.
- * Expected output: 
- **********/
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+@file
+Unit test for the basic renderer component. See "basic renderer.h" for details.
+@author Sheldon Bachstein
+@date January 13, 2011
+*/
 
 #include"basic renderer.h"
 #include"..\basic window\basic window.h"
-#include"..\d3d renderer base\d3d renderer base.h"
 #include"..\d3d display profile\d3d display profile.h"
+#include"..\d3d wrapper\d3d wrapper.h"
+#include"..\d3d error\d3d error.h"
 #include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\assert\assert.h"
@@ -22,8 +39,8 @@ void TestBasicRendererComponent(HINSTANCE instance)
 {
 	using avl::view::BasicWindow;
 	using avl::view::BasicRenderer;
-	using avl::view::D3DDisplayProfile;
-	using avl::view::LeastSquaredDisplayProfile;
+	using avl::view::d3d::D3DDisplayProfile;
+	using avl::view::d3d::LeastSquaredDisplayProfile;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
 	using avl::utility::Image;
@@ -31,7 +48,7 @@ void TestBasicRendererComponent(HINSTANCE instance)
 	try
 	{	
 		// Create a window and renderer.
-		const D3DDisplayProfile profile = LeastSquaredDisplayProfile(false, 500, 500);
+		const D3DDisplayProfile profile = LeastSquaredDisplayProfile(500, 500, false);
 		BasicWindow window(instance, "BasicRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
 		BasicRenderer renderer(window.GetWindowHandle(), profile);
 
@@ -61,7 +78,7 @@ void TestBasicRendererComponent(HINSTANCE instance)
 
 
 		// Put quads into the appropriate container.
-		Sprite::SpriteList sprites;
+		avl::utility::SpriteList sprites;
 		sprites.insert(sprites.begin(), &spiral);
 		sprites.insert(sprites.begin(), &background);
 
@@ -101,7 +118,7 @@ void TestBasicRendererComponent(HINSTANCE instance)
 			}
 		}
 	}
-	catch(avl::view::D3DError& d3d)
+	catch(avl::view::d3d::D3DError& d3d)
 	{
 		throw d3d;
 	}

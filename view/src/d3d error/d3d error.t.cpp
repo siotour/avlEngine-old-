@@ -16,12 +16,12 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the exceptions component. See "exceptions.h" for details.
+Unit test for the d3d error component. See "d3d error.h" for details.
 @author Sheldon Bachstein
-@date December 26, 2011
+@date April 01, 2012
 */
 
-#include"exceptions.h"
+#include"d3d error.h"
 
 
 

@@ -1,5 +1,22 @@
-#ifndef __AVL_UTILITY_SPRITE__
-#define __AVL_UTILITY_SPRITE__
+#pragma once
+#ifndef AVL_UTILITY_SPRITE__
+#define AVL_UTILITY_SPRITE__
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
 @file
 Defines the utility::Sprite class, which represents a textured quadrilateral in 3-D space.
@@ -15,6 +32,21 @@ namespace avl
 {
 namespace utility
 {
+	// Forward declaration.
+	class Sprite;
+
+	/** Used for storing multiple Sprites in a light, sortable container. Intended to
+	be used to send a collection of Sprites to a renderer.*/
+	typedef std::list<Sprite* const> SpriteList;
+
+	/** Counts the number of visible sprites contained in \a sprites.
+	@pre \a sprites must not contain any null pointers.
+	@param sprites The sprites to be counter (if they're visible).
+	@throws InvalidArgumentException If one of the pointers in \a sprites is NULL.
+	*/
+	const unsigned int CountVisibleSprites(const SpriteList& sprites);
+
+
 	/** Encapsulates a basic textured quadrilateral in 3-D space, oriented to be parallel to
 	the XY plane. Includes accessors and mutators for the spatial coordinates as well as the texture
 	coordinates. Additionally, defines a TextureHandle type which is used to represent textures.
@@ -24,9 +56,6 @@ namespace utility
 	public:
 		/** Represents a handle to a texture which is meant to be rendered to a sprite.*/
 		typedef unsigned int TextureHandle;
-		/** Used for storing multiple Sprites in a light, sortable container. Intended to
-		be used to send a collection of Sprites to a renderer.*/
-		typedef std::list<Sprite* const> SpriteList;
 
 
 		/** Basic constructor. Initializes each vertice to the origin with texture coordinates of (0, 0).
@@ -312,4 +341,4 @@ namespace utility
 
 } //avl
 } //utility
-#endif // __AVL_UTILITY_SPRITE__
+#endif // AVL_UTILITY_SPRITE__

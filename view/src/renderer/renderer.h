@@ -1,5 +1,22 @@
+#pragma once
 #ifndef AVL_VIEW_RENDERER__
 #define AVL_VIEW_RENDERER__
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
 @file
 Defines the \ref avl::view::Renderer class and the \ref avl::view::RendererException exception class.
@@ -18,8 +35,7 @@ namespace avl
 namespace view
 {
 	/**
-	Defines an interface for rendering \ref avl::utility::Image objects to the screen using 
-	\ref avl::utility::Sprite objects.
+	Defines an interface for rendering \ref avl::utility::Sprite objects to the screen.
 	*/
 	class Renderer
 	{
@@ -31,9 +47,9 @@ namespace view
 
 		/** Makes it possible to render \a image using the returned texture handle.
 		@post It will be possible to render \a image by using the returned texture handle.
-		@param image The image to be saved internally and represented with the returned texture
+		@param image The image to be saved internally and accessed with the returned texture
 		handle.
-		@return A texture handle representing \a image as a texture. This texture handle may be
+		@return A texture handle used to access \a image as a texture. This texture handle may be
 		used to render \a image.
 		*/
 		virtual const utility::Sprite::TextureHandle AddTexture(const utility::Image& image) = 0;
@@ -52,10 +68,10 @@ namespace view
 		the sprites themselves will be modified, but the list itself may be.
 		@param sprites The sprites to be rendered.
 		@throws RendererException If one of the objects in \a sprites contains a texture
-		handle which isn't associated with a texture.
-		@throws RendererException If an error makes it impossible to perform the rendering.
+		handle which isn't associated with a texture or If an error makes it impossible to
+		perform the rendering.
 		*/
-		virtual void RenderSprites(utility::Sprite::SpriteList& sprites) = 0;
+		virtual void RenderSprites(utility::SpriteList& sprites) = 0;
 
 	private:
 

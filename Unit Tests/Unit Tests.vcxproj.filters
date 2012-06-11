@@ -42,13 +42,7 @@
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\utility\src\win32 timer\win32 timer.t.cpp">
-      <Filter>Source Files\utility Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\view\src\basic window\basic window.t.cpp">
-      <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\view\src\d3d renderer base\d3d renderer base.t.cpp">
       <Filter>Source Files\view Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\view\src\win32 window base\win32 window base.t.cpp">
@@ -79,6 +73,15 @@
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\view\src\renderer\renderer.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\timer\timer.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d wrapper\d3d wrapper.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp">
       <Filter>Source Files\view Tests</Filter>
     </ClCompile>
   </ItemGroup>

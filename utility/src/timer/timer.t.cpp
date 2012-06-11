@@ -16,13 +16,16 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the exceptions component. See "exceptions.h" for details.
+Unit test for the timer component. See "timer.h" for details.
 @author Sheldon Bachstein
-@date December 26, 2011
+@date January 10, 2011
 */
 
-#include"exceptions.h"
+#include"timer.h"
+#include<iostream>
 
 
 
-
+void TestTimerComponent()
+{
+}

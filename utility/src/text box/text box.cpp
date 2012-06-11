@@ -1,8 +1,25 @@
-/**********
- * Author: Sheldon Bachstein
- * Date: Sep 25, 2011
- * Description: See text box.h for details.
- **********/
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+@file
+Implementation for the text box component. See "text box.h" for details.
+@author Sheldon Bachstein
+@date September 25, 2011
+*/
 
 #include"text box.h"
 #include"..\sprite\sprite.h"
@@ -15,6 +32,7 @@
 #include<deque>
 #include<string>
 #include<cmath>
+#include<new>
 
 
 namespace avl
@@ -137,9 +155,9 @@ namespace utility
 
 
 	// Returns a list of all the sprites composing this text box. Use for rendering.
-	utility::Sprite::SpriteList TextBox::GetSprites() const
+	utility::SpriteList TextBox::GetSprites() const
 	{
-		utility::Sprite::SpriteList list;
+		utility::SpriteList list;
 
 		std::vector<Row>::const_iterator end = rows.end();
 		for(std::vector<Row>::const_iterator i = rows.begin(); i != end; ++i)
@@ -503,8 +521,8 @@ namespace utility
 	TextBox::Row::~Row()
 	{
 		// Delete all sprites.
-		utility::Sprite::SpriteList::const_iterator end = sprites.end();
-		for(utility::Sprite::SpriteList::const_iterator i = sprites.begin(); i != end; ++i)
+		utility::SpriteList::const_iterator end = sprites.end();
+		for(utility::SpriteList::const_iterator i = sprites.begin(); i != end; ++i)
 		{
 			delete *i;
 			sprites.erase(i);
@@ -515,7 +533,7 @@ namespace utility
 
 
 	// Returns a list of all the sprites composing this row. Use for rendering.
-	utility::Sprite::SpriteList TextBox::Row::GetSprites() const
+	utility::SpriteList TextBox::Row::GetSprites() const
 	{
 		return sprites;
 	}
@@ -527,8 +545,8 @@ namespace utility
 	void TextBox::Row::SetVisibility(const bool new_visibility)
 	{
 		// Set the visibility of each sprite.
-		utility::Sprite::SpriteList::const_iterator end = sprites.end();
-		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		utility::SpriteList::const_iterator end = sprites.end();
+		for(utility::SpriteList::iterator i = sprites.begin(); i != end; ++i)
 		{
 			(*i)->SetVisibility(new_visibility);
 		}
@@ -551,7 +569,7 @@ namespace utility
 		// throw an OutOfMemoryError.
 		while(sprites.size() < text.size())
 		{
-			utility::Sprite* const new_sprite = new utility::Sprite();
+			utility::Sprite* const new_sprite = new (std::nothrow) utility::Sprite();
 			if(new_sprite == NULL)
 			{
 				throw OutOfMemoryError();
@@ -561,7 +579,7 @@ namespace utility
 		// Delete any excess sprites.
 		while(sprites.size() > text.size())
 		{
-			utility::Sprite::SpriteList::iterator old = sprites.begin();
+			utility::SpriteList::iterator old = sprites.begin();
 			delete *(old);
 			sprites.erase(old);
 		}
@@ -583,8 +601,8 @@ namespace utility
 
 		// Set up each sprite.
 		unsigned int current_character = 0;
-		utility::Sprite::SpriteList::const_iterator end = sprites.end();
-		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		utility::SpriteList::const_iterator end = sprites.end();
+		for(utility::SpriteList::iterator i = sprites.begin(); i != end; ++i)
 		{
 			// Calculate this sprite's position.
 			sprite_left = left + sprite_width * current_character;
@@ -651,8 +669,8 @@ namespace utility
 	void TextBox::Row::SetTextureHandle(const utility::Sprite::TextureHandle& new_texture_handle)
 	{
 		// Set the texture handle of each sprite.
-		utility::Sprite::SpriteList::const_iterator end = sprites.end();
-		for(utility::Sprite::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		utility::SpriteList::const_iterator end = sprites.end();
+		for(utility::SpriteList::iterator i = sprites.begin(); i != end; ++i)
 		{
 			(*i)->SetTextureHandle(new_texture_handle);
 		}

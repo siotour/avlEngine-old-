@@ -1,9 +1,25 @@
-/**********
- * Author: Sheldon Bachstein
- * Date: Sep 25, 2011
- * Description: Unit test for the text box component. See text box.h for details.
- * Expected output: 
- **********/
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+@file
+Unit test for the text box component. See "text box.h" for details.
+@author Sheldon Bachstein
+@date September 25, 2011
+*/
 
 #include"text box.h"
 #include"..\..\..\input\src\direct input input device\direct input input device.h"
@@ -14,8 +30,9 @@
 #include"..\..\..\input\src\mouse scroll event\mouse scroll event.h"
 #include"..\..\..\view\src\basic renderer\basic renderer.h"
 #include"..\..\..\view\src\basic window\basic window.h"
-#include"..\..\..\view\src\d3d renderer base\d3d renderer base.h"
+#include"..\..\..\view\src\basic renderer\basic renderer.h"
 #include"..\..\..\view\src\d3d display profile\d3d display profile.h"
+#include"..\..\..\view\src\d3d error\d3d error.h"
 #include"..\vertex 2d\vertex 2d.h"
 #include"..\sprite\sprite.h"
 #include"..\assert\assert.h"
@@ -38,7 +55,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 	try
 	{	
 		// Create a window and renderer.
-		avl::view::DisplayProfiles profiles = avl::view::EnumerateDisplayProfiles();
+		avl::view::d3d::DisplayProfiles profiles = avl::view::d3d::EnumerateDisplayProfiles();
 		BasicWindow window(instance, "BasicRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
 		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
 		DirectInputInputDevice input(window.GetWindowHandle());
@@ -74,7 +91,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 
 
 		// Put quads into the appropriate container.
-		Sprite::SpriteList sprites;
+		avl::utility::SpriteList sprites;
 		sprites.insert(sprites.begin(), &background);
 		sprites.splice(sprites.begin(), text.GetSprites());
 
@@ -91,7 +108,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 			}
 		}
 	}
-	catch(avl::view::D3DError& d3d)
+	catch(avl::view::d3d::D3DError& d3d)
 	{
 		throw d3d;
 	}

@@ -14,7 +14,8 @@
     <ClInclude Include="src\basic renderer\basic renderer.h" />
     <ClInclude Include="src\basic window\basic window.h" />
     <ClInclude Include="src\d3d display profile\d3d display profile.h" />
-    <ClInclude Include="src\d3d renderer base\d3d renderer base.h" />
+    <ClInclude Include="src\d3d error\d3d error.h" />
+    <ClInclude Include="src\d3d wrapper\d3d wrapper.h" />
     <ClInclude Include="src\renderer\renderer.h" />
     <ClInclude Include="src\win32 window base\win32 window base.h" />
   </ItemGroup>
@@ -22,7 +23,8 @@
     <ClCompile Include="src\basic renderer\basic renderer.cpp" />
     <ClCompile Include="src\basic window\basic window.cpp" />
     <ClCompile Include="src\d3d display profile\d3d display profile.cpp" />
-    <ClCompile Include="src\d3d renderer base\d3d renderer base.cpp" />
+    <ClCompile Include="src\d3d error\d3d error.cpp" />
+    <ClCompile Include="src\d3d wrapper\d3d wrapper.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
     <ClCompile Include="src\win32 window base\win32 window base.cpp" />
   </ItemGroup>

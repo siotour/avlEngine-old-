@@ -1,14 +1,32 @@
-/**********
- * Author: Sheldon Bachstein
- * Date: Jul 24, 2011
- * Description: See image.h for details.
- **********/
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/**
+@file
+Implementation for the image component. See "image.h" for details.
+@author Sheldon Bachstein
+@date July 24, 2011
+*/
 
 #include"image.h"
 #include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
 #include<memory>
 #include<fstream>
+#include<new>
 
 
 
@@ -52,7 +70,7 @@ namespace utility
 			file.seekg(0, ios_base::beg);
 
 			// If unable to allocate memory for file_data, return false.
-			unsigned char* file_data = new unsigned char[file_size];
+			unsigned char* file_data = new (std::nothrow) unsigned char[file_size];
 			if(file_data == NULL)
 			{
 				file.close();
@@ -148,7 +166,7 @@ namespace utility
 
 
 			// Done with the header. Allocate memory for the pixel data.
-			pixel_data = new unsigned char[image_size];
+			pixel_data = new (std::nothrow) unsigned char[image_size];
 			if(pixel_data == NULL)
 			{
 				return false;
@@ -223,7 +241,7 @@ namespace utility
 				// Temporary storage.
 				unsigned short upper_line = 1;
 				unsigned short lower_line = height;
-				unsigned char* temp = new unsigned char[width * pixel_depth];
+				unsigned char* temp = new (std::nothrow) unsigned char[width * pixel_depth];
 				// If unable to get the memory, return false.
 				if(temp == NULL)
 				{
@@ -260,7 +278,7 @@ namespace utility
 				// Temporary storage.
 				unsigned short left_pixel;
 				unsigned short right_pixel;
-				unsigned char* temp = new unsigned char[pixel_depth];
+				unsigned char* temp = new (std::nothrow) unsigned char[pixel_depth];
 				// If unable to get the memory, return false.
 				if(temp == NULL)
 				{

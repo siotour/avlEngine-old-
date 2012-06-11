@@ -52,7 +52,7 @@
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Microsoft SDKs\DirectX June 2010\Lib\x86;C:\Program Files\Microsoft SDKs\Windows\v7.0A\Lib;C:\Users\avl-desktop\Documents\Visual Studio 2010\Projects\avl Library\Debug;$(LibraryPath)</LibraryPath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files\Microsoft SDKs\Windows\v7.0A\Include;C:\Program Files\Microsoft SDKs\DirectX June 2010\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\Microsoft SDKs\Windows\v7.0A\Include;C:\Program Files\Microsoft SDKs\DirectX June 2010\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\avl-desktop\Documents\Visual Studio 2010\Projects\avl Library\Release;C:\Program Files\Microsoft SDKs\Windows\v7.0A\Lib;C:\Program Files\Microsoft SDKs\DirectX June 2010\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\Microsoft SDKs\DirectX June 2010\lib\x86;C:\Program Files\Microsoft SDKs\Windows\v7.0A\Lib;C:\Users\avl-desktop\Documents\Visual Studio 2010\Projects\avl Library\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -68,7 +68,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>user32.lib;winmm.lib;d3d9.lib;dinput8.lib;dxguid.lib;avl-utility_debug.lib;avl-view_debug.lib;avl-input_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -87,7 +87,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
@@ -103,12 +103,13 @@
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp" />
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp" />
     <ClCompile Include="..\utility\src\text box\text box.t.cpp" />
+    <ClCompile Include="..\utility\src\timer\timer.t.cpp" />
     <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp" />
-    <ClCompile Include="..\utility\src\win32 timer\win32 timer.t.cpp" />
     <ClCompile Include="..\view\src\basic renderer\basic renderer.t.cpp" />
     <ClCompile Include="..\view\src\basic window\basic window.t.cpp" />
     <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp" />
-    <ClCompile Include="..\view\src\d3d renderer base\d3d renderer base.t.cpp" />
+    <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp" />
+    <ClCompile Include="..\view\src\d3d wrapper\d3d wrapper.t.cpp" />
     <ClCompile Include="..\view\src\renderer\renderer.t.cpp" />
     <ClCompile Include="..\view\src\win32 window base\win32 window base.t.cpp" />
     <ClCompile Include="src\main.cpp" />

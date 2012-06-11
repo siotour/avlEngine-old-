@@ -1,5 +1,22 @@
-#ifndef __AVL_UTILITY_TEXT_BOX__
-#define __AVL_UTILITY_TEXT_BOX__
+#pragma once
+#ifndef AVL_UTILITY_TEXT_BOX__
+#define AVL_UTILITY_TEXT_BOX__
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
 @file
 Defines the utility::TextBox class, which provides the behavior of a dynamic box of text.
@@ -128,7 +145,7 @@ namespace utility
 		/** Returns a list of all sprites composing this box. Used for rendering purposes.
 		@return A list of the sprites necessary to render this box.
 		*/
-		utility::Sprite::SpriteList GetSprites() const;
+		utility::SpriteList GetSprites() const;
 
 
 
@@ -278,7 +295,7 @@ namespace utility
 			/** Returns a list of all the sprites composing this row. Used for rendering.
 			@return A list of Sprites 
 			*/
-			utility::Sprite::SpriteList GetSprites() const;
+			utility::SpriteList GetSprites() const;
 
 
 			/** Sets the visibility of this row.
@@ -357,7 +374,7 @@ namespace utility
 			utility::Sprite::TextureHandle texture_handle;
 
 			/// All of the sprites forming this row.
-			utility::Sprite::SpriteList sprites;
+			utility::SpriteList sprites;
 
 		};
 
@@ -370,4 +387,4 @@ namespace utility
 
 } //avl
 } //utility
-#endif // __AVL_UTILITY_TEXT_BOX__
+#endif // AVL_UTILITY_TEXT_BOX__

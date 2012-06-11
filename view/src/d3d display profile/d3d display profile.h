@@ -1,14 +1,32 @@
-#ifndef __AVL_VIEW_D3D_DISPLAY_PROFILE__
-#define __AVL_VIEW_D3D_DISPLAY_PROFILE__
+#pragma once
+#ifndef AVL_VIEW_D3D_D3D_DISPLAY_PROFILE__
+#define AVL_VIEW_D3D_D3D_DISPLAY_PROFILE__
+/* Copyright 2012 Sheldon Bachstein
+This file is part of the avl Library.
+
+The avl Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The avl Library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
 @file
-Defines the \ref avl::view::D3DDisplayProfile class.
+Defines the \ref avl::view::d3d::D3DDisplayProfile class.
 @author Sheldon Bachstein
 @date Jul 07, 2011
 */
 
 
 
+#include<vector>
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
 #endif
@@ -20,6 +38,17 @@ namespace avl
 {
 namespace view
 {
+namespace d3d
+{
+
+	// Forward declaration.
+	class D3DDisplayProfile;
+
+
+	/** Used to return a set of \ref avl::view::d3d::D3DDisplayProfile objects.*/
+	typedef const std::vector<const D3DDisplayProfile> DisplayProfiles;
+
+
 	/**
 	A structure designed to store D3D Device display format information. This includes:
 	width/height (resolution), backbuffer format, and depth/stencil buffer format. This structure does not take into
@@ -112,6 +141,7 @@ namespace view
 
 	};
 
-} //avl
-} //view
-#endif // __AVL_VIEW_D3D_DISPLAY_PROFILE__
+} // d3d
+} // avl
+} // view
+#endif // AVL_VIEW_D3D_D3D_DISPLAY_PROFILE__
