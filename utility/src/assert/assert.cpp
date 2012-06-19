@@ -18,21 +18,19 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 @file
 Implementation for the assert component. See "assert.h" for details.
 @author Sheldon Bachstein
-@ate January 13, 2010
+@ate Jan 13, 2010
 */
 
 #include"assert.h"
 #include"..\exceptions\exceptions.h"
 #include<string>
 
-
 namespace avl
 {
 namespace utility
 {
 
-
-
+	// See method declaration for details.
 	AssertVerifyFailure::AssertVerifyFailure(const std::string& file, const int& line)
 		: file(file), line(line)
 	{
@@ -43,34 +41,28 @@ namespace utility
 		description += '.';
 	}
 
-
-
+	// See method declaration for details.
 	AssertVerifyFailure::~AssertVerifyFailure()
 	{
 	}
 
-
-
+	// See method declaration for details.
 	AssertVerifyFailure::AssertVerifyFailure(const avl::utility::AssertVerifyFailure& original)
 		: Exception(original.GetDescription()), file(original.GetFile()), line(original.GetLine())
 	{
 	}
 
-
-
+	// See method declaration for details.
 	const std::string& AssertVerifyFailure::GetFile() const
 	{
 		return file;
 	}
 
-
-
+	// See method declaration for details.
 	const int AssertVerifyFailure::GetLine() const
 	{
 		return line;
 	}
-
-
 
 }
 }

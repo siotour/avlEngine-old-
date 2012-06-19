@@ -26,7 +26,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 #include<Windows.h>
 
 void TestAssertComponent();
-void TestBasicRendererComponent(HINSTANCE);
+void TestBasicD3DRendererComponent(HINSTANCE);
 void TestVertex2DComponent();
 void TestSpriteComponent();
 void TestDirectInputInputDeviceComponent(HINSTANCE);
@@ -36,8 +36,8 @@ void BugFixing(HINSTANCE);
 
 int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
 {
-	TestBasicRendererComponent(instance);
-	//TestDirectInputInputDeviceComponent(instance);
+	//TestBasicD3DRendererComponent(instance);
+	TestDirectInputInputDeviceComponent(instance);
 	//TestTextBoxComponent(instance);
 
 	

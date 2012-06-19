@@ -29,37 +29,36 @@ namespace avl
 {
 namespace view
 {
-
+	// See method declaration for details.
 	Renderer::Renderer()
 	{
 	}
 
-
+	// See method declaration for details.
 	Renderer::~Renderer()
 	{
 	}
 
 
 
-
-
+	// See method declaration for details.
 	RendererException::RendererException(const std::string& description)
 		: Exception(description)
 	{
 	}
 
-
+	// See method declaration for details.
 	RendererException::RendererException(const RendererException& original)
 		: Exception(original)
 	{
 	}
 
-
+	// See method declaration for details.
 	RendererException::~RendererException()
 	{
 	}
 
-
+	// See method declaration for details.
 	RendererException::RendererException()
 	{
 	}

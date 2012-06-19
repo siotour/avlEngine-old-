@@ -16,11 +16,13 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the win32 window base component. See "win32 window base.h" for details.
+Unit test for the sound effect component. See "sound effect.h" for details.
 @author Sheldon Bachstein
-@date February 01, 2010
+@date Jun 17, 2012
 */
 
-#include"win32 window base.h"
+#include"sound effect.h"
+
+
 
 

@@ -477,7 +477,7 @@ namespace d3d
 		HRESULT result = index_buffer.Lock(0, source.size() * sizeof(UINT16), (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
-			throw D3DError("IDirect3DIndexBuffer9::Lock()", "avl::view::d3d::BasicRenderer::WriteIndicesToBuffer() -- Unable to lock the index buffer.", result);
+			throw D3DError("IDirect3DIndexBuffer9::Lock()", "avl::view::d3d::BasicD3DRenderer::WriteIndicesToBuffer() -- Unable to lock the index buffer.", result);
 		}
 		// Copy the index information to the index buffer.
 		memcpy(data, &source[0], source.size() * sizeof(UINT16));

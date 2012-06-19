@@ -16,12 +16,12 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Implementation for the basic renderer component. See "basic renderer.h" for details.
+Implementation for the basic d3d renderer component. See "basic d3d renderer.h" for details.
 @author Sheldon Bachstein
 @date Jan 13, 2011
 */
 
-#include"basic renderer.h"
+#include"basic d3d renderer.h"
 #include"..\d3d wrapper\d3d wrapper.h"
 #include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d error\d3d error.h"
@@ -38,7 +38,6 @@ Implementation for the basic renderer component. See "basic renderer.h" for deta
 
 
 
-
 namespace avl
 {
 namespace view
@@ -50,70 +49,48 @@ namespace view
 	}
 
 	// See method declaration for details.
-	BasicRenderer::BasicRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile)
+	BasicD3DRenderer::BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile)
 		: display_profile(profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(2),
-		buffer_length(1000), vertex_buffer(NULL), index_buffer(NULL)
+		buffer_length(1000), d3d(NULL), device(NULL), vertex_buffer(NULL), index_buffer(NULL), is_device_ready(false)
 	{
-		// Create the Direct3D object.
-		d3d = d3d::GetDirect3DObject();
-		ASSERT(d3d != NULL);
-		// Create a device.
-		device = d3d::CreateDevice(*d3d, window_handle, display_profile, present_parameters);
-		ASSERT(device != NULL);
-		// Create the viewport for the device.
-		d3d::CreateViewport(*device, display_profile.GetWidth(), display_profile.GetHeight());
-		// Now attempt to ready the device for rendering.
-		CheckDeviceState();
-		if(is_device_ready == true)
+		try
 		{
-			AcquireUnmanagedAssets();
+			// Create the Direct3D object.
+			d3d = d3d::GetDirect3DObject();
+			ASSERT(d3d != NULL);
+			// Create a device.
+			device = d3d::CreateDevice(*d3d, window_handle, display_profile, present_parameters);
+			ASSERT(device != NULL);
+			// Create the viewport for the device.
+			d3d::CreateViewport(*device, display_profile.GetWidth(), display_profile.GetHeight());
+			// Now attempt to ready the device for rendering.
+			CheckDeviceState();
+
+
+			
 		}
-
-
-		// Turn lighting off.
-		device->SetRenderState(D3DRS_LIGHTING, false);
-		// Set the flexible vertex format to position and texture coordinates only.
-		device->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
-		// Set the device to use a fixed function vertex shader.
-		device->SetVertexShader(NULL);
-
-		// Turn alpha testing on.
-		device->SetRenderState(D3DRS_ALPHATESTENABLE, true);
-		// Set the alpha test reference to zero. TODO: Does this HAVE to be 0001 etc.? 0.0 makes more sense.
-		device->SetRenderState(D3DRS_ALPHAREF, (DWORD)0x00000001);
-		// Set the alpha test comparison function to GREATER so that pixels with 0 alpha aren't drawn.
-		device->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL);
-		// Set the source blending to the source's alpha.
-		device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-		// Set the destination blending to the destination's alpha.
-		device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-		// Set the alpha blending operation to addition.
-		device->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+		catch(...)
+		{
+			// Clean up our mess.
+			Release();
+			throw;
+		}
 	}
 
 
 
 
 	// See method declaration for details.
-	BasicRenderer::~BasicRenderer()
+	BasicD3DRenderer::~BasicD3DRenderer()
 	{
-		// Go through and release each of the textures in the texture map.
-		d3d::TexHandleToTex::iterator end = textures.end();
-		for(d3d::TexHandleToTex::iterator i = textures.begin(); i != end; ++i)
-		{
-			i->second->Release();
-		}
-		// Delete all of the textures from the map.
-		textures.clear();
-		// Release all unmanaged assets.
-		ReleaseUnmanagedAssets();
+		Release();
 	}
 
 
 
 
 	// See method declaration for details.
-	const utility::Sprite::TextureHandle BasicRenderer::AddTexture(const utility::Image& image)
+	const utility::Sprite::TextureHandle BasicD3DRenderer::AddTexture(const utility::Image& image)
 	{
 		ASSERT(image.GetPixelData() != NULL);
 		ASSERT(image.GetWidth() > 0);
@@ -146,7 +123,7 @@ namespace view
 
 
 	// See method declaration for details.
-	void BasicRenderer::DeleteTexture(const utility::Sprite::TextureHandle& texture_handle)
+	void BasicD3DRenderer::DeleteTexture(const utility::Sprite::TextureHandle& texture_handle)
 	{
 		// Find the texture within the texture map.
 		d3d::TexHandleToTex::iterator i = textures.find(texture_handle);
@@ -166,13 +143,15 @@ namespace view
 
 
 	// See method declaration for details.
-	void BasicRenderer::RenderSprites(utility::SpriteList& sprites)
+	void BasicD3DRenderer::RenderSprites(utility::SpriteList& sprites)
 	{
 		ASSERT(d3d != false);
 		ASSERT(device != false);
 		// If the device is not ready for rendering, return.
 		if(CheckDeviceState() == true)
 		{
+			ASSERT(vertex_buffer != NULL);
+			ASSERT(index_buffer != NULL);
 			// Clear the screen to black.
 			d3d::ClearViewport(*device);
 			// Render sprites.
@@ -187,7 +166,7 @@ namespace view
 	
 	
 	// Releases the index buffer and vertex buffer. This is called when the device is lost.
-	void BasicRenderer::ReleaseUnmanagedAssets()
+	void BasicD3DRenderer::ReleaseUnmanagedAssets()
 	{
 		if(vertex_buffer != NULL)
 		{
@@ -206,7 +185,7 @@ namespace view
 
 	// Creates the index buffer and vertex buffer. This is called upon initialization and when the
 	// device is reset after having been lost.
-	void BasicRenderer::AcquireUnmanagedAssets()
+	void BasicD3DRenderer::AcquireUnmanagedAssets()
 	{
 		ASSERT(vertex_buffer == NULL);
 		ASSERT(index_buffer == NULL);
@@ -225,28 +204,83 @@ namespace view
 	}
 
 
-	// See function declaration for details.
-	const bool BasicRenderer::CheckDeviceState()
+	// See method declaration for details.
+	void BasicD3DRenderer::SetDeviceStates()
+	{
+		// Turn lighting off.
+		device->SetRenderState(D3DRS_LIGHTING, false);
+		// Set the flexible vertex format to position and texture coordinates only.
+		device->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
+		// Set the device to use a fixed function vertex shader.
+		device->SetVertexShader(NULL);
+		// Turn alpha testing on.
+		device->SetRenderState(D3DRS_ALPHATESTENABLE, true);
+		// Set the alpha test reference to zero.
+		device->SetRenderState(D3DRS_ALPHAREF, (DWORD)0x00000000);
+		// Set the alpha test comparison function to GREATER so that pixels with 0 alpha aren't drawn.
+		device->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER);
+		// Set the source blending to the source's alpha.
+		device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+		// Set the destination blending to the destination's alpha.
+		device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+		// Set the alpha blending operation to addition.
+		device->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	}
+
+
+	// See method declaration for details.
+	void BasicD3DRenderer::Release()
+	{
+		// Go through and release each of the textures in the texture map.
+		d3d::TexHandleToTex::iterator end = textures.end();
+		for(d3d::TexHandleToTex::iterator i = textures.begin(); i != end; ++i)
+		{
+			i->second->Release();
+		}
+		// Delete all of the textures from the map.
+		textures.clear();
+		// Release all unmanaged assets.
+		ReleaseUnmanagedAssets();
+		// Release all Direct3D interfaces.
+		if(device != NULL)
+		{
+			device->Release();
+			device = NULL;
+		}
+		if(d3d != NULL)
+		{
+			d3d->Release();
+			d3d = NULL;
+		}
+	}
+
+	// See method declaration for details.
+	const bool BasicD3DRenderer::CheckDeviceState()
 	{
 		ASSERT(d3d != NULL);
 		ASSERT(device != NULL);
 		// Check the device state.
 		HRESULT result = device->TestCooperativeLevel();
-		// If the device is ready, set is_device_ready to true and return true.
+		// If the device is okay, ensure that the renderer's state is good.
 		if(result == D3D_OK)
 		{
+			if(is_device_ready == false)
+			{
+				SetDeviceStates();
+				AcquireUnmanagedAssets();
+			}
+			ASSERT(vertex_buffer != NULL);
+			ASSERT(index_buffer != NULL);
 			is_device_ready = true;
 		}
 		// If the device was just lost, release assets and set is_device_ready to false.
 		else if(result == D3DERR_DEVICELOST)
 		{
-			// If the device was just lost, release all unmanaged assets and set is_device_ready
-			// to false.
 			if(is_device_ready == true)
 			{
 				ReleaseUnmanagedAssets();
+				is_device_ready = false;
 			}
-			return false;
 		}
 		// If the device is ready to be reset, attempt to reset it.
 		else if(result == D3DERR_DEVICENOTRESET)
@@ -258,10 +292,15 @@ namespace view
 				ReleaseUnmanagedAssets();
 				is_device_ready = false;
 			}
-			is_device_ready = d3d::ResetDevice(*device, present_parameters);
+			// If we're able to reset the device, then we need to reacquire unmanaged assets.
+			if(d3d::ResetDevice(*device, present_parameters) == true)
+			{
+				SetDeviceStates();
+				AcquireUnmanagedAssets();
+				is_device_ready = true;
+			}
 		}
-		// Otherwise there was some sort of error (internal error?). Throw a D3DError with the error code
-		// and a description of the problem.
+		// Otherwise there was some sort of error (internal error?).
 		else
 		{
 			throw d3d::D3DError("IDirect3D9::TestCooperativeLevel()", "avl::view::D3DRendererBase::Reset() -- An internal error occurred while checking the device's state.", result);

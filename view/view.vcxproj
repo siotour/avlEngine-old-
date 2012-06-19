@@ -11,22 +11,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\basic renderer\basic renderer.h" />
-    <ClInclude Include="src\basic window\basic window.h" />
+    <ClInclude Include="src\basic d3d renderer\basic d3d renderer.h" />
+    <ClInclude Include="src\basic win32 window\basic win32 window.h" />
     <ClInclude Include="src\d3d display profile\d3d display profile.h" />
     <ClInclude Include="src\d3d error\d3d error.h" />
     <ClInclude Include="src\d3d wrapper\d3d wrapper.h" />
     <ClInclude Include="src\renderer\renderer.h" />
-    <ClInclude Include="src\win32 window base\win32 window base.h" />
+    <ClInclude Include="src\win32 error\win32 error.h" />
+    <ClInclude Include="src\win32 wrapper\win32 wrapper.h" />
+    <ClInclude Include="src\window\window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\basic renderer\basic renderer.cpp" />
-    <ClCompile Include="src\basic window\basic window.cpp" />
+    <ClCompile Include="src\basic d3d renderer\basic d3d renderer.cpp" />
+    <ClCompile Include="src\basic win32 window\basic win32 window.cpp" />
     <ClCompile Include="src\d3d display profile\d3d display profile.cpp" />
     <ClCompile Include="src\d3d error\d3d error.cpp" />
     <ClCompile Include="src\d3d wrapper\d3d wrapper.cpp" />
     <ClCompile Include="src\renderer\renderer.cpp" />
-    <ClCompile Include="src\win32 window base\win32 window base.cpp" />
+    <ClCompile Include="src\win32 error\win32 error.cpp" />
+    <ClCompile Include="src\win32 wrapper\win32 wrapper.cpp" />
+    <ClCompile Include="src\window\window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7BFE7D06-E996-4D6E-80CB-A4D528649FDD}</ProjectGuid>

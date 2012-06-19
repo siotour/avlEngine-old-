@@ -28,9 +28,10 @@ Unit test for the text box component. See "text box.h" for details.
 #include"..\..\..\input\src\mouse move event\mouse move event.h"
 #include"..\..\..\input\src\mouse button event\mouse button event.h"
 #include"..\..\..\input\src\mouse scroll event\mouse scroll event.h"
-#include"..\..\..\view\src\basic renderer\basic renderer.h"
-#include"..\..\..\view\src\basic window\basic window.h"
-#include"..\..\..\view\src\basic renderer\basic renderer.h"
+#include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
+#include"..\..\..\view\src\basic win32 window\basic win32 window.h"
+#include"..\..\..\view\src\win32 error\win32 error.h"
+#include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\d3d display profile\d3d display profile.h"
 #include"..\..\..\view\src\d3d error\d3d error.h"
 #include"..\vertex 2d\vertex 2d.h"
@@ -43,8 +44,8 @@ Unit test for the text box component. See "text box.h" for details.
 
 void TestTextBoxComponent(HINSTANCE instance)
 {
-	using avl::view::BasicWindow;
-	using avl::view::BasicRenderer;
+	using avl::view::BasicWin32Window;
+	using avl::view::BasicD3DRenderer;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
 	using avl::utility::TextBox;
@@ -56,8 +57,8 @@ void TestTextBoxComponent(HINSTANCE instance)
 	{	
 		// Create a window and renderer.
 		avl::view::d3d::DisplayProfiles profiles = avl::view::d3d::EnumerateDisplayProfiles();
-		BasicWindow window(instance, "BasicRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
-		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
+		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profiles[42]);
 		DirectInputInputDevice input(window.GetWindowHandle());
 
 
@@ -116,7 +117,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 	{
 		throw assertion;
 	}
-	catch(avl::view::WindowCreationFailure& window)
+	catch(avl::view::win32::Win32Error& window)
 	{
 		throw window;
 	}

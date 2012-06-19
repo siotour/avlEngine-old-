@@ -10,6 +10,12 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\sound engine\sound engine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\sound engine\sound engine.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5B4A9C78-ABD5-41DC-A5E8-80323AA97EAE}</ProjectGuid>
     <RootNamespace>sound</RootNamespace>

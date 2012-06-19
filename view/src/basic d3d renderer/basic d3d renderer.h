@@ -19,11 +19,9 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Defines the \ref avl::view::BasicRenderer class.
+Defines the \ref avl::view::BasicD3DRenderer class.
 @author Sheldon Bachstein
 @date Jan 13, 2011
-@todo There's a memory leak while using this class. Enable maximum debugging in the DirectX9
-control panel for details.
 */
 
 #include"..\renderer\renderer.h"
@@ -51,7 +49,7 @@ namespace view
 	/**
 	Implements the \ref avl::view::Renderer interface using Direct3D.
 	*/
-	class BasicRenderer: public Renderer
+	class BasicD3DRenderer: public Renderer
 	{
 	public:
 		/** Attempts to create a renderer to render to the window represented by
@@ -62,10 +60,10 @@ namespace view
 		@throws d3d::D3DError If unable to create the Direct3D device or if
 		unable to set the viewport.
 		*/
-		BasicRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile);
+		BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile);
 		/** Destroys the Direct3D device and releases all assets.
 		*/
-		~BasicRenderer();
+		~BasicD3DRenderer();
 
 		
 		/** Attempts to create a texture for \a image.
@@ -107,6 +105,14 @@ namespace view
 		@throws d3d::D3DError If unable to create either the vertex or index buffers.
 		*/
 		void AcquireUnmanagedAssets();
+
+		/** Sets all of the necessary render states for the device.
+		*/
+		void SetDeviceStates();
+		
+		/** Releases all Direct3D interfaces.
+		*/
+		void Release();
 
 		/** Checks to see if the device is ready to render, and attempts to reset the device if
 		the device has been lost.
@@ -153,9 +159,9 @@ namespace view
 
 
 		/// NOT IMPLEMENTED.
-		BasicRenderer(const BasicRenderer&);
+		BasicD3DRenderer(const BasicD3DRenderer&);
 		/// NOT IMPLEMENTED.
-		const BasicRenderer& operator=(const BasicRenderer&);
+		const BasicD3DRenderer& operator=(const BasicD3DRenderer&);
 	};
 
 

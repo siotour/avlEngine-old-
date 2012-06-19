@@ -1,6 +1,6 @@
 #pragma once
-#ifndef AVL_VIEW_BASIC_WINDOW__
-#define AVL_VIEW_BASIC_WINDOW__
+#ifndef AVL_VIEW_BASIC_WIN32_WINDOW__
+#define AVL_VIEW_BASIC_WIN32_WINDOW__
 /* Copyright 2012 Sheldon Bachstein
 This file is part of the avl Library.
 
@@ -19,7 +19,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Defines the \ref avl::view::BasicWindow class.
+Defines the \ref avl::view::BasicWin32Window class.
 @author Sheldon Bachstein
 @date Feb 03, 2010
 @todo There is a bug when creating multiple of these windows and then switching between them when
@@ -28,7 +28,7 @@ they overlap (whether the windows are in separate instances or a single instance
 time, it stays "busy" until you move it out of the client area.
 */
 
-#include"..\win32 window base\win32 window base.h"
+#include"..\window\window.h"
 #include<string>
 #include<windows.h>
 
@@ -40,7 +40,7 @@ namespace view
 	Provides an implementation for a very basic Win32 window. All behavior is default.
 	@todo Expand on 'default behavior.'
 	*/
-	class BasicWindow: public Win32WindowBase
+	class BasicWin32Window: public Window
 	{
 	public:
 		/** Attempts to construct a window with the specified parameters.
@@ -49,9 +49,9 @@ namespace view
 		@param width The width of the window's client area.
 		@param height The height of the window's client area.
 		*/
-		BasicWindow(HINSTANCE instance_handle, const std::string& window_title, const int& width, const int& height);
+		BasicWin32Window(HINSTANCE instance_handle, const std::string& window_title, const int& width, const int& height);
 		/** Basic destructor.*/
-		~BasicWindow();
+		~BasicWin32Window();
 		
 		
 		/** Performs basic upkeep of the window. Should be called often.
@@ -62,21 +62,15 @@ namespace view
 		/** Checks to see if the window is currently in focus.
 		@return True if the window is in focus, and false if not.
 		*/
-		const bool IsActive() const;
-
-		/** The window procedure for windows of this class. With a few exceptions, all messages are simply
-		fed to the default window procedure. The exceptions are:
-		\li \c WM_CLOSE is posted to the window's message queue.
-		\li \c WM_DESTROY results in calling \c PostQuitMessage(0).
-		\li \c WM_ACTIVATE is first posted to the window's message queue, and then fed to the default window
-		procedure.
-		@param window_handle The handle of the window to which the message is addressed.
-		@param msg The message type.
-		@param w_param Message data.
-		@param l_param Message data.
-		@return 0 if the message was handled correctly, and false if not.
+		const bool IsActive();
+		/** Returns the window's handle.
+		@return The window's handle.
 		*/
-		static LRESULT CALLBACK RouteWindowMessage(HWND window_handle, UINT msg, WPARAM w_param, LPARAM l_param);
+		HWND GetWindowHandle() const;
+		/** Returns the device context handle for this window.
+		@return The handle to the device context created for this window.
+		*/
+		HDC GetDeviceContextHandle() const;
 
 	private:
 		/// Status of the window. True if the window is running as expected, false if it has been closed.
@@ -84,10 +78,15 @@ namespace view
 		/// Represents the window's active state. True if the window is active, false if it's inactive.
 		bool is_active;
 
+		/// The handle to the window.
+		HWND window_handle;
+		/// The handle to the device context for the window.
+		HDC device_context_handle;
+
 		/// NOT IMPLEMENTED.
-		BasicWindow(const BasicWindow&);
+		BasicWin32Window(const BasicWin32Window&);
 		/// NOT IMPLEMENTED.
-		const BasicWindow& operator=(const BasicWindow&);
+		const BasicWin32Window& operator=(const BasicWin32Window&);
 	};
 
 
@@ -96,4 +95,4 @@ namespace view
 
 } //avl
 } //view
-#endif // AVL_VIEW_BASIC_WINDOW__
+#endif // AVL_VIEW_BASIC_WIN32_WINDOW__

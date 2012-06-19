@@ -89,6 +89,8 @@
     <ClCompile Include="src\image\image.cpp" />
     <ClCompile Include="src\log file\log file.cpp" />
     <ClCompile Include="src\settings file\settings file.cpp" />
+    <ClCompile Include="src\sound effect\sound effect.cpp" />
+    <ClCompile Include="src\sound sample\sound sample.cpp" />
     <ClCompile Include="src\sprite\sprite.cpp" />
     <ClCompile Include="src\text box\text box.cpp" />
     <ClCompile Include="src\timer\timer.cpp" />
@@ -100,6 +102,8 @@
     <ClInclude Include="src\image\image.h" />
     <ClInclude Include="src\log file\log file.h" />
     <ClInclude Include="src\settings file\settings file.h" />
+    <ClInclude Include="src\sound effect\sound effect.h" />
+    <ClInclude Include="src\sound sample\sound sample.h" />
     <ClInclude Include="src\sprite\sprite.h" />
     <ClInclude Include="src\text box\text box.h" />
     <ClInclude Include="src\timer\timer.h" />

@@ -16,13 +16,14 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the basic renderer component. See "basic renderer.h" for details.
+Unit test for the basic d3d renderer component. See "basic d3d renderer.h" for details.
 @author Sheldon Bachstein
 @date January 13, 2011
 */
 
-#include"basic renderer.h"
-#include"..\basic window\basic window.h"
+#include"basic d3d renderer.h"
+#include"..\basic win32 window\basic win32 window.h"
+#include"..\win32 error\win32 error.h"
 #include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d wrapper\d3d wrapper.h"
 #include"..\d3d error\d3d error.h"
@@ -35,10 +36,10 @@ Unit test for the basic renderer component. See "basic renderer.h" for details.
 #include<utility>
 
 
-void TestBasicRendererComponent(HINSTANCE instance)
+void TestBasicD3DRendererComponent(HINSTANCE instance)
 {
-	using avl::view::BasicWindow;
-	using avl::view::BasicRenderer;
+	using avl::view::BasicWin32Window;
+	using avl::view::BasicD3DRenderer;
 	using avl::view::d3d::D3DDisplayProfile;
 	using avl::view::d3d::LeastSquaredDisplayProfile;
 	using avl::utility::Vertex2D;
@@ -49,8 +50,8 @@ void TestBasicRendererComponent(HINSTANCE instance)
 	{	
 		// Create a window and renderer.
 		const D3DDisplayProfile profile = LeastSquaredDisplayProfile(500, 500, false);
-		BasicWindow window(instance, "BasicRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
-		BasicRenderer renderer(window.GetWindowHandle(), profile);
+		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profile);
 
 
 
@@ -126,7 +127,7 @@ void TestBasicRendererComponent(HINSTANCE instance)
 	{
 		throw assertion;
 	}
-	catch(avl::view::WindowCreationFailure& window)
+	catch(avl::view::win32::Win32Error& window)
 	{
 		throw window;
 	}

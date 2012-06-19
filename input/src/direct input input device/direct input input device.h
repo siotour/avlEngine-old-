@@ -26,9 +26,10 @@ Defines the interface for the input::DirectInputInputDevice class, which is used
 */
 
 
+#include"..\input device\input device.h"
 #include<queue>
 #include<windows.h>
-/// Define the direct input version to avoid a compiler warning.
+// Defines the direct input version to avoid a compiler warning.
 #ifndef DIRECTINPUT_VERSION
 #define DIRECTINPUT_VERSION 0x800
 #endif
@@ -40,22 +41,14 @@ namespace avl
 {
 namespace input
 {
-	// Forward declaration.
-	class InputEvent;
-
 
 	/** Uses Direct Input to retrieve input events from the keyboard and mouse devices.
 	@todo Modify this class to also record the sequence ID of each input event, and then
 	sort the container which input events are stored in by that sequence ID.
 	*/
-	class DirectInputInputDevice
+	class DirectInputInputDevice: public InputDevice
 	{
 	public:
-		/** A queue of pointers to InputEvents. This is how polled input is reported
-		to the client.*/
-		typedef std::queue<const InputEvent* const> EventQueue;
-
-
 		/** Given the handle to a window, creates an input device to monitor input for
 		that window.
 		@param initial_window_handle The handle of the window we're getting input for.
@@ -70,15 +63,13 @@ namespace input
 		this function assumes ownership of these pointers and they should be
 		deleted when you're done with them.
 		@todo Perhaps this function should strictly maintain ownership of the returned
-		EventQueue, and specify that all of the pointers will remain valid up until the
+		InputQueue, and specify that all of the pointers will remain valid up until the
 		next poll. And then, at each call to PollInput, any old InputEvent pointers are
 		deleted.
-		@return An EventQueue containing all InputEvents since the last call to PollInput()
+		@return An InputQueue containing all InputEvents since the last call to PollInput()
 		or since this device was created.
 		*/
-		EventQueue PollInput();
-
-
+		InputQueue GetInput();
 
 	private:
 
@@ -89,23 +80,27 @@ namespace input
 		\a queue to indicate that the key/button is considered released.
 		@param queue A queue into which any InputEvents should be inserted.
 		*/
-		void ResetDeviceStates(EventQueue& queue);
+		void ResetDeviceStates(InputQueue& queue);
 		/** Attempts to poll the keyboard for new input data. Any new input events
 		are appended to \a queue.
 		@param queue A queue into which any InputEvents should be inserted.
 		*/
-		void PollKeyboard(EventQueue& queue);
+		void PollKeyboard(InputQueue& queue);
 		/** Attempts to poll the mouse for new input data. Any new input events
 		are appended to queue.
 		@param queue A queue into which any InputEvents should be inserted.
 		*/
-		void PollMouse(EventQueue& queue);
+		void PollMouse(InputQueue& queue);
+
+		/** Releases any acquired resources.
+		*/
+		void ReleaseResources();
 
 		/// The handle of the window receiving input.
 		const HWND window_handle;
 
 		/// Pointer to the DirectInput8 interface.
-		LPDIRECTINPUT8 direct_input_interface;
+		LPDIRECTINPUT8 dinput;
 		/// Pointer to the keyboard device.
 		LPDIRECTINPUTDEVICE8 keyboard_device;
 		/// Pointer to the mouse device.

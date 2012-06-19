@@ -129,7 +129,7 @@ namespace key_codes
 		kk_period			= 38,	/**< Period.*/
 		kk_semicolon		= 39,	/**< ;*/
 		kk_apostrophe		= 40,	/**< '*/
-		kk_accent			= 41,	/**< ` (Left of the '1' key).*/	// Key left of 1.
+		kk_accent			= 41,	/**< ` (Left of the '1' key).*/
 
 		// Control characters:
 		kk_space			= 42,	/**< Space bar.*/
@@ -210,15 +210,7 @@ namespace key_codes
 	};
 	};
 
-
-
-
-
-
-}
-}
-}
-
-
-
+} // key_codes
+} // input
+} // avl
 #endif // __AVL_INPUT_KEY_CODES__

@@ -32,8 +32,11 @@ namespace avl
 {
 namespace input
 {
-	/** Acts as a base class for all input events. Derived classes must
+	/**
+	Acts as a base class for all input events. Derived classes must
 	define a literal by which to identify that class.
+	@todo Try to find a better way to differentiate different input event types. Is
+	RTTI appropriate? The use of a constant for each derived class is less than ideal.
 	*/
 	class InputEvent
 	{

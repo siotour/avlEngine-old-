@@ -36,6 +36,12 @@
     <ClInclude Include="src\mouse scroll event\mouse scroll event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\input device\input device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dinput wrapper\dinput wrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\direct input input device\direct input input device.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\mouse scroll event\mouse scroll event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input device\input device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dinput wrapper\dinput wrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

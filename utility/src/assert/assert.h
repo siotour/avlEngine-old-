@@ -88,8 +88,9 @@ namespace utility
 	{
 	public:
 		/** Constructs an AssertVerifyFailure from a file name and line number.
-		\param file Name of the file in which the assertion or verification failed.
-		\param line The line in \a file on which the assertion or verification failed.
+		@param file Name of the file in which the assertion or verification failed.
+		@param line The line in \a file on which the assertion or verification failed.
+		@todo \a line must be parsed to a string, not simply added to the end of the string. 
 		*/
 		AssertVerifyFailure(const std::string& file, const int& line);
 		/** Basic destructor.*/

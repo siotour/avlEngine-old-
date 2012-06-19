@@ -42,15 +42,6 @@
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\view\src\basic window\basic window.t.cpp">
-      <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\view\src\win32 window base\win32 window base.t.cpp">
-      <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\view\src\basic renderer\basic renderer.t.cpp">
-      <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp">
       <Filter>Source Files\view Tests</Filter>
     </ClCompile>
@@ -83,6 +74,36 @@
     </ClCompile>
     <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp">
       <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\window\window.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\win32 wrapper\win32 wrapper.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\win32 error\win32 error.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\basic win32 window\basic win32 window.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\basic d3d renderer\basic d3d renderer.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\input\src\input device\input device.t.cpp">
+      <Filter>Source Files\input Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\input\src\dinput wrapper\dinput wrapper.t.cpp">
+      <Filter>Source Files\input Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\sound effect\sound effect.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sound\src\sound engine\sound engine.t.cpp">
+      <Filter>Source Files\sound Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\sound sample\sound sample.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

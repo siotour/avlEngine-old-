@@ -274,7 +274,6 @@ namespace utility
 
 
 		/** Represents a single row of text within the text box.
-		@todo
 		*/
 		class Row
 		{

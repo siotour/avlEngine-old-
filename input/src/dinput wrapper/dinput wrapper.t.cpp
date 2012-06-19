@@ -16,19 +16,13 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the basic window component. See "basic window.h" for details.
+Unit test for the dinput wrapper component. See "dinput wrapper.h" for details.
 @author Sheldon Bachstein
-@date February 03, 2010
+@date Jun 13, 2012
 */
 
-#include"basic window.h"
+#include"dinput wrapper.h"
 
 
-void TestBasicWindowComponent(HINSTANCE hInstance)
-{
-	avl::view::BasicWindow basic_window(hInstance, "Bleh1", 500, 500);
 
-	while(basic_window.Update() == true)
-	{
-	}
-}
+

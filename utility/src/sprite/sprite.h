@@ -36,7 +36,8 @@ namespace utility
 	class Sprite;
 
 	/** Used for storing multiple Sprites in a light, sortable container. Intended to
-	be used to send a collection of Sprites to a renderer.*/
+	be used to send a collection of Sprites to a renderer.
+	*/
 	typedef std::list<Sprite* const> SpriteList;
 
 	/** Counts the number of visible sprites contained in \a sprites.

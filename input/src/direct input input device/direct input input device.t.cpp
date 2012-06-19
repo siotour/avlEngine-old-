@@ -27,9 +27,10 @@ Unit test for the direct input input device component. See "d3d error.h" for det
 #include"..\mouse move event\mouse move event.h"
 #include"..\mouse button event\mouse button event.h"
 #include"..\mouse scroll event\mouse scroll event.h"
-#include"..\..\..\view\src\basic renderer\basic renderer.h"
-#include"..\..\..\view\src\basic window\basic window.h"
-#include"..\..\..\view\src\basic renderer\basic renderer.h"
+#include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
+#include"..\..\..\view\src\basic win32 window\basic win32 window.h"
+#include"..\..\..\view\src\win32 error\win32 error.h"
+#include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\d3d display profile\d3d display profile.h"
 #include"..\..\..\view\src\d3d error\d3d error.h"
 #include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
@@ -43,20 +44,21 @@ Unit test for the direct input input device component. See "d3d error.h" for det
 
 void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 {
-	using avl::view::BasicWindow;
-	using avl::view::BasicRenderer;
+	using avl::view::BasicWin32Window;
+	using avl::view::BasicD3DRenderer;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
 	using avl::utility::Image;
 	using avl::input::DirectInputInputDevice;
+	using avl::input::InputQueue;
 
 	
-	try
+	//try
 	{	
 		// Create a window and renderer.
-		avl::view::d3d::DisplayProfiles profiles = avl::view::d3d::EnumerateDisplayProfiles();
-		BasicWindow window(instance, "BasicRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
-		BasicRenderer renderer(window.GetWindowHandle(), profiles[42]);
+		avl::view::d3d::D3DDisplayProfile profile = avl::view::d3d::LeastSquaredDisplayProfile(640, 480, true);
+		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profile);
 		DirectInputInputDevice input(window.GetWindowHandle());
 
 
@@ -94,9 +96,10 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 		Vertex2D movement;
 		const float speed = 0.007f;
 		
+		bool exit = false;
 
 		// While the user keeps the window open...
-		while(window.Update() == true)
+		while(window.Update() == true && exit == false)
 		{
 			// If the window has focus, render the quad.
 			if(window.IsActive() == true)
@@ -105,7 +108,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 				renderer.RenderSprites(sprites);
 
 				// Get input.
-				DirectInputInputDevice::EventQueue queue = input.PollInput();
+				InputQueue queue = input.GetInput();
 
 				// Transform sprites.
 				spiral.Move(movement);
@@ -118,7 +121,12 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 					if(input->GetType() == avl::input::KeyboardEvent::KEYBOARD_TYPE)
 					{
 						const avl::input::KeyboardEvent* const keyboard = dynamic_cast<const avl::input::KeyboardEvent* const>(input);
-						if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_up)
+						
+						if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_escape)
+						{
+							exit = true;
+						}
+						else if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_up)
 						{
 							if(keyboard->IsPressed() == true)
 							{
@@ -170,21 +178,21 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 			}
 		}
 	}
-	catch(avl::view::d3d::D3DError& d3d)
-	{
-		throw d3d;
-	}
-	catch(avl::utility::AssertVerifyFailure& assertion)
-	{
-		throw assertion;
-	}
-	catch(avl::view::WindowCreationFailure& window)
-	{
-		throw window;
-	}
-	catch(avl::utility::Exception& avl)
-	{
-		throw avl;
-	}
+	//catch(avl::view::d3d::D3DError& d3d)
+	//{
+	//	throw d3d;
+	//}
+	//catch(avl::utility::AssertVerifyFailure& assertion)
+	//{
+	//	throw assertion;
+	//}
+	//catch(avl::view::win32::Win32Error& window)
+	//{
+	//	throw window;
+	//}
+	//catch(avl::utility::Exception& avl)
+	//{
+	//	throw avl;
+	//}
 	
 }

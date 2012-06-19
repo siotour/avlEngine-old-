@@ -95,23 +95,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\input\src\dinput wrapper\dinput wrapper.t.cpp" />
     <ClCompile Include="..\input\src\direct input input device\direct input input device.t.cpp" />
+    <ClCompile Include="..\input\src\input device\input device.t.cpp" />
+    <ClCompile Include="..\sound\src\sound engine\sound engine.t.cpp" />
     <ClCompile Include="..\utility\src\assert\assert.t.cpp" />
     <ClCompile Include="..\utility\src\exceptions\exceptions.t.cpp" />
     <ClCompile Include="..\utility\src\image\image.t.cpp" />
     <ClCompile Include="..\utility\src\log file\log file.t.cpp" />
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp" />
+    <ClCompile Include="..\utility\src\sound effect\sound effect.t.cpp" />
+    <ClCompile Include="..\utility\src\sound sample\sound sample.t.cpp" />
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp" />
     <ClCompile Include="..\utility\src\text box\text box.t.cpp" />
     <ClCompile Include="..\utility\src\timer\timer.t.cpp" />
     <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp" />
-    <ClCompile Include="..\view\src\basic renderer\basic renderer.t.cpp" />
-    <ClCompile Include="..\view\src\basic window\basic window.t.cpp" />
+    <ClCompile Include="..\view\src\basic d3d renderer\basic d3d renderer.t.cpp" />
+    <ClCompile Include="..\view\src\basic win32 window\basic win32 window.t.cpp" />
     <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp" />
     <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp" />
     <ClCompile Include="..\view\src\d3d wrapper\d3d wrapper.t.cpp" />
     <ClCompile Include="..\view\src\renderer\renderer.t.cpp" />
-    <ClCompile Include="..\view\src\win32 window base\win32 window base.t.cpp" />
+    <ClCompile Include="..\view\src\win32 error\win32 error.t.cpp" />
+    <ClCompile Include="..\view\src\win32 wrapper\win32 wrapper.t.cpp" />
+    <ClCompile Include="..\view\src\window\window.t.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

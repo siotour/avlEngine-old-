@@ -24,3 +24,6 @@ The library is composed of five subsystems:
 		an event-based paradigm.
 -model:		Provides an infrastructure for representing abstract
 		entities in a uniform, manageable way.
+
+The subsystems may be used indepedent of the others, except that
+each subsystem depends upon the utility subsystem.
