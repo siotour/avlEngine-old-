@@ -72,7 +72,7 @@ namespace view
 		@throws D3DError If unable to create the texture.
 		@todo This function currently only supports 32-bit textures.
 		*/
-		const utility::Sprite::TextureHandle AddTexture(const utility::Image& image);
+		const utility::Sprite::TextureHandle AddTexture(const view::Image& image);
 
 		/** Releases the texture associated with the texture handle \a texture_handle.
 		If \a texture_handle is not associated with a texture, then nothing happens.
@@ -80,6 +80,12 @@ namespace view
 		@param texture_handle The handle to the texture to be deleted.
 		*/
 		void DeleteTexture(const utility::Sprite::TextureHandle& texture_handle);
+
+		/** Deletes all textures and renders the handles associated with them invalid.
+		@post All previously issued texture handles will be rendered invalid, but they
+		may become associated with new textures in the future.
+		*/
+		void ClearTextures();
 
 		/** Renders a list of sprites.
 		@warning \a sprites may very well be modified during this operation (though

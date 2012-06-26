@@ -230,4 +230,4 @@ namespace d3d
 } // d3d
 } // view
 } // avl
-#endif AVL_VIEW_D3D_D3D_WRAPPER__
+#endif // AVL_VIEW_D3D_D3D_WRAPPER__

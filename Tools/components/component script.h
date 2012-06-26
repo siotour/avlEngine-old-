@@ -37,4 +37,4 @@ namespace <project>
 
 } // <project>
 } // <solution>
-#endif <solution_upper>_<project_upper>_<component_upper>__
+#endif // <solution_upper>_<project_upper>_<component_upper>__

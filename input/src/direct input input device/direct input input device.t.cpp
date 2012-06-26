@@ -33,10 +33,10 @@ Unit test for the direct input input device component. See "d3d error.h" for det
 #include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\d3d display profile\d3d display profile.h"
 #include"..\..\..\view\src\d3d error\d3d error.h"
+#include"..\..\..\view\src\image\image.h"
 #include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\assert\assert.h"
-#include"..\..\..\utility\src\image\image.h"
 #include<fstream>
 #include<list>
 #include<utility>
@@ -48,7 +48,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 	using avl::view::BasicD3DRenderer;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
-	using avl::utility::Image;
+	using avl::view::Image;
 	using avl::input::DirectInputInputDevice;
 	using avl::input::InputQueue;
 

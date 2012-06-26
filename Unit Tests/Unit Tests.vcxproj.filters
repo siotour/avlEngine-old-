@@ -45,9 +45,6 @@
     <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp">
       <Filter>Source Files\view Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\utility\src\image\image.t.cpp">
-      <Filter>Source Files\utility Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
@@ -102,8 +99,23 @@
     <ClCompile Include="..\sound\src\sound engine\sound engine.t.cpp">
       <Filter>Source Files\sound Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\utility\src\sound sample\sound sample.t.cpp">
+    <ClCompile Include="..\sound\src\xaudio2 sound engine\xaudio2 sound engine.t.cpp">
+      <Filter>Source Files\sound Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\file operations\file operations.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sound\src\sound sample\sound sample.t.cpp">
+      <Filter>Source Files\sound Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\image\image.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sound\src\load wav file\load wav file.t.cpp">
+      <Filter>Source Files\sound Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sound\src\xaudio2 wrapper\xaudio2 wrapper.t.cpp">
+      <Filter>Source Files\sound Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

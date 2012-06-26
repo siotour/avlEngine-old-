@@ -88,4 +88,4 @@ namespace win32
 } // win32
 } // view
 } // avl
-#endif AVL_VIEW_WIN32_WRAPPER__
+#endif // AVL_VIEW_WIN32_WRAPPER__

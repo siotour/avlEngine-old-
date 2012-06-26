@@ -27,10 +27,10 @@ Unit test for the basic d3d renderer component. See "basic d3d renderer.h" for d
 #include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d wrapper\d3d wrapper.h"
 #include"..\d3d error\d3d error.h"
+#include"..\image\image.h"
 #include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\assert\assert.h"
-#include"..\..\..\utility\src\image\image.h"
 #include<fstream>
 #include<list>
 #include<utility>
@@ -44,7 +44,7 @@ void TestBasicD3DRendererComponent(HINSTANCE instance)
 	using avl::view::d3d::LeastSquaredDisplayProfile;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
-	using avl::utility::Image;
+	using avl::view::Image;
 	
 	try
 	{	

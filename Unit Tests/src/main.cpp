@@ -32,29 +32,31 @@ void TestSpriteComponent();
 void TestDirectInputInputDeviceComponent(HINSTANCE);
 void TestTextBoxComponent(HINSTANCE);
 
-void BugFixing(HINSTANCE);
-
-int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
-{
-	//TestBasicD3DRendererComponent(instance);
-	TestDirectInputInputDeviceComponent(instance);
-	//TestTextBoxComponent(instance);
-
-	
-
-	return 0;
-}
-
-
-
-//#include<iostream>
-void TestSettingsFileComponent();
-//void TestTexturedQuadComponent();
-
-//int main()
+//int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
 //{
-//	//TestVertex2DComponent();
-//	//TestSpriteComponent();
-//	TestSettingsFileComponent();
+//	//TestBasicD3DRendererComponent(instance);
+//	TestDirectInputInputDeviceComponent(instance);
+//	//TestTextBoxComponent(instance);
+//
+//	
+//
 //	return 0;
 //}
+
+
+
+#include<iostream>
+void TestSettingsFileComponent();
+void TestTexturedQuadComponent();
+void TestXAudio2SoundEngineComponent();
+void TestFileOperationsComponent();
+
+int main()
+{
+	//TestVertex2DComponent();
+	//TestSpriteComponent();
+	//TestSettingsFileComponent();
+	TestXAudio2SoundEngineComponent();
+	//TestFileOperationsComponent();
+	return 0;
+}

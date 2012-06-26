@@ -34,10 +34,10 @@ Unit test for the text box component. See "text box.h" for details.
 #include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\d3d display profile\d3d display profile.h"
 #include"..\..\..\view\src\d3d error\d3d error.h"
+#include"..\..\..\view\src\image\image.h"
 #include"..\vertex 2d\vertex 2d.h"
 #include"..\sprite\sprite.h"
 #include"..\assert\assert.h"
-#include"..\image\image.h"
 #include<fstream>
 #include<list>
 #include<utility>
@@ -49,7 +49,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
 	using avl::utility::TextBox;
-	using avl::utility::Image;
+	using avl::view::Image;
 	using avl::input::DirectInputInputDevice;
 
 	

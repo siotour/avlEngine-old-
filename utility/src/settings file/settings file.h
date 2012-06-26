@@ -22,9 +22,8 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 Loads formatted settings data from a text file.
 @author Sheldon Bachstein
 @date Dec 29, 2010
-@todo Completely renovate this component so that it supports editing a settings file
-(requires changing the size of the file using _chsize_s()). Will require a complete overhaul
-and increase complexity dramatically.
+@todo Rewrite this to make use of the file operations component.
+@todo Add the capability of adding new settings to a settings file.
 */
 
 

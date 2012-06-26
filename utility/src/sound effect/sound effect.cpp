@@ -61,7 +61,7 @@ namespace utility
 	}
 		
 	// See method declaration for details.	
-	void SoundEffect::Play(const bool loop = false)
+	void SoundEffect::Play(const bool loop)
 	{
 		is_playing = true;
 		is_looping = loop;
@@ -81,7 +81,7 @@ namespace utility
 	}
 
 	// See method declaration for details.	
-	void SoundEffect::Reset(const bool set_reset = true)
+	void SoundEffect::Reset(const bool set_reset)
 	{
 		reset = set_reset;
 	}

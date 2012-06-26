@@ -24,9 +24,6 @@
     <ClCompile Include="src\log file\log file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\image\image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\vertex 2d\vertex 2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,7 +42,7 @@
     <ClCompile Include="src\sound effect\sound effect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sound sample\sound sample.cpp">
+    <ClCompile Include="src\file operations\file operations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -57,9 +54,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\log file\log file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\image\image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vertex 2d\vertex 2d.h">
@@ -80,7 +74,7 @@
     <ClInclude Include="src\sound effect\sound effect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\sound sample\sound sample.h">
+    <ClInclude Include="src\file operations\file operations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

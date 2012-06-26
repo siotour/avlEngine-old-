@@ -24,6 +24,9 @@ enumerations for mouse buttons, keyboard modifier keys (capslock, shift, ctrl, e
 and keyboard keys.
 @author Sheldon Bachstein
 @date Sep 03, 2011
+@todo Make use of C++11's strongly typed enumerations. Get rid of the enclosing
+classes around these enumerations and turn the enumerations into strongly typed
+enumerations.
 */
 
 

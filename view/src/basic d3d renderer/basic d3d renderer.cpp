@@ -25,10 +25,10 @@ Implementation for the basic d3d renderer component. See "basic d3d renderer.h" 
 #include"..\d3d wrapper\d3d wrapper.h"
 #include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d error\d3d error.h"
+#include"..\image\image.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\assert\assert.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
-#include"..\..\..\utility\src\image\image.h"
 #include<new>
 // Makes d3d9 activate additional debug information and checking.
 #ifdef _DEBUG
@@ -78,8 +78,6 @@ namespace view
 	}
 
 
-
-
 	// See method declaration for details.
 	BasicD3DRenderer::~BasicD3DRenderer()
 	{
@@ -87,10 +85,8 @@ namespace view
 	}
 
 
-
-
 	// See method declaration for details.
-	const utility::Sprite::TextureHandle BasicD3DRenderer::AddTexture(const utility::Image& image)
+	const utility::Sprite::TextureHandle BasicD3DRenderer::AddTexture(const view::Image& image)
 	{
 		ASSERT(image.GetPixelData() != NULL);
 		ASSERT(image.GetWidth() > 0);
@@ -120,8 +116,6 @@ namespace view
 	}
 
 
-
-
 	// See method declaration for details.
 	void BasicD3DRenderer::DeleteTexture(const utility::Sprite::TextureHandle& texture_handle)
 	{
@@ -140,6 +134,18 @@ namespace view
 	}
 
 
+	// See method declaration for details.
+	void BasicD3DRenderer::ClearTextures()
+	{
+		// Go through and release each of the textures in the texture map.
+		d3d::TexHandleToTex::iterator end = textures.end();
+		for(d3d::TexHandleToTex::iterator i = textures.begin(); i != end; ++i)
+		{
+			i->second->Release();
+		}
+		// Delete all of the textures from the map.
+		textures.clear();
+	}
 
 
 	// See method declaration for details.
@@ -161,10 +167,7 @@ namespace view
 		}
 	}
 
-	
-	
-	
-	
+
 	// Releases the index buffer and vertex buffer. This is called when the device is lost.
 	void BasicD3DRenderer::ReleaseUnmanagedAssets()
 	{
@@ -179,8 +182,6 @@ namespace view
 			index_buffer = NULL;
 		}
 	}
-
-
 
 
 	// Creates the index buffer and vertex buffer. This is called upon initialization and when the
@@ -231,14 +232,8 @@ namespace view
 	// See method declaration for details.
 	void BasicD3DRenderer::Release()
 	{
-		// Go through and release each of the textures in the texture map.
-		d3d::TexHandleToTex::iterator end = textures.end();
-		for(d3d::TexHandleToTex::iterator i = textures.begin(); i != end; ++i)
-		{
-			i->second->Release();
-		}
-		// Delete all of the textures from the map.
-		textures.clear();
+		// Release all textures.
+		ClearTextures();
 		// Release all unmanaged assets.
 		ReleaseUnmanagedAssets();
 		// Release all Direct3D interfaces.
@@ -253,6 +248,7 @@ namespace view
 			d3d = NULL;
 		}
 	}
+
 
 	// See method declaration for details.
 	const bool BasicD3DRenderer::CheckDeviceState()
@@ -314,7 +310,6 @@ namespace view
 
 
 
-
 	// Anonymous namespace.
 	namespace
 	{
@@ -339,7 +334,6 @@ namespace view
 			}
 			return false;
 		}
-
 
 	}
 

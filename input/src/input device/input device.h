@@ -60,4 +60,4 @@ namespace input
 
 } // input
 } // avl
-#endif AVL_INPUT_INPUT_DEVICE__
+#endif // AVL_INPUT_INPUT_DEVICE__

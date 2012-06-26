@@ -24,9 +24,9 @@ Defines the \ref avl::view::Renderer class and the \ref avl::view::RendererExcep
 @date Dec 29, 2011
 */
 
+#include"..\image\image.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
-#include"..\..\..\utility\src\image\image.h"
 #include<string>
 
 
@@ -52,7 +52,7 @@ namespace view
 		@return A texture handle used to access \a image as a texture. This texture handle may be
 		used to render \a image.
 		*/
-		virtual const utility::Sprite::TextureHandle AddTexture(const utility::Image& image) = 0;
+		virtual const utility::Sprite::TextureHandle AddTexture(const view::Image& image) = 0;
 
 		/** Removes the texture associated with \a handle so that it will be freed from memory
 		and will no longer be able to be rendered.
@@ -60,6 +60,12 @@ namespace view
 		@param handle The texture handle to delete.
 		*/
 		virtual void DeleteTexture(const utility::Sprite::TextureHandle& handle) = 0;
+
+		/** Deletes all textures and renders the handles associated with them invalid.
+		@post All previously issued texture handles will be rendered invalid, but they
+		may become associated with new textures in the future.
+		*/
+		virtual void ClearTextures() = 0;
 
 		/** Renders \a sprites to the screen. Details may vary depending on implementation.
 		@attention Note that this function takes a non-const reference of \a sprites, and as
@@ -116,4 +122,4 @@ namespace view
 
 } // view
 } // avl
-#endif AVL_VIEW_RENDERER__
+#endif // AVL_VIEW_RENDERER__

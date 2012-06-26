@@ -42,6 +42,9 @@
     <ClInclude Include="src\basic d3d renderer\basic d3d renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\image\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\d3d display profile\d3d display profile.cpp">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\basic d3d renderer\basic d3d renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\image\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

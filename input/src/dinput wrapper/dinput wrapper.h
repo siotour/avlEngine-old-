@@ -101,4 +101,4 @@ namespace dinput
 } // dinput
 } // input
 } // avl
-#endif AVL_INPUT_DINPUT_WRAPPER__
+#endif // AVL_INPUT_DINPUT_WRAPPER__

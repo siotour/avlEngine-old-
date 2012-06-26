@@ -68,9 +68,9 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>user32.lib;winmm.lib;d3d9.lib;dinput8.lib;dxguid.lib;avl-utility_debug.lib;avl-view_debug.lib;avl-input_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;winmm.lib;d3d9.lib;dinput8.lib;dxguid.lib;avl-utility_debug.lib;avl-view_debug.lib;avl-input_debug.lib;avl-sound_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,25 +87,28 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>user32.lib;winmm.lib;d3d9.lib;dinput8.lib;dxguid.lib;avl-view.lib;avl-utility.lib;avl-input.lib</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;winmm.lib;d3d9.lib;dinput8.lib;dxguid.lib;avl-view.lib;avl-utility.lib;avl-input.lib;avl-sound.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\input\src\dinput wrapper\dinput wrapper.t.cpp" />
     <ClCompile Include="..\input\src\direct input input device\direct input input device.t.cpp" />
     <ClCompile Include="..\input\src\input device\input device.t.cpp" />
+    <ClCompile Include="..\sound\src\load wav file\load wav file.t.cpp" />
     <ClCompile Include="..\sound\src\sound engine\sound engine.t.cpp" />
+    <ClCompile Include="..\sound\src\sound sample\sound sample.t.cpp" />
+    <ClCompile Include="..\sound\src\xaudio2 sound engine\xaudio2 sound engine.t.cpp" />
+    <ClCompile Include="..\sound\src\xaudio2 wrapper\xaudio2 wrapper.t.cpp" />
     <ClCompile Include="..\utility\src\assert\assert.t.cpp" />
     <ClCompile Include="..\utility\src\exceptions\exceptions.t.cpp" />
-    <ClCompile Include="..\utility\src\image\image.t.cpp" />
+    <ClCompile Include="..\utility\src\file operations\file operations.t.cpp" />
     <ClCompile Include="..\utility\src\log file\log file.t.cpp" />
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp" />
     <ClCompile Include="..\utility\src\sound effect\sound effect.t.cpp" />
-    <ClCompile Include="..\utility\src\sound sample\sound sample.t.cpp" />
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp" />
     <ClCompile Include="..\utility\src\text box\text box.t.cpp" />
     <ClCompile Include="..\utility\src\timer\timer.t.cpp" />
@@ -115,6 +118,7 @@
     <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp" />
     <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp" />
     <ClCompile Include="..\view\src\d3d wrapper\d3d wrapper.t.cpp" />
+    <ClCompile Include="..\view\src\image\image.t.cpp" />
     <ClCompile Include="..\view\src\renderer\renderer.t.cpp" />
     <ClCompile Include="..\view\src\win32 error\win32 error.t.cpp" />
     <ClCompile Include="..\view\src\win32 wrapper\win32 wrapper.t.cpp" />

@@ -68,4 +68,4 @@ namespace view
 
 } // view
 } // avl
-#endif AVL_VIEW_WINDOW__
+#endif // AVL_VIEW_WINDOW__

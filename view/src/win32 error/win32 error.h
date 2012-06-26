@@ -63,4 +63,4 @@ namespace win32
 } // win32
 } // view
 } // avl
-#endif AVL_VIEW_WIN32_ERROR__
+#endif // AVL_VIEW_WIN32_ERROR__
