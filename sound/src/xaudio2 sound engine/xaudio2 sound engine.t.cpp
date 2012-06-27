@@ -45,7 +45,8 @@ void TestXAudio2SoundEngineComponent()
 	SoundEffect::SoundHandle handle = engine.AddSound(sample);
 
 	SoundEffect effect(handle);
-	effect.Play(true);
+	effect.Play();
+	effect.Loop(true);
 	SoundEffectList list;
 	list.insert(list.end(), &effect);
 	

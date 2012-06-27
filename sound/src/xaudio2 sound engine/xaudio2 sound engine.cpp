@@ -189,6 +189,10 @@ namespace sound
 	{
 		// Iterate through voices and find any finished (buffers < 1) voices
 		// which don't have a corresponding sound sample in sounds -- delete them.
+		// Since modifying a map isn't supported while iterating through it, here
+		// we store all kept elements in a temporary map and then update the original
+		// one after we're done with modifications.
+		SoundEffectToVoice kept_voices;
 		XAUDIO2_VOICE_STATE voice_state;
 		for(auto voice = voices.begin(); voice != voices.end(); ++voice)
 		{
@@ -198,13 +202,25 @@ namespace sound
 				utility::SoundEffectList::const_iterator effect = std::find(sound_effects.begin(), sound_effects.end(), voice->first);
 				if(effect == sound_effects.end())
 				{
-					// Delete voice.
+					// Delete this voice.
 					voice->second->Stop();
 					voice->second->DestroyVoice();
-					voices.erase(voice);
+				}
+				else
+				{
+					// Keep this voice.
+					kept_voices.insert(*voice);
 				}
 			}
+			else
+			{
+				// Keep this voice.
+				kept_voices.insert(*voice);
+			}
 		}
+		// Only preserve the kept voices.
+		voices.clear();
+		voices.insert(kept_voices.begin(), kept_voices.end());
 	}
 
 	// See method declaration for details.

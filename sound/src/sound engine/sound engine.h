@@ -19,7 +19,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Defines the \ref avl::utility::Sound::SoundEngine interface.
+Defines the \ref avl::sound::SoundEngine interface.
 @author Sheldon Bachstein
 @date Jun 17, 2012
 */

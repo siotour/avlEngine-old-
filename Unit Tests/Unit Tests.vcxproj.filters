@@ -117,5 +117,8 @@
     <ClCompile Include="..\sound\src\xaudio2 wrapper\xaudio2 wrapper.t.cpp">
       <Filter>Source Files\sound Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\model\src\entity\entity.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

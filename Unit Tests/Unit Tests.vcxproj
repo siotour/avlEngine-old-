@@ -98,6 +98,7 @@
     <ClCompile Include="..\input\src\dinput wrapper\dinput wrapper.t.cpp" />
     <ClCompile Include="..\input\src\direct input input device\direct input input device.t.cpp" />
     <ClCompile Include="..\input\src\input device\input device.t.cpp" />
+    <ClCompile Include="..\model\src\entity\entity.t.cpp" />
     <ClCompile Include="..\sound\src\load wav file\load wav file.t.cpp" />
     <ClCompile Include="..\sound\src\sound engine\sound engine.t.cpp" />
     <ClCompile Include="..\sound\src\sound sample\sound sample.t.cpp" />

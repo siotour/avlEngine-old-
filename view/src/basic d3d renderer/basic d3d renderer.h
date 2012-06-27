@@ -36,15 +36,13 @@ Defines the \ref avl::view::BasicD3DRenderer class.
 
 namespace avl
 {
-// Forward declaration.
-namespace utility{class Image;}
-
 namespace view
 {
 	
 
-	// Forward declaration.
+	// Forward declarations.
 	class D3DDisplayProfile;
+	class Image;
 
 	/**
 	Implements the \ref avl::view::Renderer interface using Direct3D.
@@ -72,7 +70,7 @@ namespace view
 		@throws D3DError If unable to create the texture.
 		@todo This function currently only supports 32-bit textures.
 		*/
-		const utility::Sprite::TextureHandle AddTexture(const view::Image& image);
+		const utility::Sprite::TextureHandle AddTexture(const Image& image);
 
 		/** Releases the texture associated with the texture handle \a texture_handle.
 		If \a texture_handle is not associated with a texture, then nothing happens.

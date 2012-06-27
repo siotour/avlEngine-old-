@@ -52,7 +52,7 @@ namespace view
 		@return A texture handle used to access \a image as a texture. This texture handle may be
 		used to render \a image.
 		*/
-		virtual const utility::Sprite::TextureHandle AddTexture(const view::Image& image) = 0;
+		virtual const utility::Sprite::TextureHandle AddTexture(const Image& image) = 0;
 
 		/** Removes the texture associated with \a handle so that it will be freed from memory
 		and will no longer be able to be rendered.

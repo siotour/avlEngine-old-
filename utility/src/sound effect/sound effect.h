@@ -51,9 +51,15 @@ namespace utility
 		*/
 		typedef unsigned int SoundHandle;
 
+		/** Basic constructor.
+		@post \ref sound_handle is initialized to 0, the new effect will be paused,
+		unlooping, and have a volume of 1.0f.
+		*/
+		SoundEffect();
 
 		/** Basic constructor.
-		@post The newly constructor effect will be paused.
+		@post The newly constructor effect will be paused, unlooping, and have
+		a volume of 1.0f.
 		@param handle The sound which this object represents.
 		*/
 		SoundEffect(const SoundHandle handle);
@@ -74,17 +80,15 @@ namespace utility
 		*/
 		void SetVolume(const float& new_volume);
 		
-		/** Plays this sound effect with or without looping.
+		/** Plays this sound effect, or resets it if it's already playing.
 		@note If left alone by the user, this property will remain set until
 		the sound has finished playing and the sound engine updates the
 		property.
 		@post This function unpauses a sound after Pause() has been called.
-		Calling this function while a sound is playing has no effect other
-		than potentially changing the looping of the sound.
-		@param loop Specifies whether or not this sound should loop. Defaults
-		to false.
+		Calling this function while a sound is playing resets the sound to
+		play from the beginning.
 		*/
-		void Play(const bool loop = false);
+		void Play();
 		
 		/** Pauses this sound effect's playing.
 		@post This function pauses a sound after Play() has been called.
@@ -94,6 +98,10 @@ namespace utility
 		/** Pauses and resets this sound.
 		*/
 		void Stop();
+
+		/** Turns looping on or off.
+		*/
+		void Loop(const bool loop);
 
 		/** Changes whether or not this sound effect needs to be reset to
 		the beginning.

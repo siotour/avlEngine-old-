@@ -19,7 +19,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Defines the \ref XAudio2SoundEngine class.
+Defines the \ref avl::sound::XAudio2SoundEngine class.
 @author Sheldon Bachstein
 @date Jun 18, 2012
 */
@@ -86,6 +86,7 @@ namespace sound
 		/** Deletes all unused voices.
 		@param sound_effects Used to determine whether or not a voice is still
 		in use.
+		@todo See if there's a more elegant way of cleaning up a map.
 		*/
 		void CleanupVoices(utility::SoundEffectList& sound_effects);
 

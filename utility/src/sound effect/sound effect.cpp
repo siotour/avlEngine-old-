@@ -29,6 +29,12 @@ namespace avl
 namespace utility
 {
 	// See method declaration for details.
+	SoundEffect::SoundEffect()
+		: sound_handle(0), volume(1.0f), is_playing(false), is_looping(false), reset(false)
+	{
+	}
+
+	// See method declaration for details.
 	SoundEffect::SoundEffect(const SoundEffect::SoundHandle handle)
 		: sound_handle(handle), volume(1.0f), is_playing(false), is_looping(false), reset(false)
 	{
@@ -61,10 +67,16 @@ namespace utility
 	}
 		
 	// See method declaration for details.	
-	void SoundEffect::Play(const bool loop)
+	void SoundEffect::Play()
 	{
-		is_playing = true;
-		is_looping = loop;
+		if(is_playing == true)
+		{
+			reset = true;
+		}
+		else
+		{
+			is_playing = true;
+		}
 	}
 		
 	// See method declaration for details.	
@@ -78,6 +90,12 @@ namespace utility
 	{
 		is_playing = false;
 		reset = true;
+	}
+
+	// See method declaration for details.
+	void SoundEffect::Loop(const bool loop)
+	{
+		is_looping = loop;
 	}
 
 	// See method declaration for details.	
