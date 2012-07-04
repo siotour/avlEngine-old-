@@ -27,6 +27,7 @@ Defines the \ref avl::view::Renderer class and the \ref avl::view::RendererExcep
 #include"..\image\image.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include<string>
 
 
@@ -40,8 +41,13 @@ namespace view
 	class Renderer
 	{
 	public:
-		/** Basic constructor.*/
-		Renderer();
+		/** Basic constructor.
+		@param screen_space The adjusted screen resolution for the renderer. 
+		The center of the screen will be at (0, 0). The x component will specify
+		the distance from the center to either side, and the y component will
+		specify the distance from the center to the top or bottom.
+		*/
+		Renderer(const avl::utility::Vertex2D& screen_space);
 		/** Basic destructor.*/
 		virtual ~Renderer();
 
@@ -78,6 +84,13 @@ namespace view
 		perform the rendering.
 		*/
 		virtual void RenderSprites(utility::SpriteList& sprites) = 0;
+
+	protected:
+		/// The adjusted screen resolution for the renderer. The center of
+		/// the screen will be at (0, 0). The x component will specify the
+		/// distance from the center to either side, and the y component will
+		/// specify the distance from the center to the top or bottom.
+		const avl::utility::Vertex2D screen_space_resolution;
 
 	private:
 

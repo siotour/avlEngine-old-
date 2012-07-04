@@ -27,6 +27,7 @@ Defines the interface for the input::DirectInputInputDevice class, which is used
 
 
 #include"..\input device\input device.h"
+#include"..\..\..\utility\src\input events\input events.h"
 #include<queue>
 #include<windows.h>
 // Defines the direct input version to avoid a compiler warning.
@@ -54,7 +55,8 @@ namespace input
 		@param initial_window_handle The handle of the window we're getting input for.
 		*/
 		DirectInputInputDevice(const HWND& initial_window_handle);
-		/** Frees all resources for this device.*/
+		/** Frees all resources for this device.
+		*/
 		~DirectInputInputDevice();
 
 		/** Polls for mouse and keyboard input and returns a queue of any new input
@@ -62,14 +64,10 @@ namespace input
 		@attention The returned queue contains pointers to the input events. Calling
 		this function assumes ownership of these pointers and they should be
 		deleted when you're done with them.
-		@todo Perhaps this function should strictly maintain ownership of the returned
-		InputQueue, and specify that all of the pointers will remain valid up until the
-		next poll. And then, at each call to PollInput, any old InputEvent pointers are
-		deleted.
-		@return An InputQueue containing all InputEvents since the last call to PollInput()
+		@return An utility::utility::input_events::InputQueue containing all InputEvents since the last call to PollInput()
 		or since this device was created.
 		*/
-		InputQueue GetInput();
+		utility::input_events::InputQueue GetInput();
 
 	private:
 
@@ -80,17 +78,17 @@ namespace input
 		\a queue to indicate that the key/button is considered released.
 		@param queue A queue into which any InputEvents should be inserted.
 		*/
-		void ResetDeviceStates(InputQueue& queue);
+		void ResetDeviceStates(utility::input_events::InputQueue& queue);
 		/** Attempts to poll the keyboard for new input data. Any new input events
 		are appended to \a queue.
 		@param queue A queue into which any InputEvents should be inserted.
 		*/
-		void PollKeyboard(InputQueue& queue);
+		void PollKeyboard(utility::input_events::InputQueue& queue);
 		/** Attempts to poll the mouse for new input data. Any new input events
 		are appended to queue.
 		@param queue A queue into which any InputEvents should be inserted.
 		*/
-		void PollMouse(InputQueue& queue);
+		void PollMouse(utility::input_events::InputQueue& queue);
 
 		/** Releases any acquired resources.
 		*/

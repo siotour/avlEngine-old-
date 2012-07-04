@@ -45,6 +45,9 @@
     <ClInclude Include="src\image\image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\d3d display profile\d3d display profile.cpp">

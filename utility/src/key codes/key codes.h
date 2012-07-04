@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __AVL_INPUT_KEY_CODES__
-#define __AVL_INPUT_KEY_CODES__
+#ifndef __AVL_UTILITY_KEY_CODES__
+#define __AVL_UTILITY_KEY_CODES__
 /* Copyright 2012 Sheldon Bachstein
 This file is part of the avl Library.
 
@@ -34,7 +34,7 @@ enumerations.
 
 namespace avl
 {
-namespace input
+namespace utility
 {
 namespace key_codes
 {
@@ -214,6 +214,6 @@ namespace key_codes
 	};
 
 } // key_codes
-} // input
+} // utility
 } // avl
-#endif // __AVL_INPUT_KEY_CODES__
+#endif // __AVL_UTILITY_KEY_CODES__

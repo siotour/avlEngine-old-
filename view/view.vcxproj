@@ -18,6 +18,7 @@
     <ClInclude Include="src\d3d wrapper\d3d wrapper.h" />
     <ClInclude Include="src\image\image.h" />
     <ClInclude Include="src\renderer\renderer.h" />
+    <ClInclude Include="src\view.h" />
     <ClInclude Include="src\win32 error\win32 error.h" />
     <ClInclude Include="src\win32 wrapper\win32 wrapper.h" />
     <ClInclude Include="src\window\window.h" />

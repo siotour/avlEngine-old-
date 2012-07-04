@@ -14,22 +14,12 @@
     <ClInclude Include="src\dinput wrapper\dinput wrapper.h" />
     <ClInclude Include="src\direct input input device\direct input input device.h" />
     <ClInclude Include="src\input device\input device.h" />
-    <ClInclude Include="src\input event\input event.h" />
-    <ClInclude Include="src\key codes\key codes.h" />
-    <ClInclude Include="src\keyboard event\keyboard event.h" />
-    <ClInclude Include="src\mouse button event\mouse button event.h" />
-    <ClInclude Include="src\mouse move event\mouse move event.h" />
-    <ClInclude Include="src\mouse scroll event\mouse scroll event.h" />
+    <ClInclude Include="src\input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dinput wrapper\dinput wrapper.cpp" />
     <ClCompile Include="src\direct input input device\direct input input device.cpp" />
     <ClCompile Include="src\input device\input device.cpp" />
-    <ClCompile Include="src\input event\input event.cpp" />
-    <ClCompile Include="src\keyboard event\keyboard event.cpp" />
-    <ClCompile Include="src\mouse button event\mouse button event.cpp" />
-    <ClCompile Include="src\mouse move event\mouse move event.cpp" />
-    <ClCompile Include="src\mouse scroll event\mouse scroll event.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8D642C24-EA3E-4D48-A796-FAC82FFC8D3C}</ProjectGuid>

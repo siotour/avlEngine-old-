@@ -45,12 +45,12 @@ namespace win32
 		window_class.cbClsExtra = 0;
 		window_class.cbWndExtra = 0;
 		window_class.hInstance = instance_handle;
-		window_class.hIcon = NULL;
-		window_class.hCursor = NULL;
-		window_class.hbrBackground = NULL;
-		window_class.lpszMenuName = NULL;
+		window_class.hIcon = nullptr;
+		window_class.hCursor = nullptr;
+		window_class.hbrBackground = nullptr;
+		window_class.lpszMenuName = nullptr;
 		window_class.lpszClassName = window_title.c_str();
-		window_class.hIconSm = NULL;
+		window_class.hIconSm = nullptr;
 
 		// Attempt to register the class.
 		ATOM window_atom = RegisterClassEx(&window_class);
@@ -67,10 +67,10 @@ namespace win32
 	HWND MakeWindow(HINSTANCE instance_handle, const std::string& window_title, const int width, const int height)
 	{
 		// Attempt to create the window.
-		HWND window_handle = CreateWindowEx(WS_EX_LEFT, window_title.c_str(), window_title.c_str(), WS_BORDER, CW_USEDEFAULT, CW_USEDEFAULT, width, height, NULL, NULL, instance_handle, NULL);
+		HWND window_handle = CreateWindowEx(WS_EX_LEFT, window_title.c_str(), window_title.c_str(), WS_BORDER, CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, instance_handle, nullptr);
 
 		// Did we fail to create the window?
-		if (window_handle == NULL)
+		if (window_handle == nullptr)
 		{
 			std::string description = "Unable to create the window titled " + window_title + ".";
 			throw Win32Error(description);
@@ -81,14 +81,14 @@ namespace win32
 	// See function declaration for details.
 	HDC AttainDeviceContext(HWND window_handle)
 	{
-		if(window_handle == NULL)
+		if(window_handle == nullptr)
 		{
-			throw utility::InvalidArgumentException("avl::view::win32::AttainDeviceContext()", "window_handle", "window_handle must be non-NULL");
+			throw utility::InvalidArgumentException("avl::view::win32::AttainDeviceContext()", "window_handle", "window_handle must be non-nullptr");
 		}
 		// Attempt to get the device context handle.
 		HDC device_context_handle = GetDC(window_handle);
 		// If attempt failed, throw WindowCreationFailure.
-		if (device_context_handle == NULL)
+		if (device_context_handle == nullptr)
 		{
 			throw Win32Error("Unable to attain the device context handle for a window.");
 		}

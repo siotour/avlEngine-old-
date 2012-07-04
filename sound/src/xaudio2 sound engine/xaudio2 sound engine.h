@@ -46,6 +46,7 @@ namespace sound
 	{
 	public:
 		/** Basic constructor.
+		@throws Exception If unable to acquire one of the XAudio2 objects.
 		*/
 		XAudio2SoundEngine();
 
@@ -57,6 +58,11 @@ namespace sound
 		@param new_sample The sample to be stored internally and accessed via the
 		returned sound handle.
 		@return The sound handle by which \a new_sample is to be accessed.
+		@throw InvalidArgumentException If the \a new_sample audio data is null.
+		@throw InvalidArgumentException If the \a new_sample bit depth is not 8, 16, or 32.
+		@throw InvalidArgumentException If the \a new_sample audio data is too large to fit
+		into a single buffer. See the XAudio2 constant XAUDIO2_MAX_BUFFER_BYTES.
+		@throw OutOfMemoryError If there's not enough memory to copy the audio data.
 		*/
 		const utility::SoundEffect::SoundHandle AddSound(const sound::SoundSample& new_sample);
 
@@ -77,6 +83,10 @@ namespace sound
 		/** Updates the states of the sound effects in \a sounds. Details may
 		vary between different implementations.
 		@param sound_effects The SoundEffect objects whose state needs to be updated.
+		@throw InvalidArgumentException If one or more sound effects contain an invalid
+		sound handle.
+		@throw OutOfMemoryError If unable to allocate necessary storage.
+		@throw Exception If unable to properly manipulate a source voice.
 		*/
 		void UpdateSounds(utility::SoundEffectList& sound_effects);
 

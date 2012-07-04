@@ -23,17 +23,11 @@ Unit test for the direct input input device component. See "direct input input d
 
 #include"direct input input device.h"
 #include"..\dinput wrapper\dinput wrapper.h"
-#include"..\input event\input event.h"
-#include"..\keyboard event\keyboard event.h"
-#include"..\mouse move event\mouse move event.h"
-#include"..\mouse button event\mouse button event.h"
-#include"..\mouse scroll event\mouse scroll event.h"
-
-#include"..\key codes\key codes.h"
-
+#include"..\..\..\utility\src\key codes\key codes.h"
+#include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\assert\assert.h"
-
+#include<memory>
 #include<queue>
 #include<windows.h>
 // Define the direct input version to avoid a compiler warning.
@@ -52,12 +46,12 @@ namespace input
 
 	// See method declaration for details.
 	DirectInputInputDevice::DirectInputInputDevice(const HWND& initial_window_handle)
-		: window_handle(initial_window_handle), dinput(NULL), keyboard_device(NULL), mouse_device(NULL)
+		: window_handle(initial_window_handle), dinput(nullptr), keyboard_device(nullptr), mouse_device(nullptr)
 	{
 		// We need a valid window handle.
-		if(window_handle == NULL)
+		if(window_handle == nullptr)
 		{
-			throw utility::InvalidArgumentException("avl::input::DirectInputInputDevice::DirectInputInputDevice()", "initial_window_handle", "initial_window_handle must be non-NULL");
+			throw utility::InvalidArgumentException("avl::input::DirectInputInputDevice::DirectInputInputDevice()", "initial_window_handle", "initial_window_handle must be non-nullptr");
 		}
 		try
 		{
@@ -103,9 +97,9 @@ namespace input
 
 
 	// See method declaration for details.
-	InputQueue DirectInputInputDevice::GetInput()
+	utility::input_events::InputQueue DirectInputInputDevice::GetInput()
 	{
-		InputQueue queue;
+		utility::input_events::InputQueue queue;
 
 		PollKeyboard(queue);
 		PollMouse(queue);
@@ -115,39 +109,38 @@ namespace input
 
 
 	// See method declaration for details.
-	void DirectInputInputDevice::ResetDeviceStates(InputQueue& queue)
+	void DirectInputInputDevice::ResetDeviceStates(utility::input_events::InputQueue& queue)
 	{
 		// Reset the state of each currently pressed mouse button.
-		const MouseButtonEvent* button_event;
+		const utility::input_events::InputEvent* event;
 		for(DWORD button = 0; button < 8; ++button)
 		{
 			if(mouse_button_state[button] == true)
 			{
 				// Generate the appropriate button-release event.
-				button_event = new MouseButtonEvent(dinput::DIKToMB(button), false);
-				if(button_event == NULL)
+				event = new utility::input_events::MouseButtonEvent(dinput::DIKToMB(button), false);
+				if(event == nullptr)
 				{
 					throw utility::OutOfMemoryError();
 				}
-				queue.push(button_event);
+				queue.push(std::auto_ptr<const utility::input_events::InputEvent>(event));
 				// Set the button state to released.
 				mouse_button_state[button] = false;
 			}
 		}
 		// Reset the state of each current pressed keyboard key.
-		const KeyboardEvent* key_event;
 		for(DWORD key = 0; key < 256; ++key)
 		{
 			// Is this key pressed?
 			if(keyboard_state[key] == true)
 			{
 				// Generate the appropriate key-release event.
-				key_event = new KeyboardEvent(dinput::DIKToKK(key), false);
-				if(key_event == NULL)
+				event = new utility::input_events::KeyboardEvent(dinput::DIKToKK(key), false);
+				if(event == nullptr)
 				{
 					throw utility::OutOfMemoryError();
 				}
-				queue.push(key_event);
+				queue.push(std::auto_ptr<const utility::input_events::InputEvent>(event));
 				// Set the key state to released.
 				keyboard_state[key] = false;
 			}
@@ -156,7 +149,7 @@ namespace input
 
 
 	// See method declaration for details.
-	void DirectInputInputDevice::PollKeyboard(InputQueue& queue)
+	void DirectInputInputDevice::PollKeyboard(utility::input_events::InputQueue& queue)
 	{
 		// These variables hold the raw data from the keyboard.
 		std::queue<DIDEVICEOBJECTDATA> data_queue;
@@ -164,7 +157,7 @@ namespace input
 		// Retrieve the data from the keyboard.
 		bool device_okay = dinput::RetrieveDeviceData(keyboard_device, data_queue);
 		// Now process the raw data into input events.
-		const KeyboardEvent* key_event;
+		const utility::input_events::InputEvent* key_event;
 		while(data_queue.empty() == false)
 		{
 			data = data_queue.front();
@@ -172,12 +165,12 @@ namespace input
 			// Was the key pressed or released?
 			bool pressed = ((data.dwData & 0x80) != 0) ? true : false;
 			// Add a new KeyboardEvent to the queue.
-			key_event = new KeyboardEvent(dinput::DIKToKK(data.dwOfs), pressed);
-			if(key_event == NULL)
+			key_event = new utility::input_events::KeyboardEvent(dinput::DIKToKK(data.dwOfs), pressed);
+			if(key_event == nullptr)
 			{
 				throw utility::Exception("avl::input::DirectInputInputDevice::PollKeyboard() -- Unable to allocate memory for a new KeyboardEvent.");
 			}
-			queue.push(key_event);
+			queue.push(std::auto_ptr<const utility::input_events::InputEvent>(key_event));
 			// Save the internal key state.
 			keyboard_state[data.dwOfs] = pressed;
 		}
@@ -190,7 +183,7 @@ namespace input
 
 
 	// See method declaration for details.
-	void DirectInputInputDevice::PollMouse(InputQueue& queue)
+	void DirectInputInputDevice::PollMouse(utility::input_events::InputQueue& queue)
 	{
 		// These variables hold the raw data from the mouse.
 		std::queue<DIDEVICEOBJECTDATA> data_queue;
@@ -200,7 +193,7 @@ namespace input
 		// Now process the raw data into input events.
 		DWORD current_event_data;
 		DWORD next_event_data;
-		InputEvent* event = NULL;
+		utility::input_events::InputEvent* event = nullptr;
 		while(data_queue.empty() == false)
 		{
 			data = data_queue.front();
@@ -221,26 +214,26 @@ namespace input
 					data_queue.pop();
 				}
 				// Is current_event_data x movement or y movement?
-				event = (data.dwOfs == DIMOFS_X) ? new(std::nothrow) MouseMoveEvent((short)current_event_data, (short)next_event_data) : new(std::nothrow) MouseMoveEvent((short)next_event_data, (short)current_event_data);
+				event = (data.dwOfs == DIMOFS_X) ? new(std::nothrow) utility::input_events::MouseMoveEvent((short)current_event_data, (short)next_event_data) : new(std::nothrow) utility::input_events::MouseMoveEvent((short)next_event_data, (short)current_event_data);
 				break;
 			case DIMOFS_Z:
 				// Mouse wheel event.
-				event = new(std::nothrow) MouseScrollEvent((short)data.dwOfs);
+				event = new(std::nothrow) utility::input_events::MouseScrollEvent((short)data.dwOfs);
 				break;
 			default:
 				// Mouse button event.
 				const bool pressed = (data.dwData & 0x80) ? true : false;
-				event = new MouseButtonEvent(dinput::DIKToMB(data.dwOfs), pressed);
+				event = new utility::input_events::MouseButtonEvent(dinput::DIKToMB(data.dwOfs), pressed);
 				// Save the internal button state.
 				mouse_button_state[data.dwOfs] = pressed;
 				break;
 			}
 			// Did we run out of memory?
-			if(event == NULL)
+			if(event == nullptr)
 			{
 				throw utility::OutOfMemoryError();
 			}
-			queue.push(event);
+			queue.push(std::auto_ptr<const utility::input_events::InputEvent>(event));
 		}
 		// Now reset the device states if necessary.
 		if(device_okay == false)
@@ -254,24 +247,24 @@ namespace input
 	void DirectInputInputDevice::ReleaseResources()
 	{
 		// Release the keyboard device.
-		if (keyboard_device != NULL)
+		if (keyboard_device != nullptr)
 		{
 			keyboard_device->Unacquire();
 			keyboard_device->Release();
-			keyboard_device = NULL;
+			keyboard_device = nullptr;
 		}
 		// Release the mouse device.
-		if (mouse_device != NULL)
+		if (mouse_device != nullptr)
 		{
 			mouse_device->Unacquire();
 			mouse_device->Release();
-			mouse_device = NULL;
+			mouse_device = nullptr;
 		}
 		// Release the DirectInput interface.
-		if (dinput != NULL)
+		if (dinput != nullptr)
 		{
 			dinput->Release();
-			dinput = NULL;
+			dinput = nullptr;
 		}
 	}
 

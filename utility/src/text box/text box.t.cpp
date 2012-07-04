@@ -23,11 +23,8 @@ Unit test for the text box component. See "text box.h" for details.
 
 #include"text box.h"
 #include"..\..\..\input\src\direct input input device\direct input input device.h"
-#include"..\..\..\input\src\input event\input event.h"
-#include"..\..\..\input\src\keyboard event\keyboard event.h"
-#include"..\..\..\input\src\mouse move event\mouse move event.h"
-#include"..\..\..\input\src\mouse button event\mouse button event.h"
-#include"..\..\..\input\src\mouse scroll event\mouse scroll event.h"
+#include"..\..\..\utility\src\key codes\key codes.h"
+#include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\basic win32 window\basic win32 window.h"
 #include"..\..\..\view\src\win32 error\win32 error.h"
@@ -48,6 +45,9 @@ void TestTextBoxComponent(HINSTANCE instance)
 	using avl::view::BasicD3DRenderer;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
+	using avl::utility::input_events::InputEvent;
+	using avl::utility::input_events::KeyboardEvent;
+	using avl::utility::key_codes::KeyboardKey;
 	using avl::utility::TextBox;
 	using avl::view::Image;
 	using avl::input::DirectInputInputDevice;
@@ -58,7 +58,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 		// Create a window and renderer.
 		avl::view::d3d::DisplayProfiles profiles = avl::view::d3d::EnumerateDisplayProfiles();
 		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
-		BasicD3DRenderer renderer(window.GetWindowHandle(), profiles[42]);
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profiles[42], Vertex2D(1.0f, 1.0f));
 		DirectInputInputDevice input(window.GetWindowHandle());
 
 

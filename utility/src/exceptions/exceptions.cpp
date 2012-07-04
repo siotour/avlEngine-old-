@@ -262,7 +262,27 @@ namespace utility
 
 
 
+	//
+	// FileFormatException
+	FileFormatException::FileFormatException(const std::string& file_name)
+	{
+		description = "An error occurred while loading the file ";
+		description += file_name;
+		description += ": the file is malformatted.";
+	}
 
+
+
+	FileFormatException::FileFormatException(const FileFormatException& original)
+		: FileIOException(original)
+	{
+	}
+
+
+
+	FileFormatException::~FileFormatException()
+	{
+	}
 
 
 

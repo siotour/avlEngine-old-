@@ -68,8 +68,7 @@ namespace sound
 		chunk.id = RIFF_ID;
 		if(FindChunk(file_data, chunk) == false)
 		{
-			// throw utility::FileFormatException();
-			throw utility::Exception("avl::sound::file::LoadWAVFile() -- File isn't a valid RIFF file.");
+			throw utility::FileFormatException(file_name);
 		}
 
 		chunk.offset += 8;
@@ -78,16 +77,14 @@ namespace sound
 
 		if(file_type != WAVE_ID)
 		{
-			// throw utility::FileFormatException();
-			throw utility::Exception("avl::sound::file::LoadWAVFile() -- File isn't a WAVE file.");
+			throw utility::FileFormatException("file_name");
 		}
 
 		chunk.offset += 4;
 		chunk.id = FMT_ID;
 		if(FindChunk(file_data, chunk) == false)
 		{
-			// throw utility::FileFormatException();
-			throw utility::Exception("avl::sound::file::LoadWAVFile() -- File isn't a valid WAVE file.");
+			throw utility::FileFormatException("file_name");
 		}
 
 		
@@ -98,8 +95,7 @@ namespace sound
 
 		if(wave_format != WAVE_PCM)
 		{
-			// throw utility::FileFormatException();
-			throw utility::Exception("avl::sound::file::LoadWAVFile() -- File isn't in WAVE PCM format.");
+			throw utility::FileFormatException("file_name");
 		}
 
 		
@@ -131,15 +127,14 @@ namespace sound
 		chunk.id = DATA_ID;
 		if(FindChunk(file_data, chunk) == false)
 		{
-			// throw utility::FileFormatException();
-			throw utility::Exception("avl::sound::file::LoadWAVFile() -- File isn't a valid WAVE file.");
+			throw utility::FileFormatException("file_name");
 		}
 
 		// Check that the format information and size match up.
 
 		char* audio_data = new char[chunk.size];
 
-		if(audio_data == NULL)
+		if(audio_data == nullptr)
 		{
 			throw utility::OutOfMemoryError();
 		}

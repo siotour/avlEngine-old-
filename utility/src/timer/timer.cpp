@@ -34,6 +34,7 @@ namespace utility
 
 	// See method declaration for details.
 	Timer::Timer()
+		: paused(false)
 	{
 		// Are performance counters supported?
 		LARGE_INTEGER temp_count;
@@ -74,6 +75,12 @@ namespace utility
 	// See method declaration for details.
 	const double Timer::Reset()
 	{
+		// If we're paused, no time has passed.
+		if(paused == true)
+		{
+			return 0.0;
+		}
+
 		// Get the time elapsed.
 		__int64 current_count;
 		double elapsed_time;
@@ -99,6 +106,13 @@ namespace utility
 	// See method declaration for details.
 	const double Timer::Elapsed() const
 	{
+		// If we're paused, no time has elapsed.
+		if(paused == true)
+		{
+			return 0.0;
+		}
+
+
 		// If the performance counter is being use, poll the performance counter. Otherwise
 		// poll the standard counter.
 		if (use_performance_counter == true)
@@ -108,6 +122,29 @@ namespace utility
 		else
 		{
 			return CalculateTimeSplit(PollCounter());
+		}
+	}
+
+
+	// See method declaration for details.
+	void Timer::Pause()
+	{
+		paused = true;
+	}
+
+	// See method declaration for details.
+	void Timer::Unpause()
+	{
+		// Unpause the timer.
+		paused = false;
+		// Update the last count.
+		if (use_performance_counter == true)
+		{
+			last_count = PollPerformanceCounter();
+		}
+		else
+		{
+			last_count = PollCounter();
 		}
 	}
 

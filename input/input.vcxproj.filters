@@ -15,25 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\key codes\key codes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\direct input input device\direct input input device.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\input event\input event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\keyboard event\keyboard event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mouse button event\mouse button event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mouse move event\mouse move event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\mouse scroll event\mouse scroll event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\input device\input device.h">
@@ -42,24 +24,12 @@
     <ClInclude Include="src\dinput wrapper\dinput wrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\direct input input device\direct input input device.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\input event\input event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\keyboard event\keyboard event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mouse button event\mouse button event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mouse move event\mouse move event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\mouse scroll event\mouse scroll event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\input device\input device.cpp">

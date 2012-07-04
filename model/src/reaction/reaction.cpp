@@ -16,52 +16,58 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the input event component. See "d3d error.h" for details.
+Implementation for the reaction component. See "reaction.h" for details.
 @author Sheldon Bachstein
-@date September 08, 2011
+@date Jun 27, 2012
 */
 
-#include"input event.h"
+#include"reaction.h"
+#include"..\action\action.h"
+#include<typeinfo>
 
 
 namespace avl
 {
-namespace input
+namespace model
 {
-	// Takes an integer constant which is used by clients to identify the type
-	// of input event this is.
-	InputEvent::InputEvent(const unsigned char& initial_type)
-		: type(initial_type)
+namespace reaction
+{
+	// See method declaration for details.
+	TypeInfo::TypeInfo(const std::type_info& initial_info)
+		: info(initial_info)
+	{
+	}
+
+	// See method declaration for details.
+	TypeInfo::~TypeInfo()
+	{
+	}
+
+	// See method declaration for details.
+	bool TypeInfo::operator<(const TypeInfo& rhs) const
+	{
+		return info.before(rhs.info) != 0;
+	}
+
+
+
+	// See method declaration for details.
+	Reaction::Reaction()
+	{
+	}
+
+	// See method declaration for details.
+	Reaction::Reaction(const Reaction& original)
+	{
+	}
+
+	// See method declaration for details.
+	Reaction::~Reaction()
 	{
 	}
 
 
 
-
-	// Copy constructor.
-	InputEvent::InputEvent(const InputEvent& original)
-		: type(original.GetType())
-	{
-	}
-
-
-
-
-	// Destructor.
-	InputEvent::~InputEvent()
-	{
-	}
-
-
-
-
-	// Returns the input type, which is to be defined by derived classes.
-	const unsigned char& InputEvent::GetType() const
-	{
-		return type;
-	}
-
-
-
-}
-}
+} // reaction
+} // model
+} // avl

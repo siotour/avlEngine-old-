@@ -22,6 +22,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 Provides functions and structures for performing common XAudio2 tasks.
 @author Sheldon Bachstein
 @date Jun 24, 2012
+@todo Document the function declarations in here.
 */
 
 #include<xaudio2.h>

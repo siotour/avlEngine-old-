@@ -264,6 +264,31 @@ namespace utility
 
 
 
+	/**
+	Indicates that a file is corrupt, incomplete, or malformatted.
+	*/
+	class FileFormatException: public FileIOException
+	{
+	public:
+		/** Basic constructor.
+		@param file_name The name of the file which is malformatted.
+		*/
+		FileFormatException(const std::string& file_name);
+		/** Copy constructor.
+		@param original The object being copied.
+		*/
+		FileFormatException(const FileFormatException& original);
+		/** Basic destructor.
+		*/
+		~FileFormatException();
+	private:
+		/// Not implemented.
+		FileFormatException& operator=(const FileFormatException&);
+
+	};
+
+
+
 
 } // utility
 } // avl

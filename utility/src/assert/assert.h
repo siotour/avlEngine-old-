@@ -24,6 +24,9 @@ avl::utility::AssertionFailure / avl::utility::VerificationFailure if the condit
 nothing in non-debug mode.
 @author Sheldon Bachstein
 @date January 13, 2010
+@todo One possible solution to the compiler issuing warnings in Release build for each
+verify statement is to have the verify statement expand to a more complex expression
+in Release mode. Something like "a == b ? true : false."
 */
 
 #include<string>

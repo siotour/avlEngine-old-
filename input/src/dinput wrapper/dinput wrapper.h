@@ -25,11 +25,8 @@ Implements thin wrapper functions for common Direct Input tasks.
 */
 
 #include"..\input device\input device.h"
-#include"..\key codes\key codes.h"
-#include"..\keyboard event\keyboard event.h"
-#include"..\mouse button event\mouse button event.h"
-#include"..\mouse move event\mouse move event.h"
-#include"..\mouse scroll event\mouse scroll event.h"
+#include"..\..\..\utility\src\key codes\key codes.h"
+#include"..\..\..\utility\src\input events\input events.h"
 #include<queue>
 /// Defines the direct input version to avoid a compiler warning.
 #ifndef DIRECTINPUT_VERSION
@@ -55,7 +52,7 @@ namespace dinput
 	@param window_handle The handle to the window from which to gather input data.
 	@param buffer_size The size of the buffer for the keyboard device.
 	@return The newly initialized keyboard device.
-	@throw utility::InvalidArgumentException If \a dinput is NULL.
+	@throw utility::InvalidArgumentException If \a dinput is nullptr.
 	@throw utility::Exception If unable to create a new keyboard device.
 	*/
 	LPDIRECTINPUTDEVICE8 const CreateKeyboardDevice(LPDIRECTINPUT8 const dinput, HWND window_handle, const unsigned int buffer_size);
@@ -65,7 +62,7 @@ namespace dinput
 	@param window_handle The handle to the window from which to gather input data.
 	@param buffer_size The size of the buffer for the mouse device.
 	@return The newly initialized mouse device.
-	@throws utility::InvalidArgumentException If \a dinput is NULL.
+	@throws utility::InvalidArgumentException If \a dinput is nullptr.
 	@throws utility::Exception If unable to create a new mouse device.
 	*/
 	LPDIRECTINPUTDEVICE8 const CreateMouseDevice(LPDIRECTINPUT8 const dinput, HWND window_handle, const unsigned int buffer_size);
@@ -89,14 +86,14 @@ namespace dinput
 	@param vkey The direct input virtual key code.
 	@return The avl mouse button equivalent of \a vkey.
 	*/
-	key_codes::MouseButton::MouseButtonCodes DIKToMB(const DWORD& vkey);
+	utility::key_codes::MouseButton::MouseButtonCodes DIKToMB(const DWORD& vkey);
 
 	/** Given a DirectInput DIK key code, returns the equivalent avl key code,
 	if one exists.
 	@param vkey The direct input virtual key code.
 	@return The avl keyboard key equivalent to \a vkey.
 	*/
-	key_codes::KeyboardKey::KeyboardKeyCodes DIKToKK(const DWORD& vkey);
+	utility::key_codes::KeyboardKey::KeyboardKeyCodes DIKToKK(const DWORD& vkey);
 
 } // dinput
 } // input

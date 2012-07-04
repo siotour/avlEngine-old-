@@ -114,6 +114,14 @@ namespace d3d
 	*/
 	void CreateViewport(IDirect3DDevice9& device, const unsigned int& width, const unsigned int& height);
 
+	/** Scales along the x and y axes by \a x_factor and \a y_factor,
+	respectively.
+	@param device The device on which to set the scaling.
+	@param x_factor The scaling factor along the x axis.
+	@param y_facotr The scaling factor along the y acis.
+	*/
+	void SetScreenScaling(IDirect3DDevice9& device, const float x_factor, const float y_factor);
+
 	/** Attempts to clear the backbuffer to black and the z-buffer to 1.0f.
 	@param device The device on which to clear the viewport.
 	@throws D3DError If unable to clear the viewport.
@@ -132,7 +140,7 @@ namespace d3d
 	@param width The width in pixels of \a pixel_data.
 	@param height The height in pixels of \a pixel_data.
 	@param bytes_per_pixel The number of bytes of data per pixel.
-	@throws InvalidArgumentException If \a pixel_data is \c NULL.
+	@throws InvalidArgumentException If \a pixel_data is \c nullptr.
 	@throws D3DError If unable to lock or unlock the surface of \a destination.
 	*/
 	void CopyPixelDataToTexture(IDirect3DTexture9& destination, const unsigned char* const pixel_data,
@@ -146,7 +154,7 @@ namespace d3d
 	@param width The width of \a pixel_data in pixels.
 	@param height The height of \a pixel_data in pixels.
 	@param bytes_per_pixel The number of bytes of data for each pixel in \a pixel_data.
-	@throws InvalidArgumentException If \a pixel_data is \c NULL.
+	@throws InvalidArgumentException If \a pixel_data is \c nullptr.
 	@throws D3DError If unable to lock or unlock \a destination.
 	*/
 	void CopyPixelDataToSurface(IDirect3DSurface9& destination, const unsigned char* const pixel_data,
@@ -217,7 +225,7 @@ namespace d3d
 	@param device The device to render to.
 	@param sprites The sprites to be rendered.
 	@param vertex_buffer The buffer to use to render the sprites.
-	@throws RendererException If \a sprites contains one or more NULL pointers.
+	@throws RendererException If \a sprites contains one or more nullptr pointers.
 	@throws D3DError If there is an error while using the device.
 	@todo Consider using a list of std::tr1::shared_ptrs.
 	@todo Describe the preconditions for vertex_buffer, index_buffer, and textures. Describe

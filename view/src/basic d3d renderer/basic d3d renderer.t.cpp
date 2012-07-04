@@ -51,7 +51,7 @@ void TestBasicD3DRendererComponent(HINSTANCE instance)
 		// Create a window and renderer.
 		const D3DDisplayProfile profile = LeastSquaredDisplayProfile(500, 500, false);
 		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
-		BasicD3DRenderer renderer(window.GetWindowHandle(), profile);
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profile, Vertex2D(1.0f, 1.0f));
 
 
 

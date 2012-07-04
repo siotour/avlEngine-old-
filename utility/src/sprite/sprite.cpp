@@ -46,14 +46,14 @@ namespace utility
 	// See function declaration for details.
 	const unsigned int CountVisibleSprites(const SpriteList& sprites)
 	{
-		// Count the number of visible sprites and check for NULL pointers.
+		// Count the number of visible sprites and check for nullptr pointers.
 		unsigned int number_of_sprites = 0;
 		for(SpriteList::const_iterator i = sprites.begin(); i != sprites.end(); ++i)
 		{
-			// Make sure this pointer is not NULL.
-			if((*i) == NULL)
+			// Make sure this pointer is not nullptr.
+			if((*i) == nullptr)
 			{
-				throw InvalidArgumentException("avl::utility::CountSprites()", "sprites", "Contains one or more NULL pointers.");
+				throw InvalidArgumentException("avl::utility::CountSprites()", "sprites", "Contains one or more nullptr pointers.");
 			}
 			// Count visible sprites.
 			else if((*i)->IsVisible() != false)

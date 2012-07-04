@@ -30,6 +30,9 @@
     <ClInclude Include="src\xaudio2 wrapper\xaudio2 wrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\sound engine\sound engine.cpp">

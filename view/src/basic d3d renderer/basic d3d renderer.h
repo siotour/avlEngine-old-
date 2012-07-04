@@ -22,12 +22,15 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 Defines the \ref avl::view::BasicD3DRenderer class.
 @author Sheldon Bachstein
 @date Jan 13, 2011
+@todo Add the capability to render to any sized window. Simply choose the smallest
+profile which will render to the entire window and set the viewport appropriately.
 */
 
 #include"..\renderer\renderer.h"
 #include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d wrapper\d3d wrapper.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 // Makes d3d9 activate additional debug information and checking.
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
@@ -54,11 +57,15 @@ namespace view
 		\a window_handle using the display profile \a profile.
 		@param window_handle The handle to the window to render to.
 		@param profile The display profile to initialize the device with.
+		@param screen_space The adjusted screen resolution for the renderer. 
+		The center of the screen will be at (0, 0). The x component will specify
+		the distance from the center to either side, and the y component will
+		specify the distance from the center to the top or bottom.
 		@throws RendererException If unable to create the D3D object.
 		@throws d3d::D3DError If unable to create the Direct3D device or if
 		unable to set the viewport.
 		*/
-		BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile);
+		BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile, const avl::utility::Vertex2D& screen_space);
 		/** Destroys the Direct3D device and releases all assets.
 		*/
 		~BasicD3DRenderer();
@@ -92,7 +99,7 @@ namespace view
 		@post \a sprites may well not contain the same (or any) sprites. Make sure to
 		keep your own separate copy if you need \a sprites for something else.
 		@param sprites The sprites to be rendered.
-		@throws RendererException If \a sprites contains one or more NULL pointers.
+		@throws RendererException If \a sprites contains one or more nullptr pointers.
 		@throws D3DError If there is an error while using the device.
 		@todo Consider using a list of std::tr1::shared_ptrs.
 		*/

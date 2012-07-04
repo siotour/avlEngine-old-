@@ -22,9 +22,11 @@ Implementation for the dinput wrapper component. See "dinput wrapper.h" for deta
 */
 
 #include"dinput wrapper.h"
-#include"..\key codes\key codes.h"
+#include"..\..\..\utility\src\key codes\key codes.h"
+#include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include<new>
+#include<memory>
 /// Defines the direct input version to avoid a compiler warning.
 #ifndef DIRECTINPUT_VERSION
 #define DIRECTINPUT_VERSION 0x800
@@ -45,7 +47,7 @@ namespace dinput
 		// Attempt to create the DirectInput interface.
 		LPDIRECTINPUT8 direct_input;
 		HRESULT result;
-		result = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_HEADER_VERSION, IID_IDirectInput8, (void**)&direct_input, NULL);
+		result = DirectInput8Create(GetModuleHandle(nullptr), DIRECTINPUT_HEADER_VERSION, IID_IDirectInput8, (void**)&direct_input, nullptr);
 		if (FAILED(result))
 		{
 			utility::Exception("avl::input::dinput::GetDirectInput() -- Unable to create the DirectInput8 interface.");
@@ -57,14 +59,14 @@ namespace dinput
 	// See function declaration for details.
 	LPDIRECTINPUTDEVICE8 const CreateKeyboardDevice(LPDIRECTINPUT8 const dinput, HWND window_handle, const unsigned int buffer_size)
 	{
-		if(dinput == NULL)
+		if(dinput == nullptr)
 		{
-			throw new utility::InvalidArgumentException("avl::input::dinput::CreateKeyboardDevice()", "dinput", "Must be non-NULL");
+			throw new utility::InvalidArgumentException("avl::input::dinput::CreateKeyboardDevice()", "dinput", "Must be non-nullptr");
 		}
 		// Create the keyboard device.
 		HRESULT result;
-		LPDIRECTINPUTDEVICE8 keyboard_device = NULL;
-		result = dinput->CreateDevice(GUID_SysKeyboard, &keyboard_device, NULL);
+		LPDIRECTINPUTDEVICE8 keyboard_device = nullptr;
+		result = dinput->CreateDevice(GUID_SysKeyboard, &keyboard_device, nullptr);
 		if (FAILED(result))
 		{
 			throw utility::Exception("avl::input::dinput::CreateKeyboardDevice() -- Unable to create DirectInput8 keyboard device.");
@@ -101,14 +103,14 @@ namespace dinput
 	// See function declaration for details.
 	LPDIRECTINPUTDEVICE8 const CreateMouseDevice(LPDIRECTINPUT8 const dinput, HWND window_handle, const unsigned int buffer_size)
 	{
-		if(dinput == NULL)
+		if(dinput == nullptr)
 		{
-			throw new utility::InvalidArgumentException("avl::input::dinput::CreateMouseDevice()", "dinput", "Must be non-NULL");
+			throw new utility::InvalidArgumentException("avl::input::dinput::CreateMouseDevice()", "dinput", "Must be non-nullptr");
 		}
 		// Create the mouse device.
 		HRESULT result;
-		LPDIRECTINPUTDEVICE8 mouse_device = NULL;
-		result = dinput->CreateDevice(GUID_SysMouse, &mouse_device, NULL);
+		LPDIRECTINPUTDEVICE8 mouse_device = nullptr;
+		result = dinput->CreateDevice(GUID_SysMouse, &mouse_device, nullptr);
 		if (FAILED(result))
 		{
 			throw utility::Exception("avl::input::dinput::CreateMouseDevice() -- Unable to create DirectInput8 mouse device.");
@@ -146,8 +148,8 @@ namespace dinput
 	{
 		const DWORD BATCH_SIZE = 15;
 		// Holds buffered input data.
-		DIDEVICEOBJECTDATA* data = new(std::nothrow) DIDEVICEOBJECTDATA[BATCH_SIZE];
-		if(data == NULL)
+		std::unique_ptr<DIDEVICEOBJECTDATA[]> data(new(std::nothrow) DIDEVICEOBJECTDATA[BATCH_SIZE]);
+		if(data == nullptr)
 		{
 			throw utility::OutOfMemoryError();
 		}
@@ -159,7 +161,7 @@ namespace dinput
 		{
 			// Read in a batch of data.
 			number_of_elements = BATCH_SIZE;
-			result = device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), data, &number_of_elements, 0);
+			result = device->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), data.get(), &number_of_elements, 0);
 			// Was there a failure other than an overflow?
 			if(FAILED(result) && result != DI_BUFFEROVERFLOW)
 			{
@@ -168,7 +170,6 @@ namespace dinput
 				if (FAILED(result))
 				{
 					// The device can't be re-acquired yet. Signal the failure.
-					delete[] data;
 					return false;
 				}
 				// We've successfully re-acquired the device. Continue collecting data.
@@ -181,17 +182,16 @@ namespace dinput
 				data_queue.push(data[i]);
 			}
 		}while(number_of_elements != 0);
-		// Data collected. Clean up and return success.
-		delete[] data;
+		// Data collected. Return success.
 		return true;
 	}
 
 
 
 	// See declaration for details.
-	key_codes::MouseButton::MouseButtonCodes DIKToMB(const DWORD& button)
+	utility::key_codes::MouseButton::MouseButtonCodes DIKToMB(const DWORD& button)
 	{
-		using key_codes::MouseButton;
+		using utility::key_codes::MouseButton;
 		switch(button)
 		{
 			case DIMOFS_BUTTON0:
@@ -209,9 +209,9 @@ namespace dinput
 	}
 
 	// See declaration for details.
-	key_codes::KeyboardKey::KeyboardKeyCodes DIKToKK(const DWORD& key)
+	utility::key_codes::KeyboardKey::KeyboardKeyCodes DIKToKK(const DWORD& key)
 	{
-		using key_codes::KeyboardKey;
+		using utility::key_codes::KeyboardKey;
 		switch(key)
 		{
 		// Numbers:

@@ -185,7 +185,7 @@ namespace d3d
 	{
 		IDirect3D9* const d3d = Direct3DCreate9(D3D_SDK_VERSION);
 		// Did the call fail?
-		if(d3d == NULL)
+		if(d3d == nullptr)
 		{
 			throw D3DError("avl::view::d3d::GetDirect3DObject", "Unable to obtain a pointer to a Direct3D9 object.", 0);
 		}
@@ -212,7 +212,7 @@ namespace d3d
 		present_parameters.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
 		present_parameters.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;
 		// Attempt to create the device.
-		IDirect3DDevice9* device = NULL;
+		IDirect3DDevice9* device = nullptr;
 		HRESULT result = d3d.CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, window_handle, D3DCREATE_HARDWARE_VERTEXPROCESSING, &present_parameters, &device);
 		// Check to see if the device was created successfully. If it wasn't, throw a
 		// D3DError containing information on the failure.
@@ -220,7 +220,7 @@ namespace d3d
 		{
 			throw D3DError("IDirect3D9::CreateDevice()", "avl::view::d3d::CreateDevice() -- Creation of the Direct3D device failed.", result);
 		}
-		ASSERT(device != NULL);
+		ASSERT(device != nullptr);
 		return device;
 	}
 
@@ -269,6 +269,16 @@ namespace d3d
 	}
 
 
+	// See function declaration for details.
+	void SetScreenScaling(IDirect3DDevice9& device, const float x_factor, const float y_factor)
+	{
+		// Scale x and y coordinates.
+		D3DMATRIX matrix = {x_factor, 0.0f, 0.0f, 0.0f,
+							0.0f, y_factor, 0.0f, 0.0f,
+							0.0f, 0.0f, 1.0f, 0.0f,
+							0.0f, 0.0f, 0.0f, 1.0f};
+		device.SetTransform(D3DTS_VIEW, &matrix);
+	}
 
 
 	// See function declaration for details.
@@ -276,7 +286,7 @@ namespace d3d
 	{
 		// Clear the viewport to solid black. If this fails, throw a D3DError with the error
 		// code and description.
-		HRESULT result = device.Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
+		HRESULT result = device.Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 0), 1.0f, 0);
 		if(FAILED(result))
 		{
 			throw D3DError("IDirect3DDevice9::Clear()", "avl::view::d3d::ClearViewport() -- Unable to clear the viewport.", result);
@@ -284,20 +294,18 @@ namespace d3d
 	}
 
 
-
-
 	// See function declaration for details.
 	void CopyPixelDataToTexture(IDirect3DTexture9& destination, const unsigned char* const pixel_data,
 									const unsigned int& width, const unsigned int& height, const unsigned int& bytes_per_pixel)
 	{
-		ASSERT(pixel_data != NULL);
-		// If pixel_data is NULL, throw an error describing the problem.
-		if(pixel_data == NULL)
+		ASSERT(pixel_data != nullptr);
+		// If pixel_data is nullptr, throw an error describing the problem.
+		if(pixel_data == nullptr)
 		{
 			throw utility::InvalidArgumentException("avl::view::d3d::CopyPixelDataToTexture()", "pixel_data", "Can not be null.");
 		}
 		// First access the texture's surface data.
-		IDirect3DSurface9* surface = NULL;
+		IDirect3DSurface9* surface = nullptr;
 		HRESULT result = destination.GetSurfaceLevel(0, &surface);
 		// If accessing the texture's surface data failed, throw a D3DError with the error code and a description.
 		if (FAILED(result))
@@ -311,15 +319,13 @@ namespace d3d
 	}
 
 
-
-
 	// See function declaration for details.
 	void CopyPixelDataToSurface(IDirect3DSurface9& destination, const unsigned char* const pixel_data,
 													const unsigned int& width, const unsigned int& height, const unsigned int& bytes_per_pixel)
 	{
-		ASSERT(pixel_data != NULL);
-		// If pixel_data is NULL, throw an error describing the problem.
-		if(pixel_data == NULL)
+		ASSERT(pixel_data != nullptr);
+		// If pixel_data is nullptr, throw an error describing the problem.
+		if(pixel_data == nullptr)
 		{
 			throw utility::InvalidArgumentException("avl::view::d3d::CopyPixelDataToSurface()", "pixel_data", "Can not be null.");
 		}
@@ -327,7 +333,7 @@ namespace d3d
 		HRESULT result;
 		// Lock the entire surface.
 		D3DLOCKED_RECT rectangle;
-		result = destination.LockRect(&rectangle, NULL, 0);
+		result = destination.LockRect(&rectangle, nullptr, 0);
 		// If locking of the surface failed, throw a D3DError with the error code and a description.
 		if(FAILED(result))
 		{
@@ -351,8 +357,6 @@ namespace d3d
 	}
 
 
-
-
 	// See function declaration for details.
 	bool IsTextureFormatOk(IDirect3D9& d3d, D3DFORMAT& adapter_format, D3DFORMAT& format)
 	{
@@ -367,15 +371,15 @@ namespace d3d
 	IDirect3DTexture9* CreateTexture(IDirect3DDevice9& device, const unsigned int& width, const unsigned int& height, D3DFORMAT format)
 	{
 		// Temporarily stores the texture's address.
-		IDirect3DTexture9* texture = NULL;
+		IDirect3DTexture9* texture = nullptr;
 		// Attempt to create the texture; if this fails, throw a D3DError with the error code and a
 		// description of the problem.
-		HRESULT result = device.CreateTexture(width, height, 1, 0, format, D3DPOOL_MANAGED, &texture, NULL);
+		HRESULT result = device.CreateTexture(width, height, 1, 0, format, D3DPOOL_MANAGED, &texture, nullptr);
 		if(FAILED(result))
 		{
 			throw D3DError("IDirect3DDevice9::CreateTexture()", "avl::view::d3d::CreateTexture() - Unable to create a new texture.", result);
 		}
-		ASSERT(texture != NULL);
+		ASSERT(texture != nullptr);
 		// Return the address of the newly created texture.
 		return texture;
 	}
@@ -387,14 +391,14 @@ namespace d3d
 	IDirect3DVertexBuffer9* CreateVertexBuffer(IDirect3DDevice9& device, const unsigned int& buffer_length)
 	{
 		// Attempt to create the vertex buffer.
-		IDirect3DVertexBuffer9* vertex_buffer = NULL;
+		IDirect3DVertexBuffer9* vertex_buffer = nullptr;
 		HRESULT result = device.CreateVertexBuffer(5 * buffer_length * sizeof(float), D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
-																					D3DFVF_XYZ | D3DFVF_TEX1, D3DPOOL_DEFAULT, &vertex_buffer, NULL);
+																					D3DFVF_XYZ | D3DFVF_TEX1, D3DPOOL_DEFAULT, &vertex_buffer, nullptr);
 		if(FAILED(result))
 		{
 			throw D3DError("IDirect3DDevice9()", "avl::view::d3d::CreateVertexBuffer() -- Unable to create a vertex buffer.", result);
 		}
-		ASSERT(vertex_buffer != NULL);
+		ASSERT(vertex_buffer != nullptr);
 		// Return the newly created vertex buffer.
 		return vertex_buffer;
 	}
@@ -409,13 +413,13 @@ namespace d3d
 		unsigned int index_size = 2;
 		// Attempt to create the index buffer. If this fails, throw a D3DError with the error code and a description
 		// of the problem.
-		IDirect3DIndexBuffer9* index_buffer = NULL;
-		HRESULT result = device.CreateIndexBuffer(buffer_length * index_size, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &index_buffer, NULL);
+		IDirect3DIndexBuffer9* index_buffer = nullptr;
+		HRESULT result = device.CreateIndexBuffer(buffer_length * index_size, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &index_buffer, nullptr);
 		if(FAILED(result))
 		{
 			throw D3DError("IDirect3DDevice9::CreateIndexBuffer()", "avl::view::d3d::CreateIndexBuffer() -- Unable to create an index buffer.", result);
 		}
-		ASSERT(index_buffer != NULL);
+		ASSERT(index_buffer != nullptr);
 		// Return the newly created index buffer.
 		return index_buffer;
 	}
@@ -440,7 +444,7 @@ namespace d3d
 		}
 		// Attempt to lock the vertex buffer. If this fails, throw a D3DError with the error code and a description
 		// of the problem.
-		BYTE* data = NULL;
+		BYTE* data = nullptr;
 		HRESULT result = vertex_buffer.Lock(0, source.size() * sizeof(float), (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
@@ -449,7 +453,7 @@ namespace d3d
 		// Copy the vertex information to the vertex buffer.
 		memcpy(data, &source[0], source.size() * sizeof(float));
 		// Unlock the vertex buffer.
-		data = NULL;
+		data = nullptr;
 		vertex_buffer.Unlock();
 	}
 
@@ -473,7 +477,7 @@ namespace d3d
 		}
 		// Attempt to lock the index buffer. If this fails, throw a D3DError with the error code and a description
 		// of the problem.
-		BYTE* data = NULL;
+		BYTE* data = nullptr;
 		HRESULT result = index_buffer.Lock(0, source.size() * sizeof(UINT16), (void**)&data, D3DLOCK_DISCARD);
 		if(FAILED(result))
 		{
@@ -482,7 +486,7 @@ namespace d3d
 		// Copy the index information to the index buffer.
 		memcpy(data, &source[0], source.size() * sizeof(UINT16));
 		// Unlock the index buffer.
-		data = NULL;
+		data = nullptr;
 		index_buffer.Unlock();
 	}
 
@@ -971,7 +975,7 @@ namespace d3d
 			// Set the flexible vertex format to position and texture coordinates only.
 			device.SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
 			// Set the device to use a fixed function vertex shader.
-			device.SetVertexShader(NULL);
+			device.SetVertexShader(nullptr);
 
 			// Keeps track of how many vertices and indices have been drawn.
 			unsigned int base_vertex = 0;

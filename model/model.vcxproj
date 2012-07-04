@@ -10,6 +10,21 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\action\action.h" />
+    <ClInclude Include="src\agent\agent.h" />
+    <ClInclude Include="src\basic scene\basic scene.h" />
+    <ClInclude Include="src\model.h" />
+    <ClInclude Include="src\reaction\reaction.h" />
+    <ClInclude Include="src\scene\scene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\action\action.cpp" />
+    <ClCompile Include="src\agent\agent.cpp" />
+    <ClCompile Include="src\basic scene\basic scene.cpp" />
+    <ClCompile Include="src\reaction\reaction.cpp" />
+    <ClCompile Include="src\scene\scene.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BBE84B90-1848-472F-9D74-8AD229EFB8D4}</ProjectGuid>
     <RootNamespace>model</RootNamespace>
@@ -41,6 +56,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetExt>.lib</TargetExt>
+    <TargetName>avl-$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

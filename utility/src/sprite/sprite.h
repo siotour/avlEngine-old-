@@ -43,7 +43,7 @@ namespace utility
 	/** Counts the number of visible sprites contained in \a sprites.
 	@pre \a sprites must not contain any null pointers.
 	@param sprites The sprites to be counter (if they're visible).
-	@throws InvalidArgumentException If one of the pointers in \a sprites is NULL.
+	@throws InvalidArgumentException If one of the pointers in \a sprites is nullptr.
 	*/
 	const unsigned int CountVisibleSprites(const SpriteList& sprites);
 

@@ -62,6 +62,14 @@ namespace utility
 		*/
 		const double Elapsed() const;
 
+		/** Pauses the timer so that elapsed time is not tracked.
+		*/
+		void Pause();
+
+		/** Unpauses the timer so that elapsed time is tracked.
+		*/
+		void Unpause();
+
 	private:
 		/** Polls the performance timer.
 		@return Units of time passed since \ref last_count.
@@ -84,6 +92,8 @@ namespace utility
 		*/
 		const double CalculateTimeSplit(const __int64 current_count) const;
 
+		/// Are we paused?
+		bool paused;
 		/// Are performance counters used?
 		bool use_performance_counter;
 		/// Stores the number of counter ticks per second.

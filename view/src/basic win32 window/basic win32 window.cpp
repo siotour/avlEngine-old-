@@ -55,13 +55,14 @@ namespace view
 	{
 		window_status = false;
 		is_active = false;
+		PostQuitMessage(0);
 	}
 
 	// See method declaration for details.
 	const bool BasicWin32Window::Update()
 	{
-		ASSERT(window_handle != NULL);
-		ASSERT(device_context_handle != NULL);
+		ASSERT(window_handle != nullptr);
+		ASSERT(device_context_handle != nullptr);
 		// Loop through all of the messages in the message queue that are for this
 		// window, removing each one and handling it appropriately.
 		MSG message;

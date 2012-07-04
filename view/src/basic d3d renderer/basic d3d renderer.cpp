@@ -29,6 +29,7 @@ Implementation for the basic d3d renderer component. See "basic d3d renderer.h" 
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\assert\assert.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
 #include<new>
 // Makes d3d9 activate additional debug information and checking.
 #ifdef _DEBUG
@@ -49,25 +50,24 @@ namespace view
 	}
 
 	// See method declaration for details.
-	BasicD3DRenderer::BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile)
-		: display_profile(profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(2),
-		buffer_length(1000), d3d(NULL), device(NULL), vertex_buffer(NULL), index_buffer(NULL), is_device_ready(false)
+	BasicD3DRenderer::BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile, const avl::utility::Vertex2D& screen_space)
+		: Renderer(screen_space), display_profile(profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(2),
+		buffer_length(1000), d3d(nullptr), device(nullptr), vertex_buffer(nullptr), index_buffer(nullptr), is_device_ready(false)
 	{
 		try
 		{
 			// Create the Direct3D object.
 			d3d = d3d::GetDirect3DObject();
-			ASSERT(d3d != NULL);
+			ASSERT(d3d != nullptr);
 			// Create a device.
 			device = d3d::CreateDevice(*d3d, window_handle, display_profile, present_parameters);
-			ASSERT(device != NULL);
+			ASSERT(device != nullptr);
 			// Create the viewport for the device.
 			d3d::CreateViewport(*device, display_profile.GetWidth(), display_profile.GetHeight());
+			// Set the scaling for the device to normalize the vertice x and y coordinates.
+			d3d::SetScreenScaling(*device, 1.0f / screen_space_resolution.GetX(), 1.0f / screen_space_resolution.GetY());
 			// Now attempt to ready the device for rendering.
-			CheckDeviceState();
-
-
-			
+			CheckDeviceState();		
 		}
 		catch(...)
 		{
@@ -88,11 +88,11 @@ namespace view
 	// See method declaration for details.
 	const utility::Sprite::TextureHandle BasicD3DRenderer::AddTexture(const view::Image& image)
 	{
-		ASSERT(image.GetPixelData() != NULL);
+		ASSERT(image.GetPixelData() != nullptr);
 		ASSERT(image.GetWidth() > 0);
 		ASSERT(image.GetHeight() > 0);
-		ASSERT(d3d != NULL);
-		ASSERT(device != NULL);
+		ASSERT(d3d != nullptr);
+		ASSERT(device != nullptr);
 		// This function currently only supports 32-bit textures. Make sure that this image has a 4-byte
 		// pixel depth.
 		ASSERT(image.GetPixelDepth() == 4);	
@@ -156,14 +156,14 @@ namespace view
 		// If the device is not ready for rendering, return.
 		if(CheckDeviceState() == true)
 		{
-			ASSERT(vertex_buffer != NULL);
-			ASSERT(index_buffer != NULL);
+			ASSERT(vertex_buffer != nullptr);
+			ASSERT(index_buffer != nullptr);
 			// Clear the screen to black.
 			d3d::ClearViewport(*device);
 			// Render sprites.
 			d3d::RenderSprites(*device, sprites, *vertex_buffer, *index_buffer, textures);
 			// Present the scene.
-			device->Present(NULL, NULL, NULL, NULL);
+			device->Present(nullptr, nullptr, nullptr, nullptr);
 		}
 	}
 
@@ -171,15 +171,15 @@ namespace view
 	// Releases the index buffer and vertex buffer. This is called when the device is lost.
 	void BasicD3DRenderer::ReleaseUnmanagedAssets()
 	{
-		if(vertex_buffer != NULL)
+		if(vertex_buffer != nullptr)
 		{
 			vertex_buffer->Release();
-			vertex_buffer = NULL;
+			vertex_buffer = nullptr;
 		}
-		if(index_buffer != NULL)
+		if(index_buffer != nullptr)
 		{
 			index_buffer->Release();
-			index_buffer = NULL;
+			index_buffer = nullptr;
 		}
 	}
 
@@ -188,20 +188,20 @@ namespace view
 	// device is reset after having been lost.
 	void BasicD3DRenderer::AcquireUnmanagedAssets()
 	{
-		ASSERT(vertex_buffer == NULL);
-		ASSERT(index_buffer == NULL);
+		ASSERT(vertex_buffer == nullptr);
+		ASSERT(index_buffer == nullptr);
 		
 		// Only create the vertex and index buffers if they were previously released.
-		if(vertex_buffer == NULL)
+		if(vertex_buffer == nullptr)
 		{
 			vertex_buffer = d3d::CreateVertexBuffer(*device, buffer_length);
 		}
-		if(index_buffer == NULL)
+		if(index_buffer == nullptr)
 		{
 			index_buffer = d3d::CreateIndexBuffer(*device, buffer_length);
 		}
-		ASSERT(vertex_buffer != NULL);
-		ASSERT(index_buffer != NULL);
+		ASSERT(vertex_buffer != nullptr);
+		ASSERT(index_buffer != nullptr);
 	}
 
 
@@ -213,7 +213,7 @@ namespace view
 		// Set the flexible vertex format to position and texture coordinates only.
 		device->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
 		// Set the device to use a fixed function vertex shader.
-		device->SetVertexShader(NULL);
+		device->SetVertexShader(nullptr);
 		// Turn alpha testing on.
 		device->SetRenderState(D3DRS_ALPHATESTENABLE, true);
 		// Set the alpha test reference to zero.
@@ -237,15 +237,15 @@ namespace view
 		// Release all unmanaged assets.
 		ReleaseUnmanagedAssets();
 		// Release all Direct3D interfaces.
-		if(device != NULL)
+		if(device != nullptr)
 		{
 			device->Release();
-			device = NULL;
+			device = nullptr;
 		}
-		if(d3d != NULL)
+		if(d3d != nullptr)
 		{
 			d3d->Release();
-			d3d = NULL;
+			d3d = nullptr;
 		}
 	}
 
@@ -253,8 +253,8 @@ namespace view
 	// See method declaration for details.
 	const bool BasicD3DRenderer::CheckDeviceState()
 	{
-		ASSERT(d3d != NULL);
-		ASSERT(device != NULL);
+		ASSERT(d3d != nullptr);
+		ASSERT(device != nullptr);
 		// Check the device state.
 		HRESULT result = device->TestCooperativeLevel();
 		// If the device is okay, ensure that the renderer's state is good.
@@ -265,8 +265,8 @@ namespace view
 				SetDeviceStates();
 				AcquireUnmanagedAssets();
 			}
-			ASSERT(vertex_buffer != NULL);
-			ASSERT(index_buffer != NULL);
+			ASSERT(vertex_buffer != nullptr);
+			ASSERT(index_buffer != nullptr);
 			is_device_ready = true;
 		}
 		// If the device was just lost, release assets and set is_device_ready to false.

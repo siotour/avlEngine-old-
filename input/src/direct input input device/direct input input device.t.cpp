@@ -22,11 +22,8 @@ Unit test for the direct input input device component. See "d3d error.h" for det
 */
 
 #include"direct input input device.h"
-#include"..\input event\input event.h"
-#include"..\keyboard event\keyboard event.h"
-#include"..\mouse move event\mouse move event.h"
-#include"..\mouse button event\mouse button event.h"
-#include"..\mouse scroll event\mouse scroll event.h"
+#include"..\..\..\utility\src\key codes\key codes.h"
+#include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\basic win32 window\basic win32 window.h"
 #include"..\..\..\view\src\win32 error\win32 error.h"
@@ -48,9 +45,12 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 	using avl::view::BasicD3DRenderer;
 	using avl::utility::Vertex2D;
 	using avl::utility::Sprite;
+	using avl::utility::input_events::InputEvent;
+	using avl::utility::input_events::KeyboardEvent;
+	using avl::utility::key_codes::KeyboardKey;
 	using avl::view::Image;
 	using avl::input::DirectInputInputDevice;
-	using avl::input::InputQueue;
+	using avl::utility::input_events::InputQueue;
 
 	
 	//try
@@ -58,7 +58,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 		// Create a window and renderer.
 		avl::view::d3d::D3DDisplayProfile profile = avl::view::d3d::LeastSquaredDisplayProfile(640, 480, true);
 		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
-		BasicD3DRenderer renderer(window.GetWindowHandle(), profile);
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profile, Vertex2D(1.0f, 1.0f));
 		DirectInputInputDevice input(window.GetWindowHandle());
 
 
@@ -115,18 +115,17 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 
 				while(queue.empty() == false)
 				{
-					const avl::input::InputEvent* const input = queue.front();
-					queue.pop();
+					const InputEvent* const input = queue.front().get();
 
-					if(input->GetType() == avl::input::KeyboardEvent::KEYBOARD_TYPE)
+					if(input->GetType() == KeyboardEvent::KEYBOARD_TYPE)
 					{
-						const avl::input::KeyboardEvent* const keyboard = dynamic_cast<const avl::input::KeyboardEvent* const>(input);
+						const KeyboardEvent* const keyboard = dynamic_cast<const KeyboardEvent* const>(input);
 						
-						if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_escape)
+						if(keyboard->GetKey() == KeyboardKey::kk_escape)
 						{
 							exit = true;
 						}
-						else if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_up)
+						else if(keyboard->GetKey() == KeyboardKey::kk_up)
 						{
 							if(keyboard->IsPressed() == true)
 							{
@@ -137,7 +136,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 								movement.SetY(0.0f);
 							}
 						}
-						else if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_down)
+						else if(keyboard->GetKey() == KeyboardKey::kk_down)
 						{
 							if(keyboard->IsPressed() == true)
 							{
@@ -148,7 +147,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 								movement.SetY(0.0f);
 							}
 						}
-						else if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_right)
+						else if(keyboard->GetKey() == KeyboardKey::kk_right)
 						{
 							if(keyboard->IsPressed() == true)
 							{
@@ -159,7 +158,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 								movement.SetX(0.0f);
 							}
 						}
-						else if(keyboard->GetKey() == avl::input::key_codes::KeyboardKey::kk_left)
+						else if(keyboard->GetKey() == KeyboardKey::kk_left)
 						{
 							if(keyboard->IsPressed() == true)
 							{
@@ -172,7 +171,7 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 						}
 					}
 
-					delete input;
+					queue.pop();
 				}
 
 			}

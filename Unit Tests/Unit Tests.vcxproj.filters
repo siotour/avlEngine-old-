@@ -117,7 +117,22 @@
     <ClCompile Include="..\sound\src\xaudio2 wrapper\xaudio2 wrapper.t.cpp">
       <Filter>Source Files\sound Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\model\src\entity\entity.t.cpp">
+    <ClCompile Include="..\model\src\agent\agent.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\action\action.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\reaction\reaction.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\input events\input events.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\scene\scene.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\basic scene\basic scene.t.cpp">
       <Filter>Source Files\model Tests</Filter>
     </ClCompile>
   </ItemGroup>

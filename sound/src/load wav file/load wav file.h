@@ -34,6 +34,7 @@ namespace sound
 {
 
 	/**
+	@todo Document this file.
 	@todo Make use of the (soon to be added) utility::FileFormatException.
 	*/
 	SoundSample LoadWAVFile(const std::string& file_name);

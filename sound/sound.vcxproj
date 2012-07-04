@@ -14,6 +14,7 @@
     <ClInclude Include="src\load wav file\load wav file.h" />
     <ClInclude Include="src\sound engine\sound engine.h" />
     <ClInclude Include="src\sound sample\sound sample.h" />
+    <ClInclude Include="src\sound.h" />
     <ClInclude Include="src\xaudio2 sound engine\xaudio2 sound engine.h" />
     <ClInclude Include="src\xaudio2 wrapper\xaudio2 wrapper.h" />
   </ItemGroup>

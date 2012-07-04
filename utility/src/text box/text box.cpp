@@ -570,7 +570,7 @@ namespace utility
 		while(sprites.size() < text.size())
 		{
 			utility::Sprite* const new_sprite = new (std::nothrow) utility::Sprite();
-			if(new_sprite == NULL)
+			if(new_sprite == nullptr)
 			{
 				throw OutOfMemoryError();
 			}

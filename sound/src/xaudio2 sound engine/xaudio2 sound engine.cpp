@@ -113,7 +113,7 @@ namespace sound
 		{
 			// Delete the audio data.
 			delete[] reinterpret_cast<const char*>(element->second->second.pAudioData);
-			element->second->second.pAudioData = NULL;
+			element->second->second.pAudioData = nullptr;
 			// Delete the SoundData object.
 			delete element->second;
 			// Erase this entry.
@@ -127,10 +127,10 @@ namespace sound
 		// Unload all of the currently loaded sound data.
 		for(SoundHandleToSound::iterator i = sounds.begin(); i != sounds.end(); ++i)
 		{
-			if(i->second->second.pAudioData != NULL)
+			if(i->second->second.pAudioData != nullptr)
 			{
 				delete[] reinterpret_cast<const unsigned char*>(i->second->second.pAudioData);
-				i->second->second.pAudioData = NULL;
+				i->second->second.pAudioData = nullptr;
 			}
 			delete i->second;
 		}
@@ -229,16 +229,16 @@ namespace sound
 		// Clear all sound data and voices.
 		ClearSounds();
 		// Destroy the mastering voice.
-		if(mastering_voice != NULL)
+		if(mastering_voice != nullptr)
 		{
 			mastering_voice->DestroyVoice();
-			mastering_voice = NULL;
+			mastering_voice = nullptr;
 		}
 		// Destroy the XAudio2 interface.
-		if(xaudio2 != NULL)
+		if(xaudio2 != nullptr)
 		{
 			xaudio2->Release();
-			xaudio2 = NULL;
+			xaudio2 = nullptr;
 		}
 		CoUninitialize();
 	}

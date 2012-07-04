@@ -62,7 +62,7 @@ namespace win32
 	for.
 	@return The device context handle for the window with handle
 	\a window_handle.
-	@throw utility::InvalidArgumentException If \a window_handle is NULL.
+	@throw utility::InvalidArgumentException If \a window_handle is nullptr.
 	@throw Win32Error If unable to attain the device context.
 	@todo When does this procedure throw any exceptions? What are the pre- and
 	post-conditions?

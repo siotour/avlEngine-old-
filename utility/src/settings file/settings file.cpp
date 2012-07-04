@@ -333,7 +333,7 @@ namespace utility
 		}
 		while(bush.empty() == false && isspace(*(--bush.end())) != 0)
 		{
-			bush.erase(*(--bush.end()));
+			bush.erase(--bush.end());
 		}
 	}
 

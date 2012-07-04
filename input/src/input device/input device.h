@@ -23,21 +23,16 @@ Provides a standard interface for input classes via the \ref avl::input::InputDe
 abstract class.
 @author Sheldon Bachstein
 @date Jun 12, 2012
+@todo Document this component.
 */
 
+#include"..\..\..\utility\src\input events\input events.h"
 #include<queue>
 
 namespace avl
 {
 namespace input
 {
-	// Forward declaration.
-	class InputEvent;
-
-	/** Used to pass around \ref avl::input::InputEvent objects.
-	 @todo Are any smart pointers appropriate here?
-	 */
-	typedef std::queue<const InputEvent* const> InputQueue;
 
 	/** 
 	*/
@@ -52,7 +47,7 @@ namespace input
 
 		/** Returns 
 		*/
-		virtual InputQueue GetInput() = 0;
+		virtual utility::input_events::InputQueue GetInput() = 0;
 
 	};
 

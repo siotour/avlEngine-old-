@@ -214,7 +214,7 @@ namespace xaudio2
 		}
 		// Save some contextual information about the sound effect's state for this buffer.
 		BufferContext* context = new BufferContext(effect.IsLooping(), effect.GetSoundHandle());
-		if(context == NULL)
+		if(context == nullptr)
 		{
 			throw utility::OutOfMemoryError();
 		}

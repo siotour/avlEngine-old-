@@ -79,7 +79,7 @@ namespace view
 		will run into problems if you simply rename a .PNG file to .TGA and then try loading it).
 		@post If an error occurs while reading from the file, if the file's formatting is not supported, or if an
 		unsupported file extension is supplied, the created Image will have 0 \ref width, \ref height, \ref pixel_depth, and
-		\ref pixel_data pointer will be \c NULL.\n
+		\ref pixel_data pointer will be \c nullptr.\n
 		See the image-loading functions for each individual image file format to
 		see what additional restrictions are imposed for each file format.
 		*/

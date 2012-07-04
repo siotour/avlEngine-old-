@@ -71,7 +71,7 @@ namespace view
 
 			// If unable to allocate memory for file_data, return false.
 			unsigned char* file_data = new (std::nothrow) unsigned char[file_size];
-			if(file_data == NULL)
+			if(file_data == nullptr)
 			{
 				file.close();
 				return false;
@@ -167,7 +167,7 @@ namespace view
 
 			// Done with the header. Allocate memory for the pixel data.
 			pixel_data = new (std::nothrow) unsigned char[image_size];
-			if(pixel_data == NULL)
+			if(pixel_data == nullptr)
 			{
 				return false;
 			}
@@ -243,7 +243,7 @@ namespace view
 				unsigned short lower_line = height;
 				unsigned char* temp = new (std::nothrow) unsigned char[width * pixel_depth];
 				// If unable to get the memory, return false.
-				if(temp == NULL)
+				if(temp == nullptr)
 				{
 					delete[] pixel_data;
 					delete[] file_data;
@@ -280,7 +280,7 @@ namespace view
 				unsigned short right_pixel;
 				unsigned char* temp = new (std::nothrow) unsigned char[pixel_depth];
 				// If unable to get the memory, return false.
-				if(temp == NULL)
+				if(temp == nullptr)
 				{
 					delete[] pixel_data;
 					delete[] file_data;
@@ -350,7 +350,7 @@ namespace view
 			const unsigned short& pixel_depth, const bool& alpha, unsigned char* pixel_data)
 		: width(width), height(height), pixel_depth(pixel_depth), contains_alpha_channel(alpha), pixel_data(pixel_data)
 	{
-		ASSERT(width != 0 && height != 0 && pixel_depth != 0 && pixel_data != NULL);
+		ASSERT(width != 0 && height != 0 && pixel_depth != 0 && pixel_data != nullptr);
 	}
 
 
@@ -361,7 +361,7 @@ namespace view
 	// will run into problems if you simply rename a .PNG file to .TGA and then try loading it). If an error
 	// occurs while reading from the file, if the file's formatting is not supported, or if an unsupported
 	// file extension is supplied, the created Image will have 0 width, height, pixel depth, and the image
-	// data pointer will be NULL. See the image-loading functions for each individual image file format to
+	// data pointer will be nullptr. See the image-loading functions for each individual image file format to
 	// see what additional restrictions are imposed for each file format.
 	Image::Image(const std::string& file_name)
 	{
@@ -403,7 +403,7 @@ namespace view
 			height = 0;
 			pixel_depth = 0;
 			contains_alpha_channel = false;
-			pixel_data = NULL;
+			pixel_data = nullptr;
 		}
 	}
 
@@ -413,10 +413,10 @@ namespace view
 	// Basic destructor. Deletes the image data from the heap.
 	Image::~Image()
 	{
-		if(pixel_data != NULL)
+		if(pixel_data != nullptr)
 		{
 			delete[] pixel_data;
-			pixel_data = NULL;
+			pixel_data = nullptr;
 		}
 	}
 
