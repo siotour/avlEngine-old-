@@ -13,18 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\d3d">
+      <UniqueIdentifier>{ed74de93-f88a-4a04-8596-dc3878b53f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\d3d">
+      <UniqueIdentifier>{a2b415be-c7cc-42ee-8647-01eed7bbf296}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\d3d display profile\d3d display profile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\renderer\renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\d3d wrapper\d3d wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\d3d error\d3d error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\window\window.h">
@@ -48,18 +45,66 @@
     <ClInclude Include="src\view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\d3d wrapper\d3d wrapper.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\d3d display profile\d3d display profile.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\d3d error\d3d error.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\wrapper functions\wrapper functions.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\draw primitives task\draw primitives task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\graphic batch\graphic batch.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\render task\render task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set colored rendering task\set colored rendering task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set index buffer task\set index buffer task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set opaque rendering task\set opaque rendering task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set texture task\set texture task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set textured rendering task\set textured rendering task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set translucent rendering task\set translucent rendering task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\set vertex buffer task\set vertex buffer task.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\render context\render context.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\texture context\texture context.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\draw primitives task list\draw primitives task list.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\render state\render state.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d\render task sequence\render task sequence.h">
+      <Filter>Header Files\d3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\d3d display profile\d3d display profile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\renderer\renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\d3d wrapper\d3d wrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\d3d error\d3d error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\window\window.cpp">
@@ -79,6 +124,60 @@
     </ClCompile>
     <ClCompile Include="src\image\image.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\d3d error\d3d error.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\d3d display profile\d3d display profile.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\wrapper functions\wrapper functions.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\draw primitives task\draw primitives task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\graphic batch\graphic batch.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\render task\render task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set colored rendering task\set colored rendering task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set index buffer task\set index buffer task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set opaque rendering task\set opaque rendering task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set texture task\set texture task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set textured rendering task\set textured rendering task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set translucent rendering task\set translucent rendering task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\set vertex buffer task\set vertex buffer task.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\texture context\texture context.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\render context\render context.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\draw primitives task list\draw primitives task list.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\render state\render state.cpp">
+      <Filter>Source Files\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\render task sequence\render task sequence.cpp">
+      <Filter>Source Files\d3d</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

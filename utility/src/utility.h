@@ -30,11 +30,13 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 #include"input events\input events.h"
 #include"key codes\key codes.h"
 #include"log file\log file.h"
+#include"quad\quad.h"
 #include"settings file\settings file.h"
 #include"sound effect\sound effect.h"
 #include"sprite\sprite.h"
 #include"text box\text box.h"
+#include"textured quad\textured quad.h"
 #include"timer\timer.h"
-#include"vertex 2d\vertex 2d.h"
+#include"vector\vector.h"
 
 #endif // AVL_UTILITY_SUBSYSTEM__

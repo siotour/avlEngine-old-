@@ -22,17 +22,20 @@ Implementation for the text box component. See "text box.h" for details.
 */
 
 #include"text box.h"
-#include"..\sprite\sprite.h"
-#include"..\vertex 2d\vertex 2d.h"
+#include"..\graphic\graphic.h"
+#include"..\render primitive\render primitive.h"
+#include"..\textured quad\textured quad.h"
+#include"..\quad\quad.h"
+#include"..\vector\vector.h"
 #include"..\exceptions\exceptions.h"
 #include"..\assert\assert.h"
-
 #include<vector>
 #include<list>
 #include<deque>
 #include<string>
 #include<cmath>
 #include<new>
+#include<memory>
 
 
 namespace avl
@@ -41,10 +44,10 @@ namespace utility
 {
 
 
-	// 
+	// See method declaration for details.
 	TextBox::TextBox(const float& left, const float& top, const float& right, const float& bottom, const float& z, 
 			const unsigned int& chars_per_row, const unsigned int& number_of_rows,
-			const OverwriteBehavior& behavior, const utility::Sprite::TextureHandle& texture_handle,
+			const OverwriteBehavior& behavior, const utility::TexturedQuad::TextureHandle& texture_handle,
 			const unsigned int& chars_per_texture_row)
 			: left(left), top(top), right(right), bottom(bottom), z(z), chars_per_row(chars_per_row), number_of_rows(number_of_rows), behavior(behavior), texture_handle(texture_handle), chars_per_texture_row(chars_per_texture_row)
 	{
@@ -146,7 +149,7 @@ namespace utility
 
 
 	// Returns the current texture handle.
-	const utility::Sprite::TextureHandle& TextBox::GetTextureHandle() const
+	const utility::TexturedQuad::TextureHandle& TextBox::GetTextureHandle() const
 	{
 		return texture_handle;
 	}
@@ -155,14 +158,17 @@ namespace utility
 
 
 	// Returns a list of all the sprites composing this text box. Use for rendering.
-	utility::SpriteList TextBox::GetSprites() const
+	const RenderPrimitiveList& TextBox::GetRenderPrimitives() const
 	{
-		utility::SpriteList list;
+		static RenderPrimitiveList list;
 
-		std::vector<Row>::const_iterator end = rows.end();
-		for(std::vector<Row>::const_iterator i = rows.begin(); i != end; ++i)
+		list.clear();
+		for(auto i = rows.begin(); i != rows.end(); ++i)
 		{
-			list.splice(list.end(), i->GetSprites());
+			for(auto k = i->GetQuads().begin(); k != i->GetQuads().end(); ++k)
+			{
+				list.push_back(&(*k));
+			}
 		}
 
 		return list;
@@ -373,7 +379,7 @@ namespace utility
 
 
 	// Change the texture handle used to draw text.
-	void TextBox::SetTextureHandle(const utility::Sprite::TextureHandle& new_texture_handle)
+	void TextBox::SetTextureHandle(const utility::TexturedQuad::TextureHandle& new_texture_handle)
 	{
 		// Update texture handle variable.
 		texture_handle = new_texture_handle;
@@ -517,25 +523,18 @@ namespace utility
 
 
 
-	// Deletes all sprites used by this row.
+	// See method declaration for details.
 	TextBox::Row::~Row()
 	{
-		// Delete all sprites.
-		utility::SpriteList::const_iterator end = sprites.end();
-		for(utility::SpriteList::const_iterator i = sprites.begin(); i != end; ++i)
-		{
-			delete *i;
-			sprites.erase(i);
-		}
 	}
 
 
 
 
 	// Returns a list of all the sprites composing this row. Use for rendering.
-	utility::SpriteList TextBox::Row::GetSprites() const
+	const std::list<TexturedQuad>& TextBox::Row::GetQuads() const
 	{
-		return sprites;
+		return quads;
 	}
 
 
@@ -545,10 +544,9 @@ namespace utility
 	void TextBox::Row::SetVisibility(const bool new_visibility)
 	{
 		// Set the visibility of each sprite.
-		utility::SpriteList::const_iterator end = sprites.end();
-		for(utility::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		for(auto i = quads.begin(); i != quads.end(); ++i)
 		{
-			(*i)->SetVisibility(new_visibility);
+			i->SetVisibility(new_visibility);
 		}
 		// Store new visibility.
 		visibility = new_visibility;
@@ -567,21 +565,15 @@ namespace utility
 
 		// Create new sprites if we're short. If unable to allocate space, will
 		// throw an OutOfMemoryError.
-		while(sprites.size() < text.size())
+		while(quads.size() < text.size())
 		{
-			utility::Sprite* const new_sprite = new (std::nothrow) utility::Sprite();
-			if(new_sprite == nullptr)
-			{
-				throw OutOfMemoryError();
-			}
-			sprites.insert(sprites.end(), new_sprite);
+			quads.push_back(TexturedQuad());
 		}
 		// Delete any excess sprites.
-		while(sprites.size() > text.size())
+		while(quads.size() > text.size())
 		{
-			utility::SpriteList::iterator old = sprites.begin();
-			delete *(old);
-			sprites.erase(old);
+			auto old = quads.begin();
+			quads.erase(old);
 		}
 
 		// The width of each sprite.
@@ -601,14 +593,13 @@ namespace utility
 
 		// Set up each sprite.
 		unsigned int current_character = 0;
-		utility::SpriteList::const_iterator end = sprites.end();
-		for(utility::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		for(auto i = quads.begin(); i != quads.end(); ++i)
 		{
 			// Calculate this sprite's position.
 			sprite_left = left + sprite_width * current_character;
 			sprite_right = sprite_left + sprite_width;
 
-			(*i)->ResetPosition(sprite_left, top, sprite_right, bottom, z);
+			(*i) = TexturedQuad(Quad(sprite_left, top, sprite_right, bottom), z, texture_handle);
 
 			// Calculate this sprite's texture coordinates.
 			tex_left = character_width * (text.at(current_character) % chars_per_texture_row);
@@ -616,16 +607,16 @@ namespace utility
 			tex_right = tex_left + character_width;
 			tex_bottom = tex_top - character_height;
 
-			(*i)->SetQ1(utility::Vertex2D(tex_left, tex_bottom));
-			(*i)->SetQ2(utility::Vertex2D(tex_left, tex_top));
-			(*i)->SetQ3(utility::Vertex2D(tex_right, tex_top));
-			(*i)->SetQ4(utility::Vertex2D(tex_right, tex_bottom));
+			i->AccessTexturePosition().SetP1(utility::Vector(tex_left, tex_bottom));
+			i->AccessTexturePosition().SetP2(utility::Vector(tex_left, tex_top));
+			i->AccessTexturePosition().SetP3(utility::Vector(tex_right, tex_top));
+			i->AccessTexturePosition().SetP4(utility::Vector(tex_right, tex_bottom));
 
 			// Set the sprite's texture handle.
-			(*i)->SetTextureHandle(texture_handle);
+			i->SetTextureHandle(texture_handle);
 
 			// Set the sprite's visibility.
-			(*i)->SetVisibility(visibility);
+			i->SetVisibility(visibility);
 			// Next character.
 			++current_character;
 		}
@@ -666,13 +657,12 @@ namespace utility
 
 
 	// Sets the new texture handle for the row.
-	void TextBox::Row::SetTextureHandle(const utility::Sprite::TextureHandle& new_texture_handle)
+	void TextBox::Row::SetTextureHandle(const utility::TexturedQuad::TextureHandle& new_texture_handle)
 	{
 		// Set the texture handle of each sprite.
-		utility::SpriteList::const_iterator end = sprites.end();
-		for(utility::SpriteList::iterator i = sprites.begin(); i != end; ++i)
+		for(auto i = quads.begin(); i != quads.end(); ++i)
 		{
-			(*i)->SetTextureHandle(new_texture_handle);
+			i->SetTextureHandle(new_texture_handle);
 		}
 		// Store new texture handle.
 		texture_handle = new_texture_handle;

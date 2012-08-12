@@ -24,14 +24,11 @@ Defines the \ref avl::view::d3d::D3DDisplayProfile class.
 @date Jul 07, 2011
 */
 
-
-
 #include<vector>
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
 #endif
 #include<d3d9.h>
-
 
 
 namespace avl
@@ -44,10 +41,8 @@ namespace d3d
 	// Forward declaration.
 	class D3DDisplayProfile;
 
-
 	/** Used to return a set of \ref avl::view::d3d::D3DDisplayProfile objects.*/
 	typedef const std::vector<const D3DDisplayProfile> DisplayProfiles;
-
 
 	/**
 	A structure designed to store D3D Device display format information. This includes:
@@ -76,7 +71,6 @@ namespace d3d
 		D3DDisplayProfile(const D3DDisplayProfile& original);
 		/** Basic destructor.*/
 		~D3DDisplayProfile();
-
 
 		/** Is this profile fullscreen?
 		@return True if the the profile is fullscreen, and false if it's windowed.

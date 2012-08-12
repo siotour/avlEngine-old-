@@ -42,12 +42,6 @@
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp">
-      <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp">
-      <Filter>Source Files\utility Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
@@ -67,9 +61,6 @@
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\view\src\d3d wrapper\d3d wrapper.t.cpp">
-      <Filter>Source Files\view Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp">
       <Filter>Source Files\view Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\view\src\window\window.t.cpp">
@@ -134,6 +125,75 @@
     </ClCompile>
     <ClCompile Include="..\model\src\basic scene\basic scene.t.cpp">
       <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\render primitive\render primitive.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\graphic\graphic.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\quad\quad.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\textured quad\textured quad.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\d3d display profile\d3d display profile.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\d3d error\d3d error.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\wrapper functions\wrapper functions.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\draw primitives task\draw primitives task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\graphic batch\graphic batch.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\render task\render task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set colored rendering task\set colored rendering task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set index buffer task\set index buffer task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set opaque rendering task\set opaque rendering task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set texture task\set texture task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set textured rendering task\set textured rendering task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set translucent rendering task\set translucent rendering task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\set vertex buffer task\set vertex buffer task.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\render context\render context.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\texture context\texture context.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\draw primitives task list\draw primitives task list.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\render state\render state.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\view\src\d3d\render task sequence\render task sequence.t.cpp">
+      <Filter>Source Files\view Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\vector\vector.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

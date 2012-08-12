@@ -73,7 +73,7 @@ namespace sound
 			throw utility::InvalidArgumentException("avl::sound::XAudio2SoundEngine::AddSound()", "new_sample", "Must contain a non-null audio data pointer.");
 		}
 		// Make sure that the sample's bit depth is acceptable.
-		if(new_sample.GetBitDepth() != 8 && new_sample.GetBitDepth() != 16 && new_sample.GetBitDepth() != 32)
+		if(new_sample.GetBitDepth() != 8 && new_sample.GetBitDepth() != 16 && new_sample.GetBitDepth() != 24 && new_sample.GetBitDepth() != 32)
 		{
 			throw utility::InvalidArgumentException("avl::sound::XAudio2SoundEngine::AddSound()", "new_sample", "Must have a bit depth of 8, 16, or 32.");
 		}

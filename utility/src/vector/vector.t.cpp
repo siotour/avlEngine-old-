@@ -16,12 +16,12 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the vertex 2d component. See "vertex 2d.h" for details.
+Unit test for the vector component. See "vector.h" for details.
 @author Sheldon Bachstein
 @date January 17, 2011
 */
 
-#include"vertex 2d.h"
+#include"vector.h"
 #include"..\..\..\utility\src\assert\assert.h"
 #include<iostream>
 
@@ -30,24 +30,24 @@ Unit test for the vertex 2d component. See "vertex 2d.h" for details.
 namespace
 {
 	// Output operator.
-	std::ostream& operator<<(std::ostream& output, const avl::utility::Vertex2D& vertex)
+	std::ostream& operator<<(std::ostream& output, const avl::utility::Vector& vertex)
 	{
 		output << "(" << vertex.GetX() << ", " << vertex.GetY() << ")";
 		return output;
 	}
 }
 
-void TestVertex2DComponent()
+void TestVectorComponent()
 {
-	using avl::utility::Vertex2D;
+	using avl::utility::Vector;
 	using std::cout;
 
 	// Test constructors.
-	Vertex2D v1;
+	Vector v1;
 	ASSERT(v1.GetX() == 0.0f && v1.GetY() == 0.0f);
-	Vertex2D v2(1.0f, 1.0f);
+	Vector v2(1.0f, 1.0f);
 	ASSERT(v2.GetX() == 1.0f && v2.GetY() == 1.0f);
-	Vertex2D v3(v2);
+	Vector v3(v2);
 	ASSERT(v3.GetX() == 1.0f && v3.GetY() == 1.0f);
 
 	// Test mutators.

@@ -25,7 +25,7 @@ or failure due to a Direct3D function call.
 @date Apr 01, 2012
 */
 
-#include"../renderer/renderer.h"
+#include"..\..\renderer\renderer.h"
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
 #endif
@@ -40,15 +40,15 @@ namespace d3d
 {
 
 	/** This exception type is thrown when one of the Direct3D functions fail. In addition
-	to a description of the problem, it records the error code returned from the function.
+	to a description of the problem, it records the error code returned from the failed function.
 	*/
 	class D3DError: public RendererException
 	{
 	public:
 		/** Full-spec constructor.
-		@param d3d_function The name of the Direct3D function which failed.
+		@param d3d_function The name of the function in which the failed function was called.
 		@param explanation A description of the problem which has occurred.
-		@param error_code The actual error code returned from calling \a d3d_function.
+		@param error_code The error code returned from the failed function.
 		function.
 		*/
 		D3DError(const std::string& d3d_function, const std::string& explanation, const HRESULT& error_code);
@@ -59,8 +59,8 @@ namespace d3d
 		*/
 		D3DError(const D3DError& original);
 
-		/** Returns the failed error code.
-		@return The error code returned from the problematic Direct3D function.
+		/** Returns the error code.
+		@return The error code returned from the failed Direct3D function.
 		*/
 		const HRESULT& GetErrorCode() const;
 

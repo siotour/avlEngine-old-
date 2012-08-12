@@ -24,7 +24,7 @@ Implementation for the agent component. See "agent.h" for details.
 #include"agent.h"
 #include"..\reaction\reaction.h"
 #include"..\action\action.h"
-#include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
 #include<map>
 
@@ -45,9 +45,9 @@ namespace model
 	}
 
 	// See method declaration for details.
-	const utility::SpriteList& Agent::GetSprites() const
+	const utility::GraphicList& Agent::GetGraphics() const
 	{
-		return sprite_list;
+		return graphic_list;
 	}
 
 	// See method declaration for details.
@@ -57,7 +57,7 @@ namespace model
 	}
 
 	// See method declaration for details.
-	ActionQueue& Agent::ProcessActions()
+	ActionQueue& Agent::GetActions()
 	{
 		return action_queue;
 	}
@@ -73,15 +73,27 @@ namespace model
 	}
 	
 	// See method declaration for details.
-	void Agent::RegisterSprite(utility::Sprite& new_sprite)
+	void Agent::AddGraphic(const utility::Graphic* const new_graphic)
 	{
-		sprite_list.push_back(&new_sprite);
+		graphic_list.push_back(new_graphic);
 	}
 
 	// See method declaration for details.
-	void Agent::RegisterSoundEffect(utility::SoundEffect& new_sound_effect)
+	void Agent::RemoveGraphic(const utility::Graphic* const graphic)
 	{
-		sound_effect_list.push_back(&new_sound_effect);
+		graphic_list.remove(graphic);
+	}
+
+	// See method declaration for details.
+	void Agent::AddSoundEffect(utility::SoundEffect* const new_sound_effect)
+	{
+		sound_effect_list.push_back(new_sound_effect);
+	}
+
+	// See method declaration for details.
+	void Agent::RemoveSoundEffect(utility::SoundEffect* const sound_effect)
+	{
+		sound_effect_list.remove(sound_effect);
 	}
 
 	// See method declaration for details.

@@ -26,11 +26,11 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 
 #include"..\scene\scene.h"
 #include"..\agent\agent.h"
-#include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
 #include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\utility\src\timer\timer.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\vector\vector.h"
 #include<list>
 #include<memory>
 
@@ -54,16 +54,16 @@ namespace model
 		@param screen_space The resolution of the visible screen, with (0, 0)
 		being the center of the screen.
 		*/
-		BasicScene(const double& initial_time_step, const utility::Vertex2D& screen_space);
+		BasicScene(const double& initial_time_step, const utility::Vector& screen_space);
 
 		/** Basic destructor.
 		*/
 		virtual ~BasicScene();
 
-		/** Retrieves the sprites representing this scene.
-		@return The sprites representing the scene.
+		/** Retrieves the graphics representing this scene.
+		@return The graphics representing the scene.
 		*/
-		utility::SpriteList GetSprites();
+		const utility::GraphicList GetGraphics();
 		
 		/** Retrieves the sound effects representing this scene.
 		@return The sound effects representing the scene.
@@ -95,7 +95,7 @@ namespace model
 		/// axis, and the y component specifies the width of the
 		/// visible screen space along hte y axis. The center of the
 		/// screen is the point (0, 0).
-		const utility::Vertex2D screen_space_resolution;
+		const utility::Vector screen_space_resolution;
 
 		/// The agents acting in the scene.
 		std::list<std::auto_ptr<Agent>> agents;

@@ -29,10 +29,9 @@ Unit test for the text box component. See "text box.h" for details.
 #include"..\..\..\view\src\basic win32 window\basic win32 window.h"
 #include"..\..\..\view\src\win32 error\win32 error.h"
 #include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
-#include"..\..\..\view\src\d3d display profile\d3d display profile.h"
-#include"..\..\..\view\src\d3d error\d3d error.h"
+#include"..\..\..\view\src\d3d wrapper\d3d wrapper.h"
 #include"..\..\..\view\src\image\image.h"
-#include"..\vertex 2d\vertex 2d.h"
+#include"..\vector\vector.h"
 #include"..\sprite\sprite.h"
 #include"..\assert\assert.h"
 #include<fstream>
@@ -41,16 +40,9 @@ Unit test for the text box component. See "text box.h" for details.
 
 void TestTextBoxComponent(HINSTANCE instance)
 {
-	using avl::view::BasicWin32Window;
-	using avl::view::BasicD3DRenderer;
-	using avl::utility::Vertex2D;
-	using avl::utility::Sprite;
-	using avl::utility::input_events::InputEvent;
-	using avl::utility::input_events::KeyboardEvent;
-	using avl::utility::key_codes::KeyboardKey;
-	using avl::utility::TextBox;
-	using avl::view::Image;
-	using avl::input::DirectInputInputDevice;
+	using namespace avl::utility;
+	using namespace avl::view;
+	using namespace avl::input;
 
 	
 	try
@@ -58,7 +50,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 		// Create a window and renderer.
 		avl::view::d3d::DisplayProfiles profiles = avl::view::d3d::EnumerateDisplayProfiles();
 		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profiles[42].GetWidth(), profiles[42].GetHeight());
-		BasicD3DRenderer renderer(window.GetWindowHandle(), profiles[42], Vertex2D(1.0f, 1.0f));
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profiles[42], Vector(1.0f, 1.0f));
 		DirectInputInputDevice input(window.GetWindowHandle());
 
 
@@ -81,7 +73,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 
 
 		// Create a few sprites.
-		Sprite background(-1.0f, 1.0f, 1.0f, -1.0f, 0.5f, background_handle);
+		Sprite background(Quad(-1.0f, 1.0f, 1.0f, -1.0f), 0.5f, background_handle);
 		TextBox text(-0.6f, 0.8f, 0.0f, 0.4f, 0.1f, 16, 6, TextBox::OVERWRITE_ROWS, font_handle, 256);
 
 
@@ -92,9 +84,9 @@ void TestTextBoxComponent(HINSTANCE instance)
 
 
 		// Put quads into the appropriate container.
-		avl::utility::SpriteList sprites;
-		sprites.insert(sprites.begin(), &background);
-		sprites.splice(sprites.begin(), text.GetSprites());
+		GraphicList graphics;
+		graphics.push_back(&background);
+		graphics.push_back(&text);
 
 		
 
@@ -105,7 +97,7 @@ void TestTextBoxComponent(HINSTANCE instance)
 			if(window.IsActive() == true)
 			{
 				// Draw sprites.
-				renderer.RenderSprites(sprites);
+				renderer.RenderGraphics(graphics);
 			}
 		}
 	}

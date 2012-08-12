@@ -23,13 +23,11 @@ Implementation for the basic d3d renderer component. See "basic d3d renderer.h" 
 
 #include"basic d3d renderer.h"
 #include"..\d3d wrapper\d3d wrapper.h"
-#include"..\d3d display profile\d3d display profile.h"
-#include"..\d3d error\d3d error.h"
 #include"..\image\image.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\assert\assert.h"
-#include"..\..\..\utility\src\sprite\sprite.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
+#include"..\..\..\utility\src\vector\vector.h"
 #include<new>
 // Makes d3d9 activate additional debug information and checking.
 #ifdef _DEBUG
@@ -43,16 +41,11 @@ namespace avl
 {
 namespace view
 {
-	// Forward declarations. See the function definitions for details.
-	namespace
-	{
-		bool IsImagePartiallyTransparent(const unsigned int size, const unsigned char* const pixel_data);
-	}
 
 	// See method declaration for details.
-	BasicD3DRenderer::BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile, const avl::utility::Vertex2D& screen_space)
-		: Renderer(screen_space), display_profile(profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(2),
-		buffer_length(1000), d3d(nullptr), device(nullptr), vertex_buffer(nullptr), index_buffer(nullptr), is_device_ready(false)
+	BasicD3DRenderer::BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile, const avl::utility::Vector& screen_space)
+		: Renderer(screen_space), display_profile(profile), vertex_format(D3DFVF_XYZ | D3DFVF_TEX1), bytes_per_pixel(4), next_texture_handle(1),
+		buffer_length(1000), d3d(nullptr), device(nullptr), textured_vertex_buffer(nullptr), colored_vertex_buffer(nullptr), index_buffer(nullptr), is_device_ready(false)
 	{
 		try
 		{
@@ -86,7 +79,7 @@ namespace view
 
 
 	// See method declaration for details.
-	const utility::Sprite::TextureHandle BasicD3DRenderer::AddTexture(const view::Image& image)
+	const utility::TexturedQuad::TextureHandle BasicD3DRenderer::AddTexture(const view::Image& image)
 	{
 		ASSERT(image.GetPixelData() != nullptr);
 		ASSERT(image.GetWidth() > 0);
@@ -95,32 +88,44 @@ namespace view
 		ASSERT(device != nullptr);
 		// This function currently only supports 32-bit textures. Make sure that this image has a 4-byte
 		// pixel depth.
-		ASSERT(image.GetPixelDepth() == 4);	
-		// Create a new texture.
+		ASSERT(image.GetPixelDepth() == 4);
+		// Load the user's pixel data into a new texture.
 		IDirect3DTexture9* texture = d3d::CreateTexture(*device, image.GetWidth(), image.GetHeight(), D3DFMT_A8R8G8B8);
-		// Attempt to load the user's data into the newly-created texture.
 		d3d::CopyPixelDataToTexture(*texture, image.GetPixelData(), image.GetWidth(), image.GetHeight(), image.GetPixelDepth());
-		// If the image is semi-transparent, set the last bit of its texture handle.
-		unsigned long texture_handle = next_texture_handle;
-		if(IsImagePartiallyTransparent(image.GetWidth() * image.GetHeight(), image.GetPixelData()) == true)
+
+		// Is there a texture handle that we can reuse?
+		utility::TexturedQuad::TextureHandle texture_handle;
+		if(reusable_texture_handles.empty() == false)
 		{
-			texture_handle += 1;
+			texture_handle = reusable_texture_handles.front();
+			reusable_texture_handles.pop();
 		}
-		// Add the newly-created texture to the map of textures with the key value of next_texture_handle.
-		std::pair<d3d::TexHandleToTex::iterator, bool> result2 = textures.insert(d3d::TexHandleToTex::value_type(texture_handle, texture));
-		ASSERT(result2.second == true);
-		// Bump next_texture_handle up to the next possible handle, leaving the last bit unset.
-		next_texture_handle += 2;
+		else
+		{
+			texture_handle = next_texture_handle;
+			++next_texture_handle;
+		}
+		// Map the new texture handle to this texture.
+		try
+		{
+			d3d::TextureContext new_texture(*texture, image.IsTranslucent());
+			auto result2 = textures.insert(d3d::TexHandleToTexContext::value_type(texture_handle, new_texture));
+			ASSERT(result2.second == true);
+		}
+		catch(const std::bad_alloc&)
+		{
+			throw utility::OutOfMemoryError();
+		}
 		// Return the handle used for this texture.
 		return texture_handle;
 	}
 
 
 	// See method declaration for details.
-	void BasicD3DRenderer::DeleteTexture(const utility::Sprite::TextureHandle& texture_handle)
+	void BasicD3DRenderer::DeleteTexture(const utility::TexturedQuad::TextureHandle& texture_handle)
 	{
 		// Find the texture within the texture map.
-		d3d::TexHandleToTex::iterator i = textures.find(texture_handle);
+		d3d::TexHandleToTexContext::iterator i = textures.find(texture_handle);
 		ASSERT(i != textures.end());
 		// If the specified texture handle doesn't exist, then simply ignore the deletion request.
 		if(i == textures.end())
@@ -128,9 +133,18 @@ namespace view
 			return;
 		}
 		// Release the texture.
-		i->second->Release();
+		i->second.texture.Release();
 		// Delete the texture from the map.
 		textures.erase(i);
+		// Save the handle to be reused.
+		try
+		{
+			reusable_texture_handles.push(texture_handle);
+		}
+		catch(const std::bad_alloc&)
+		{
+			throw utility::OutOfMemoryError();
+		}
 	}
 
 
@@ -138,30 +152,41 @@ namespace view
 	void BasicD3DRenderer::ClearTextures()
 	{
 		// Go through and release each of the textures in the texture map.
-		d3d::TexHandleToTex::iterator end = textures.end();
-		for(d3d::TexHandleToTex::iterator i = textures.begin(); i != end; ++i)
+		d3d::TexHandleToTexContext::iterator end = textures.end();
+		for(d3d::TexHandleToTexContext::iterator i = textures.begin(); i != end; ++i)
 		{
-			i->second->Release();
+			i->second.texture.Release();
 		}
 		// Delete all of the textures from the map.
 		textures.clear();
+		// Reset the texture handles.
+		while(reusable_texture_handles.empty() == true)
+		{
+			reusable_texture_handles.pop();
+		}
+		next_texture_handle = 1;
 	}
 
 
 	// See method declaration for details.
-	void BasicD3DRenderer::RenderSprites(utility::SpriteList& sprites)
+	void BasicD3DRenderer::RenderGraphics(const utility::GraphicList& graphics)
 	{
 		ASSERT(d3d != false);
 		ASSERT(device != false);
 		// If the device is not ready for rendering, return.
 		if(CheckDeviceState() == true)
 		{
-			ASSERT(vertex_buffer != nullptr);
+			ASSERT(textured_vertex_buffer != nullptr);
+			ASSERT(colored_vertex_buffer != nullptr);
 			ASSERT(index_buffer != nullptr);
 			// Clear the screen to black.
 			d3d::ClearViewport(*device);
 			// Render sprites.
-			d3d::RenderSprites(*device, sprites, *vertex_buffer, *index_buffer, textures);
+			d3d::RenderContext render_context(*device, *index_buffer, *textured_vertex_buffer, *colored_vertex_buffer);
+			device->BeginScene();
+			d3d::GraphicBatch batch(graphics, textures);
+			batch.Render(render_context);
+			device->EndScene();
 			// Present the scene.
 			device->Present(nullptr, nullptr, nullptr, nullptr);
 		}
@@ -171,10 +196,15 @@ namespace view
 	// Releases the index buffer and vertex buffer. This is called when the device is lost.
 	void BasicD3DRenderer::ReleaseUnmanagedAssets()
 	{
-		if(vertex_buffer != nullptr)
+		if(textured_vertex_buffer != nullptr)
 		{
-			vertex_buffer->Release();
-			vertex_buffer = nullptr;
+			textured_vertex_buffer->Release();
+			textured_vertex_buffer = nullptr;
+		}
+		if(colored_vertex_buffer != nullptr)
+		{
+			colored_vertex_buffer->Release();
+			colored_vertex_buffer = nullptr;
 		}
 		if(index_buffer != nullptr)
 		{
@@ -188,19 +218,25 @@ namespace view
 	// device is reset after having been lost.
 	void BasicD3DRenderer::AcquireUnmanagedAssets()
 	{
-		ASSERT(vertex_buffer == nullptr);
+		ASSERT(textured_vertex_buffer == nullptr);
+		ASSERT(colored_vertex_buffer == nullptr);
 		ASSERT(index_buffer == nullptr);
 		
 		// Only create the vertex and index buffers if they were previously released.
-		if(vertex_buffer == nullptr)
+		if(textured_vertex_buffer == nullptr)
 		{
-			vertex_buffer = d3d::CreateVertexBuffer(*device, buffer_length);
+			textured_vertex_buffer = d3d::CreateVertexBuffer(*device, buffer_length);
+		}
+		if(colored_vertex_buffer == nullptr)
+		{
+			colored_vertex_buffer = d3d::CreateVertexBuffer(*device, buffer_length);
 		}
 		if(index_buffer == nullptr)
 		{
 			index_buffer = d3d::CreateIndexBuffer(*device, buffer_length);
 		}
-		ASSERT(vertex_buffer != nullptr);
+		ASSERT(textured_vertex_buffer != nullptr);
+		ASSERT(colored_vertex_buffer != nullptr);
 		ASSERT(index_buffer != nullptr);
 	}
 
@@ -265,7 +301,8 @@ namespace view
 				SetDeviceStates();
 				AcquireUnmanagedAssets();
 			}
-			ASSERT(vertex_buffer != nullptr);
+			ASSERT(textured_vertex_buffer != nullptr);
+			ASSERT(colored_vertex_buffer != nullptr);
 			ASSERT(index_buffer != nullptr);
 			is_device_ready = true;
 		}
@@ -303,38 +340,6 @@ namespace view
 		}
 		// Return the device's state.
 		return is_device_ready;
-	}
-
-
-
-
-
-
-	// Anonymous namespace.
-	namespace
-	{
-		/** Checks to see whether or not an image contains semi-transparent pixels. Semi-transparent pixels
-		have an alpha value that is neither the minimum nor the maximum.
-		@pre The pixels are in 32-bit RGBA format.
-		@param size The number of pixels in \a pixel_data.
-		@param pixel_data The pixel data for the image.
-		@returns True if \a pixel_data contains semi-transparent pixels, and false if not.
-		*/
-		bool IsImagePartiallyTransparent(const unsigned int size, const unsigned char* const pixel_data)
-		{
-			// For each pixel, iterate through it and check the pixel data. If any pixel has an alpha value
-			// between 0 and 255 (exclusive), return true. Otherwise return false. Since the pixel data is
-			// in little-endian order, the alpha component will be the first component.
-			for(unsigned int i = 0; i < size; ++i)
-			{
-				if(pixel_data[i * 4 + 3] != 0x00 && pixel_data[i * 4 + 3] != 0xFF)
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-
 	}
 
 

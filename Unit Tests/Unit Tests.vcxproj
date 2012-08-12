@@ -68,7 +68,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>user32.lib;winmm.lib;d3d9.lib;dinput8.lib;dxguid.lib;avl-utility_debug.lib;avl-view_debug.lib;avl-input_debug.lib;avl-sound_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -87,7 +87,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
@@ -111,19 +111,39 @@
     <ClCompile Include="..\utility\src\assert\assert.t.cpp" />
     <ClCompile Include="..\utility\src\exceptions\exceptions.t.cpp" />
     <ClCompile Include="..\utility\src\file operations\file operations.t.cpp" />
+    <ClCompile Include="..\utility\src\graphic\graphic.t.cpp" />
     <ClCompile Include="..\utility\src\input events\input events.t.cpp" />
     <ClCompile Include="..\utility\src\log file\log file.t.cpp" />
+    <ClCompile Include="..\utility\src\quad\quad.t.cpp" />
+    <ClCompile Include="..\utility\src\render primitive\render primitive.t.cpp" />
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp" />
     <ClCompile Include="..\utility\src\sound effect\sound effect.t.cpp" />
     <ClCompile Include="..\utility\src\sprite\sprite.t.cpp" />
     <ClCompile Include="..\utility\src\text box\text box.t.cpp" />
+    <ClCompile Include="..\utility\src\textured quad\textured quad.t.cpp" />
     <ClCompile Include="..\utility\src\timer\timer.t.cpp" />
-    <ClCompile Include="..\utility\src\vertex 2d\vertex 2d.t.cpp" />
+    <ClCompile Include="..\utility\src\vector\vector.t.cpp" />
     <ClCompile Include="..\view\src\basic d3d renderer\basic d3d renderer.t.cpp" />
     <ClCompile Include="..\view\src\basic win32 window\basic win32 window.t.cpp" />
-    <ClCompile Include="..\view\src\d3d display profile\d3d display profile.t.cpp" />
-    <ClCompile Include="..\view\src\d3d error\d3d error.t.cpp" />
     <ClCompile Include="..\view\src\d3d wrapper\d3d wrapper.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\d3d display profile\d3d display profile.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\d3d error\d3d error.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\draw primitives task list\draw primitives task list.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\draw primitives task\draw primitives task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\graphic batch\graphic batch.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\render context\render context.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\render state\render state.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\render task sequence\render task sequence.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\render task\render task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set colored rendering task\set colored rendering task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set index buffer task\set index buffer task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set opaque rendering task\set opaque rendering task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set texture task\set texture task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set textured rendering task\set textured rendering task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set translucent rendering task\set translucent rendering task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\set vertex buffer task\set vertex buffer task.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\texture context\texture context.t.cpp" />
+    <ClCompile Include="..\view\src\d3d\wrapper functions\wrapper functions.t.cpp" />
     <ClCompile Include="..\view\src\image\image.t.cpp" />
     <ClCompile Include="..\view\src\renderer\renderer.t.cpp" />
     <ClCompile Include="..\view\src\win32 error\win32 error.t.cpp" />

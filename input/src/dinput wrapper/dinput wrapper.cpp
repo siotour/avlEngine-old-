@@ -122,7 +122,7 @@ namespace dinput
 			throw utility::Exception("avl::input::dinput::CreateMouseDevice() -- Unable to set the mouse device data format.");
 		}
 		// Set the mouse device cooperative level.
-		result = mouse_device->SetCooperativeLevel(window_handle, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+		result = mouse_device->SetCooperativeLevel(window_handle, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 		if (FAILED(result))
 		{
 			throw utility::Exception("avl::input::dinput::CreateMouseDevice() -- Unable to set the mouse device cooperative level.");

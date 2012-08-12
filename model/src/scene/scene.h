@@ -24,7 +24,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 @date Jun 27, 2012
 */
 
-#include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
 #include"..\..\..\utility\src\input events\input events.h"
 
@@ -47,17 +47,17 @@ namespace model
 		*/
 		virtual ~Scene();
 
-		/** Retrieves the sprites representing this scene.
-		@return The sprites representing the scene.
+		/** Retrieves the graphics representing this scene.
+		@return The graphics representing the scene.
 		*/
-		virtual utility::SpriteList GetSprites() = 0;
+		virtual const utility::GraphicList GetGraphics() = 0;
 		
 		/** Retrieves the sound effects representing this scene.
 		@return The sound effects representing the scene.
 		*/
 		virtual utility::SoundEffectList GetSoundEffects() = 0;
 		
-		/** Processes input events and updates the scene as necessary.
+		/** Processes input events and issues actions as necessary.
 		*/
 		virtual void ProcessInput(utility::input_events::InputQueue& input) = 0;
 		

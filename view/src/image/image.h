@@ -48,14 +48,14 @@ namespace view
 	@param width [OUT] Width of the image.
 	@param height [OUT] Height of the image.
 	@param pixel_depth [OUT] Number of bytes per pixel.
-	@param contains_alpha_channel [OUT]Whether or not the image has an alpha channel.
+	@param contains_alpha_channel [OUT] Does this image have an alpha channel?
+	@param is_translucent [OUT] Does this image have any translucent pixels?
 	@param pixel_data [OUT] Pointer to the image's pixel data.
 	@todo This function definition is absolutely monolothic -- nearly 300 lines. It needs to be refactored into utility
 	functions and probably all of them put into an anonymous namespace. Either that or put all image-loading functions
 	(and utility functions) into their own namespace.
 	*/
-	bool LoadImageTGA(const std::string& file_name, unsigned int& width, unsigned int& height,
-							unsigned short& pixel_depth, bool& contains_alpha_channel, unsigned char*& pixel_data);
+	bool LoadImageTGA(const std::string& file_name, unsigned int& width, unsigned int& height, unsigned short& pixel_depth, bool& contains_alpha_channel, bool& is_translucent, unsigned char*& pixel_data);
 
 
 
@@ -70,10 +70,10 @@ namespace view
 		@param height The height of the image in pixels.
 		@param pixel_depth The image's pixel depth in bytes.
 		@param alpha Does the image contain an alpha channel?
+		@param translucent Are any pixels in this image translucent?
 		@param pixel_data Pointer to the image's pixel data.
 		*/
-		Image(const unsigned int& width, const unsigned int& height,
-				const unsigned short& pixel_depth, const bool& alpha, unsigned char* pixel_data);
+		Image(const unsigned int width, const unsigned int height, const unsigned short pixel_depth, const bool alpha, const bool translucent, unsigned char* const pixel_data);
 		/** Attempts to load an image given only a file name. \a file_name must have the extension of a currently
 		implemented image file format, and the data contained in the file must match that file format (i.e. you
 		will run into problems if you simply rename a .PNG file to .TGA and then try loading it).
@@ -103,6 +103,10 @@ namespace view
 		@return True if the image has an alpha channel, and false if not.
 		*/
 		const bool ContainsAlphaChannel() const;
+		/** Are any pixels in this image translucent?
+		@return True if this image contains translucent pixels, and false if not.
+		*/
+		const bool IsTranslucent() const;
 		/** Gets the image's pixel data. Allows for modification of the pixel data.
 		@return \ref pixel_data.
 		@attention Pixel data is arranged in little-endian order.
@@ -118,6 +122,8 @@ namespace view
 		unsigned short pixel_depth;
 		/// True if the image contains an alpha channel.
 		bool contains_alpha_channel;
+		/// True if the image contains any translucent pixels.
+		bool is_translucent;
 		/// The image's pixel data.
 		unsigned char* pixel_data;
 	};

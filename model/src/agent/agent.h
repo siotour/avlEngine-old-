@@ -24,7 +24,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 @date Jun 26, 2012
 */
 
-#include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
 #include"..\reaction\reaction.h"
 #include"..\action\action.h"
@@ -38,8 +38,9 @@ namespace model
 
 	/**
 
-	@todo Consider a new method of passing Actions back to the scene such that
-	action ordering is more strictly preserved.
+	@todo Consider new methods of passing Actions up the hierarchy.
+	@todo Consider embedding a list of quads into this class for collision
+	detection.
 	*/
 	class Agent
 	{
@@ -52,10 +53,10 @@ namespace model
 		*/
 		virtual ~Agent();
 
-		/** Gets the sprites which have been registered with this agent.
-		@return The sprites registered with this agent.
+		/** Gets the render graphics which have been registered with this agent.
+		@return The graphics registered with this agent.
 		*/
-		const utility::SpriteList& GetSprites() const;
+		const utility::GraphicList& GetGraphics() const;
 
 		/** Gets the sound effects which have been registered with this agent.
 		@return The sound effects registered with this agent.
@@ -68,15 +69,19 @@ namespace model
 		/** Gets the actions which have been enqueued by this agent.
 		@return The actions which have been enqueued by this agent.
 		*/
-		ActionQueue& ProcessActions();
+		ActionQueue& GetActions();
 
-		/**
+		/** React to a specific type of action.
+		@note \a action will be forwarded to the reaction method registered
+		for that specific Action subclass, if such a method has been registered.
+		@param action The action to be reacted to.
 		*/
 		void React(const Action& action);
 
 	protected:
 
 		/** Register a method to 'react' to a specific type of action.
+		@note Only one reaction may be registered for each action type.
 		@param agent The Agent which reacts to the ActionType.
 		@param reaction_method The method of \a agent which reacts to a specific
 		type of action.
@@ -84,15 +89,25 @@ namespace model
 		template<class AgentType, class ActionType>
 		void RegisterReaction(AgentType& agent, void (AgentType::*reaction_method)(const ActionType&));
 
-		/** Register a sprite to be sent to the renderer.
-		@param new_sprite The sprite to be sent to the renderer.
+		/** Register a graphic to be rendered to the screen.
+		@param new_graphic The graphic to be rendered.
 		*/
-		void RegisterSprite(utility::Sprite& new_sprite);
+		void AddGraphic(const utility::Graphic* const new_graphic);
+
+		/** Stop a graphic from being rendered to the scree.
+		@param new_graphic The graphic which is to not be rendered any longer.
+		*/
+		void RemoveGraphic(const utility::Graphic* const graphic);
 
 		/** Register a sound effect to be send to the sound engine.
 		@param new_sound_effect The effect to be sent to the sound engine.
 		*/
-		void RegisterSoundEffect(utility::SoundEffect& new_sound_effect);
+		void AddSoundEffect(utility::SoundEffect* const new_sound_effect);
+
+		/** Register a sound effect to be send to the sound engine.
+		@param new_sound_effect The effect to be sent to the sound engine.
+		*/
+		void RemoveSoundEffect(utility::SoundEffect* const sound_effect);
 
 		/** Registers an action to be processed by the scene.
 		@param action The new action to be processed.
@@ -107,8 +122,8 @@ namespace model
 		/// methods.
 		Reactions reactions;
 
-		/// Sprites registered to be sent to the renderer.
-		utility::SpriteList sprite_list;
+		/// Graphics registered to be sent to the renderer.
+		utility::GraphicList graphic_list;
 
 		/// Sound effects registered to be sent to the sound engine.
 		utility::SoundEffectList sound_effect_list;
@@ -124,7 +139,7 @@ namespace model
 	template<class AgentType, class ActionType>
 	void Agent::RegisterReaction(AgentType& agent, void (AgentType::*reaction_method)(const ActionType&))
 	{
-		reactions.insert(std::make_pair(reaction::TypeInfo(typeid(agent)), std::auto_ptr<reaction::Reaction>(new reaction::DynamicReaction<AgentType, ActionType>(agent, reaction_method))));
+		reactions.insert(std::make_pair(reaction::TypeInfo(typeid(ActionType)), std::auto_ptr<reaction::Reaction>(new reaction::DynamicReaction<AgentType, ActionType>(agent, reaction_method))));
 	}
 
 

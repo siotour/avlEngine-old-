@@ -38,7 +38,7 @@ namespace model
 {
 
 	// See method declaration for details.
-	BasicScene::BasicScene(const double& initial_time_step, const utility::Vertex2D& screen_space)
+	BasicScene::BasicScene(const double& initial_time_step, const utility::Vector& screen_space)
 		: time_step(initial_time_step), screen_space_resolution(screen_space)
 	{
 
@@ -50,22 +50,23 @@ namespace model
 	}
 	
 	// See method declaration for details.
-	utility::SpriteList BasicScene::GetSprites()
+	const utility::GraphicList BasicScene::GetGraphics()
 	{
-
-		// Insert all of the sprites from the scene into a single list.
-		utility::SpriteList sprites;
+		// Insert all of the graphics from the scene into a single list.
+		utility::GraphicList compiled_graphics;
+		const utility::GraphicList* current_agent_graphics;
 		if(agents.empty() == false)
 		{
-			std::for_each(agents.begin(), agents.end(), [&sprites](const std::auto_ptr<Agent>& agent)
+			for(auto current_agent = agents.begin(); current_agent != agents.end(); ++current_agent)
 			{
-				if(agent->GetSprites().empty() == false)
+				current_agent_graphics = &((*current_agent)->GetGraphics());
+				if(current_agent_graphics->empty() == false)
 				{
-					sprites.insert(sprites.end(), agent->GetSprites().begin(), agent->GetSprites().end());
+					compiled_graphics.insert(compiled_graphics.end(), current_agent_graphics->begin(), current_agent_graphics->end());
 				}
-			});
+			}
 		}
-		return sprites;
+		return compiled_graphics;
 	}
 	
 	// See method declaration for details.

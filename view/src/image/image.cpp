@@ -36,22 +36,8 @@ namespace view
 {
 
 
-	// This function attempts to load image data from a file in the .TGA image file format. If an error occurs while
-	// reading from the file, if the file doesn't exist, or if the file isn't properly formatted, false is returned
-	// and no guarantees are made about any of the parameters except that pixel_data won't point to a new chunk of
-	// memory (in other words, you don't need to delete pixel_data if this function fails). If the function succeeds,
-	// true will be returned and width, height, pixel_depth, contains_alpha_channel, and pixel_data will contain
-	// the image's data. You are responsible for delete[]ing pixel_data when you're done with it.
-	// Note that only color images without a color map are supported.
-	// Parameters:
-	//		[IN]	file_name - name of the TGA file to load the image data from.
-	//		[OUT]	width - width of the image.
-	//		[OUT]	height - height of the image.
-	//		[OUT]	pixel_depth - number of bytes per pixel.
-	//		[OUT]	contains_alpha_channel - whether or not the image has an alpha channel.
-	//		[OUT]	pixel_data - pointer to the image's pixel data.
-	bool LoadImageTGA(const std::string& file_name, unsigned int& width, unsigned int& height,
-							unsigned short& pixel_depth, bool& contains_alpha_channel, unsigned char*& pixel_data)
+	// See method declaration for details.
+	bool LoadImageTGA(const std::string& file_name, unsigned int& width, unsigned int& height, unsigned short& pixel_depth, bool& contains_alpha_channel, bool& is_translucent, unsigned char*& pixel_data)
 	{
 		using namespace std;
 		
@@ -123,6 +109,7 @@ namespace view
 			}
 
 			// Retrieve the pixel depth.
+			ASSERT(file_data[16] % 8 == 0);
 			pixel_depth = file_data[16] / 8;
 
 			// Calculate the size of the image data.
@@ -177,11 +164,11 @@ namespace view
 			switch(encoding)
 			{
 			case 2:
-				// Raw RGB.
+				// Raw RGB(A).
 				memcpy(pixel_data, &file_data[offset], image_size);
 				break;
 			case 10:
-				// RLE RGB.
+				// RLE RGB(A).
 
 				// Points to the current run-length chunk/pixel data. Start from the beginning of the image data.
 				unsigned char* current;
@@ -318,6 +305,26 @@ namespace view
 				delete[] temp;
 			}
 
+			// Check to see if the image contains any translucent pixels.
+			is_translucent = false;
+			if(contains_alpha_channel == true)
+			{
+				// Each pixel must be separated into four equal channels.
+				ASSERT(pixel_depth % 4 == 0);
+				const unsigned int alpha_channel_size = pixel_depth / 4;
+				for(unsigned int current_pixel_alpha = pixel_depth - alpha_channel_size; current_pixel_alpha < image_size; current_pixel_alpha += pixel_depth)
+				{
+					for(unsigned int alpha_offset = 0; alpha_offset < alpha_channel_size; ++alpha_offset)
+					{
+						if(pixel_data[current_pixel_alpha + alpha_offset] != 0 && pixel_data[current_pixel_alpha + alpha_offset] != 0xFF)
+						{
+							is_translucent = true;
+							current_pixel_alpha = image_size - pixel_depth;
+						}
+					}
+				}
+			}
+
 			// Done with the file data now.
 			delete[] file_data;
 
@@ -337,32 +344,15 @@ namespace view
 
 
 
-	// Image class
-	//
-	//
 
-
-	// Full-spec constructor: initial_width and initial_height are the resolution of the image,
-	// initial_pixel_depth is the image's pixel depth in bytes, initial_alpha should be true if the image
-	// contains an alpha channel and false otherwise, and initial_pixel_data should point to the image's
-	// pixel data in little-endian ordering.
-	Image::Image(const unsigned int& width, const unsigned int& height,
-			const unsigned short& pixel_depth, const bool& alpha, unsigned char* pixel_data)
-		: width(width), height(height), pixel_depth(pixel_depth), contains_alpha_channel(alpha), pixel_data(pixel_data)
+	// See method declaration for details.
+	Image::Image(const unsigned int width, const unsigned int height, const unsigned short pixel_depth, const bool alpha, const bool translucent, unsigned char* const pixel_data)
+		: width(width), height(height), pixel_depth(pixel_depth), contains_alpha_channel(alpha), is_translucent(translucent), pixel_data(pixel_data)
 	{
 		ASSERT(width != 0 && height != 0 && pixel_depth != 0 && pixel_data != nullptr);
 	}
 
-
-
-
-	// Attempts to load an image given only a file name. The filename must have the extension of a currently
-	// implemented image file format, and the data contained in the file must match that file format (i.e. you
-	// will run into problems if you simply rename a .PNG file to .TGA and then try loading it). If an error
-	// occurs while reading from the file, if the file's formatting is not supported, or if an unsupported
-	// file extension is supplied, the created Image will have 0 width, height, pixel depth, and the image
-	// data pointer will be nullptr. See the image-loading functions for each individual image file format to
-	// see what additional restrictions are imposed for each file format.
+	// See method declaration for details.
 	Image::Image(const std::string& file_name)
 	{
 		// Figure out the file extension by moving backwards from the end of the string to the first period.
@@ -389,7 +379,7 @@ namespace view
 		// If the extension is a valid format, use the appropriate loading function.
 		if(extension == "tga")
 		{
-			status = LoadImageTGA(file_name, width, height, pixel_depth, contains_alpha_channel, pixel_data);
+			status = LoadImageTGA(file_name, width, height, pixel_depth, contains_alpha_channel, is_translucent, pixel_data);
 		}
 		else
 		{
@@ -407,10 +397,7 @@ namespace view
 		}
 	}
 
-
-
-
-	// Basic destructor. Deletes the image data from the heap.
+	// See method declaration for details.
 	Image::~Image()
 	{
 		if(pixel_data != nullptr)
@@ -420,52 +407,41 @@ namespace view
 		}
 	}
 
-
-
-
-	// Returns the image's width.
+	// See method declaration for details.
 	const unsigned int Image::GetWidth() const
 	{
 		return width;
 	}
 
-
-
-
-	// Returns the image's height.
+	// See method declaration for details.
 	const unsigned int Image::GetHeight() const
 	{
 		return height;
 	}
 
-
-
-
-	// Returns the image's pixel depth in bytes.
+	// See method declaration for details.
 	const unsigned short Image::GetPixelDepth() const
 	{
 		return pixel_depth;
 	}
 
-
-
-
-	// Returns true if the image contains an alpha channel, and false otherwise.
+	// See method declaration for details.
 	const bool Image::ContainsAlphaChannel() const
 	{
 		return contains_alpha_channel;
 	}
 
+	// See method declaration for details.
+	const bool Image::IsTranslucent() const
+	{
+		return is_translucent;
+	}
 
-
-
-	// Returns a pointer to the image's pixel data. This allows for modification of the pixel data.
-	// Note that the pixel data is arranged in little-endian order.
+	// See method declaration for details.
 	unsigned char* const Image::GetPixelData() const
 	{
 		return pixel_data;
 	}
-
 
 
 

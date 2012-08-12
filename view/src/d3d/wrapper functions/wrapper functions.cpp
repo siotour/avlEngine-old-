@@ -16,18 +16,26 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Implementation for the d3d wrapper component. See "d3d wrapper.h" for details.
+Implementation for the wrapper functions component. See "wrapper functions.h" for details.
 @author Sheldon Bachstein
-@date Mar 24, 2012
+@date Aug 01, 2012
 */
 
-#include"d3d wrapper.h"
-#include"..\..\..\utility\src\exceptions\exceptions.h"
-#include"..\..\..\utility\src\assert\assert.h"
+#include"wrapper functions.h"
+#include"..\render context\render context.h"
+#include"..\texture context\texture context.h"
 #include"..\d3d display profile\d3d display profile.h"
-#include"..\renderer\renderer.h"
+#include"..\..\renderer\renderer.h"
 #include"..\d3d error\d3d error.h"
+#include"..\..\..\..\utility\src\graphic\graphic.h"
+#include"..\..\..\..\utility\src\render primitive\render primitive.h"
+#include"..\..\..\..\utility\src\textured quad\textured quad.h"
+#include"..\..\..\..\utility\src\exceptions\exceptions.h"
+#include"..\..\..\..\utility\src\assert\assert.h"
 #include<string>
+#include<queue>
+#include<list>
+#include<typeinfo>
 #include<queue>
 // For window handles.
 #include<Windows.h>
@@ -46,8 +54,10 @@ namespace d3d
 	// Anonymous namespace forward declarations. See function definitions (at the end of this file) for details.
 	namespace
 	{
-		/// Used among the rendering helper functions. Maps a texture handle to the number of sprites using it.
-		typedef std::queue<std::pair<const utility::Sprite::TextureHandle, const unsigned int>> TextureHandleUseQueue;
+		/// Contains textured quad render primitives.
+		typedef std::list<utility::TexturedQuad* const> TexturedQuadList;
+		/// Maps a texture handle to the number of quads using it.
+		typedef std::queue<std::pair<const utility::TexturedQuad::TextureHandle, const unsigned int>> TextureHandleUseQueue;
 
 		// Display profile choice helpers.
 		const unsigned int FindDifferenceFactor(const D3DDisplayProfile& profile, const unsigned int width, const unsigned int height);
@@ -55,19 +65,6 @@ namespace d3d
 		void EnumerateAdapterModes(IDirect3D9& d3d, std::vector<const D3DDisplayProfile>& profiles, const D3DFORMAT& display);
 		void EnumerateWindowedMode(IDirect3D9& d3d, std::vector<const D3DDisplayProfile>& profiles, const D3DFORMAT& display, const D3DDISPLAYMODE& display_mode, const bool is_fullscreen);
 		void VerifyModeCompatibility(IDirect3D9& d3d, std::vector<const D3DDisplayProfile>& profiles, const D3DFORMAT& display, const D3DFORMAT& backbuffer, const bool is_fullscreen, const unsigned int width, const unsigned int height);
-
-		// Sprite sorting helpers.
-		const bool IsSpritePartiallyTranslucent(const utility::Sprite& sprite);
-		bool CompareSprites(const utility::Sprite* const a, const utility::Sprite* const b);
-
-		// Rendering helpers.
-		const unsigned int PreprocessSprites(utility::SpriteList& sprites);
-		void ProcessIndexData(std::vector<UINT16>& index_data, const unsigned int sprite_offset, const unsigned int vertex_offset);
-		void ProcessVertexData(std::vector<float>& vertex_data, const utility::Sprite& sprite, unsigned int vertex_offset);
-		void ProcessSprites(const utility::SpriteList& sprites, std::vector<float>& vertex_data, std::vector<UINT16>& index_data, TextureHandleUseQueue& opaque_texture_ids, TextureHandleUseQueue& transparent_texture_ids);
-		bool PrepareSpritesForRendering(utility::SpriteList& sprites, IDirect3DVertexBuffer9& vertex_buffer, IDirect3DIndexBuffer9& index_buffer, TextureHandleUseQueue& opaque_texture_uses, TextureHandleUseQueue& transparent_texture_uses);
-		void DrawSpriteBatchToDevice(IDirect3DDevice9& device,  TexHandleToTex& textures, TextureHandleUseQueue& texture_uses, unsigned int& base_vertex, unsigned int& base_index);
-		void RenderSpritesToDevice(IDirect3DDevice9& device, IDirect3DVertexBuffer9& vertex_buffer, IDirect3DIndexBuffer9& index_buffer, TexHandleToTex& textures, TextureHandleUseQueue& opaque_texture_uses, TextureHandleUseQueue& transparent_texture_uses);
 	}
 
 
@@ -392,8 +389,7 @@ namespace d3d
 	{
 		// Attempt to create the vertex buffer.
 		IDirect3DVertexBuffer9* vertex_buffer = nullptr;
-		HRESULT result = device.CreateVertexBuffer(5 * buffer_length * sizeof(float), D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
-																					D3DFVF_XYZ | D3DFVF_TEX1, D3DPOOL_DEFAULT, &vertex_buffer, nullptr);
+		HRESULT result = device.CreateVertexBuffer(5 * buffer_length * sizeof(float), D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY, 0, D3DPOOL_DEFAULT, &vertex_buffer, nullptr);
 		if(FAILED(result))
 		{
 			throw D3DError("IDirect3DDevice9()", "avl::view::d3d::CreateVertexBuffer() -- Unable to create a vertex buffer.", result);
@@ -428,7 +424,7 @@ namespace d3d
 
 
 	// See function declaration for details.
-	void FillVertexBuffer(IDirect3DVertexBuffer9& vertex_buffer, std::vector<float>& source)
+	void FillVertexBuffer(IDirect3DVertexBuffer9& vertex_buffer, const std::vector<const float>& source)
 	{
 		// If size is 0, return.
 		if(source.size() == 0)
@@ -452,7 +448,7 @@ namespace d3d
 		}
 		// Copy the vertex information to the vertex buffer.
 		memcpy(data, &source[0], source.size() * sizeof(float));
-		// Unlock the vertex buffer.
+		// Unlock the vertex buffer.+
 		data = nullptr;
 		vertex_buffer.Unlock();
 	}
@@ -461,7 +457,7 @@ namespace d3d
 
 
 	// See function declaration for details.
-	void FillIndexBuffer(IDirect3DIndexBuffer9& index_buffer, std::vector<UINT16>& source)
+	void FillIndexBuffer(IDirect3DIndexBuffer9& index_buffer, const std::vector<const UINT16>& source)
 	{
 		// If size is 0, return.
 		if(source.size() == 0)
@@ -488,24 +484,6 @@ namespace d3d
 		// Unlock the index buffer.
 		data = nullptr;
 		index_buffer.Unlock();
-	}
-
-
-
-	// See function declaration for details.
-	void RenderSprites(IDirect3DDevice9& device, utility::SpriteList& sprites, IDirect3DVertexBuffer9& vertex_buffer, IDirect3DIndexBuffer9& index_buffer, TexHandleToTex& textures)
-	{
-		// Opaque and semi-transparent textures must be rendered in separate batches due to alpha blending
-		// requirements. These queues relate each texture handle to the number of sprites using it.
-		TextureHandleUseQueue opaque_texture_uses;
-		TextureHandleUseQueue transparent_texture_uses;
-		// Figure out if there are actually any sprites to render; if so, prepare them for rendering.
-		const bool need_to_render = PrepareSpritesForRendering(sprites, vertex_buffer, index_buffer, opaque_texture_uses, transparent_texture_uses);
-		// If there are sprites to render, do so.
-		if(need_to_render == true)
-		{
-			RenderSpritesToDevice(device, vertex_buffer, index_buffer, textures, opaque_texture_uses, transparent_texture_uses);
-		}
 	}
 
 
@@ -647,359 +625,7 @@ namespace d3d
 		}
 
 
-		/** Checks to see if a sprite is partially-transparent.
-		@param sprite The \ref avl::utility::Sprite to be checked.
-		@return True if \a sprite is partially translucent, and false if not.
-		*/
-		const bool IsSpritePartiallyTranslucent(const utility::Sprite& sprite)
-		{
-			return sprite.GetTextureHandle() & 0x01;
-		}
-
-
-		/** Compares two \ref avl::utility::Sprite objects for inequality.
-		Comparison criteria, from highest priority to least:
-			\li1) Opaque < transparent
-			\li2) If Opaque, z-depth from nearest to farthest.
-			\li3) If Transparent, z-depth from farthest to nearest.
-			\li4) TextureID, from lowest to highest.
-		@note The lowest bit in a utility::Sprite::TextureHandle is set if the
-		texture is transparent and not set if it's opaque.
-		@param a The first object being compared.
-		@param b The second object being compared.
-		@return True if \a is less than or equal to \a b.
-		*/
-		bool CompareSprites(const utility::Sprite* const a, const utility::Sprite* const b)
-		{
-			// Is a opaque?
-			if(IsSpritePartiallyTranslucent(*a) == false)
-			{
-				// Is b translucent? If so, return true.
-				if(IsSpritePartiallyTranslucent(*b) == true)
-				{
-					return true;
-				}
-				// If both are opaque, does one have a lesser z-depth? If so, return that one.
-				else if(a->GetZ() != b->GetZ())
-				{
-					return (a->GetZ() < b->GetZ()) ? true : false;
-				}
-				// If the z-depths are the same, return the one with a lesser texture ID.
-				else
-				{
-					return (a->GetTextureHandle() < b->GetTextureHandle()) ? true : false;
-				}
-			}
-			// Is a translucent?
-			else
-			{
-				// Is b opaque? If so, return false.
-				if(IsSpritePartiallyTranslucent(*b) == false)
-				{
-					return false;
-				}
-				// If both are translucent, does one have a greater z-depth? If so, return that one.
-				else if(a->GetZ() != b->GetZ())
-				{
-					return (a->GetZ() > b->GetZ()) ? true : false;
-				}
-				// If the z-depths are the same, return the one with a lesser texture ID.
-				else
-				{
-					return (a->GetTextureHandle() < b->GetTextureHandle()) ? true : false;
-				}
-			}
-		}
-
-		/** Preprocesses a list of sprites by sorting any visible sprites.
-		@param sprites The sprites to be preprocessed.
-		@return The number of visible sprites in \a sprites.
-		*/
-		const unsigned int PreprocessSprites(utility::SpriteList& sprites)
-		{
-			// Count the sprites to be rendered.
-			const unsigned int number_of_sprites = CountVisibleSprites(sprites);
-			// Only sort the sprites if there are any to be rendered.
-			if(number_of_sprites > 0)
-			{
-				sprites.sort(CompareSprites);
-			}
-			// Return the number of sprites to be rendered.
-			return number_of_sprites;
-		}
-
-		/** Processes the index data for a single sprite to \a index_data as two triangles.
-		@param index_data The index data for a batch of rendering; the processed indices will
-		be saved here.
-		@param sprite_offset The offset to the sprite being processed.
-		@param vertex_offset The offset to the first vertex of the current sprite.
-		*/
-		void ProcessIndexData(std::vector<UINT16>& index_data, const unsigned int sprite_offset, const unsigned int vertex_offset)
-		{
-			// First triangle.
-			index_data[sprite_offset * 6] = vertex_offset;
-			index_data[sprite_offset * 6 + 1] = vertex_offset + 1;
-			index_data[sprite_offset * 6 + 2] = vertex_offset + 2;
-			// Second triangle.
-			index_data[sprite_offset * 6 + 3] = vertex_offset + 2;
-			index_data[sprite_offset * 6 + 4] = vertex_offset + 3;
-			index_data[sprite_offset * 6 + 5] = vertex_offset;
-		}
-
-		/** Processes the vertex data for a single sprite to \a vertex_data as two triangles.
-		@param vertex_data The vertex data for the current batch of rendering.
-		@param sprite The sprite being processed.
-		@param vertex_offset The offset to the first vertex of \a sprite.
-		*/
-		void ProcessVertexData(std::vector<float>& vertex_data, const utility::Sprite& sprite, unsigned int vertex_offset)
-		{
-			// P1
-			vertex_data[vertex_offset * 5]     = sprite.GetP1().GetX();
-			vertex_data[vertex_offset * 5 + 1] = sprite.GetP1().GetY();
-			vertex_data[vertex_offset * 5 + 2] = sprite.GetZ();
-			vertex_data[vertex_offset * 5 + 3] = sprite.GetQ1().GetX();
-			vertex_data[vertex_offset * 5 + 4] = sprite.GetQ1().GetY();
-			++vertex_offset;
-			// P2
-			vertex_data[vertex_offset * 5]     = sprite.GetP2().GetX();
-			vertex_data[vertex_offset * 5 + 1] = sprite.GetP2().GetY();
-			vertex_data[vertex_offset * 5 + 2] = sprite.GetZ();
-			vertex_data[vertex_offset * 5 + 3] = sprite.GetQ2().GetX();
-			vertex_data[vertex_offset * 5 + 4] = sprite.GetQ2().GetY();
-			++vertex_offset;
-			// P3
-			vertex_data[vertex_offset * 5]     = sprite.GetP3().GetX();
-			vertex_data[vertex_offset * 5 + 1] = sprite.GetP3().GetY();
-			vertex_data[vertex_offset * 5 + 2] = sprite.GetZ();
-			vertex_data[vertex_offset * 5 + 3] = sprite.GetQ3().GetX();
-			vertex_data[vertex_offset * 5 + 4] = sprite.GetQ3().GetY();
-			++vertex_offset;
-			// P4
-			vertex_data[vertex_offset * 5]     = sprite.GetP4().GetX();
-			vertex_data[vertex_offset * 5 + 1] = sprite.GetP4().GetY();
-			vertex_data[vertex_offset * 5 + 2] = sprite.GetZ();
-			vertex_data[vertex_offset * 5 + 3] = sprite.GetQ4().GetX();
-			vertex_data[vertex_offset * 5 + 4] = sprite.GetQ4().GetY();
-		}
-
-		/** Processes a sorted \ref avl::utility::SpriteList by performing the following:
-		\li 1) Stores the index data for each sprite to \a index_data.
-		\li 2) Stores the vertex data for each sprite to \a vertex_data.
-		\li 3) Stores the order of texture IDs for opaque sprites, and the number of sprites using
-			   them to \a opaque_texture_ids
-		\li 4) Stores the order of texture IDs for transparent sprites, and the number of sprites
-			   using them to \a transparent_texture_ids.
-		@pre \a sprites should be sorted by the following criteria:
-		\li1) Opaque > ransparent
-		\li2) If opaque, z-depth from nearest to farthest.
-		\li3) If transparent, z-depth from farthest to nearest.
-		\li4) TextureID, from lowest to highest.
-		@param sprites The list of sorted sprites to be processed.
-		@param vertex_data Where to store the vertex information for \a sprites.
-		@param index_data Where to store the index information for \a sprites.
-		@param opaque_texture_ids Records the opaque texture ids used and how many sprites use each.
-		@param transparent_texture_ids Records the transparent texture ids used and how many sprites
-		use each.
-		@throws std::bad_alloc If we run out of memory.
-		@todo Test this function with: No visible sprites. One visible sprite (beginning, middle, end).
-		*/
-		void ProcessSprites(const utility::SpriteList& sprites, std::vector<float>& vertex_data, std::vector<UINT16>& index_data, TextureHandleUseQueue& opaque_texture_ids, TextureHandleUseQueue& transparent_texture_ids)
-		{
-			// Temp variables.
-			unsigned int vertex_offset = 0;
-			unsigned int sprite_offset = 0;
-			unsigned int sprites_using_texture_handle = 0;
-			utility::SpriteList::const_iterator last_visible_sprite = sprites.begin();
-			// Find the first visible sprite.
-			while((*last_visible_sprite)->IsVisible() == false && last_visible_sprite != sprites.end())
-			{
-				++last_visible_sprite;
-			}
-			// Process all visible sprites.
-			for(utility::SpriteList::const_iterator i = last_visible_sprite; i != sprites.end(); ++i)
-			{
-				if((*i)->IsVisible() == true)
-				{
-					// Store the index data for the current sprite.
-					ProcessIndexData(index_data, sprite_offset, vertex_offset);
-					// Store the vertices for the current sprite.
-					ProcessVertexData(vertex_data, *(*i), vertex_offset);
-					++sprite_offset;
-					vertex_offset += 4;
-					// Same texture handle? Just increment the accumulator.
-					if((*i)->GetTextureHandle() == (*last_visible_sprite)->GetTextureHandle())
-					{
-						++sprites_using_texture_handle;
-					}
-					// Opaque sprite?
-					else if(IsSpritePartiallyTranslucent(*(*last_visible_sprite)) == false)
-					{
-						opaque_texture_ids.push(std::make_pair((*last_visible_sprite)->GetTextureHandle(), sprites_using_texture_handle));
-						sprites_using_texture_handle = 1;
-					}
-					// Translucent sprite?
-					else
-					{
-						transparent_texture_ids.push(std::make_pair((*last_visible_sprite)->GetTextureHandle(), sprites_using_texture_handle));
-						sprites_using_texture_handle = 1;
-					}
-					// Save this sprite.
-					last_visible_sprite = i;
-				}
-			}
-			// Last element is a special case.
-			// Opaque?
-			if(IsSpritePartiallyTranslucent(*(*last_visible_sprite)) == false)
-			{
-				opaque_texture_ids.push(std::make_pair((*last_visible_sprite)->GetTextureHandle(), sprites_using_texture_handle));
-			}
-			// Translucent?
-			else
-			{
-				transparent_texture_ids.push(std::make_pair((*last_visible_sprite)->GetTextureHandle(), sprites_using_texture_handle));
-			}
-		}
-
-
-		/** Given an unprocessed list of sprites, determines whether or not the sprites
-		need to be rendered. If so, processes the vertices and indices for those sprites
-		and records which texture IDs are used and by how many sprites.
-		@param sprites The list of sprites which may need to be rendered.
-		@param vertex_buffer The vertexbuffer used for rendering.
-		@param index_buffer The index buffer used for rendering.
-		@param opaque_texture_uses Stores how often \a sprites references each opaque texture
-		ID.
-		@param transparent_texture_uses Stores how often \a sprites references each
-		transparent texture ID.
-		@return True if there are sprites to be rendered and false if not.
-		@throws OutOfMemoryException If we run out of memory.
-		*/
-		bool PrepareSpritesForRendering(utility::SpriteList& sprites, IDirect3DVertexBuffer9& vertex_buffer, IDirect3DIndexBuffer9& index_buffer, TextureHandleUseQueue& opaque_texture_uses, TextureHandleUseQueue& transparent_texture_uses)
-		{
-			// Preprocess sprites.
-			const unsigned int number_of_sprites = PreprocessSprites(sprites);
-			if(number_of_sprites < 1)
-			{
-				// No sprites to render.
-				return false;
-			}
-			// Prepare vertex data and index data arrays.
-			const unsigned int floats_per_sprite = 5 * 4;
-			const unsigned int indices_per_sprite = 6;
-			try
-			{
-				// The vertex information to be written to the vertex buffer. Each vertex has an x, y, and z
-				// coordinate, and u and v texture coordinates; each sprite has 4 vertices.
-				std::vector<float> vertex_data(number_of_sprites * floats_per_sprite);
-				// The index information to be written to the index buffer. Each sprite consists of two
-				// triangles, or 6 indices.
-				std::vector<UINT16> index_data(number_of_sprites * indices_per_sprite);
-				// Process sprites.
-				ProcessSprites(sprites, vertex_data, index_data, opaque_texture_uses, transparent_texture_uses);
-				// Write the vertex and index data to the vertex and index buffers.
-				FillVertexBuffer(vertex_buffer, vertex_data);
-				FillIndexBuffer(index_buffer, index_data);
-			}
-			catch(std::bad_alloc&)
-			{
-				throw utility::OutOfMemoryError();
-			}
-			// There are sprites ready to be rendered.
-			return true;
-		}
-
-
-		/** Draws a batch of triangles to \a device using the currently
-		associated vertex and index buffers of the device.
-		@param device The device to draw to.
-		@param textures Maps texture IDs to their appropriate texture data for
-		rendering.
-		@param texture_uses Records which textures are used by which triangles.
-		@param base_vertex The offset into the vertex buffer of the first vertex
-		of the batch.
-		@param base_index The offset into the index buffer of the first index
-		of the batch.
-		*/
-		void DrawSpriteBatchToDevice(IDirect3DDevice9& device, TexHandleToTex& textures, TextureHandleUseQueue& texture_uses, unsigned int& base_vertex, unsigned int& base_index)
-		{
-			// Render all opaque sprites.
-			while(texture_uses.empty() == false)
-			{
-				// Set the correct texture for this set of sprites.
-				device.SetTexture(0, textures[texture_uses.front().first]);
-
-				// Two triangles per sprite.
-				const unsigned int number_of_triangles = texture_uses.front().second * 2;
-				// Four vertices per sprite.
-				const unsigned int number_of_vertices = number_of_triangles * 2;
-
-				// Draw the triangles.
-				device.DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, base_vertex, number_of_vertices, base_index, number_of_triangles);
-
-				// Update the base vertex and base index.
-				base_vertex += number_of_vertices;
-				base_index += number_of_triangles * 3;
-
-				// Pop the front element off of the queue.
-				texture_uses.pop();
-			}
-		}
-
-
-		/** Renders previously processed sprites to the device. Assumes that the
-		sprites have been processed into the vertex and index buffers, that their
-		textures and texture uses are recorded, and that the opaque and semi-
-		transparent sprites are separated.
-		@note Does not clean the viewport or present the scene allowing for
-		multiple rendering phases during a single frame.
-		@param device The device to render to.
-		@param vertex_buffer The vertex buffer containing the processed vertex
-		data.
-		@param index_buffer The index buffer containing the processed index
-		data.
-		@param textures Maps texture IDs to their appropriate texture data for
-		rendering.
-		@param opaque_texture_uses Stores how often \a sprites references each opaque texture
-		ID.
-		@param transparent_texture_uses Stores how often \a sprites references each
-		transparent texture ID.
-		*/
-		void RenderSpritesToDevice(IDirect3DDevice9& device, IDirect3DVertexBuffer9& vertex_buffer, IDirect3DIndexBuffer9& index_buffer, TexHandleToTex& textures, TextureHandleUseQueue& opaque_texture_uses, TextureHandleUseQueue& transparent_texture_uses)
-		{
-			// Begin the scene.
-			device.BeginScene();
-
-			// Set the vertex buffer stream and index buffer stream.
-			device.SetStreamSource(0, &vertex_buffer, 0, sizeof(float) * 5);
-			device.SetIndices(&index_buffer);
-			// Set the flexible vertex format to position and texture coordinates only.
-			device.SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
-			// Set the device to use a fixed function vertex shader.
-			device.SetVertexShader(nullptr);
-
-			// Keeps track of how many vertices and indices have been drawn.
-			unsigned int base_vertex = 0;
-			unsigned int base_index = 0;
-
-			// Turn z-buffering on and alpha blending off.
-			device.SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-			device.SetRenderState(D3DRS_ALPHABLENDENABLE, false);
-
-			// Render all opaque sprites.
-			DrawSpriteBatchToDevice(device, textures, opaque_texture_uses, base_vertex, base_index);
-
-			// Turn z-buffering off and alpha blending on.
-			device.SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
-			device.SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-
-			// Render all transparent sprites.
-			DrawSpriteBatchToDevice(device, textures, transparent_texture_uses, base_vertex, base_index);
-
-			// End the scene.
-			device.EndScene();
-		}
-
-
+		
 	}
 
 

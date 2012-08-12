@@ -22,7 +22,7 @@ Implementation for the renderer component. See "renderer.h" for details.
 */
 
 #include"renderer.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\vector\vector.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 
 
@@ -31,7 +31,7 @@ namespace avl
 namespace view
 {
 	// See method declaration for details.
-	Renderer::Renderer(const avl::utility::Vertex2D& screen_space)
+	Renderer::Renderer(const avl::utility::Vector& screen_space)
 		: screen_space_resolution(screen_space)
 	{
 	}

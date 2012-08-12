@@ -24,11 +24,9 @@ Unit test for the basic d3d renderer component. See "basic d3d renderer.h" for d
 #include"basic d3d renderer.h"
 #include"..\basic win32 window\basic win32 window.h"
 #include"..\win32 error\win32 error.h"
-#include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d wrapper\d3d wrapper.h"
-#include"..\d3d error\d3d error.h"
 #include"..\image\image.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\vector\vector.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
 #include"..\..\..\utility\src\assert\assert.h"
 #include<fstream>
@@ -38,20 +36,15 @@ Unit test for the basic d3d renderer component. See "basic d3d renderer.h" for d
 
 void TestBasicD3DRendererComponent(HINSTANCE instance)
 {
-	using avl::view::BasicWin32Window;
-	using avl::view::BasicD3DRenderer;
-	using avl::view::d3d::D3DDisplayProfile;
-	using avl::view::d3d::LeastSquaredDisplayProfile;
-	using avl::utility::Vertex2D;
-	using avl::utility::Sprite;
-	using avl::view::Image;
+	using namespace avl::utility;
+	using namespace avl::view;
 	
 	try
 	{	
 		// Create a window and renderer.
-		const D3DDisplayProfile profile = LeastSquaredDisplayProfile(500, 500, false);
+		const d3d::D3DDisplayProfile profile = d3d::LeastSquaredDisplayProfile(500, 500, false);
 		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
-		BasicD3DRenderer renderer(window.GetWindowHandle(), profile, Vertex2D(1.0f, 1.0f));
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profile, Vector(1.0f, 1.0f));
 
 
 
@@ -73,19 +66,19 @@ void TestBasicD3DRendererComponent(HINSTANCE instance)
 
 
 		// Create a few sprites.
-		Sprite background(-1.0f, 1.0f, 1.0f, -1.0f, 0.5f, background_id);
-		Sprite spiral(-0.15f, -0.6f, 0.15f, -0.9f, 0.4f, spiral_id);
+		Sprite background(Quad(-1.0f, 1.0f, 1.0f, -1.0f), 0.5f, background_id);
+		Sprite spiral(Quad(-0.15f, -0.6f, 0.15f, -0.9f), 0.4f, spiral_id);
 
 
 
 		// Put quads into the appropriate container.
-		avl::utility::SpriteList sprites;
-		sprites.insert(sprites.begin(), &spiral);
-		sprites.insert(sprites.begin(), &background);
+		GraphicList graphics;
+		graphics.push_back(&spiral);
+		graphics.push_back(&background);
 
 
 
-		Vertex2D movement(0.003f, 0.003f);
+		Vector movement(0.003f, 0.003f);
 		float rotation = 0.5f;
 		float scale = 1.002f;
 		
@@ -97,7 +90,7 @@ void TestBasicD3DRendererComponent(HINSTANCE instance)
 			if(window.IsActive() == true)
 			{
 				// Draw quad.
-				renderer.RenderSprites(sprites);
+				renderer.RenderGraphics(graphics);
 
 				// Transform sprites.
 				spiral.Move(movement);

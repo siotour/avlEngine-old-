@@ -22,112 +22,108 @@ Unit test for the direct input input device component. See "d3d error.h" for det
 */
 
 #include"direct input input device.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\key codes\key codes.h"
 #include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
 #include"..\..\..\view\src\basic win32 window\basic win32 window.h"
-#include"..\..\..\view\src\win32 error\win32 error.h"
-#include"..\..\..\view\src\basic d3d renderer\basic d3d renderer.h"
-#include"..\..\..\view\src\d3d display profile\d3d display profile.h"
-#include"..\..\..\view\src\d3d error\d3d error.h"
 #include"..\..\..\view\src\image\image.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\vector\vector.h"
 #include"..\..\..\utility\src\sprite\sprite.h"
-#include"..\..\..\utility\src\assert\assert.h"
-#include<fstream>
+#include"..\..\..\utility\src\timer\timer.h"
 #include<list>
 #include<utility>
 
 
 void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 {
-	using avl::view::BasicWin32Window;
-	using avl::view::BasicD3DRenderer;
-	using avl::utility::Vertex2D;
-	using avl::utility::Sprite;
-	using avl::utility::input_events::InputEvent;
-	using avl::utility::input_events::KeyboardEvent;
-	using avl::utility::key_codes::KeyboardKey;
-	using avl::view::Image;
-	using avl::input::DirectInputInputDevice;
-	using avl::utility::input_events::InputQueue;
+	using namespace avl::utility;
+	using namespace avl::view;
+	using namespace avl::input;
 
 	
 	//try
 	{	
 		// Create a window and renderer.
-		avl::view::d3d::D3DDisplayProfile profile = avl::view::d3d::LeastSquaredDisplayProfile(640, 480, true);
-		BasicWin32Window window(instance, "BasicD3DRenderer Unit Test", profile.GetWidth(), profile.GetHeight());
-		BasicD3DRenderer renderer(window.GetWindowHandle(), profile, Vertex2D(1.0f, 1.0f));
+		d3d::D3DDisplayProfile profile = d3d::LeastSquaredDisplayProfile(640, 480, false);
+		BasicWin32Window window(instance, "Direct Input Input Device Unit Test", profile.GetWidth(), profile.GetHeight());
+		BasicD3DRenderer renderer(window.GetWindowHandle(), profile, Vector(1.0f, 1.0f));
 		DirectInputInputDevice input(window.GetWindowHandle());
 
 
 
 		// Load the textures from the disk.
-		Image spiral_image("spiral.tga");
-		Image background_image("background.tga");
+		Image explosion_image("Assets\\explosion.tga");
 
 		// Make sure that the images were successfully loaded.
-		if(spiral_image.GetHeight() == 0 || background_image.GetHeight() == 0)
+		if(explosion_image.GetHeight() == 0)
 		{
-			throw false;
+			throw FileNotFoundException("Assets\\explosion.tga");
 		}
 
-		// Add the newly-created texture to the renderer.
-		unsigned int spiral_id = renderer.AddTexture(spiral_image);
-		unsigned int background_id = renderer.AddTexture(background_image);
+		// Add the newly-created textures to the renderer.
+		unsigned int explosion_handle = renderer.AddTexture(explosion_image);
+		
 
 		// Done with the texture; safe to delete now.
 
 
-		// Create a few sprites.
-		Sprite background(-1, 1, 1, -1, 0.5, background_id);
-		Sprite spiral(-0.15f, -0.6f, 0.15f, -0.9f, 0.4f, spiral_id);
+		// Create a few textured quads.
+		Sprite explosion(Quad(-0.2f, 0.2f, 0.2f, -0.2f), 0.5f, explosion_handle, 4, 4);
 
+		Sprite::Animation animation1;
+		animation1.animation_id = 1;
+		animation1.frame_delay = 0.04f;
+		animation1.number_of_frames = 16;
+		animation1.start_frame = 1;
 
+		explosion.AddAnimation(animation1);
+		explosion.PlayAnimation(1);
+		explosion.SetRepeat(true);
 
 		// Put quads into the appropriate container.
-		avl::utility::SpriteList sprites;
-		sprites.insert(sprites.begin(), &spiral);
-		sprites.insert(sprites.begin(), &background);
+		GraphicList graphics;
+		graphics.push_back(&explosion);
 
 
 
-		Vertex2D movement;
+		Vector movement;
 		const float speed = 0.007f;
 		
 		bool exit = false;
 
 		// While the user keeps the window open...
+		Timer timer;
 		while(window.Update() == true && exit == false)
 		{
 			// If the window has focus, render the quad.
 			if(window.IsActive() == true)
 			{
 				// Draw quad.
-				renderer.RenderSprites(sprites);
+				renderer.RenderGraphics(graphics);
 
 				// Get input.
-				InputQueue queue = input.GetInput();
+				input_events::InputQueue queue = input.GetInput();
 
 				// Transform sprites.
-				spiral.Move(movement);
+				explosion.Move(movement);
+				explosion.Update((float)timer.Reset());
 
 				while(queue.empty() == false)
 				{
-					const InputEvent* const input = queue.front().get();
+					const input_events::InputEvent& input = *queue.front().get();
 
-					if(input->GetType() == KeyboardEvent::KEYBOARD_TYPE)
+					if(input.GetType() == input_events::KeyboardEvent::KEYBOARD_TYPE)
 					{
-						const KeyboardEvent* const keyboard = dynamic_cast<const KeyboardEvent* const>(input);
+						const input_events::KeyboardEvent& keyboard = *dynamic_cast<const input_events::KeyboardEvent*>(&input);
 						
-						if(keyboard->GetKey() == KeyboardKey::kk_escape)
+						if(keyboard.GetKey() == key_codes::KeyboardKey::kk_escape)
 						{
 							exit = true;
 						}
-						else if(keyboard->GetKey() == KeyboardKey::kk_up)
+						else if(keyboard.GetKey() == key_codes::KeyboardKey::kk_up)
 						{
-							if(keyboard->IsPressed() == true)
+							if(keyboard.IsPressed() == true)
 							{
 								movement.SetY(speed);
 							}
@@ -136,9 +132,9 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 								movement.SetY(0.0f);
 							}
 						}
-						else if(keyboard->GetKey() == KeyboardKey::kk_down)
+						else if(keyboard.GetKey() == key_codes::KeyboardKey::kk_down)
 						{
-							if(keyboard->IsPressed() == true)
+							if(keyboard.IsPressed() == true)
 							{
 								movement.SetY(-speed);
 							}
@@ -147,9 +143,9 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 								movement.SetY(0.0f);
 							}
 						}
-						else if(keyboard->GetKey() == KeyboardKey::kk_right)
+						else if(keyboard.GetKey() == key_codes::KeyboardKey::kk_right)
 						{
-							if(keyboard->IsPressed() == true)
+							if(keyboard.IsPressed() == true)
 							{
 								movement.SetX(speed);
 							}
@@ -158,9 +154,9 @@ void TestDirectInputInputDeviceComponent(HINSTANCE instance)
 								movement.SetX(0.0f);
 							}
 						}
-						else if(keyboard->GetKey() == KeyboardKey::kk_left)
+						else if(keyboard.GetKey() == key_codes::KeyboardKey::kk_left)
 						{
-							if(keyboard->IsPressed() == true)
+							if(keyboard.IsPressed() == true)
 							{
 								movement.SetX(-speed);
 							}

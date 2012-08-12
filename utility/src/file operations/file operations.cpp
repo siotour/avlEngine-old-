@@ -93,7 +93,6 @@ namespace utility
 			// Any problems?
 			if(file.fail() == true)
 			{
-				file.close();
 				throw FileNotFoundException(file_name);
 			}
 			file.seekg(0, std::ios_base::end);
@@ -115,6 +114,11 @@ namespace utility
 				throw FileReadException(file_name);
 			}
 			file.close();
+		}
+		catch(const FileNotFoundException&)
+		{
+			file.close();
+			throw;
 		}
 		catch(const std::bad_alloc&)
 		{

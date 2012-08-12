@@ -25,12 +25,13 @@ Defines the utility::TextBox class, which provides the behavior of a dynamic box
 @todo This file description needs a more detailed comment.
 */
 
-
-// Included for the typedefs in utility::Sprite.
-#include"..\sprite\sprite.h"
+#include"..\graphic\graphic.h"
+#include"..\render primitive\render primitive.h"
+#include"..\textured quad\textured quad.h"
 #include<vector>
 #include<deque>
 #include<string>
+#include<memory>
 
 
 namespace avl
@@ -39,7 +40,7 @@ namespace utility
 {
 	/** @todo Properly comment this class definition.
 	*/
-	class TextBox
+	class TextBox: public Graphic
 	{
 	private:
 		// Forward declaration. See definition below for details.
@@ -92,7 +93,7 @@ namespace utility
 		*/
 		TextBox(const float& left, const float& top, const float& right, const float& bottom, const float& z, 
 				const unsigned int& chars_per_row, const unsigned int& number_of_rows,
-				const OverwriteBehavior& behavior, const utility::Sprite::TextureHandle& texture_handle,
+				const OverwriteBehavior& behavior, const utility::TexturedQuad::TextureHandle& texture_handle,
 				const unsigned int& chars_per_texture_row);
 		/** Basic destructor.*/
 		~TextBox();
@@ -140,12 +141,12 @@ namespace utility
 		/** Gets the box's texture handle.
 		@return The current texture handle.
 		*/
-		const utility::Sprite::TextureHandle& GetTextureHandle() const;
+		const utility::TexturedQuad::TextureHandle& GetTextureHandle() const;
 
-		/** Returns a list of all sprites composing this box. Used for rendering purposes.
-		@return A list of the sprites necessary to render this box.
+		/** Gets the render primitives used to render this object.
+		@return The render primitives used to render this object.
 		*/
-		utility::SpriteList GetSprites() const;
+		const RenderPrimitiveList& GetRenderPrimitives() const;
 
 
 
@@ -197,7 +198,7 @@ namespace utility
 		void SetPosition(const float& new_left, const float& new_top, const float& new_right, const float& new_bottom, const float& new_z);
 
 		// Change the texture handle used to draw text.
-		void SetTextureHandle(const utility::Sprite::TextureHandle& new_texture_handle);
+		void SetTextureHandle(const utility::TexturedQuad::TextureHandle& new_texture_handle);
 
 
 
@@ -257,7 +258,7 @@ namespace utility
 		/// Number of characters per row in the texture.
 		unsigned int chars_per_texture_row;
 		/// The texture handle.
-		utility::Sprite::TextureHandle texture_handle;
+		utility::TexturedQuad::TextureHandle texture_handle;
 
 		/// The rows composing this textbox.
 		std::vector<Row> rows;
@@ -287,14 +288,15 @@ namespace utility
 			@param original The object being copied.
 			*/
 			Row(const Row& original);
-			/** Deletes all sprites used by this row.*/
+			/** Basic destructor.
+			*/
 			~Row();
 
 
-			/** Returns a list of all the sprites composing this row. Used for rendering.
-			@return A list of Sprites 
+			/** Gets the render primitives used to render this object.
+			@return The render primitives used to render this object.
 			*/
-			utility::SpriteList GetSprites() const;
+			const std::list<TexturedQuad>& GetQuads() const;
 
 
 			/** Sets the visibility of this row.
@@ -330,7 +332,7 @@ namespace utility
 			/** Sets the new texture handle for the row.
 			@param new_texture_handle The new texture handle for this row.
 			*/
-			void SetTextureHandle(const utility::Sprite::TextureHandle& new_texture_handle);
+			void SetTextureHandle(const utility::TexturedQuad::TextureHandle& new_texture_handle);
 
 			/** Assignment operator.
 			@warning Note -- this doesn't perform as one would expect! Use at your own risk.
@@ -370,10 +372,10 @@ namespace utility
 			unsigned int chars_per_texture_row;
 
 			/// The texture handle for characters in this row.
-			utility::Sprite::TextureHandle texture_handle;
+			utility::TexturedQuad::TextureHandle texture_handle;
 
-			/// All of the sprites forming this row.
-			utility::SpriteList sprites;
+			/// All of the textured quads forming this row.
+			std::list<TexturedQuad> quads;
 
 		};
 

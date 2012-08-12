@@ -27,10 +27,10 @@ profile which will render to the entire window and set the viewport appropriatel
 */
 
 #include"..\renderer\renderer.h"
-#include"..\d3d display profile\d3d display profile.h"
 #include"..\d3d wrapper\d3d wrapper.h"
-#include"..\..\..\utility\src\sprite\sprite.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
+#include"..\..\..\utility\src\vector\vector.h"
+#include<queue>
 // Makes d3d9 activate additional debug information and checking.
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
@@ -49,6 +49,8 @@ namespace view
 
 	/**
 	Implements the \ref avl::view::Renderer interface using Direct3D.
+	@todo Make the vertex/index buffers resize themselves on demand if necessary.
+	@todo Add the capability to render lines, filled quads, and filled circles.
 	*/
 	class BasicD3DRenderer: public Renderer
 	{
@@ -65,7 +67,7 @@ namespace view
 		@throws d3d::D3DError If unable to create the Direct3D device or if
 		unable to set the viewport.
 		*/
-		BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile, const avl::utility::Vertex2D& screen_space);
+		BasicD3DRenderer(HWND window_handle, const d3d::D3DDisplayProfile& profile, const avl::utility::Vector& screen_space);
 		/** Destroys the Direct3D device and releases all assets.
 		*/
 		~BasicD3DRenderer();
@@ -77,14 +79,14 @@ namespace view
 		@throws D3DError If unable to create the texture.
 		@todo This function currently only supports 32-bit textures.
 		*/
-		const utility::Sprite::TextureHandle AddTexture(const Image& image);
+		const utility::TexturedQuad::TextureHandle AddTexture(const Image& image);
 
 		/** Releases the texture associated with the texture handle \a texture_handle.
 		If \a texture_handle is not associated with a texture, then nothing happens.
 		@warning Don't try to render sprites using a deleted texture handle.
 		@param texture_handle The handle to the texture to be deleted.
 		*/
-		void DeleteTexture(const utility::Sprite::TextureHandle& texture_handle);
+		void DeleteTexture(const utility::TexturedQuad::TextureHandle& texture_handle);
 
 		/** Deletes all textures and renders the handles associated with them invalid.
 		@post All previously issued texture handles will be rendered invalid, but they
@@ -92,18 +94,13 @@ namespace view
 		*/
 		void ClearTextures();
 
-		/** Renders a list of sprites.
-		@warning \a sprites may very well be modified during this operation (though
-		no actual sprites will be modified). If you need a copy of \a sprites after
-		the call to this method, then make that copy before this method call.
-		@post \a sprites may well not contain the same (or any) sprites. Make sure to
-		keep your own separate copy if you need \a sprites for something else.
-		@param sprites The sprites to be rendered.
-		@throws RendererException If \a sprites contains one or more nullptr pointers.
-		@throws D3DError If there is an error while using the device.
-		@todo Consider using a list of std::tr1::shared_ptrs.
+		/** Renders \a graphics to the screen.
+		@param graphics The graphics to be rendered.
+		@throws RendererException If one of the objects in \a primitives contains a texture
+		handle which isn't associated with a texture or if an error makes it impossible to
+		perform the rendering.
 		*/
-		void RenderSprites(utility::SpriteList& sprites);
+		void RenderGraphics(const utility::GraphicList& graphics);
 
 	private:
 
@@ -137,14 +134,17 @@ namespace view
 		bool is_device_ready;
 
 		/// Maintains a map of valid texture handles and their associated textures.
-		d3d::TexHandleToTex textures;
+		d3d::TexHandleToTexContext textures;
 		/// Used to assign a unique texture handle to each created texture. This imposes the restriction that it
-		/// is highly inadvisable to attempt to load more than UINT_MAX/2-1 (defined in limits.h) textures throughout
-		/// the duration of a program.
+		/// is highly inadvisable to attempt to load more than UINT_MAX textures at a time.
 		unsigned int next_texture_handle;
+		/// Keeps track of texture handles which have been freed so that they may be reused.
+		std::queue<utility::TexturedQuad::TextureHandle> reusable_texture_handles;
 
-		/// The vertex buffer.
-		IDirect3DVertexBuffer9* vertex_buffer;
+		/// Buffer for textured vertices.
+		IDirect3DVertexBuffer9* textured_vertex_buffer;
+		/// Buffer for colored vertices.
+		IDirect3DVertexBuffer9* colored_vertex_buffer;
 		/// The index buffer.
 		IDirect3DIndexBuffer9* index_buffer;
 		/// The size of the vertex buffer and index buffer, in terms of the objects being stored in them.

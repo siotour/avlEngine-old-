@@ -26,8 +26,9 @@ Defines the \ref avl::view::Renderer class and the \ref avl::view::RendererExcep
 
 #include"..\image\image.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
-#include"..\..\..\utility\src\sprite\sprite.h"
-#include"..\..\..\utility\src\vertex 2d\vertex 2d.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
+#include"..\..\..\utility\src\textured quad\textured quad.h"
+#include"..\..\..\utility\src\vector\vector.h"
 #include<string>
 
 
@@ -36,7 +37,7 @@ namespace avl
 namespace view
 {
 	/**
-	Defines an interface for rendering \ref avl::utility::Sprite objects to the screen.
+	Defines an interface for rendering \ref avl::utility::RenderPrimitive objects to the screen.
 	*/
 	class Renderer
 	{
@@ -47,7 +48,7 @@ namespace view
 		the distance from the center to either side, and the y component will
 		specify the distance from the center to the top or bottom.
 		*/
-		Renderer(const avl::utility::Vertex2D& screen_space);
+		Renderer(const avl::utility::Vector& screen_space);
 		/** Basic destructor.*/
 		virtual ~Renderer();
 
@@ -58,14 +59,14 @@ namespace view
 		@return A texture handle used to access \a image as a texture. This texture handle may be
 		used to render \a image.
 		*/
-		virtual const utility::Sprite::TextureHandle AddTexture(const Image& image) = 0;
+		virtual const utility::TexturedQuad::TextureHandle AddTexture(const Image& image) = 0;
 
 		/** Removes the texture associated with \a handle so that it will be freed from memory
 		and will no longer be able to be rendered.
 		@post \a handle will no longer be associated with a texture.
 		@param handle The texture handle to delete.
 		*/
-		virtual void DeleteTexture(const utility::Sprite::TextureHandle& handle) = 0;
+		virtual void DeleteTexture(const utility::TexturedQuad::TextureHandle& handle) = 0;
 
 		/** Deletes all textures and renders the handles associated with them invalid.
 		@post All previously issued texture handles will be rendered invalid, but they
@@ -73,24 +74,20 @@ namespace view
 		*/
 		virtual void ClearTextures() = 0;
 
-		/** Renders \a sprites to the screen. Details may vary depending on implementation.
-		@attention Note that this function takes a non-const reference of \a sprites, and as
-		such \a sprites may be modified during the rendering process. If you need to keep a
-		copy of the original, then make a copy before passing it to this function. None of
-		the sprites themselves will be modified, but the list itself may be.
-		@param sprites The sprites to be rendered.
-		@throws RendererException If one of the objects in \a sprites contains a texture
-		handle which isn't associated with a texture or If an error makes it impossible to
+		/** Renders \a graphics to the screen. Details may vary depending on the implementation.
+		@param primitives The primitives to be rendered.
+		@throws RendererException If one of the objects in \a primitives contains a texture
+		handle which isn't associated with a texture or if an error makes it impossible to
 		perform the rendering.
 		*/
-		virtual void RenderSprites(utility::SpriteList& sprites) = 0;
+		virtual void RenderGraphics(const utility::GraphicList& graphics) = 0;
 
 	protected:
 		/// The adjusted screen resolution for the renderer. The center of
 		/// the screen will be at (0, 0). The x component will specify the
 		/// distance from the center to either side, and the y component will
 		/// specify the distance from the center to the top or bottom.
-		const avl::utility::Vertex2D screen_space_resolution;
+		const avl::utility::Vector screen_space_resolution;
 
 	private:
 

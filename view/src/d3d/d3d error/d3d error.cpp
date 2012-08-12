@@ -36,9 +36,9 @@ namespace d3d
 	D3DError::D3DError(const std::string& d3d_function, const std::string& explanation, const HRESULT& error_code)
 		: error_code(error_code)
 	{
-		description = "The Direct3D function ";
+		description = "A Direct3D error occurred in the function ";
 		description += d3d_function;
-		description += " failed with error code ";
+		description += " with error code ";
 		std::ostringstream temp;
 		temp << error_code;
 		description += temp.str();

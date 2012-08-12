@@ -27,21 +27,21 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 
 void TestAssertComponent();
 void TestBasicD3DRendererComponent(HINSTANCE);
-void TestVertex2DComponent();
+void TestVectorComponent();
 void TestSpriteComponent();
 void TestDirectInputInputDeviceComponent(HINSTANCE);
 void TestTextBoxComponent(HINSTANCE);
 
-//int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
-//{
-//	//TestBasicD3DRendererComponent(instance);
-//	TestDirectInputInputDeviceComponent(instance);
-//	//TestTextBoxComponent(instance);
-//
-//	
-//
-//	return 0;
-//}
+int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prev_instance, LPSTR cmd_line, int show_cmd)
+{
+	//TestBasicD3DRendererComponent(instance);
+	TestDirectInputInputDeviceComponent(instance);
+	//TestTextBoxComponent(instance);
+
+	
+
+	return 0;
+}
 
 
 
@@ -53,10 +53,10 @@ void TestFileOperationsComponent();
 
 int main()
 {
-	//TestVertex2DComponent();
+	//TestVectorComponent();
 	//TestSpriteComponent();
 	//TestSettingsFileComponent();
-	TestXAudio2SoundEngineComponent();
+	//TestXAudio2SoundEngineComponent();
 	//TestFileOperationsComponent();
 	return 0;
 }
