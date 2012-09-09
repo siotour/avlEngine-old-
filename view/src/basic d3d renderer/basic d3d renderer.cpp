@@ -160,7 +160,7 @@ namespace view
 		// Delete all of the textures from the map.
 		textures.clear();
 		// Reset the texture handles.
-		while(reusable_texture_handles.empty() == true)
+		while(reusable_texture_handles.empty() == false)
 		{
 			reusable_texture_handles.pop();
 		}

@@ -19,7 +19,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Defines the class \ref avl::utility::TexturedQuad.
+Defines the \ref avl::utility::TexturedQuad class.
 @author Sheldon Bachstein
 @date Jul 06, 2012
 */
@@ -33,6 +33,8 @@ namespace utility
 {
 
 	/**
+	Represents a textured quad, aligned with the XY plane,
+	in 3-D space.
 	*/
 	class TexturedQuad: public RenderPrimitive
 	{
@@ -43,45 +45,30 @@ namespace utility
 		*/
 		typedef unsigned int TextureHandle;
 
-		/** No-spec constructor. Initializes each vertice to (0, 0) and
-		the texture coordinates to (0, 0), (0, 1), (1, 1), and (1, 0),
-		respectively. Additionally initializes the texture handle to 0 and
-		the z-depth to 0.
+		/** @post Initializes each vertex to (0, 0) and the texture
+		coordinates to (0, 0), (0, 1), (1, 1), and (1, 0), respectively.
+		Additionally initializes the texture handle to 0 and the z-depth
+		to 0.
 		*/
 		TexturedQuad();
-		/** Partial-spec constructor. Initializes the texture coordinates to
+		/** @post Initializes the texture coordinates to
 		(0, 0), (0, 1), (1, 1), and (1, 0), respectively.
-		@param initial_quad The quad's vertices.
-		@param z_depth The z-depth of the object.
-		@param texture The handle to the texture for this quad.
+		@param initial_position The position.
+		@param z_depth Position along the z-axis.
+		@param texture The associated texture handle.
 		*/
 		TexturedQuad(const Quad& initial_position, const float z_depth, const TextureHandle texture);
-		/** Full-spec constructor.
-		@param initial_position The quad's vertices.
+		/**	@param initial_position The quad's vertices.
 		@param z_depth The z-depth of the object.
 		@param initial_texture_position The texture coordinates for this quad.
 		@param texture The handle to the texture for this quad.
 		*/
 		TexturedQuad(const Quad& initial_position, const float z_depth, const Quad& initial_texture_position, const TextureHandle texture);
-		/** Copy constructor.
-		@param original The object being copied.
-		*/
 		TexturedQuad(const TexturedQuad& original);
-		/** Basic destructor.
-		*/
 		~TexturedQuad();
 
-		/** Gets the position.
-		@return The position of this textured quad.
-		*/
 		const Quad& GetPosition() const;
-		/** Gets the texture position.
-		@return The texture position.
-		*/
 		const Quad& GetTexturePosition() const;
-		/** Gets texture_handle.
-		@return texture_handle.
-		*/
 		const TextureHandle GetTextureHandle() const;
 
 		/** Gets a non-const reference to the position.
@@ -93,24 +80,10 @@ namespace utility
 		*/
 		Quad& AccessTexturePosition();
 
-		/** Sets the position.
-		@param new_position The new position.
-		*/
 		void SetPosition(const Quad& new_position);
-		/** Sets the texture position.
-		@param new_texture_position The new texture position.
-		*/
 		void SetTexturePosition(const Quad& new_texture_position);
-
-		/** Sets the texture handle for this object.
-		@param new_handle The new texture handle for this object.
-		*/
 		void SetTextureHandle(const TextureHandle new_handle);
 
-		/** Assignment operator.
-		@param rhs The object which this object is being assigned to.
-		@return This object after the assignment.
-		*/
 		const TexturedQuad& operator=(const TexturedQuad& rhs);
 
 	private:

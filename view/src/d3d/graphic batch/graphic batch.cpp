@@ -51,7 +51,7 @@ namespace d3d
 		DrawPrimitivesTaskList draw_primitive_tasks(graphics, textures);
 		draw_primitive_tasks.ExtractVertexData(textured_vertices, colored_vertices);
 		draw_primitive_tasks.ExtractIndexData(indices);
-		render_tasks.reset(new RenderTaskSequence(draw_primitive_tasks));
+		render_tasks.reset(new(std::nothrow) RenderTaskSequence(draw_primitive_tasks));
 	}
 
 	// See method declaration for details.

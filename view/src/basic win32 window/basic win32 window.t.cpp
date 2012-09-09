@@ -26,7 +26,7 @@ Unit test for the basic win32 window component. See "basic win32 window.h" for d
 
 void TestBasicWin32WindowComponent(HINSTANCE hInstance)
 {
-	avl::view::BasicWin32Window basic_window(hInstance, "Bleh1", 500, 500);
+	avl::view::BasicWin32Window basic_window(hInstance, "Basic Win32 Window Component Test", 500, 500);
 
 	while(basic_window.Update() == true)
 	{

@@ -35,8 +35,23 @@ namespace utility
 	}
 
 	// See method declaration for details.
+	RenderPrimitive::RenderPrimitive(const RenderPrimitive& original)
+		: type(original.type), is_visible(original.is_visible), z_depth(original.z_depth)
+	{
+	}
+
+	// See method declaration for details.
 	RenderPrimitive::~RenderPrimitive()
 	{
+	}
+
+	// See method declaration for details.
+	RenderPrimitive& RenderPrimitive::operator=(const RenderPrimitive& rhs)
+	{
+		type = rhs.type;
+		is_visible = rhs.is_visible;
+		z_depth = rhs.z_depth;
+		return *this;
 	}
 
 } // utility

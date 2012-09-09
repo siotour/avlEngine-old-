@@ -22,7 +22,6 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 Defines the basic exception types used throughout the avl Library.
 @author Sheldon Bachstein
 @date Dec 26, 2011
-@todo Add a FileFormatException for corrupt/malformatted files.
 */
 
 #include<string>
@@ -115,6 +114,30 @@ namespace utility
 	private:
 		/// Not implemented.
 		InvalidCallException& operator=(const InvalidCallException&);
+	};
+
+
+
+	/**
+	Indicates that an attempt was made to divide by zero.
+	*/
+	class DivideByZeroError: public Exception
+	{
+	public:
+		/** Full-spec constructor.
+		@param function The full scope and name of the function in which the division
+		was to take place.
+		*/
+		DivideByZeroError(const std::string& function);
+		/** Copy constructor.
+		@param original The object being copied.
+		*/
+		DivideByZeroError(const DivideByZeroError& original);
+		/** Basic destructor.*/
+		~DivideByZeroError();
+	private:
+		/// Not implemented.
+		DivideByZeroError& operator=(const DivideByZeroError&);
 	};
 
 		

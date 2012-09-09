@@ -13,17 +13,25 @@
   <ItemGroup>
     <ClInclude Include="src\action\action.h" />
     <ClInclude Include="src\agent\agent.h" />
+    <ClInclude Include="src\animated sprite\animated sprite.h" />
     <ClInclude Include="src\basic scene\basic scene.h" />
+    <ClInclude Include="src\end scene listener\end scene listener.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\reaction\reaction.h" />
     <ClInclude Include="src\scene\scene.h" />
+    <ClInclude Include="src\sprite\sprite.h" />
+    <ClInclude Include="src\static sprite\static sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\action\action.cpp" />
     <ClCompile Include="src\agent\agent.cpp" />
+    <ClCompile Include="src\animated sprite\animated sprite.cpp" />
     <ClCompile Include="src\basic scene\basic scene.cpp" />
+    <ClCompile Include="src\end scene listener\end scene listener.cpp" />
     <ClCompile Include="src\reaction\reaction.cpp" />
     <ClCompile Include="src\scene\scene.cpp" />
+    <ClCompile Include="src\sprite\sprite.cpp" />
+    <ClCompile Include="src\static sprite\static sprite.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BBE84B90-1848-472F-9D74-8AD229EFB8D4}</ProjectGuid>

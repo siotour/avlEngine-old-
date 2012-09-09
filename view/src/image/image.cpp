@@ -56,7 +56,7 @@ namespace view
 			file.seekg(0, ios_base::beg);
 
 			// If unable to allocate memory for file_data, return false.
-			unsigned char* file_data = new (std::nothrow) unsigned char[file_size];
+			unsigned char* file_data = new(std::nothrow) unsigned char[file_size];
 			if(file_data == nullptr)
 			{
 				file.close();
@@ -153,7 +153,7 @@ namespace view
 
 
 			// Done with the header. Allocate memory for the pixel data.
-			pixel_data = new (std::nothrow) unsigned char[image_size];
+			pixel_data = new(std::nothrow) unsigned char[image_size];
 			if(pixel_data == nullptr)
 			{
 				return false;
@@ -228,7 +228,7 @@ namespace view
 				// Temporary storage.
 				unsigned short upper_line = 1;
 				unsigned short lower_line = height;
-				unsigned char* temp = new (std::nothrow) unsigned char[width * pixel_depth];
+				unsigned char* temp = new(std::nothrow) unsigned char[width * pixel_depth];
 				// If unable to get the memory, return false.
 				if(temp == nullptr)
 				{
@@ -265,7 +265,7 @@ namespace view
 				// Temporary storage.
 				unsigned short left_pixel;
 				unsigned short right_pixel;
-				unsigned char* temp = new (std::nothrow) unsigned char[pixel_depth];
+				unsigned char* temp = new(std::nothrow) unsigned char[pixel_depth];
 				// If unable to get the memory, return false.
 				if(temp == nullptr)
 				{

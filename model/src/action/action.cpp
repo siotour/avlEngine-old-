@@ -69,6 +69,33 @@ namespace model
 	}
 
 
+	// EndScene class.
+	//
+
+	// See method declaration for details.
+	EndScene::EndScene(const int code)
+		: exit_code(code)
+	{
+	}
+
+	// See method declaration for details.
+	EndScene::EndScene(const EndScene& original)
+		: exit_code(original.exit_code)
+	{
+	}
+
+	// See method declaration for details.
+	EndScene::~EndScene()
+	{
+	}
+
+	// See method declaration for details.
+	const int EndScene::GetExitCode() const
+	{
+		return exit_code;
+	}
+
+
 
 
 } // model

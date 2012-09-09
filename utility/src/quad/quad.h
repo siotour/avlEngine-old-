@@ -38,7 +38,7 @@ namespace utility
 	{
 	public:
 
-		/** No-spec constructor. Initializes each vertex to (0, 0).
+		/** @post Initializes each vertex to (0, 0).
 		*/
 		Quad();
 		/** Constructors a quad as an axis-aligned rectangle.
@@ -48,93 +48,51 @@ namespace utility
 		@param bottom The bottom edge.
 		*/
 		Quad(const float left, const float top, const float right, const float bottom);
-		/** Full-spec constructor.
-		@param p1 The lower-left vertex.
-		@param p2 The upper-left vertex.
-		@param p3 The upper-right vertex.
-		@param p4 The lower-right vertex.
-		*/
 		Quad(const Vector& p1, const Vector& p2, const Vector& p3, const Vector& p4);
-		/** Copy constructor.
-		@param original The object being copied.
-		*/
 		Quad(const Quad& original);
-		/** Basic destructor.
-		*/
 		~Quad();
 
-		/** Gets the center for this quad.
+		/** Gets the center of this quad.
 		@return The average of the four vertices of this quad.
 		*/
 		const Vector GetCenter() const;
 
-		/** Gets \ref p1.
-		@return \ref p1.
-		*/
 		const Vector& GetP1() const;
-		/** Gets \ref p2.
-		@return \ref p2.
-		*/
 		const Vector& GetP2() const;
-		/** Gets \ref p3.
-		@return \ref p3.
-		*/
 		const Vector& GetP3() const;
-		/** Gets \ref p4.
-		@return \ref p4.
-		*/
 		const Vector& GetP4() const;
 
-		/** Translates the quad by \a delta_position.
-		@param delta_position The amount by which to translate the quad.
+		/** Moves each vertex by \a delta_position.
+		@param delta_position The amount by which to move.
 		*/
 		void Move(const Vector& delta_position);
-		/** Translates the quad such that the center is at the voordinate
+		/** Moves the quad such that the center is at
 		\a new_center.
 		@param new_center The new center for the quad.
 		*/
 		void SetCenter(const Vector& new_center);
-		/** Rotates the quad by \a theta degrees counter-clockwise.
+		/** Rotates the quad by \a theta degrees counter-clockwise
+		relative to its center.
 		@param theta The number of degrees by which to rotate the quad.
 		*/
 		void Rotate(float theta);
-		/** Scales the quad by a factor of \a scale_factor.
+		/** Scales the quad by a factor of \a scale_factor
+		relative to its center.
 		@param scale_factor The factor by which to scale the quad.
 		*/
 		void Scale(const float& scale_factor);
 
-		/** Sets p1.
-		@param p The new \ref p1.
-		*/
 		void SetP1(const Vector& p);
-		/** Sets p2.
-		@param p The new \ref p2.
-		*/
 		void SetP2(const Vector& p);
-		/** Sets p3.
-		@param p The new \ref p3.
-		*/
 		void SetP3(const Vector& p);
-		/** Sets p4.
-		@param p The new \ref p4.
-		*/
 		void SetP4(const Vector& p);
 		
-		/** Assignment operator.
-		@param rhs The object which this object is being assigned to.
-		@return This object after having been assigned to \a rhs.
-		*/
 		const Quad& operator=(const Quad& rhs);
 
 	private:
-
-		/// The lower-left vertex.
 		Vector P1;
-		/// The upper-left vertex.
 		Vector P2;
-		/// The upper-right vertex.
 		Vector P3;
-		/// The lower-right vertex.
 		Vector P4;
 
 	};

@@ -132,7 +132,7 @@ namespace sound
 
 		// Check that the format information and size match up.
 
-		char* audio_data = new char[chunk.size];
+		char* audio_data = new(std::nothrow) char[chunk.size];
 
 		if(audio_data == nullptr)
 		{

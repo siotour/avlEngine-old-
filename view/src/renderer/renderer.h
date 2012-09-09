@@ -75,7 +75,7 @@ namespace view
 		virtual void ClearTextures() = 0;
 
 		/** Renders \a graphics to the screen. Details may vary depending on the implementation.
-		@param primitives The primitives to be rendered.
+		@param graphics The primitives to be rendered.
 		@throws RendererException If one of the objects in \a primitives contains a texture
 		handle which isn't associated with a texture or if an error makes it impossible to
 		perform the rendering.

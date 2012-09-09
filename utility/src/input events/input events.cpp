@@ -23,6 +23,8 @@ Implementation for the input events component. See "input events.h" for details.
 
 #include"input events.h"
 #include"..\key codes\key codes.h"
+#include"..\exceptions\exceptions.h"
+#include<list>
 
 
 namespace avl
@@ -258,6 +260,8 @@ namespace input_events
 	{
 		return delta;
 	}
+
+
 
 
 } // input_events

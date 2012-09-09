@@ -27,6 +27,7 @@ Defines the \ref avl::sound::XAudio2SoundEngine class.
 #include"..\sound engine\sound engine.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
 #include<map>
+#include<queue>
 #include<xaudio2.h>
 
 
@@ -70,6 +71,7 @@ namespace sound
 		it no longer accessible.
 		@post Don't try playing any sounds whose sound handles have been deleted.
 		@param handle The handle to the sound sample which is to be deleted.
+		@throw utility::OutOfMemoryError If we run out of memory.
 		*/
 		void DeleteSound(const utility::SoundEffect::SoundHandle& handle);
 
@@ -106,6 +108,8 @@ namespace sound
 
 		/// Keeps track of which sound handles have already been issued.
 		utility::SoundEffect::SoundHandle next_handle;
+		/// Keeps track of sound handles which have been freed so that they may be reused.
+		std::queue<utility::SoundEffect::SoundHandle> reusable_sound_handles;
 
 		/** Contains all of the information about a sound sample
 		necessary to play that sample.

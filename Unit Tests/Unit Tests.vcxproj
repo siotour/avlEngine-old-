@@ -100,9 +100,13 @@
     <ClCompile Include="..\input\src\input device\input device.t.cpp" />
     <ClCompile Include="..\model\src\action\action.t.cpp" />
     <ClCompile Include="..\model\src\agent\agent.t.cpp" />
+    <ClCompile Include="..\model\src\animated sprite\animated sprite.t.cpp" />
     <ClCompile Include="..\model\src\basic scene\basic scene.t.cpp" />
+    <ClCompile Include="..\model\src\end scene listener\end scene listener.t.cpp" />
     <ClCompile Include="..\model\src\reaction\reaction.t.cpp" />
     <ClCompile Include="..\model\src\scene\scene.t.cpp" />
+    <ClCompile Include="..\model\src\sprite\sprite.t.cpp" />
+    <ClCompile Include="..\model\src\static sprite\static sprite.t.cpp" />
     <ClCompile Include="..\sound\src\load wav file\load wav file.t.cpp" />
     <ClCompile Include="..\sound\src\sound engine\sound engine.t.cpp" />
     <ClCompile Include="..\sound\src\sound sample\sound sample.t.cpp" />
@@ -114,11 +118,11 @@
     <ClCompile Include="..\utility\src\graphic\graphic.t.cpp" />
     <ClCompile Include="..\utility\src\input events\input events.t.cpp" />
     <ClCompile Include="..\utility\src\log file\log file.t.cpp" />
+    <ClCompile Include="..\utility\src\polymorphic queue\polymorphic queue.t.cpp" />
     <ClCompile Include="..\utility\src\quad\quad.t.cpp" />
     <ClCompile Include="..\utility\src\render primitive\render primitive.t.cpp" />
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp" />
     <ClCompile Include="..\utility\src\sound effect\sound effect.t.cpp" />
-    <ClCompile Include="..\utility\src\sprite\sprite.t.cpp" />
     <ClCompile Include="..\utility\src\text box\text box.t.cpp" />
     <ClCompile Include="..\utility\src\textured quad\textured quad.t.cpp" />
     <ClCompile Include="..\utility\src\timer\timer.t.cpp" />

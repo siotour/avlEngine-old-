@@ -26,6 +26,7 @@ Implementation for the agent component. See "agent.h" for details.
 #include"..\action\action.h"
 #include"..\..\..\utility\src\graphic\graphic.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
 #include<map>
 
 
@@ -42,6 +43,10 @@ namespace model
 	// See method declaration for details.
 	Agent::~Agent()
 	{
+		for(auto i = reactions.begin(); i != reactions.end(); ++i)
+		{
+			delete i->second;
+		}
 	}
 
 	// See method declaration for details.
@@ -75,7 +80,14 @@ namespace model
 	// See method declaration for details.
 	void Agent::AddGraphic(const utility::Graphic* const new_graphic)
 	{
-		graphic_list.push_back(new_graphic);
+		try
+		{
+			graphic_list.push_back(new_graphic);
+		}
+		catch(const std::bad_alloc&)
+		{
+			throw utility::OutOfMemoryError();
+		}
 	}
 
 	// See method declaration for details.
@@ -87,7 +99,14 @@ namespace model
 	// See method declaration for details.
 	void Agent::AddSoundEffect(utility::SoundEffect* const new_sound_effect)
 	{
-		sound_effect_list.push_back(new_sound_effect);
+		try
+		{
+			sound_effect_list.push_back(new_sound_effect);
+		}
+		catch(const std::bad_alloc&)
+		{
+			throw utility::OutOfMemoryError();
+		}
 	}
 
 	// See method declaration for details.
@@ -97,9 +116,16 @@ namespace model
 	}
 
 	// See method declaration for details.
-	void Agent::EnqueueAction(const Action& action)
+	void Agent::EnqueueAction(const Action* const action)
 	{
-		action_queue.push(action);
+		try
+		{
+			action_queue.push(action);
+		}
+		catch(const std::bad_alloc&)
+		{
+			throw utility::OutOfMemoryError();
+		}
 	}
 
 

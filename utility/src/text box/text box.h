@@ -22,6 +22,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 Defines the utility::TextBox class, which provides the behavior of a dynamic box of text.
 @author Sheldon Bachstein
 @date Sep 25, 2011
+@todo Move this component to the model subsystem.
 @todo This file description needs a more detailed comment.
 */
 
@@ -38,7 +39,8 @@ namespace avl
 {
 namespace utility
 {
-	/** @todo Properly comment this class definition.
+	/** @todo Move this component to the model subsystem.
+	@todo Properly comment this class definition.
 	*/
 	class TextBox: public Graphic
 	{

@@ -24,10 +24,11 @@ Implementation for the basic scene component. See "basic scene.h" for details.
 #include"basic scene.h"
 #include"..\agent\agent.h"
 #include"..\action\action.h"
-#include"..\..\..\utility\src\sprite\sprite.h"
+#include"..\..\..\utility\src\graphic\graphic.h"
 #include"..\..\..\utility\src\sound effect\sound effect.h"
 #include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\utility\src\timer\timer.h"
+#include"..\..\..\utility\src\exceptions\exceptions.h"
 #include<list>
 #include<memory>
 
@@ -41,12 +42,15 @@ namespace model
 	BasicScene::BasicScene(const double& initial_time_step, const utility::Vector& screen_space)
 		: time_step(initial_time_step), screen_space_resolution(screen_space)
 	{
-
 	}
 	
 	// See method declaration for details.
 	BasicScene::~BasicScene()
 	{
+		for(auto i = agents.begin(); i != agents.end(); ++i)
+		{
+			delete *i;
+		}
 	}
 	
 	// See method declaration for details.
@@ -76,13 +80,13 @@ namespace model
 		utility::SoundEffectList sound_effects;
 		if(agents.empty() == false)
 		{
-			std::for_each(agents.begin(), agents.end(), [&sound_effects](const std::auto_ptr<Agent>& agent)
+			for(auto i = agents.begin(); i != agents.end(); ++i)
 			{
-				if(agent->GetSoundEffects().empty() == false)
+				if((*i)->GetSoundEffects().empty() == false)
 				{
-					sound_effects.insert(sound_effects.end(), agent->GetSoundEffects().begin(), agent->GetSoundEffects().end());
+					sound_effects.insert(sound_effects.end(), (*i)->GetSoundEffects().begin(), (*i)->GetSoundEffects().end());
 				}
-			});
+			}
 		}
 		return sound_effects;
 	}
@@ -90,6 +94,7 @@ namespace model
 	// See method declaration for details.
 	void BasicScene::Update()
 	{
+		DistributeEnqueuedActions();
 		// Keeps track of time which could not be partitioned into
 		// discrete time steps.
 		static double accumulated_time = 0.0;
@@ -97,7 +102,7 @@ namespace model
 		timer.Unpause();
 		accumulated_time += timer.Reset();
 		// Update the agents.
-		if(accumulated_time > time_step && accumulated_time > 0.0)
+		if(accumulated_time > time_step)
 		{
 			// No time step specified? Use the entire elapsed time.
 			if(time_step <= 0.0)
@@ -124,14 +129,87 @@ namespace model
 	}
 
 	// See method declaration for details.
+	const bool BasicScene::HasEnded()
+	{
+		return end_listener.SceneHasEnded();
+	}
+
+	// See method declaration for details.
+	const int BasicScene::GetExitCode()
+	{
+		if(end_listener.SceneHasEnded() == false)
+		{
+			throw utility::InvalidCallException("avl::model::BasicScene::GetExitCode", "The scene has not yet ended.");
+		}
+		return end_listener.GetExitCode();
+	}
+
+	// See method declaration for details.
+	void BasicScene::AddAgent(Agent* const agent)
+	{
+		if(agent == nullptr)
+		{
+			throw utility::InvalidArgumentException("avl::model::BasicScene::AddAgent", "agent", "Must not be a null pointer.");
+		}
+		bool result;
+		try
+		{
+			auto result_pair = agents.insert(agent);
+			result = result_pair.second;
+		}
+		catch(const std::bad_alloc&)
+		{
+			delete agent;
+			throw utility::OutOfMemoryError();
+		}
+		catch(...)
+		{
+			delete agent;
+			throw;
+		}
+
+		if(result == false)
+		{
+			throw utility::InvalidArgumentException("avl::model::BasicScene::AddAgent", "agent", "The specified agent already exists in the scene.");
+		}
+	}
+
+	// See method declaration for details.
+	void BasicScene::RemoveAgent(Agent* const agent)
+	{
+		if(agent == nullptr)
+		{
+			throw utility::InvalidArgumentException("avl::model::BasicScene::RemoveAgent", "agent", "Must not be a null pointer.");
+		}
+		auto position = agents.find(agent);
+		if(position != agents.end())
+		{
+			delete agent;
+			agents.erase(position);
+		}
+	}
+
+	// See method declaration for details.
 	void BasicScene::DistributeAction(const Action& action)
 	{
-		if(agents.empty() == false)
+		for(auto i = agents.begin(); i != agents.end(); ++i)
 		{
-			std::for_each(agents.begin(), agents.end(), [&action](std::auto_ptr<Agent>& agent)
+			(*i)->React(action);
+		}
+		end_listener.React(action);
+	}
+
+	// See method declaration for details.
+	void BasicScene::DistributeEnqueuedActions()
+	{
+		for(auto agent = agents.begin(); agent != agents.end(); ++agent)
+		{
+			ActionQueue& actions = (*agent)->GetActions();
+			while(actions.empty() == false)
 			{
-				agent->React(action);
-			});
+				DistributeAction(actions.front());
+				actions.pop();
+			}
 		}
 	}
 

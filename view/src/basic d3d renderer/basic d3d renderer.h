@@ -104,12 +104,13 @@ namespace view
 
 	private:
 
-		/** Releases \ref index_buffer and \ref vertex_buffer. This is called when the device is lost.
+		/** Releases our index and two vertex buffers. This is called when the device is
+		lost.
 		*/
 		void ReleaseUnmanagedAssets();
 
-		/** Creates \ref index_buffer and \ref vertex_buffer. This is called upon initialization and
-		when the device is reset after having been lost.
+		/** Creates an index buffer and two vertex buffers. This is called upon
+		initialization and when the device is reset after having been lost.
 		@throws d3d::D3DError If unable to create either the vertex or index buffers.
 		*/
 		void AcquireUnmanagedAssets();

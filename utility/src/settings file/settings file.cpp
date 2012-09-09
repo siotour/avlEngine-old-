@@ -55,7 +55,7 @@ namespace utility
 		if(file.fail() == true)
 		{
 			file.close();
-			throw FileReadException(file_name);
+			throw FileNotFoundException(file_name);
 		}
 		// At this point, the file should be ready for reading. Read the file into memory.
 		StringVector lines;

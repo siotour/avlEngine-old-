@@ -20,7 +20,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 /**
 @file
 Provides a standard interface for input classes via the \ref avl::input::InputDevice
-abstract class.
+interface.
 @author Sheldon Bachstein
 @date Jun 12, 2012
 @todo Document this component.
@@ -35,20 +35,25 @@ namespace input
 {
 
 	/** 
+	Provides a standard interface for input devices.
 	*/
 	class InputDevice
 	{
 	public:
-		/** Basic constructor.*/
 		InputDevice();
-
-		/** Basic destructor.*/
 		virtual ~InputDevice();
 
-		/** Returns 
+		/**	@return The queue of input events which have occurred
+		since this instance was created or since the last call to
+		this method.
 		*/
 		virtual utility::input_events::InputQueue GetInput() = 0;
 
+	private:
+		/// NOT IMPLEMENTED.
+		InputDevice(const InputDevice&);
+		/// NOT IMPLEMENTED.
+		InputDevice& operator=(const InputDevice&);
 	};
 
 

@@ -213,7 +213,7 @@ namespace xaudio2
 			throw utility::Exception("avl::sound::xaudio2::PlayBuffer() -- Unable to flush buffers.");
 		}
 		// Save some contextual information about the sound effect's state for this buffer.
-		BufferContext* context = new BufferContext(effect.IsLooping(), effect.GetSoundHandle());
+		BufferContext* context = new(std::nothrow) BufferContext(effect.IsLooping(), effect.GetSoundHandle());
 		if(context == nullptr)
 		{
 			throw utility::OutOfMemoryError();

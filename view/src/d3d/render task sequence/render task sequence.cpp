@@ -35,7 +35,7 @@ Implementation for the render task sequence component. See "render task sequence
 #include"..\set vertex buffer task\set vertex buffer task.h"
 #include"..\..\..\..\utility\src\exceptions\exceptions.h"
 #include<vector>
-#include<memory>
+#include<new>
 #ifdef _DEBUG
 #define D3D_DEBUG_INFO
 #endif
@@ -67,6 +67,7 @@ namespace d3d
 	// See method declaration for details.
 	RenderTaskSequence::~RenderTaskSequence()
 	{
+		DeleteRenderTasks();
 	}
 
 	// See method declaration for details.
@@ -86,11 +87,11 @@ namespace d3d
 		{
 			if(is_textured == true)
 			{
-				render_tasks.push_back(std::auto_ptr<RenderTask>(new SetVertexBufferTask(5 * sizeof(FLOAT), true)));
+				render_tasks.push_back(new(std::nothrow) SetVertexBufferTask(5 * sizeof(FLOAT), true));
 			}
 			else
 			{
-				render_tasks.push_back(std::auto_ptr<RenderTask>(new SetVertexBufferTask(4 * sizeof(FLOAT), false)));
+				render_tasks.push_back(new(std::nothrow) SetVertexBufferTask(4 * sizeof(FLOAT), false));
 			}
 		}
 		catch(const std::bad_alloc&)
@@ -104,7 +105,7 @@ namespace d3d
 	{
 		try
 		{
-			render_tasks.push_back(std::auto_ptr<RenderTask>(new SetIndexBufferTask()));
+			render_tasks.push_back(new(std::nothrow) SetIndexBufferTask());
 		}
 		catch(const std::bad_alloc&)
 		{
@@ -119,11 +120,11 @@ namespace d3d
 		{
 			if(is_translucent == true)
 			{
-				render_tasks.push_back(std::auto_ptr<RenderTask>(new SetTranslucentRenderingTask()));
+				render_tasks.push_back(new(std::nothrow) SetTranslucentRenderingTask());
 			}
 			else
 			{
-				render_tasks.push_back(std::auto_ptr<RenderTask>(new SetOpaqueRenderingTask()));
+				render_tasks.push_back(new(std::nothrow) SetOpaqueRenderingTask());
 			}
 		}
 		catch(const std::bad_alloc&)
@@ -139,11 +140,11 @@ namespace d3d
 		{
 			if(is_textured == true)
 			{
-				render_tasks.push_back(std::auto_ptr<RenderTask>(new SetTexturedRenderingTask()));
+				render_tasks.push_back(new(std::nothrow) SetTexturedRenderingTask());
 			}
 			else
 			{
-				render_tasks.push_back(std::auto_ptr<RenderTask>(new SetColoredRenderingTask()));
+				render_tasks.push_back(new(std::nothrow) SetColoredRenderingTask());
 			}
 		}
 		catch(const std::bad_alloc&)
@@ -157,7 +158,7 @@ namespace d3d
 	{
 		try
 		{
-			render_tasks.push_back(std::auto_ptr<RenderTask>(new SetTextureTask(texture)));
+			render_tasks.push_back(new(std::nothrow) SetTextureTask(texture));
 		}
 		catch(const std::bad_alloc&)
 		{
@@ -170,7 +171,7 @@ namespace d3d
 	{
 		try
 		{
-			render_tasks.push_back(std::auto_ptr<RenderTask>(new DrawPrimitivesTask(original)));
+			render_tasks.push_back(new(std::nothrow) DrawPrimitivesTask(original));
 		}
 		catch(const std::bad_alloc&)
 		{
@@ -193,6 +194,15 @@ namespace d3d
 		if(current_render_state.is_translucent != new_render_state.is_translucent)
 		{
 			InsertSetTranslucencyRenderingTask(new_render_state.is_translucent);
+		}
+	}
+
+	// See method declaration for details.
+	void RenderTaskSequence::DeleteRenderTasks()
+	{
+		for(auto i = render_tasks.begin(); i != render_tasks.end(); ++i)
+		{
+			delete *i;
 		}
 	}
 

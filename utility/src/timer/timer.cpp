@@ -135,16 +135,17 @@ namespace utility
 	// See method declaration for details.
 	void Timer::Unpause()
 	{
-		// Unpause the timer.
-		paused = false;
-		// Update the last count.
-		if (use_performance_counter == true)
+		if(paused == true)
 		{
-			last_count = PollPerformanceCounter();
-		}
-		else
-		{
-			last_count = PollCounter();
+			paused = false;
+			if (use_performance_counter == true)
+			{
+				last_count = PollPerformanceCounter();
+			}
+			else
+			{
+				last_count = PollCounter();
+			}
 		}
 	}
 

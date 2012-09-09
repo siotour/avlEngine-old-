@@ -22,13 +22,16 @@ Implementation for the vector component. See "vector.h" for details.
 */
 
 #include"vector.h"
+#include"..\exceptions\exceptions.h"
+#include<cmath>
 
 
 namespace avl
 {
 namespace utility
 {
-
+	// See variable declaration for details.
+	const Vector Vector::ZeroVector(0.0f, 0.0f);
 
 	// See method declaration for details.
 	Vector::Vector()
@@ -54,74 +57,52 @@ namespace utility
 	}
 
 	// See method declaration for details.
-	const float& Vector::GetX() const
+	const float Vector::Length() const
 	{
-		return x;
+		return sqrt(x * x + y * y);
 	}
 
 	// See method declaration for details.
-	const float& Vector::GetY() const
+	Vector Vector::operator/(const Vector& rhs) const
 	{
-		return y;
+		if(rhs.GetX() == 0.0f || rhs.GetY() == 0.0f)
+		{
+			throw DivideByZeroError("avl::utility::Vector::operator/(const Vector&)");
+		}
+		return Vector(x / rhs.GetX(), y / rhs.GetY());
 	}
 
 	// See method declaration for details.
-	void Vector::SetX(const float& new_x)
+	Vector& Vector::operator/=(const Vector& rhs)
 	{
-		x = new_x;
-	}
-
-	// See method declaration for details.
-	void Vector::SetY(const float& new_y)
-	{
-		y = new_y;
-	}
-
-	// See method declaration for details.
-	Vector Vector::operator+(const Vector& rhs) const
-	{
-		return Vector(x + rhs.GetX(), y + rhs.GetY());
-	}
-
-	// See method declaration for details.
-	Vector Vector::operator-(const Vector& rhs) const
-	{
-		return Vector(x - rhs.GetX(), y - rhs.GetY());
-	}
-
-	// See method declaration for details.
-	Vector& Vector::operator+=(const Vector& rhs)
-	{
-		x += rhs.GetX();
-		y += rhs.GetY();
+		if(rhs.GetX() == 0.0f || rhs.GetY() == 0.0f)
+		{
+			throw DivideByZeroError("avl::utility::Vector::operator/=(const Vector&)");
+		}
+		x /= rhs.GetX();
+		y /= rhs.GetY();
 		return *this;
 	}
 
 	// See method declaration for details.
-	Vector& Vector::operator-=(const Vector& rhs)
+	Vector Vector::operator/(const float rhs) const
 	{
-		x -= rhs.GetX();
-		y -= rhs.GetY();
-		return *this;
+		if(rhs == 0.0f)
+		{
+			throw DivideByZeroError("avl::utility::Vector::operator/(const float)");
+		}
+		return Vector(x / rhs, y / rhs);
 	}
 
 	// See method declaration for details.
-	const bool Vector::operator==(const Vector& rhs) const
+	Vector& Vector::operator/=(const float rhs)
 	{
-		return (x == rhs.GetX() && y == rhs.GetY());
-	}
-
-	// See method declaration for details.
-	const bool Vector::operator!=(const Vector& rhs) const
-	{
-		return (x != rhs.GetX() || y != rhs.GetY());
-	}
-
-	// See method declaration for details.
-	const Vector& Vector::operator=(const Vector& rhs)
-	{
-		x = rhs.GetX();
-		y = rhs.GetY();
+		if(rhs == 0.0f)
+		{
+			throw DivideByZeroError("avl::utility::Vector::operator/=(const float)");
+		}
+		x /= rhs;
+		y /= rhs;
 		return *this;
 	}
 

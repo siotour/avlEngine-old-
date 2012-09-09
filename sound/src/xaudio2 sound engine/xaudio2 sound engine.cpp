@@ -90,19 +90,31 @@ namespace sound
 		}
 		xaudio2::ExtractPCMFormatData(new_sample, sound_data->first);
 		xaudio2::CreateBuffer(new_sample, sound_data->second);
-		// Save the sound sample's data and issue a new texture handle. Clean up if this fails.
+		// Reuse any reusable sound handles.
+		utility::SoundEffect::SoundHandle issued_handle;
+		if(reusable_sound_handles.empty() == false)
+		{
+			issued_handle = reusable_sound_handles.front();
+			reusable_sound_handles.pop();
+		}
+		else
+		{
+			issued_handle = next_handle;
+			++next_handle;
+		}
+		// Save the sound sample's data and issue the sound handle. Clean up if this fails.
 		try
 		{
-			sounds.insert(std::make_pair(next_handle, sound_data.get()));
+			sounds.insert(std::make_pair(issued_handle, sound_data.get()));
 			sound_data.release();
 		}
 		catch(...)
 		{
 			delete[] reinterpret_cast<const char*>(sound_data->second.pAudioData);
+			// Leaks the issued texture handle until the next time ClearTextures() is called.
 			throw;
 		}
-		// Return the handle for the new sample, and prepare for the next handle.
-		return next_handle++;
+		return issued_handle;
 	}
 
 	// See method declaration for details.
@@ -118,6 +130,15 @@ namespace sound
 			delete element->second;
 			// Erase this entry.
 			sounds.erase(element);
+			// Reuse this sound handle.
+			try
+			{
+				reusable_sound_handles.push(handle);
+			}
+			catch(const std::bad_alloc&)
+			{
+				throw utility::OutOfMemoryError();
+			}
 		}
 	}
 
@@ -143,7 +164,12 @@ namespace sound
 			i->second->DestroyVoice();
 		}
 		voices.clear();
-		// Begin issuing sound handles from 1 again.
+		// Reset the texture handles.
+		while(reusable_sound_handles.empty() == false)
+		{
+			reusable_sound_handles.pop();
+		}
+		next_handle = 1;
 	}
 
 	// See method declaration for details.

@@ -61,7 +61,7 @@ namespace dinput
 	{
 		if(dinput == nullptr)
 		{
-			throw new utility::InvalidArgumentException("avl::input::dinput::CreateKeyboardDevice()", "dinput", "Must be non-nullptr");
+			throw utility::InvalidArgumentException("avl::input::dinput::CreateKeyboardDevice()", "dinput", "Must be non-nullptr");
 		}
 		// Create the keyboard device.
 		HRESULT result;
@@ -105,7 +105,7 @@ namespace dinput
 	{
 		if(dinput == nullptr)
 		{
-			throw new utility::InvalidArgumentException("avl::input::dinput::CreateMouseDevice()", "dinput", "Must be non-nullptr");
+			throw utility::InvalidArgumentException("avl::input::dinput::CreateMouseDevice()", "dinput", "Must be non-nullptr");
 		}
 		// Create the mouse device.
 		HRESULT result;
@@ -146,7 +146,7 @@ namespace dinput
 	// See function declaration for details.
 	bool RetrieveDeviceData(LPDIRECTINPUTDEVICE8 device, std::queue<DIDEVICEOBJECTDATA>& data_queue)
 	{
-		const DWORD BATCH_SIZE = 15;
+		static const DWORD BATCH_SIZE = 15;
 		// Holds buffered input data.
 		std::unique_ptr<DIDEVICEOBJECTDATA[]> data(new(std::nothrow) DIDEVICEOBJECTDATA[BATCH_SIZE]);
 		if(data == nullptr)
@@ -173,7 +173,6 @@ namespace dinput
 					return false;
 				}
 				// We've successfully re-acquired the device. Continue collecting data.
-				number_of_elements = BATCH_SIZE;
 				continue;
 			}
 			// Stick the new events in the queue.

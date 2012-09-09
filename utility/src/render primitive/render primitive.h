@@ -26,6 +26,7 @@ Defines the \ref avl::utility::RenderPrimitive class.
 
 #include<list>
 
+
 namespace avl
 {
 namespace utility
@@ -33,7 +34,7 @@ namespace utility
 	// Forward declaration.
 	class RenderPrimitive;
 
-	/** Used to exchange groups of render primitives.
+	/** Non-memory managed container type for RenderPrimitives.
 	*/
 	typedef std::list<const RenderPrimitive* const> RenderPrimitiveList;
 
@@ -44,9 +45,7 @@ namespace utility
 	{
 	public:
 
-		/**
-		@todo Document me.
-		*/
+		/** Enumerates the different types of render primitves. */
 		enum PrimitiveType{
 			TEXTURED_QUAD,
 			FILLED_QUAD,
@@ -54,49 +53,25 @@ namespace utility
 			LINE_SEGMENT
 		};
 
-		/** Basic constructor.
-		@post is_visible is set to true.
-		@param primitive_type The type of render primitive this is.
-		@param z The z-depth of this primitive.
-		*/
+		/** @post This primitive will be visible.*/
 		RenderPrimitive(const PrimitiveType primitive_type, const float z);
-		/** Basic destructor.
-		*/
+		RenderPrimitive(const RenderPrimitive& original);
 		virtual ~RenderPrimitive();
 
-		/** What type of primitive is this?
-		@return An identifier specifying which type of render primitive
-		this is.
-		*/
 		const PrimitiveType GetType() const;
-
-		/** Is this object visible?
-		@return True if this object is visible, and false if not.
-		*/
 		const bool IsVisible() const;
-
-		/** Returns the z depth of this object.
-		@return The z depth of this object.
-		*/
 		const float GetZ() const;
 
-		/** Sets the visibility of this object.
-		@paral visibility The new visibility for this object.
-		*/
 		void SetVisibility(const bool visibility);
-
-		/** Sets the z-depth of this object.
-		@param new_z The new z-depth of this object.
-		*/
 		void SetZ(const float new_z);
+
+		RenderPrimitive& operator=(const RenderPrimitive& rhs);
 
 	protected:
 		/// Identifies which type of primitive this is.
 		PrimitiveType type;
-
 		/// Is this object visible?
 		bool is_visible;
-
 		/// The z depth of this object.
 		float z_depth;
 
@@ -132,8 +107,6 @@ namespace utility
 	{
 		z_depth = new_z;
 	}
-
-
 
 
 } // utility

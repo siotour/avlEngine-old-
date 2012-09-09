@@ -22,9 +22,6 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 Provides basic functions for reading from and writing to files.
 @author Sheldon Bachstein
 @date Jun 22, 2012
-@todo Is it a good decision to use char here instead of unsigned char?
-Perhaps it's best to use unsigned char vectors, but also provide
-overloads for strings for any string data.
 */
 
 #include<string>

@@ -2,7 +2,6 @@ To Do:
 Text Tokenizer
 File manipulator/File system
 2-D Line?
-Plain 2-D quad (not Sprite)?
 Conversion Functions:
 -String to int/long
 -Int/long to String

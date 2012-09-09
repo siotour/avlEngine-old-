@@ -16,9 +16,13 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
 @file
-Unit test for the sprite component. See "sprite.h" for details.
+Unit test for the polymorphic queue component. See "polymorphic queue.h" for details.
 @author Sheldon Bachstein
-@date January 21, 2011
+@date Aug 21, 2012
 */
 
-#include"sprite.h"
+#include"polymorphic queue.h"
+
+
+
+

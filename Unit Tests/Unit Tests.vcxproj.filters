@@ -42,9 +42,6 @@
     <ClCompile Include="..\utility\src\settings file\settings file.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\utility\src\sprite\sprite.t.cpp">
-      <Filter>Source Files\utility Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\input\src\direct input input device\direct input input device.t.cpp">
       <Filter>Source Files\input Tests</Filter>
     </ClCompile>
@@ -193,6 +190,21 @@
       <Filter>Source Files\view Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\utility\src\vector\vector.t.cpp">
+      <Filter>Source Files\utility Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\animated sprite\animated sprite.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\static sprite\static sprite.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\end scene listener\end scene listener.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\src\sprite\sprite.t.cpp">
+      <Filter>Source Files\model Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utility\src\polymorphic queue\polymorphic queue.t.cpp">
       <Filter>Source Files\utility Tests</Filter>
     </ClCompile>
   </ItemGroup>

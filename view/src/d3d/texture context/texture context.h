@@ -20,7 +20,7 @@ along with the avl Library.  If not, see <http://www.gnu.org/licenses/>.
 /**
 @file
 Defines the TexHandleToTexContext type and the TextureContext
-data structure.
+structure.
 @author Sheldon Bachstein
 @date Aug 01, 2012
 */

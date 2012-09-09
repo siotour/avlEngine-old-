@@ -117,6 +117,30 @@ namespace utility
 
 
 	//
+	// DivideByZeroError
+	DivideByZeroError::DivideByZeroError(const std::string& function)
+	{
+		description = function;
+		description += " - Unable to divide by zero.";
+	}
+
+
+
+	DivideByZeroError::DivideByZeroError(const DivideByZeroError& original)
+		: Exception(original)
+	{
+	}
+
+
+
+	DivideByZeroError::~DivideByZeroError()
+	{
+	}
+
+
+
+
+	//
 	// OutOfMemoryError
 	OutOfMemoryError::OutOfMemoryError()
 		: Exception("There is not enough memory available.")

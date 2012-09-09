@@ -46,6 +46,8 @@ namespace input
 	/** Uses Direct Input to retrieve input events from the keyboard and mouse devices.
 	@todo Modify this class to also record the sequence ID of each input event, and then
 	sort the container which input events are stored in by that sequence ID.
+	@todo Extract the code which modifies indices into the mouse button state to be
+	zero-based rather than the direct input defined non-zero based.
 	*/
 	class DirectInputInputDevice: public InputDevice
 	{
@@ -61,9 +63,9 @@ namespace input
 
 		/** Polls for mouse and keyboard input and returns a queue of any new input
 		events. If there are no new inputs, then the returned queue will be empty.
-		@attention The returned queue contains pointers to the input events. Calling
-		this function assumes ownership of these pointers and they should be
-		deleted when you're done with them.
+		@attention The returned queue contains pointers to the input events, but
+		calling this function does not give you ownership of these pointers. These
+		pointers will remain valid only until the next call to this function.
 		@return An utility::utility::input_events::InputQueue containing all InputEvents since the last call to PollInput()
 		or since this device was created.
 		*/
@@ -106,7 +108,7 @@ namespace input
 
 		/** Keyboard state. This is needed to keep track of which buttons are down
 		when the device is lost, so that key-up messages can be sent.*/
-		bool keyboard_state[256];
+		char keyboard_state[256];
 		/** Mouse button states. This is needed to keep track of which buttons are
 		down whent he device is lost so that button-release messages can be
 		sent.*/

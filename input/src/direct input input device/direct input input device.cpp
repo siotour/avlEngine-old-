@@ -27,7 +27,7 @@ Unit test for the direct input input device component. See "direct input input d
 #include"..\..\..\utility\src\input events\input events.h"
 #include"..\..\..\utility\src\exceptions\exceptions.h"
 #include"..\..\..\utility\src\assert\assert.h"
-#include<memory>
+#include<new>
 #include<queue>
 #include<windows.h>
 // Define the direct input version to avoid a compiler warning.
@@ -49,9 +49,9 @@ namespace input
 		: window_handle(initial_window_handle), dinput(nullptr), keyboard_device(nullptr), mouse_device(nullptr)
 	{
 		// We need a valid window handle.
-		if(window_handle == nullptr)
+		if(window_handle == 0)
 		{
-			throw utility::InvalidArgumentException("avl::input::DirectInputInputDevice::DirectInputInputDevice()", "initial_window_handle", "initial_window_handle must be non-nullptr");
+			throw utility::InvalidArgumentException("avl::input::DirectInputInputDevice::DirectInputInputDevice()", "initial_window_handle", "initial_window_handle must be non-zero.");
 		}
 		try
 		{
@@ -78,7 +78,7 @@ namespace input
 			}
 
 			// Set the initial keyboard state.
-			keyboard_device->GetDeviceState(256 * sizeof(char), &keyboard_state);
+			keyboard_device->GetDeviceState(sizeof(keyboard_state), &keyboard_state);
 		}
 		// If anything went wrong, clean up our mess.
 		catch(...)
@@ -117,13 +117,26 @@ namespace input
 		{
 			if(mouse_button_state[button] == true)
 			{
-				// Generate the appropriate button-release event.
-				event = new utility::input_events::MouseButtonEvent(dinput::DIKToMB(button), false);
+				// Generate the appropriate button-release event. Correct for the button offset.
+				event = new(std::nothrow) utility::input_events::MouseButtonEvent(dinput::DIKToMB(button + DIMOFS_BUTTON0), false);
 				if(event == nullptr)
 				{
 					throw utility::OutOfMemoryError();
 				}
-				queue.push(std::auto_ptr<const utility::input_events::InputEvent>(event));
+				try
+				{
+					queue.push(event);
+				}
+				catch(const std::bad_alloc&)
+				{
+					delete event;
+					throw utility::OutOfMemoryError();
+				}
+				catch(...)
+				{
+					delete event;
+					throw;
+				}
 				// Set the button state to released.
 				mouse_button_state[button] = false;
 			}
@@ -132,17 +145,30 @@ namespace input
 		for(DWORD key = 0; key < 256; ++key)
 		{
 			// Is this key pressed?
-			if(keyboard_state[key] == true)
+			if(keyboard_state[key] & 0x80)
 			{
 				// Generate the appropriate key-release event.
-				event = new utility::input_events::KeyboardEvent(dinput::DIKToKK(key), false);
+				event = new(std::nothrow) utility::input_events::KeyboardEvent(dinput::DIKToKK(key), false);
 				if(event == nullptr)
 				{
 					throw utility::OutOfMemoryError();
 				}
-				queue.push(std::auto_ptr<const utility::input_events::InputEvent>(event));
+				try
+				{
+					queue.push(event);
+				}
+				catch(const std::bad_alloc&)
+				{
+					delete event;
+					throw utility::OutOfMemoryError();
+				}
+				catch(...)
+				{
+					delete event;
+					throw;
+				}
 				// Set the key state to released.
-				keyboard_state[key] = false;
+				keyboard_state[key] = 0x00;
 			}
 		}
 	}
@@ -165,14 +191,27 @@ namespace input
 			// Was the key pressed or released?
 			bool pressed = ((data.dwData & 0x80) != 0) ? true : false;
 			// Add a new KeyboardEvent to the queue.
-			key_event = new utility::input_events::KeyboardEvent(dinput::DIKToKK(data.dwOfs), pressed);
+			key_event = new(std::nothrow) utility::input_events::KeyboardEvent(dinput::DIKToKK(data.dwOfs), pressed);
 			if(key_event == nullptr)
 			{
-				throw utility::Exception("avl::input::DirectInputInputDevice::PollKeyboard() -- Unable to allocate memory for a new KeyboardEvent.");
+				throw utility::OutOfMemoryError();
 			}
-			queue.push(std::auto_ptr<const utility::input_events::InputEvent>(key_event));
+			try
+			{
+				queue.push(key_event);
+			}
+			catch(const std::bad_alloc&)
+			{
+				delete key_event;
+				throw utility::OutOfMemoryError();
+			}
+			catch(...)
+			{
+				delete key_event;
+				throw;
+			}
 			// Save the internal key state.
-			keyboard_state[data.dwOfs] = pressed;
+			keyboard_state[data.dwOfs] = (char)data.dwData;
 		}
 		// Now reset the device states if necessary.
 		if(device_okay == false)
@@ -223,9 +262,9 @@ namespace input
 			default:
 				// Mouse button event.
 				const bool pressed = (data.dwData & 0x80) ? true : false;
-				event = new utility::input_events::MouseButtonEvent(dinput::DIKToMB(data.dwOfs), pressed);
-				// Save the internal button state.
-				mouse_button_state[data.dwOfs] = pressed;
+				event = new(std::nothrow) utility::input_events::MouseButtonEvent(dinput::DIKToMB(data.dwOfs), pressed);
+				// Save the internal button state. Have to get the index into the butter statuses.
+				mouse_button_state[data.dwOfs - DIMOFS_BUTTON0] = pressed;
 				break;
 			}
 			// Did we run out of memory?
@@ -233,7 +272,20 @@ namespace input
 			{
 				throw utility::OutOfMemoryError();
 			}
-			queue.push(std::auto_ptr<const utility::input_events::InputEvent>(event));
+			try
+			{
+				queue.push(event);
+			}
+			catch(const std::bad_alloc&)
+			{
+				delete event;
+				throw utility::OutOfMemoryError();
+			}
+			catch(...)
+			{
+				delete event;
+				throw;
+			}
 		}
 		// Now reset the device states if necessary.
 		if(device_okay == false)
